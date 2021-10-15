@@ -1,0 +1,30 @@
+.list {
+  list-style: none inside none;
+  padding: 0;
+
+  // отступ от предыдущего элемента
+  li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 34px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 14px;
+      height: 14px;
+      background: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 0L14 7L7 14L0 7L7 0Z' fill='%2358C1B9'/%3E%3C/svg%3E%0A") no-repeat;
+    }
+
+    @include respond-before('md') {
+      margin-bottom: 10px;
+    }
+
+    &:last-child,
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

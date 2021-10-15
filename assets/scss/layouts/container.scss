@@ -1,0 +1,47 @@
+@import "../variables.scss";
+@import "../mixins/mixins.scss";
+
+// Общие стили для экранов и общих вложенных элементов
+.container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+
+  // @include respond-before("sm") {
+
+  // }
+  @include respond-before("md") {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  // @include respond-before("xl") {
+
+  // }
+  @include respond-before("xxl") {
+    max-width: 1260px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.section {
+  margin-bottom: 80px;
+
+  @include respond-before("md") {
+    margin-bottom: 80px;
+  }
+}
+
+.title {
+  @include fontTTNorms("bold", true);
+  font-size: 48px;
+
+  @include respond-before("md") {
+    font-size: 60px;
+  }
+  @include respond-before("xl") {
+    font-size: 80px;
+  }
+}
