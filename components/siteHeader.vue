@@ -51,7 +51,7 @@
       >
         <div class="site-header-menu__container">
           <!-- <div class="site-header-menu__top" /> -->
-          <ul class="site-header-menu__list">
+          <ul class="site-header-menu__list m-b-40">
             <li
               v-for="(item, idx) in menuItems"
               :key="idx"
@@ -69,6 +69,14 @@
               </nuxt-link>
             </li>
           </ul>
+
+          <nuxt-link
+            v-if="!$store.getters.hasToken"
+            :to="localePath('login')"
+            class="btn btn-small btn-outline btn-full"
+          >
+            {{ $t("PARTICIPATE_IN_PROJECT") }}
+          </nuxt-link>
 
           <ui-dropdown v-if="$store.getters.hasToken" class="user-balance user-balance--mobile">
             <template #selected>
@@ -100,7 +108,7 @@
         </div>
       </div>
 
-      <div class="site-header-item site-header-right">
+      <div class="site-header-item site-header-item--desktop site-header-right">
         <nuxt-link :to="localePath('login')" class="btn btn-small btn-outline">
           {{ $t("PARTICIPATE_IN_PROJECT") }}
         </nuxt-link>
@@ -122,15 +130,15 @@
         >
           <path
             d="M0.866194 6H7.46714C8.62163 6.05235 8.6225 7.9472 7.46714 8H0.866194C-0.288296 7.94765 -0.289167 6.0528 0.866194 6Z"
-            fill="white"
+            fill="#555860"
           />
           <path
             d="M0.889273 6.40154e-05H19.1107C20.296 0.0524139 20.2969 1.94726 19.1107 2.00006H0.889273C-0.296075 1.94771 -0.296969 0.052864 0.889273 6.40154e-05Z"
-            fill="white"
+            fill="#555860"
           />
           <path
             d="M0.882407 12H13.2843C14.4604 12.0524 14.4612 13.9472 13.2843 14H0.882407C-0.293692 13.9477 -0.294579 12.0528 0.882407 12Z"
-            fill="white"
+            fill="#555860"
           />
         </svg>
         <svg
@@ -143,11 +151,11 @@
         >
           <path
             d="M6.99282 19.8772L19.8773 6.99279C20.7525 6.19164 22.093 7.53086 21.2915 8.407L8.40704 21.2915C7.53185 22.0926 6.19136 20.7534 6.99282 19.8772Z"
-            fill="white"
+            fill="#555860"
           />
           <path
             d="M19.8773 21.2915L6.99288 8.407C6.19173 7.53182 7.53095 6.19132 8.40709 6.99279L21.2915 19.8773C22.0927 20.7524 20.7535 22.0929 19.8773 21.2915Z"
-            fill="white"
+            fill="#555860"
           />
         </svg>
       </button>
@@ -296,7 +304,7 @@ export default {
 }
 
 .site-header-logo {
-  margin-right: auto;
+  margin-right: 20px;
   margin-left: 0;
   position: relative;
   z-index: 25;
@@ -307,6 +315,12 @@ export default {
   }
   @include respond-before("xl") {
     margin-right: 30px;
+  }
+
+  svg {
+    @include respond-to("xs") {
+      width: 150px;
+    }
   }
 }
 
@@ -368,7 +382,7 @@ export default {
   }
 
   &__item {
-    margin: 25px auto;
+    margin: 15px auto;
     padding: 0;
     line-height: 1em;
     font-size: 14px;
@@ -427,7 +441,7 @@ export default {
     left: 0;
     z-index: 20;
     height: 100vh;
-    padding: 100px 37px 100px;
+    padding: 70px 15px 40px;
     background: var(--body-bg);
 
     @include respond-before("lg") {
@@ -446,9 +460,11 @@ export default {
   }
 }
 
-.site-header-logo {
-  img {
-    height: 75px;
+.site-header-item--desktop {
+  display: none;
+
+  @include respond-before("md") {
+    display: flex;
   }
 }
 
@@ -457,7 +473,8 @@ export default {
   width: 40px;
   height: 40px;
   padding: 0;
-  background: #202020;
+  background: rgba(167, 169, 183, 0.07);
+  border: 1px solid #555860;
   position: relative;
   z-index: 30;
   margin-left: 30px;

@@ -169,6 +169,219 @@
             {{ $t("COVER_DESC") }}
           </p>
         </div>
+
+        <div class="tariffs__wrap">
+          <div class="tariffs">
+            <div class="tariff">
+              <div class="tariff__header">
+                <div class="tariff__header__icon">
+                  <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M18.5879 0L6.31436 13.5057L18.5879 29H11.0896L0.157859 15.2043L0 12.1386L11.0896 0H18.5879Z"
+                      fill="#58C1B9"
+                    />
+                    <path
+                      d="M35.9882 0L23.4778 25.9757H35.9882V29H14.5193L27.0691 3.02429H14.4799V0H35.9882Z"
+                      fill="#58C1B9"
+                    />
+                    <path
+                      d="M40 5.42714V29H32.5412V0H40V5.42714Z"
+                      fill="#58C1B9"
+                    />
+                  </svg>
+                </div>
+                <div class="tariff__header__cnt">
+                  <div class="font-bold font-size-22" style="color: #000;">
+                    BUZ Crypto
+                  </div>
+                  <div class="small">
+                    {{ $t("TOKEN") }} BUZC
+                  </div>
+                </div>
+              </div>
+              <div class="tariff__body">
+                <div class="tariff__row" data-data="33%">
+                  <img :src="require('~/assets/images/bitcoin.png')" alt="">
+                </div>
+                <div class="tariff__row" data-data="33%">
+                  <img :src="require('~/assets/images/ethereum.png')" alt="">
+                </div>
+                <div class="tariff__row" data-data="33%">
+                  <img :src="require('~/assets/images/ripple.png')" alt="">
+                </div>
+                <div class="tariff__price">
+                  <div class="tariff__price__l">
+                    <div class="small">
+                      {{ $t("COST") }}:
+                    </div>
+                    <div class="font-bold font-size-36 color-black">
+                      $300
+                    </div>
+                  </div>
+                  <div class="tariff__price__r">
+                    <div class="info-btn">
+                      <img :src="require('~/assets/img/icon-i.png')" alt="">
+                    </div>
+                  </div>
+                </div>
+                <nuxt-link
+                  :to="localePath('login')"
+                  class="btn btn-solid btn-full"
+                >
+                  {{ $t("JOIN") }}
+                </nuxt-link>
+              </div>
+            </div>
+
+            <div class="tariff">
+              <div class="tariff__header">
+                <div class="tariff__header__icon">
+                  <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M18.5879 0L6.31436 13.5057L18.5879 29H11.0896L0.157859 15.2043L0 12.1386L11.0896 0H18.5879Z"
+                      fill="#99C158"
+                    />
+                    <path
+                      d="M35.9882 0L23.4778 25.9757H35.9882V29H14.5193L27.0691 3.02429H14.4799V0H35.9882Z"
+                      fill="#99C158"
+                    />
+                    <path
+                      d="M40 5.42714V29H32.5412V0H40V5.42714Z"
+                      fill="#99C158"
+                    />
+                  </svg>
+                </div>
+                <div class="tariff__header__cnt">
+                  <div class="font-bold font-size-22" style="color: #000;">
+                    BUZ Blockchain
+                  </div>
+                  <div class="small">
+                    {{ $t("TOKEN") }} BUZB
+                  </div>
+                </div>
+              </div>
+              <div class="tariff__body">
+                <div class="tariff__row">
+                  <img :src="require('~/assets/images/polkadot.png')" alt="">
+                </div>
+                <div class="tariff__row">
+                  <img :src="require('~/assets/images/uniswap.png')" alt="">
+                </div>
+                <div class="tariff__row">
+                  <img :src="require('~/assets/images/pancakeswap.png')" alt="">
+                </div>
+                <div class="tariff__price">
+                  <div class="tariff__price__l">
+                    <div class="small">
+                      {{ $t("COST") }}:
+                    </div>
+                    <div class="font-bold font-size-36 color-black">
+                      $200
+                    </div>
+                  </div>
+                  <div class="tariff__price__r">
+                    <div class="info-btn">
+                      <img :src="require('~/assets/img/icon-i.png')" alt="">
+                    </div>
+                  </div>
+                </div>
+                <nuxt-link
+                  :to="localePath('login')"
+                  class="btn btn-solid btn-solid--secondary btn-full"
+                >
+                  {{ $t("JOIN") }}
+                </nuxt-link>
+              </div>
+            </div>
+
+            <div class="tariff">
+              <div class="tariff__header">
+                <div class="tariff__header__icon">
+                  <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M18.5879 0L6.31436 13.5057L18.5879 29H11.0896L0.157859 15.2043L0 12.1386L11.0896 0H18.5879Z"
+                      fill="#7358C1"
+                    />
+                    <path
+                      d="M35.9882 0L23.4778 25.9757H35.9882V29H14.5193L27.0691 3.02429H14.4799V0H35.9882Z"
+                      fill="#7358C1"
+                    />
+                    <path
+                      d="M40 5.42714V29H32.5412V0H40V5.42714Z"
+                      fill="#7358C1"
+                    />
+                  </svg>
+                </div>
+                <div class="tariff__header__cnt">
+                  <div class="font-bold font-size-22" style="color: #000;">
+                    BUZ Real
+                  </div>
+                  <div class="small">
+                    {{ $t("TOKEN") }} BUZR
+                  </div>
+                </div>
+              </div>
+              <div class="tariff__body">
+                <div class="tariff__row">
+                  <img :src="require('~/assets/images/apple.png')" alt="">
+                </div>
+                <div class="tariff__row">
+                  <img :src="require('~/assets/images/google.png')" alt="">
+                </div>
+                <div class="tariff__row">
+                  <img :src="require('~/assets/images/netflix.png')" alt="">
+                </div>
+                <div class="tariff__price">
+                  <div class="tariff__price__l">
+                    <div class="small">
+                      {{ $t("COST") }}:
+                    </div>
+                    <div class="font-bold font-size-36 color-black">
+                      $100
+                    </div>
+                  </div>
+                  <div class="tariff__price__r">
+                    <div class="info-btn">
+                      <img :src="require('~/assets/img/icon-i.png')" alt="">
+                    </div>
+                  </div>
+                </div>
+                <nuxt-link
+                  :to="localePath('login')"
+                  class="btn btn-solid btn-solid--tertiary btn-full"
+                >
+                  {{ $t("JOIN") }}
+                </nuxt-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="container">
+      <div class="roadmap-section">
+        <div class="roadmap-section__l">
+          <div class="h2 m-b-20">
+            {{ $t("HOME_ROADMAP_TITLE") }}
+          </div>
+          <p class="m-b-40 lh-135">
+            {{ $t("COVER_DESC") }}
+          </p>
+        </div>
+        <div class="roadmap-section__r">
+          <div class="timeline">
+            <div
+              v-for="(item, idx) in timeline"
+              :key="idx"
+              class="timeline-item"
+            >
+              <p class="font-size-22 font-bold color-black m-b-5" v-html="$t(item.title).toUpperCase()">
+              <p v-html="$t(item.desc)" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -182,7 +395,21 @@ export default {
     return {
       disabled: true,
       countIndices: 9,
-      cryptoindices: ["kznc", "kznb", "kznr"]
+      cryptoindices: ["kznc", "kznb", "kznr"],
+      timeline: [
+        {
+          title: "TIMELINE_1_TITLE",
+          desc: "TIMELINE_1_DESC"
+        },
+        {
+          title: "TIMELINE_2_TITLE",
+          desc: "TIMELINE_2_DESC"
+        },
+        {
+          title: "TIMELINE_3_TITLE",
+          desc: "TIMELINE_3_DESC"
+        }
+      ]
     };
   },
   computed: {
@@ -197,9 +424,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-home {
-}
-
 .cryptoindices {
   background-color: #f8f8fb;
   border-radius: 20px;
@@ -221,6 +445,13 @@ export default {
       color: var(--color-primary);
       @include fontTTNorms("bold");
 
+      @include respond-before("xs") {
+        font-size: 16px;
+      }
+      @include respond-before("md") {
+        font-size: 24px;
+      }
+
       &:last-child {
         margin-right: 0;
       }
@@ -230,23 +461,50 @@ export default {
 
 .cover-textbox {
   max-width: 563px;
-  margin-left: 40px;
   margin-top: 60px;
+
+  @include respond-before("lg") {
+    margin-left: 40px;
+  }
 }
 
 .cover {
   margin-top: -60px;
   padding-top: 60px;
+  overflow: hidden;
   padding-bottom: 100px;
-  background: url("~/assets/images/cover.png") no-repeat 100% 50%;
-  background-size: auto 110%;
+  background-image: url("~/assets/images/cover.png");
+  background-repeat: no-repeat;
+  background-position: right 50% center;
+  background-size: auto 40%;
+
+  @include respond-before("xs") {
+    background-position: right 50% center;
+    background-size: auto 70%;
+  }
+  @include respond-before("md") {
+    background-position: right 60% center;
+    background-size: auto 60%;
+  }
+  @include respond-before("lg") {
+    background-position: right 60% center;
+    background-size: auto 80%;
+  }
+  @include respond-before("xl") {
+    background-position: right center;
+    background-size: auto 110%;
+  }
 
   &__title {
     color: #1f2024;
-    font-size: 48px;
-    line-height: 54px;
+    font-size: 36px;
+    line-height: 1.125em;
     letter-spacing: -0.02em;
     font-weight: 600;
+
+    @include respond-before("xs") {
+      font-size: 48px;
+    }
   }
 }
 
@@ -343,21 +601,30 @@ export default {
 }
 
 .info-chart {
-  padding: 60px 0;
+  padding: 60px 0 80px;
 
   &__wrap {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    @include respond-before("md") {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
   }
 
   &__left {
-    width: 400px;
+    margin-bottom: 30px;
+
+    @include respond-before("md") {
+      width: 400px;
+      margin-bottom: 0;
+    }
   }
 
   &__right {
-    flex: 1;
-    margin-left: 20px;
+    @include respond-before("md") {
+      flex: 1;
+      margin-left: 20px;
+    }
   }
 }
 
@@ -369,11 +636,233 @@ export default {
   }
 }
 
+.tariff {
+  $self: &;
+
+  &s {
+    @include respond-before("md") {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+
+    &__wrap {
+      margin: auto;
+      max-width: 985px;
+    }
+  }
+
+  & {
+    margin-bottom: 30px;
+
+    @include respond-before("md") {
+      margin: 0 10px;
+      width: 30%;
+    }
+
+    @include respond-before("xl") {
+      &:first-child #{$self}__row {
+        &:after {
+          left: -170px;
+        }
+
+        &:before {
+          content: attr(data-data);
+          position: absolute;
+          left: -130px;
+          color: #a7a9b7;
+          font-weight: 500;
+          font-size: 36px;
+          text-align: right;
+          letter-spacing: -0.02em;
+        }
+      }
+
+      &:last-child #{$self}__row {
+        &:after {
+          right: -170px;
+        }
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    background-color: #f0f2fb;
+    padding: 20px 25px;
+    border-radius: 20px 20px 0 0;
+
+    @include respond-before("md") {
+      @include respond-to("lg") {
+        min-height: 110px;
+      }
+    }
+
+    &__icon {
+      margin-right: 25px;
+    }
+  }
+
+  &__body {
+    background-color: #f8f8fb;
+    border-radius: 0 0 20px 20px;
+    padding: 0 30px 30px;
+  }
+
+  &__row {
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    @include respond-before("xl") {
+      &:after {
+        content: "";
+        height: 1px;
+        background-image: linear-gradient(to right, #d8dae5 33%, rgba(255, 255, 255, 0) 0%);
+        background-position: bottom;
+        background-size: 10px 1px;
+        background-repeat: repeat-x;
+        left: -38px;
+        right: -38px;
+        position: absolute;
+        top: 100%;
+      }
+    }
+
+  }
+
+  &__price {
+    display: flex;
+    margin: 30px 0;
+    align-items: flex-end;
+
+    &__l {
+      margin-right: 25px;
+    }
+
+    &__r {
+      margin-left: auto;
+    }
+  }
+
+  .btn {
+    @include respond-before("md") {
+      @include respond-to("lg") {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+.roadmap-section {
+  padding: 160px 0 70px;
+  max-width: 1000px;
+
+  @include respond-before("md") {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__l {
+      flex: 1;
+      max-width: 480px;
+    }
+
+    &__r {
+      margin-left: auto;
+      width: 400px;
+      padding-left: 40px;
+    }
+  }
+
+  @include respond-before("lg") {
+    max-width: 1000px;
+    margin-left: 84px;
+  }
+}
+
+.timeline {
+  position: relative;
+  padding-left: 30px;
+  margin: 70px 0;
+
+  @include respond-before("md") {
+    padding-left: 50px;
+    margin: 0;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    background-image: linear-gradient(#d8dae5 50%, rgba(255, 255, 255, 0) 0%);
+    background-position: right;
+    background-size: 2px 22px;
+    background-repeat: repeat-y;
+    left: 0;
+    top: -4%;
+    bottom: -4%;
+  }
+
+  &-item {
+    position: relative;
+    background: #f3f4fa;
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+
+    @include respond-before("md") {
+      margin-bottom: 80px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 14px;
+      width: 14px;
+      background: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 0L14 7L7 14L0 7L7 0Z' fill='%2358C1B9'/%3E%3C/svg%3E%0A") no-repeat;
+      top: 50%;
+      transform: translateY(-50%);
+      left: -36px;
+
+      @include respond-before("md") {
+        left: -56px;
+      }
+    }
+  }
+}
+
+// Common styles for page
 .h2 {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.125em;
-  color: #1F2024;
+  color: #1f2024;
+
+  @include respond-before("md") {
+    font-size: 36px;
+  }
+}
+
+.info-btn {
+  display: inline-block;
+  border: 1px solid #dee0eb;
+  border-radius: 12px;
+  padding: 10px 12px;
+  transition: background-color $transition;
+  cursor: help;
+
+  &:hover {
+    background-color: #dee0eb;
+  }
 }
 </style>

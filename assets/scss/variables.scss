@@ -35,7 +35,8 @@ $letter-spc-4: -0.04em; // calc(-1em / 25); //4%
 // BREAKPOINTS
 /////////////////////////////////////
 $breakpoints: (
-  'xs': 360px,
+  'xxs': 330px, // iphone 5/se
+  'xs': 360px, // iphone 6/7/8/X/12
   'sm': 414px,
   'pre-md': 540px,
   'md': 768px,

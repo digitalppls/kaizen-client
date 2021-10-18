@@ -1,37 +1,33 @@
 <template>
   <footer class="site-footer">
-    <div v-if="false" class="site-footer__container container">
-      <div class="site-footer__left">
-        <div class="site-footer__top-row">
-          {{ $t("FOOTER_ROW_1") }}
-        </div>
-        <div class="site-footer__bottom-row">
-          {{ $t("FOOTER_ROW_2") }}
-          <a :href="terms" class="link">
-            {{ $t("TERMSUSESERVICE") }}
-          </a>
-        </div>
-      </div>
-      <div class="site-footer__right">
-        <ul class="site-footer__menu footer-menu">
-          <li
-            v-for="(item, idx) in menuItems"
-            :key="idx"
-            class="footer-menu__item link"
-          >
-            <a v-if="item.url.startsWith('http')" :href="item.url" :target="item.target">
-              {{ $t(item.title) }}
-            </a>
-            <nuxt-link v-else :to="localePath(item.url)">
-              {{ $t(item.title) }}
-            </nuxt-link>
-          </li>
-        </ul>
+    <div class="site-footer__container container m-b-50">
+      <logo class="site-footer__logo" />
 
-        <div class="site-footer__copyrights">
-          &copy; AllWin. {{ year }}
-        </div>
+      <ul class="site-footer__menu footer-menu">
+        <li
+          v-for="(item, idx) in menuItems"
+          :key="idx"
+          class="footer-menu__item"
+        >
+          <a v-if="item.url.startsWith('http')" :href="item.url" :target="item.target">
+            {{ $t(item.title) }}
+          </a>
+          <nuxt-link v-else :to="localePath(item.url)">
+            {{ $t(item.title) }}
+          </nuxt-link>
+        </li>
+      </ul>
+
+      <div class="site-footer__copyrights">
+        &copy; Buzton Fund. {{ year }}
       </div>
+    </div>
+
+    <div class="site-footer__textblock container">
+      <p class="lh-135 m-b-5" v-html="$t('FOOTER_CONTACTS').replaceAll('%{PHONE}', phone).replaceAll('%{EMAIL}', email)" />
+      <p class="lh-135 m-b-20" v-html="$t('FOOTER_TXT_1')" />
+      <p class="lh-135 m-b-20" v-html="$t('FOOTER_TXT_2')" />
+      <p class="lh-135" v-html="$t('DENIAL_OF_RESPONSIBILITY')" />
     </div>
   </footer>
 </template>
@@ -44,15 +40,28 @@ export default {
   data () {
     return {
       menuVisible: false,
+      phone: "+1 (345) 769-4099",
+      email: "info@invictuscapital.com",
       menuItems: [
-        // {
-        //   title: "menu.contacts",
-        //   url: this.localePath("contacts")
-        // },
         {
-          title: "WRITE_TO_SUPPORT",
-          url: "https://t.me/romcybe",
-          target: "_blank"
+          title: "HOME",
+          url: "index"
+        },
+        {
+          title: "FUNDS",
+          url: "funds"
+        },
+        {
+          title: "INCUBATION",
+          url: "incubation"
+        },
+        {
+          title: "ABOUT_US",
+          url: "about"
+        },
+        {
+          title: "NEWS",
+          url: "news"
         }
       ]
     };
@@ -72,87 +81,101 @@ export default {
 
 <style lang="scss" scoped>
 .site-footer {
-  padding: 40px 0 20px;
-
-  @include respond-before("md") {
-    padding: 76px 0 30px;
-  }
+  padding: 50px 0;
+  background-color: var(--color-gray-light);
 
   &__container {
     @include respond-before("lg") {
       display: flex;
-      align-items: center;
-    }
-  }
-
-  &__left {
-    margin-bottom: 60px;
-
-    @include respond-before("lg") {
-      margin-bottom: 0;
-      max-width: 665px;
-      margin-right: 50px;
-    }
-  }
-
-  &__right {
-    @include respond-before("lg") {
-      margin-left: auto;
-      display: flex;
       flex-wrap: wrap;
       align-items: center;
     }
+  }
 
+  &__logo {
     @include respond-before("lg") {
-      justify-content: flex-end;
+      margin-right: 20px;
     }
   }
 
   &__copyrights {
-    margin-top: 30px;
-    padding-bottom: 0.35em;
-    color: var(--color-gray-light);
+    @include fontGothamPro("regular", true);
+    margin-top: 20px;
+    font-size: 14px;
 
     @include respond-before("lg") {
       margin-top: 0;
-      margin-left: 50px;
     }
   }
 
-  &__top-row {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-
-  &__bottom-row {
+  &__textblock {
+    @include fontGothamPro("regular", true);
     font-size: 14px;
-    color: var(--color-gray-light);
+    color: #a7a9b7;
+
+    &::v-deep a {
+      color: #a7a9b7;
+    }
   }
 }
 
 .footer-menu {
   list-style-type: none;
-  display: flex;
-  align-items: center;
+  margin: 30px -10px 0;
+
+  @include respond-before("md") {
+    display: flex;
+    margin: 30px -20px 0;
+    align-items: center;
+  }
+  @include respond-before("lg") {
+    margin: 0 auto;
+  }
 
   &__item {
-    margin-bottom: 0;
-    margin-left: 40px;
-    color: $color-link;
+    margin: auto;
+    padding: 0;
+    line-height: 1em;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: inline-block;
 
+    @include respond-before("md") {
+      display: block;
+      margin: 0;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
     @include respond-before("lg") {
-      margin-left: 50px;
-      margin-bottom: 0;
-    }
-    @include respond-before("xl") {
-      margin-left: 70px;
-    }
-    @include respond-before("xxl") {
-      margin-left: 50px;
     }
 
-    &:first-child {
-      margin-left: 0;
+    a {
+      color: #555860;
+      display: block;
+      padding: 15px 10px;
+      border-radius: 12px;
+
+      @include respond-before("md") {
+        padding: 15px 20px;
+      }
+      @include respond-before("lg") {
+        padding: 15px;
+      }
+      @include respond-before("xl") {
+        padding: 15px 20px;
+      }
+
+      &:hover {
+        color: var(--color-dark);
+      }
+
+      &.nuxt-link-exact-active {
+        color: var(--color-dark);
+        font-weight: 600;
+      }
     }
   }
 }

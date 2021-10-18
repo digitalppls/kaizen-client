@@ -504,14 +504,14 @@ export default {
 <style lang="scss" scoped>
 .auth {
   &__box {
-    background: #000;
+    background: #fff;
     margin: auto;
     width: 100%;
     max-width: 540px;
     border-radius: 12px;
     padding-bottom: 18px;
     overflow: hidden;
-    box-shadow: 0 4px 34px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
   }
 
   &__header {
@@ -519,15 +519,16 @@ export default {
 
     &-item {
       width: 50%;
-      background: #121212;
+      color: #555860;
+      background: rgba(167, 169, 183, 0.07);
       text-align: center;
       display: flex;
       flex-direction: column;
       border-bottom: 1px solid transparent;
       justify-content: center;
-      color: #868686;
       text-transform: uppercase;
       font-size: 12px;
+      font-weight: 500;
       padding: 21px;
       cursor: pointer;
 
@@ -545,8 +546,8 @@ export default {
         color: #fff;
         cursor: default;
         font-weight: 500;
-        background: #000;
-        border-color: #fff;
+        background: #555860;
+        //border-color: #fff;
       }
     }
   }
