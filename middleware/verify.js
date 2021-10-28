@@ -4,6 +4,6 @@ export default function ({ app: { i18n }, store, redirect, route }) {
   const verify = store.getters.user?.emailVerified ?? null;
   if (store.getters.token && !verify) {
     console.log("redirect to balance main..");
-    redirect(`${locale}/cabinet`);
+    redirect(`${locale}/my`);
   }
 }

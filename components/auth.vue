@@ -256,7 +256,7 @@ export default {
     user (newValue, oldValue) {
       if (Object.prototype.hasOwnProperty.call(newValue, "wallet") && (!oldValue || !oldValue.wallet)) {
         // this.$toast.clear();
-        this.$router.push(this.localePath("cabinet"));
+        this.$router.push(this.localePath("my"));
       }
     },
     authInfo (newValue) {
