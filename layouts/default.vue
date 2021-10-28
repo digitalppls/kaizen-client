@@ -5,7 +5,7 @@
       <Nuxt ref="nuxt" />
     </div>
     <site-footer />
-    <cookies-banner />
+    <clear-storage v-if="isDev" />
   </div>
 </template>
 
@@ -13,11 +13,11 @@
 import VGlobalMixin from "~/mixins";
 import SiteHeader from "~/components/siteHeader.vue";
 import SiteFooter from "~/components/siteFooter.vue";
-import CookiesBanner from "~/components/cookies-banner";
+import ClearStorage from "~/components/dev/clear-storage";
 
 export default {
   components: {
-    CookiesBanner,
+    ClearStorage,
     SiteHeader,
     SiteFooter
   },
@@ -31,6 +31,9 @@ export default {
   computed: {
     hastToken () {
       return this.$store.getters.hasToken;
+    },
+    isDev () {
+      return process.env.isDev;
     }
   },
   watch: {
@@ -44,9 +47,18 @@ export default {
   mounted () {
     this.FooterToBottom();
 
+    console.log("default");
+
+    this.$socket.on("user_update", (r) => {
+      console.log("user_update", r);
+    });
+    this.$socket.on("operation_update", (r) => {
+      console.log("operation_update", r);
+    });
+
     if (this.hastToken) {
       this.Update(); // запускаем сразу
-      this.intervalUpdate = window.setInterval(this.Update, 5000); // и регулярно обновляем данные
+      // this.intervalUpdate = window.setInterval(this.Update, 5000); // и регулярно обновляем данные
     }
   },
   methods: {
@@ -106,13 +118,5 @@ export default {
   @include respond-before("md") {
     width: 380px;
   }
-}
-</style>
-
-
-<style lang="scss">
-.globalClass_5c43.visible {
-  opacity: 1;
-  visibility: visible;
 }
 </style>

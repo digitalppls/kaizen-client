@@ -2,14 +2,10 @@
   <div class="page-verify">
     <div class="container">
       <div class="page-verify__content">
-        <h1 class="title">
-          <template v-if="status === 'success'">
-            {{ $t("EMAIL_VERIFIED_SUCCESS") }}
-          </template>
-          <template v-else>
-            {{ $t("EMAIL_VERIFIED_FAIL") }}
-          </template>
-        </h1>
+        <h1
+          class="title"
+          v-html="$t(status === 'success' ? 'EMAIL_VERIFIED_SUCCESS' : 'EMAIL_VERIFIED_FAIL' )"
+        />
         <nuxt-link
           v-if="status === 'success'"
           :to="localePath('index')"

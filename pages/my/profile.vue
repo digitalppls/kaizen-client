@@ -1,12 +1,12 @@
 <template>
   <div class="userprofile">
     <section>
-      <h1 class="title">
+      <h1 class="m-b-30">
         {{ $t("MY_DATA") }}
       </h1>
 
       <table>
-        <tr class="color-gray small">
+        <tr class="small">
           <td>ID:</td>
           <td>{{ user._id }}</td>
         </tr>
@@ -33,9 +33,9 @@
     </section>
 
     <section class="m-t-60">
-      <h1 class="title">
+      <h2 class="m-b-30">
         {{ $t("AUTH.FIELDS.PASSWORD") }}
-      </h1>
+      </h2>
       <ul v-if="infos.length" class="list m-b-20">
         <li v-for="(info, idx) in infos" :key="idx" class="color-success" v-html="info" />
       </ul>
@@ -60,7 +60,7 @@
 import VerifyEmail from "~/components/verify-email";
 
 export default {
-  name: "MyData",
+  name: "Profile",
   components: { VerifyEmail },
   data () {
     return {
@@ -82,7 +82,7 @@ export default {
       return this.user?.emailVerified ?? false;
     },
     colorIcon () {
-      return this.verify ? "#cdff62" : "#4d4d4d";
+      return this.verify ? "#58C1B9" : "#ccc";
     },
     minutesLeft () {
       return Math.floor(this.seconds / 60);
@@ -153,7 +153,7 @@ table {
 
       &:first-child {
         width: 70px;
-        color: var(--color-gray-light);
+        color: var(--color-gray);
 
         @include respond-before("md") {
           width: 90px;

@@ -32,6 +32,7 @@
       <form v-if="mode === 'sign_up'" @submit.prevent="registerHandle">
         <div class="ui-form__fieldset">
           <ui-text-field
+            v-if="false"
             v-model="ref"
             :floating="true"
             autocomplete="off"
@@ -187,11 +188,8 @@
 </template>
 
 <script>
-import UiPreloader from "~/components/ui/ui-preloader";
-
 export default {
   name: "Auth",
-  components: { UiPreloader },
   props: {
     mode: {
       type: String,
@@ -284,7 +282,7 @@ export default {
 
     /** Слушатель ввода текста в поле */
     onKeydown () {
-      this.disabled = (!this.ref || !this.username || !this.email || !this.password) || this.loadingRef;
+      this.disabled = (!this.username || !this.email || !this.password) || this.loadingRef;
       if (this.$store.getters.authInfo === "USER_NOT_FOUND") {
         this.$store.dispatch("authInfo", null);
         this.errors = [];
@@ -350,7 +348,7 @@ export default {
               expiresToken: data.expires_in,
               user: data.user
             });
-            this.$router.push(this.localePath({ name: "index", query: { welcome: true } }));
+            this.$router.push(this.localePath("my"));
           }
         }, (error) => {
           if (typeof error.message === "string") {
@@ -392,7 +390,7 @@ export default {
               expiresToken: data.expires_in,
               user: data.user
             });
-            this.$router.push(this.localePath("index"));
+            this.$router.push(this.localePath("my"));
           }
         }, (error) => {
           this.loading = false;
@@ -511,7 +509,7 @@ export default {
     border-radius: 12px;
     padding-bottom: 18px;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
+    //box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
   }
 
   &__header {

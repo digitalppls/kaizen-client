@@ -176,7 +176,7 @@ export default {
     top: calc(100% + 1px);
     left: 0;
     right: 0;
-    background: var(--color-dark);
+    background: #e2e3e9; // var(--color-dark);
     z-index: 3;
     max-height: 300px;
     overflow-x: auto;
@@ -208,7 +208,7 @@ export default {
     }
 
     &:hover {
-      background: var(--body-bg);
+      background: #d4d5de; // var(--body-bg);
     }
   }
 

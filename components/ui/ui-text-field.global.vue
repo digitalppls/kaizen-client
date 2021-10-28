@@ -156,7 +156,7 @@ export default {
   }
 
   &--is-focus {
-    border-color: #fff;
+    //border-color: #555860;
   }
 
   &--append {

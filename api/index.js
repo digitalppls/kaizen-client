@@ -80,21 +80,11 @@ export default $axios => (proxy, store) => ({
     );
   },
 
-  /** Deprecated */
-  UserTokenBuy (data, promiseFuncSuccess, promiseFuncFail) {
+  /** Покупка токенов (обмен одной монеты на другую) */
+  TokenSwap (data, promiseFuncSuccess, promiseFuncFail) {
     this.request(
       "post",
-      "user/token/buy/",
-      data,
-      promiseFuncSuccess,
-      promiseFuncFail
-    );
-  },
-
-  UserProductList (data, promiseFuncSuccess, promiseFuncFail) {
-    this.request(
-      "post",
-      "product/list/my/",
+      "token/swap/",
       data,
       promiseFuncSuccess,
       promiseFuncFail
@@ -152,26 +142,6 @@ export default $axios => (proxy, store) => ({
     );
   },
 
-  ProductList (data, promiseFuncSuccess, promiseFuncFail) {
-    this.request(
-      "post",
-      "product/list/",
-      data,
-      promiseFuncSuccess,
-      promiseFuncFail
-    );
-  },
-
-  ProductBuy (data, promiseFuncSuccess, promiseFuncFail) {
-    this.request(
-      "post",
-      "product/buy/",
-      data,
-      promiseFuncSuccess,
-      promiseFuncFail
-    );
-  },
-
   getCurrency (promiseFuncSuccess, promiseFuncFail) {
     this.request(
       "get",
@@ -193,49 +163,6 @@ export default $axios => (proxy, store) => ({
     );
   },
 
-  /** Список пакетов */
-  getPackageList (promiseFuncSuccess, promiseFuncFail) {
-    this.request(
-      "get",
-      "package/list/",
-      false,
-      promiseFuncSuccess,
-      promiseFuncFail
-    );
-  },
-
-  /** Покупка пакета */
-  BuyPackage (data, promiseFuncSuccess, promiseFuncFail) {
-    this.request(
-      "post",
-      "package/buy/",
-      data,
-      promiseFuncSuccess,
-      promiseFuncFail
-    );
-  },
-
-  /** Список купленных пользователем пакетов */
-  getUserPackageList (promiseFuncSuccess, promiseFuncFail) {
-    this.request(
-      "post",
-      "package/list/my/",
-      false,
-      promiseFuncSuccess,
-      promiseFuncFail
-    );
-  },
-
-  /** Вывести средства с бизнес-пакета */
-  PackageWithdraw (data, promiseFuncSuccess, promiseFuncFail) {
-    this.request(
-      "post",
-      "package/withdraw/",
-      data,
-      promiseFuncSuccess,
-      promiseFuncFail
-    );
-  },
 
   request (type, path, data, promiseFuncSuccess, promiseFuncFail) {
     const config = {};

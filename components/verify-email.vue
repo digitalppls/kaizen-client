@@ -13,12 +13,12 @@
       </li>
     </ul>
     <template v-if="seconds > 0">
-      <p class="m-t-20 color-secondary">
+      <p class="m-t-20 color-primary font-medium">
         На вашу почту отправлено письмо со ссылкой для активации аккаунта.
       </p>
       <p class="m-t-20">
-        <span class="color-gray-light">
-          Повторная отправка через
+        <span class="color-gray">
+          {{ $t("RESEND_VIA") }}
         </span>
         {{ timer }}
       </p>

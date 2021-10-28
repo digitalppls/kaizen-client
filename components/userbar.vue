@@ -2,8 +2,13 @@
   <div v-if="$store.getters.hasToken" class="userbar">
     <ui-dropdown>
       <template #selected>
-        {{ userName }}
+        <button class="btn btn-small btn-outline">
+          {{ userName }}
+        </button>
       </template>
+      <div class="menu__item menu__item--email menu__item--wide">
+        {{ userEmail }}
+      </div>
       <nuxt-link
         v-for="(item, idx) in usermenu"
         :key="idx"
@@ -11,12 +16,11 @@
         class="menu__item"
         no-prefetch
         exact
-        @click.native="menuShow = false"
       >
         {{ $t(item.title) }}
       </nuxt-link>
       <button
-        class="menu__item menu__item--wide text-left"
+        class="menu__item menu__item--wide menu__item--logout"
         @click="logout"
       >
         {{ $t("LOGOUT") }}
@@ -32,9 +36,7 @@ export default {
   name: "Userbar",
   components: { UiDropdown },
   data () {
-    return {
-      menuShow: false
-    };
+    return {};
   },
   computed: {
     user () {
@@ -45,37 +47,29 @@ export default {
         ? `${this.user.username.slice(0, 6)}..`
         : this.user.username;
     },
+    userEmail () {
+      const email = this.user.email.split("@");
+      const left = email[0].slice(0, 2);
+      const right = email[1];
+      return `${left}***@${right}`;
+    },
     usermenu () {
       return [
         {
+          title: "DASHBOARD",
+          to: "my"
+        },
+        {
           title: "PROFILE",
-          to: "profile"
+          to: "my-profile"
         }
       ];
     }
-  },
-  mounted () {
-    document.addEventListener("click", this.close);
-  },
-  beforeDestroy () {
-    document.removeEventListener("click", this.close);
   },
   methods: {
     logout () {
       this.$store.dispatch("logout");
       this.$router.push(this.localePath("login"));
-    },
-    toggleUserBarMenu () {
-      this.menuShow = !this.menuShow;
-    },
-    close (e) {
-      if (!this.$el.contains(e.target)) {
-        this.menuShow = false;
-      }
-    },
-    changePasswordModal () {
-      this.menuShow = false;
-      this.$emit("password-modal");
     }
   }
 };
@@ -83,33 +77,60 @@ export default {
 
 <style lang="scss" scoped>
 .menu {
+  $self: &;
+
   &__item {
-    cursor: pointer;
-    margin-bottom: 20px;
+    text-align: left;
     display: block;
-    color: #fff;
-    font-size: 14px;
+    margin: 0 -20px;
+    padding: 15px 20px;
+    color: var(--base-text);
     @include fontTTNorms("medium");
 
+    &:first-child {
+      margin-top: -15px;
+    }
+
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: -15px;
     }
 
-    &:hover {
-      color: var(--color-gray-light);
+    &:not(#{$self}__item--email):hover {
+      cursor: pointer;
+      background-color: darken(#e2e3e9, 5%);
+      //color: var(--color-primary);
     }
 
-    &.nuxt-link-active {
-      color: var(--color-primary);
+    //&.nuxt-link-active {
+    //  background-color: darken(#E2E3E9, 10%);
+    //  //background-color: var(--color-primary);
+    //
+    //  svg path {
+    //    fill: var(--color-primary);
+    //  }
+    //}
 
-      svg path {
-        fill: var(--color-primary);
-      }
+    &--email {
+      font-size: 20px;
+      @include fontTTNorms("bold");
     }
 
     &--wide {
-      width: 100%;
+      width: calc(100% + 40px);
     }
+
+    &--logout {
+      border-top: 1px solid darken(#e2e3e9, 5%);
+    }
+  }
+}
+
+.userbar {
+  &::v-deep .dropdown__content {
+    background: #e2e3e9;
+    box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
   }
 }
 

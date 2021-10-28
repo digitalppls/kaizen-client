@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import Vue from "vue";
 import { Base64 } from "js-base64";
 import Fingerprint2 from "fingerprintjs2";
@@ -7,22 +8,23 @@ const WAValidator = require("multicoin-address-validator");
 
 Vue.prototype.$base64 = Base64;
 Vue.prototype.$toFixed = function (num, fixed) {
-  if (!fixed) { fixed = 2; }
+  if (!fixed) {
+    fixed = 2;
+  }
 
-  const re = new RegExp("^-?\\d+(?:\.\\d{0," + (fixed || -1) + "})?");
+  const re = new RegExp("^-?\\d+(?:\\d{0," + (fixed || -1) + "})?");
   return num.toFixed(10).toString().match(re)[0];
 };
-Vue.prototype.$isAddress = function (address, coin_type) {
-  if (coin_type === "alpha") { return address.length === 42; }
-
-  if (coin_type.toLowerCase() === "allwin") { coin_type = "eth"; }
-  if (coin_type.toLowerCase() === "usdt") { coin_type = "eth"; }
-  if (coin_type.toLowerCase() === "zlw") { coin_type = "eth"; }
+Vue.prototype.$isAddress = function (address, coinType) {
+  if (coinType === "alpha") { return address.length === 42; }
+  if (coinType.toLowerCase() === "allwin") { coinType = "eth"; }
+  if (coinType.toLowerCase() === "usdt") { coinType = "eth"; }
+  if (coinType.toLowerCase() === "zlw") { coinType = "eth"; }
 
   let status = true;
 
   try {
-    status = WAValidator.validate(address, coin_type.toUpperCase());
+    status = WAValidator.validate(address, coinType.toUpperCase());
   } catch (e) {
     console.error(e);
   }
@@ -30,7 +32,7 @@ Vue.prototype.$isAddress = function (address, coin_type) {
   return status;
 };
 
-let fp_int = null;
+let fpInt = null;
 const fingerprint = async function (options = {}, hash = true) {
   const components = await Fingerprint2.getPromise(options);
   if (!hash) { return components; }
@@ -41,9 +43,9 @@ const fingerprint = async function (options = {}, hash = true) {
 };
 
 const fingerint = async function () {
-  fp_int = fp_int || (await fingerprint()).replace(
-    new RegExp("[^0-9]", "g"), "").substr(0, 5);
-  return fp_int;
+  // fpInt = fpInt || (await fingerprint()).replace(/[^0-9]/g, "").substr(0, 5);
+  fpInt = fpInt || (await fingerprint()).replace(new RegExp("[^0-9]", "g"), "").substr(0, 5);
+  return fpInt;
 };
 fingerint();
 
@@ -51,21 +53,12 @@ Vue.prototype.$fingerprint = fingerprint;
 Vue.prototype.$fingerint = fingerint;
 
 let client = null;
-let static_params = {};
+let staticParams = {};
 const socket = {
 
   async emit (name, params = {}) {
     try {
       params.fp = await fingerprint();
-      params.client = "allwin";
-
-      if (window.localStorage && window.localStorage.getItem("digitalppl")) {
-        const parsed_json = JSON.parse(
-          window.localStorage.getItem("digitalppl"));
-        console.log("parsed_json", parsed_json);
-        if (parsed_json.email) { params.email = parsed_json.email; }
-        if (parsed_json.password) { params.password = parsed_json.password; }
-      }
       this.connect();
       console.log({ name, params });
       client.emit(name, params);
@@ -83,11 +76,17 @@ const socket = {
     this.connect();
     client.on(event, funct);
   },
+
   connect () {
     if (client) { return; }
 
-    const { SERVER_URL } = window.$nuxt.context.env;
-    client = window.io.connect(SERVER_URL, { secure: true, forceNew: true });
+    client = window.io.connect("/", {
+      secure: true, forceNew: true, head: {
+        token: window.$nuxt.$store.getters.token
+      }, extraHeaders: {
+        Authorization: window.$nuxt.$store.getters.token
+      }
+    })
 
     client.on("connect", function () {
       console.log("connect", "connected");
@@ -109,7 +108,7 @@ const socket = {
   },
 
   logout () {
-    static_params = {};
+    staticParams = {};
   },
 
   get () {
@@ -155,7 +154,7 @@ const date = {
 Vue.prototype.$date = date;
 
 Vue.prototype.$sleep = async function (ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return await new Promise(resolve => setTimeout(resolve, ms));
 };
 
 /*

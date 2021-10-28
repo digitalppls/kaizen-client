@@ -21,10 +21,10 @@
             </div>
             <div>
               <span
-                v-for="indice in cryptoindices"
-                :key="indice"
+                v-for="(indice, idx) in cryptoindices"
+                :key="idx"
               >
-                {{ indice.toUpperCase() }}
+                {{ indice.symbol.toUpperCase() }}
               </span>
             </div>
           </div>
@@ -32,17 +32,17 @@
 
         <div class="cover-textbox">
           <h1 class="cover__title m-b-20">
-            {{ $t(coverTitle) }}
+            {{ coverTitle }}
           </h1>
           <div class="cover__desc m-b-40 lh-135">
             {{ $t("COVER_DESC") }}
           </div>
           <div class="cover__action">
             <nuxt-link
-              :to="localePath(hasToken ? 'cabinet' : 'login')"
+              :to="localePath(hasToken ? 'my' : 'auth')"
               class="btn btn-solid"
             >
-              {{ $t(hasToken ? "CABINET" : "START_INVESTING") }}
+              {{ $t(hasToken ? "DASHBOARD" : "START_INVESTING") }}
             </nuxt-link>
           </div>
         </div>
@@ -225,7 +225,7 @@
                   </div>
                 </div>
                 <nuxt-link
-                  :to="localePath('login')"
+                  :to="localePath('auth')"
                   class="btn btn-solid btn-full"
                 >
                   {{ $t("JOIN") }}
@@ -286,7 +286,7 @@
                   </div>
                 </div>
                 <nuxt-link
-                  :to="localePath('login')"
+                  :to="localePath('auth')"
                   class="btn btn-solid btn-solid--secondary btn-full"
                 >
                   {{ $t("JOIN") }}
@@ -347,7 +347,7 @@
                   </div>
                 </div>
                 <nuxt-link
-                  :to="localePath('login')"
+                  :to="localePath('auth')"
                   class="btn btn-solid btn-solid--tertiary btn-full"
                 >
                   {{ $t("JOIN") }}
@@ -377,7 +377,10 @@
               :key="idx"
               class="timeline-item"
             >
-              <p class="font-size-22 font-bold color-black m-b-5" v-html="$t(item.title).toUpperCase()">
+              <p
+                class="font-size-22 font-bold color-black m-b-5"
+                v-html="$t(item.title).toUpperCase()"
+              />
               <p v-html="$t(item.desc)" />
             </div>
           </div>
@@ -391,11 +394,11 @@
 
 export default {
   name: "Home",
+  layout: "public",
   data () {
     return {
       disabled: true,
       countIndices: 9,
-      cryptoindices: ["kznc", "kznb", "kznr"],
       timeline: [
         {
           title: "TIMELINE_1_TITLE",
@@ -418,6 +421,9 @@ export default {
     },
     hasToken () {
       return this.$store.getters.hasToken;
+    },
+    cryptoindices () {
+      return this.$store.getters.currency.filter(e => e.index);
     }
   }
 };
@@ -441,7 +447,7 @@ export default {
     span {
       display: inline-block;
       margin-right: 15px;
-      font-size: 24px;
+      font-size: 18px;
       color: var(--color-primary);
       @include fontTTNorms("bold");
 
@@ -449,7 +455,7 @@ export default {
         font-size: 16px;
       }
       @include respond-before("md") {
-        font-size: 24px;
+        font-size: 18px;
       }
 
       &:last-child {
@@ -841,18 +847,6 @@ export default {
 }
 
 // Common styles for page
-.h2 {
-  font-size: 30px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.125em;
-  color: #1f2024;
-
-  @include respond-before("md") {
-    font-size: 36px;
-  }
-}
-
 .info-btn {
   display: inline-block;
   border: 1px solid #dee0eb;

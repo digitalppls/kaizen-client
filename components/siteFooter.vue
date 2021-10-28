@@ -1,6 +1,6 @@
 <template>
   <footer class="site-footer">
-    <div class="site-footer__container container m-b-50">
+    <div class="site-footer__container container">
       <logo class="site-footer__logo" />
 
       <ul class="site-footer__menu footer-menu">
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div class="site-footer__textblock container">
+    <div v-if="hideFooterText" class="site-footer__textblock container m-t-50">
       <p class="lh-135 m-b-5" v-html="$t('FOOTER_CONTACTS').replaceAll('%{PHONE}', phone).replaceAll('%{EMAIL}', email)" />
       <p class="lh-135 m-b-20" v-html="$t('FOOTER_TXT_1')" />
       <p class="lh-135 m-b-20" v-html="$t('FOOTER_TXT_2')" />
@@ -49,19 +49,19 @@ export default {
         },
         {
           title: "FUNDS",
-          url: "funds"
+          url: "index"
         },
         {
           title: "INCUBATION",
-          url: "incubation"
+          url: "index"
         },
         {
           title: "ABOUT_US",
-          url: "about"
+          url: "index"
         },
         {
           title: "NEWS",
-          url: "news"
+          url: "index"
         }
       ]
     };
@@ -73,6 +73,9 @@ export default {
     },
     terms () {
       return TERMS;
+    },
+    hideFooterText () {
+      return this.$nuxt.$data.layoutName === "public";
     }
   },
   methods: {}

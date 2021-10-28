@@ -6,7 +6,14 @@
     >
       <slot name="selected" />
 
-      <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        v-if="false"
+        width="8"
+        height="8"
+        viewBox="0 0 8 8"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <g clip-path="url(#clip0)">
           <path
             d="M8 2.47163L7.05666 1.52832L4 4.58498L0.943344 1.52832L4.35604e-07 2.47163L4 6.47163L8 2.47163Z"
@@ -64,16 +71,16 @@ export default {
   font-size: 16px;
 
   &__toggle {
-    color: var(--color-primary);
+    //color: var(--color-primary);
     cursor: pointer;
     user-select: none;
-    padding: 15px 26px;
-    border-radius: 12px;
-    border: 1px solid var(--color-dark);
-    transition: background-color .2s ease-in-out;
+    //padding: 15px 26px;
+    //border-radius: 12px;
+    //border: 1px solid var(--color-dark);
+    //transition: background-color .2s ease-in-out;
 
     &--open {
-      background-color: var(--color-dark);
+      //background-color: var(--color-dark);
     }
   }
 
@@ -84,9 +91,9 @@ export default {
     position: absolute;
     background: var(--color-dark);
     right: 0;
-    width: 200px;
+    width: 220px;
     border-radius: 12px;
-    top: calc(100% + 15px);
+    top: calc(100% + 11px);
     opacity: 1;
 
     &.dropdown-enter-active,

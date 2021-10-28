@@ -75,6 +75,7 @@ export default {
   "SIGN_IN": "Login",
   "RECOVERY_PASSWORD": "Restore password",
   "BUY_TOKENS": "Buy Tokens",
+  "BUY_CRYPTO": "Buy cryptocurrency",
   "SWAP_TOKENS": "Convert tokens",
   "REFERRAL_PROGRAM": "Referral Program",
   "REFERRAL_TREE": "Referral Tree",
@@ -98,7 +99,7 @@ export default {
   "SET_NEW_PASSWORD_SUCCESS": "<strong>New password set.</strong><br> You will now be redirected to your personal account.",
   "EMAIL_IS_ALREADY_IN_USE": "This e-mail is already registered",
   "START_TELEGRAM_BOT": "Start bot.",
-  "EMAIL_VERIFIED_SUCCESS": "Email verified. Thank you.",
+  "EMAIL_VERIFIED_SUCCESS": "Email verified. <br>Thank you.",
   "EMAIL_VERIFIED_FAIL": "Email not confirmed.",
   "ACTIVATE": "Activate",
   "ACTIVATE_AGAIN": "Reactivate",
@@ -243,4 +244,15 @@ export default {
   "FOOTER_TXT_1": "Invictus Capital Financial Technologies SPC (the \"Fund\") has applied for registration as a virtual asset service provider in the Cayman Islands. Registration is pending (ID 1382154).",
   "FOOTER_TXT_2": "Invictus Asset Management Limited (the \"Manager\") is authorized and regulated by the Financial Services Commission (British Virgin Islands) (registration number IBR / AIM / 21/0515).",
   "DENIAL_OF_RESPONSIBILITY": "IMPORTANT DISCLAIMER Access to the products and services described on this website may be restricted to certain individuals or countries. In particular, the products and services mentioned in this document are not available to individuals from the United States, as this is defined in the US Securities and Exchange Commission Regulation S, as amended (“US Persons”). The information contained on this website is not available to residents of the US Investors who are “American” should not view this site The provision of information on this website does not constitute an offer of securities to any person in the United States or to any “person in the United States.” Invictus Capital is not registered under the US Investment Companies Act 1940, as amended, and the sale of Invictus tokens is not registered under with the United States Securities Act of 1933, as amended. Therefore, it cannot be put up for sale or sold in the United States, its territories , possessions or protectorates under their jurisdiction, as well as citizens, citizens or residents in any of these areas, except in accordance with the applicable exception. More generally, the products and services featured on this website may only be purchased in jurisdictions that permit their marketing and distribution. Invictus Capital recommends that all interested parties check in advance if they are legally entitled to purchase the products and / or services presented on the website. ",
+
+  // Cabinet
+  "DASHBOARD": "Dashboard",
+  "SHOW_CURRENCY": "Coin rates",
+  "CURRENCY_QUOTES": "Currency quotes",
+  "COLLAPSE": "Collapse",
+  "RESEND_VIA": "Resend via",
+  "BALANCE_INFORMATION": "Balance information",
+  "DEPOSIT": "Deposit",
+  "ASSESSED_VALUE": "Assessed value"
+
 };

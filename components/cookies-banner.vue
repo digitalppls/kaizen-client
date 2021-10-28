@@ -50,7 +50,8 @@ export default {
 }
 
 .cookies-banner {
-  background-color: var(--color-dark);
+  background-color: var(--body-bg);
+  box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
   padding: var(--input-padding-x);
   border-radius: 7px;
   width: 100%;

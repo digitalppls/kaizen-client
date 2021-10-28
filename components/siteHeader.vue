@@ -1,5 +1,5 @@
 <template>
-  <header :class="['site-header', { 'site-header--transparent' : servicePage }]">
+  <header :class="['site-header']">
     <div class="site-header-container container">
       <nuxt-link
         exact
@@ -72,7 +72,7 @@
 
           <nuxt-link
             v-if="!$store.getters.hasToken"
-            :to="localePath('login')"
+            :to="localePath('auth')"
             class="btn btn-small btn-outline btn-full"
           >
             {{ $t("PARTICIPATE_IN_PROJECT") }}
@@ -109,10 +109,10 @@
       </div>
 
       <div class="site-header-item site-header-item--desktop site-header-right">
-        <nuxt-link :to="localePath('login')" class="btn btn-small btn-outline">
+        <userbar v-if="hasToken" />
+        <nuxt-link v-else :to="localePath('auth')" class="btn btn-small btn-outline">
           {{ $t("PARTICIPATE_IN_PROJECT") }}
         </nuxt-link>
-        <userbar />
       </div>
 
       <button
@@ -194,19 +194,19 @@ export default {
         },
         {
           title: "FUNDS",
-          url: "funds"
+          url: "index"
         },
         {
           title: "INCUBATION",
-          url: "incubation"
+          url: "index"
         },
         {
           title: "ABOUT_US",
-          url: "about"
+          url: "index"
         },
         {
           title: "NEWS",
-          url: "news"
+          url: "index"
         }
       ]
     };
@@ -234,6 +234,11 @@ export default {
         document.querySelector("body").classList.remove("overflow");
       }
     }
+  },
+  mounted () {
+    this.$socket.on("currency_update", (r) => {
+      this.$store.dispatch("updateCurrency", r);
+    });
   },
   methods: {
     toggleMenu () {

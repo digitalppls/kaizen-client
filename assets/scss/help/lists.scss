@@ -27,4 +27,15 @@
       margin-bottom: 0;
     }
   }
+
+  // без отступов и иконок
+  &--none {
+    li {
+      padding-left: 0;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
 }

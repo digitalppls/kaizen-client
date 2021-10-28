@@ -6,7 +6,7 @@ export default ({ $axios, store, env }, inject) => {
   // And in the Vue instances (this.$repository in your components)
   const ApiWithAxios = API($axios, store);
   const proxy = env.PROXY
-    ? "//192.168.0.54:80/server"
+    ? "//192.168.0.75:80/server"
     : "/server";
 
   // $axios.setToken(store.getters.token, "Bearer");

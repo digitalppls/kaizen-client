@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import UiPreloader from "~/components/ui/ui-preloader";
+import UiPreloader from "~/components/ui/ui-preloader.global";
 
 export default {
   name: "ReferralIndex",

@@ -1,21 +1,20 @@
 import fs from "fs";
 import path from "path";
-
+// "https://kaizenfund.io" // http://165.232.120.92"
 export default {
   env: {
     PROXY: process.env.PROXY || "",
-    SERVER_URL: process.env.SERVER_URL,
-    isDevServer: process.env.SERVER_URL === "https://bot.oromundo.io"
+    isDev: process.env.NODE_ENV !== "production"
   },
   server: {
-    port: 5000,
+    port: 80,
     https: process.env.HTTPS === "true"
       ? {
-          key: fs.readFileSync(path.resolve(__dirname, "cert", "server.key")),
-          cert: fs.readFileSync(path.resolve(__dirname, "cert", "server.crt"))
-        }
+        key: fs.readFileSync(path.resolve(__dirname, "cert", "server.key")),
+        cert: fs.readFileSync(path.resolve(__dirname, "cert", "server.crt"))
+      }
       : null,
-    host: "0.0.0.0",
+    host: "0.0.0.0"
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -46,11 +45,11 @@ export default {
         content: "telephone=no"
       }
     ],
-    // script: [
-    //   {
-    //     src: `${process.env.SERVER_URL}/socket.io/socket.io.js`
-    //   }
-    // ],
+    script: [
+      {
+        src: "https://kaizenfund.io/socket.io/socket.io.min.js"
+      }
+    ],
     link: [
       {
         rel: "apple-touch-icon",
@@ -136,7 +135,8 @@ export default {
     { src: "~plugins/utils.js", ssr: false },
     { src: "~plugins/api.js", ssr: false },
     { src: "~plugins/click-outside.js", ssr: false },
-    { src: "~plugins/axios.js", ssr: false }
+    { src: "~plugins/axios.js", ssr: false },
+    { src: "~plugins/donut.js", ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -182,17 +182,20 @@ export default {
 
   proxy: process.env.PROXY
     ? {
-        "/server": {
-          target: process.env.PROXY,
-          pathRewrite: { "^/server": "/" }
-        }
+      "/server": {
+        target: process.env.PROXY,
+        pathRewrite: { "^/server": "/" }
+      },
+      "/socket.io": {
+        target: process.env.PROXY
       }
+    }
     : {},
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: process.env.PROXY
-      ? "//192.168.0.54:80/server"
+      ? "/server"
       : "/"
   },
 

@@ -6,6 +6,7 @@
     </div>
     <site-footer />
     <cookies-banner />
+    <clear-storage v-if="isDev" />
   </div>
 </template>
 
@@ -14,14 +15,21 @@ import SiteHeader from "~/components/siteHeader.vue";
 import SiteFooter from "~/components/siteFooter.vue";
 import CookiesBanner from "~/components/cookies-banner";
 import VGlobalMixin from "~/mixins";
+import ClearStorage from "~/components/dev/clear-storage";
 
 export default {
   components: {
+    ClearStorage,
     CookiesBanner,
     SiteHeader,
     SiteFooter
   },
   mixins: [VGlobalMixin],
+  computed: {
+    isDev () {
+      return process.env.isDev;
+    }
+  },
   watch: {
     $route () {
       setTimeout(this.FooterToBottom, 100);
@@ -44,9 +52,6 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.globalClass_5c43 {
-  opacity: 0;
-  visibility: hidden;
-}
+<style lang="scss" scoped>
+
 </style>

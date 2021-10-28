@@ -6,14 +6,8 @@
           <div class="modal-stage">
             <div class="modal-slide">
               <div class="modal-container">
-                <!-- Достижение уровня popup :: start -->
-                <template v-if="empty">
-                  <slot />
-                </template>
-                <!-- Достижение уровня popup :: end -->
                 <!-- Стандартный popup :: start -->
                 <div
-                  v-else
                   class="modal-content"
                   :style="{maxWidth}"
                   role="dialog"
@@ -28,22 +22,8 @@
                     </svg>
                   </button>
 
-                  <div
-                    v-if="hasHeaderSlot"
-                    class="modal-header"
-                  >
-                    <slot name="header" />
-                  </div>
-
                   <div class="modal-body">
                     <slot />
-                  </div>
-
-                  <div
-                    v-if="hasFooterSlot"
-                    class="modal-footer"
-                  >
-                    <slot name="footer" />
                   </div>
                 </div>
                 <!-- Стандартный popup :: end -->
@@ -68,30 +48,6 @@ export default {
     maxWidth: {
       type: String,
       default: "580px"
-    },
-    empty: {
-      type: Boolean,
-      default: false
-    }
-  },
-  computed: {
-    hasHeaderSlot () {
-      return !!this.$slots.header;
-    },
-    hasBodySlot () {
-      return !!this.$slots.body;
-    },
-    hasFooterSlot () {
-      return !!this.$slots.footer;
-    },
-    hasFooterButtonSlot () {
-      return !!this.$slots["footer-button"];
-    },
-    hasFooterBeforeButtonSlot () {
-      return !!this.$slots["footer-before-button"];
-    },
-    hasFooterAfterButtonSlot () {
-      return !!this.$slots["footer-after-button"];
     }
   },
   mounted () {
@@ -116,6 +72,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$modal-overlay-bg: #f8f8fb;
+$modal-bg: #fff;
+$padding-top: 70px; // зависит от высоты header
 .modal-bg {
   top: 0;
   left: 0;
@@ -125,14 +84,13 @@ export default {
   position: fixed;
   outline: none !important;
   -webkit-backface-visibility: hidden;
-  background-color: rgba(#0A0A0A, 0.7);
+  background-color: rgba($modal-overlay-bg, 0.7);
   transition: opacity 0.3s ease;
 }
 
 .modal-iframe {
-
   .modal-content {
-    background-color: #1e1e1e;
+    background-color: $modal-bg;
     padding: 20px;
   }
 }
@@ -180,7 +138,7 @@ export default {
   outline: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 80px 15px 0;
+  padding: $padding-top 15px 0;
   position: absolute;
   text-align: center;
   top: 0;
@@ -200,10 +158,14 @@ export default {
   max-width: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 0;
+  padding: 20px 0;
   position: relative;
   text-align: left;
   vertical-align: middle;
+
+  @include respond-before("pre-md") {
+    padding: 20px;
+  }
 }
 
 .modal-close {
@@ -249,8 +211,8 @@ export default {
   position: relative;
   margin: auto;
   padding: var(--modal-padding);
-  background-color: var(--color-dark);
-  box-shadow: 0 4px 64px rgba(0, 0, 0, 0.42);
+  background-color: $modal-bg;
+  box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
   border-radius: 15px;
   transition: all 0.3s ease;
 
