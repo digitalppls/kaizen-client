@@ -80,13 +80,21 @@ const socket = {
   connect () {
     if (client) { return; }
 
-    client = window.io.connect("/", {
-      secure: true, forceNew: true, head: {
+    const params = {
+      secure: true,
+      forceNew: true
+    };
+
+    if (window.$nuxt.$store.getters.token) {
+      params.head = {
         token: window.$nuxt.$store.getters.token
-      }, extraHeaders: {
+      };
+      params.extraHeaders = {
         Authorization: window.$nuxt.$store.getters.token
       }
-    })
+    }
+
+    client = window.io.connect("/", params)
 
     client.on("connect", function () {
       console.log("connect", "connected");

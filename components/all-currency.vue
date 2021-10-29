@@ -7,13 +7,13 @@
             <div
               v-for="(currency, idx) in currencies"
               :key="idx"
-              :class="['all-currency__item', {'all-currency__item--indice': currency.index}]"
+              :class="['all-currency__item', {'all-currency__item--indice': currency[2]}]"
             >
               <div class="all-currency__symbol">
-                {{ currency.symbol }}
+                {{ currency[0] }}
               </div>
               <div class="all-currency__price">
-                {{ currency.price.toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
+                {{ currency[1].toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
               </div>
             </div>
           </div>
@@ -36,8 +36,9 @@ export default {
   },
   computed: {
     currencies () {
-      return this.$store.getters.currency.filter(
-        e => !["AMCUSDT", "OROUSDT", "BUSDUSDT", "ALLWINUSDT", "FCOINUSDT", "FCASHUSDT", "USDTUSDT", "USDCUSDT", "USDUSDT"].includes(e.symbol));
+      return this.$store.getters.currency
+        .filter(e => !["AMCUSDT", "OROUSDT", "BUSDUSDT", "ALLWINUSDT", "FCOINUSDT", "FCASHUSDT", "USDTUSDT", "USDCUSDT", "USDUSDT", "USDTRUB"].includes(e.symbol))
+        .map(i => [`${i.symbol.split("USDT")[0]}/USDT`, i.price, i.index]);
     }
   },
   methods: {

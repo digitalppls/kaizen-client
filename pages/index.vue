@@ -21,10 +21,10 @@
             </div>
             <div>
               <span
-                v-for="(indice, idx) in cryptoindices"
+                v-for="(cindex, idx) in cryptoindexes"
                 :key="idx"
               >
-                {{ indice.symbol.toUpperCase() }}
+                {{ cindex }}
               </span>
             </div>
           </div>
@@ -35,7 +35,7 @@
             {{ coverTitle }}
           </h1>
           <div class="cover__desc m-b-40 lh-135">
-            {{ $t("COVER_DESC") }}
+            {{ coverDesc }}
           </div>
           <div class="cover__action">
             <nuxt-link
@@ -141,7 +141,7 @@
               {{ $t("INFOCHART_TITLE") }}
             </div>
             <div class="m-b-40 lh-135">
-              {{ $t("COVER_DESC") }}
+              {{ coverDesc }}
             </div>
             <ul class="list font-bold">
               <li>{{ $t("CRYPTOCURRENCIES").toUpperCase() }}</li>
@@ -166,7 +166,7 @@
             {{ $t("HOME_TARIFFS_TITLE") }}
           </div>
           <p class="m-b-40 lh-135">
-            {{ $t("COVER_DESC") }}
+            {{ coverDesc }}
           </p>
         </div>
 
@@ -367,7 +367,7 @@
             {{ $t("HOME_ROADMAP_TITLE") }}
           </div>
           <p class="m-b-40 lh-135">
-            {{ $t("COVER_DESC") }}
+            {{ coverDesc }}
           </p>
         </div>
         <div class="roadmap-section__r">
@@ -398,7 +398,7 @@ export default {
   data () {
     return {
       disabled: true,
-      countIndices: 9,
+      countIndices: 10,
       timeline: [
         {
           title: "TIMELINE_1_TITLE",
@@ -419,11 +419,15 @@ export default {
     coverTitle () {
       return this.$t("COVER_TITLE").replace("%{COUNT}", this.countIndices);
     },
+    coverDesc () {
+      return this.$t("COVER_DESC").replace("%{INDEXNAME}", "CRYPTO10").replaceAll("%{INDEXCNT}", "10");
+    },
     hasToken () {
       return this.$store.getters.hasToken;
     },
-    cryptoindices () {
-      return this.$store.getters.currency.filter(e => e.index);
+    cryptoindexes () {
+      return ["CRYPTO10", "BITW", "CIX100", "DEFI"];
+      // return this.$store.getters.currency.filter(e => e.index).map(i => i.symbol.split("USDT")[0]);
     }
   }
 };

@@ -77,34 +77,6 @@
           >
             {{ $t("PARTICIPATE_IN_PROJECT") }}
           </nuxt-link>
-
-          <ui-dropdown v-if="$store.getters.hasToken" class="user-balance user-balance--mobile">
-            <template #selected>
-              {{ balance.toLocaleString("en-US", $LOCALESTRING_USD()) }}
-            </template>
-
-            <ul v-if="wallets.length" class="list m-b-20">
-              <li
-                v-for="(wallet, idx) in wallets"
-                :key="idx"
-              >
-                <strong>{{ wallet.symbol.toUpperCase() }}:</strong>
-                <span style="font-weight: 500;">
-                  {{ wallet.amount.toLocaleString(undefined, { maximumFractionDigits: 3 }) }}
-                </span>
-                <small class="color-gray-light">
-                  ≈ ${{ $toUsd(wallet.symbol, wallet.amount).toLocaleString(undefined, { maximumFractionDigits: 3 }) }}
-                </small>
-              </li>
-            </ul>
-            <nuxt-link
-              :to="localePath('balance-deposit')"
-              class="btn btn-solid btn-small btn-wide"
-              @click.native="menuVisible = false"
-            >
-              {{ $t("REFILL_BALANCE") }}
-            </nuxt-link>
-          </ui-dropdown>
         </div>
       </div>
 
@@ -166,11 +138,10 @@
 <script>
 import langSwitcher from "~/components/langSwitcher.vue";
 import Userbar from "~/components/userbar";
-import UiDropdown from "~/components/ui/ui-dropdown";
 
 export default {
   name: "SiteHeader",
-  components: { UiDropdown, Userbar, langSwitcher },
+  components: { Userbar, langSwitcher },
   props: {
     user: {
       type: Object,
@@ -234,11 +205,6 @@ export default {
         document.querySelector("body").classList.remove("overflow");
       }
     }
-  },
-  mounted () {
-    this.$socket.on("currency_update", (r) => {
-      this.$store.dispatch("updateCurrency", r);
-    });
   },
   methods: {
     toggleMenu () {

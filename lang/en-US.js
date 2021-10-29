@@ -100,7 +100,7 @@ export default {
   "EMAIL_IS_ALREADY_IN_USE": "This e-mail is already registered",
   "START_TELEGRAM_BOT": "Start bot.",
   "EMAIL_VERIFIED_SUCCESS": "Email verified. <br>Thank you.",
-  "EMAIL_VERIFIED_FAIL": "Email not confirmed.",
+  "EMAIL_VERIFIED_FAIL": "Email not confirmed",
   "ACTIVATE": "Activate",
   "ACTIVATE_AGAIN": "Reactivate",
   "CONFIRM": "Confirm",
@@ -207,7 +207,7 @@ export default {
 
   // Home
   "COVER_TITLE": "Invest in %{COUNT} of the world's best projects",
-  "COVER_DESC": "CRYPTO20 is the world's first tokenized cryptocurrency index fund. The profitability of the top 20 cryptocurrencies is tracked in one C20 cryptoasset.",
+  "COVER_DESC": "%{INDEXNAME} is the world's first tokenized cryptocurrency index fund. The profitability of the top %{INDEXCNT} cryptocurrencies is tracked in one C%{INDEXCNT} cryptoasset.",
   "START_INVESTING": "Start investing",
   "CABINET": "Cabinet",
 

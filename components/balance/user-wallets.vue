@@ -34,7 +34,7 @@
           </li>
         </ul>
       </div>
-      <div v-if="!hideChart" class="user-wallets-box__right">
+      <div v-if="!hideChart && total" class="user-wallets-box__right">
         <vc-donut
           foreground="#EAECEF"
           :size="175"
@@ -74,13 +74,6 @@
 export default {
   name: "UserWallets",
   props: {
-    mode: {
-      type: String,
-      default: "list",
-      validator (value) {
-        return ["list", "total"].includes(value);
-      }
-    },
     hideChart: {
       type: Boolean,
       default: false
@@ -136,7 +129,7 @@ export default {
       return this.$store.getters.wallets.map(x => x.amount).reduce((a, b) => a + b, 0);
     },
     totalUSD () {
-      return this.$store.getters.wallets.map(x => x.amountUsd).reduce((a, b) => a + b, 0);
+      return this.$store.getters.wallets.map(x => this.$toUsd(x.symbol, x.amount)).reduce((a, b) => a + b, 0);
     },
     sections () {
       const tmp = [];

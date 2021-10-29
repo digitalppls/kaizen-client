@@ -42,44 +42,45 @@ export default {
     }
   },
   beforeDestroy () {
-    window.clearInterval(this.intervalUpdate);
+    this.$socket.off("currency_update", this.updateCurrency);
+    this.$socket.off("user_update", this.updateUser);
   },
   mounted () {
     this.FooterToBottom();
-
     console.log("default");
-
-    this.$socket.on("user_update", (r) => {
-      console.log("user_update", r);
-    });
-    this.$socket.on("operation_update", (r) => {
-      console.log("operation_update", r);
-    });
 
     if (this.hastToken) {
       this.Update(); // запускаем сразу
-      // this.intervalUpdate = window.setInterval(this.Update, 5000); // и регулярно обновляем данные
     }
   },
   methods: {
-    /** Load user update */
+    /** Обновление данных */
     Update () {
-      // Обновляем юзера
-      this.$API.User((data) => {
-        this.$store.dispatch("updateUser", data.user);
-      });
-
-      // Обновляем курсы токенов
-      this.$API.getCurrency((data) => {
-        this.$store.dispatch("updateCurrency", data);
-      });
-
-      // Обновляем статусы реф. программы
-      // this.$API.getStatusList((r) => {
-      //   this.$store.dispatch("updateStatuses", r.statuses);
-      // });
+      // курсы валют
+      this.$socket.on("currency_update", this.updateCurrency);
+      // юзер
+      this.$socket.on("user_update", this.updateUser);
+      // последняя операция
+      this.$socket.on("operation_update", this.updateOperation);
     },
 
+    /** Обновление курсов валют */
+    updateCurrency (r) {
+      this.$store.dispatch("updateCurrency", r);
+    },
+
+    /** Обновление юзера */
+    updateUser (r) {
+      this.$store.dispatch("updateUser", r);
+    },
+
+    /** Обновление операцию */
+    updateOperation (r) {
+      // this.$store.dispatch("updateOperation", r);
+      console.log("operation_update", r);
+    },
+
+    /** Прижимаем футер */
     FooterToBottom () {
       const bodyHeight = document.querySelector("body").offsetHeight;
       const siteContentHeight = document.querySelector(".site-content").offsetHeight;
