@@ -165,19 +165,19 @@ export default {
         },
         {
           title: "FUNDS",
-          url: "index"
+          url: "funds"
         },
         {
           title: "INCUBATION",
-          url: "index"
+          url: "incubation"
         },
         {
           title: "ABOUT_US",
-          url: "index"
+          url: "about"
         },
         {
           title: "NEWS",
-          url: "index"
+          url: "news"
         }
       ]
     };

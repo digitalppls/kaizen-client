@@ -255,4 +255,5 @@ export default {
   "DEPOSIT": "Пополнить",
   "ASSESSED_VALUE": "Оценочная стоимость",
   "CONFIRM_SWAP": "Подтверждаете обмен %{TOKEN_1} -> %{TOKEN_2}?",
+  "PAGE_UNDER_CONSTRUCTION": "Содержимое страницы в разработке."
 };

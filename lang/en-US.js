@@ -255,4 +255,5 @@ export default {
   "DEPOSIT": "Deposit",
   "ASSESSED_VALUE": "Assessed value",
   "CONFIRM_SWAP": "Do you confirm the exchange %{TOKEN_1} -> %{TOKEN_2}?",
+  "PAGE_UNDER_CONSTRUCTION": "The content of the page is under construction."
 };
