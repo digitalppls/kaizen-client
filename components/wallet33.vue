@@ -53,6 +53,7 @@ export default {
   data () {
     return {
       wallet: null,
+      theme: "light",
       showIframe: true
     };
   },
@@ -67,8 +68,7 @@ export default {
       return "https://" + (this.testnet ? "test." : "") + "api.wallet33.com";
     },
     url () {
-      return this.origin + "/v1/wallet/form?walletId=" + this.walletId + "&method=" + this.method + "&onlyTypes=" +
-        this.onlyTypes + "&lang=" + this.$i18n.locale;
+      return `${this.origin}/v1/wallet/form?theme=${this.theme}&walletId=${this.walletId}&method=${this.method}&onlyTypes=${this.onlyTypes}&lang=${this.$i18n.locale}`;
     },
     walletId () {
       return this.$store.getters.user?.wallet33Id ?? null;
