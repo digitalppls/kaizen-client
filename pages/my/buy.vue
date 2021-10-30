@@ -1,7 +1,7 @@
 <template>
   <div class="buy-crypto">
     <h1 class="title">
-      {{ $t("BUY_CRYPTO") }}
+      {{ $t("BUY_INDEXES") }}
     </h1>
 
     <ul v-if="$isDev && wallets.length" class="list wallet-list m-b-20">
@@ -29,7 +29,7 @@
 <script>
 import TokenSwap from "~/components/token-swap";
 export default {
-  name: "Swap",
+  name: "Buy",
   components: { TokenSwap },
   middleware: ["verify"],
   data () {

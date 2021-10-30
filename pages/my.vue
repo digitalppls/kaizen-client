@@ -72,8 +72,8 @@ export default {
           url: "my"
         },
         {
-          name: "BUY_CRYPTO",
-          url: "my-buycrypto"
+          name: "BUY_INDEXES",
+          url: "my-buy"
         },
         {
           name: "PROFILE",

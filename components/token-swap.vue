@@ -86,7 +86,7 @@
           <ui-icon-done />
         </template>
         <template v-else>
-          {{ $t("SWAP_TOKENS") }}
+          {{ $t("BUY_INDEXES") }}
         </template>
       </button>
     </div>
@@ -167,9 +167,9 @@ export default {
 
     /** Обмен токенов */
     onExchange () {
-      if (confirm(this.$t("CONFIRM_SWAP")
-        .replace("%{TOKEN_1}", `${this.sendInput} ${this.sendCoin.symbol.toUpperCase()}`)
-        .replace("%{TOKEN_2}", `${this.getInput} ${this.$symbolCurrencySplitUsdt(this.getCoin.symbol)}`))) {
+      if (confirm(this.$t("CONFIRM_BUY_INDEX")
+        .replace("%{TOKEN_2}", `${this.sendInput} ${this.sendCoin.symbol.toUpperCase()}`)
+        .replace("%{TOKEN_1}", `${this.getInput} ${this.$symbolCurrencySplitUsdt(this.getCoin.symbol)}`))) {
         this.loading = true;
         this.$API.TokenSwap(
           { fromSymbol: this.sendCoin.symbol, toSymbol: this.$symbolCurrencySplitUsdt(this.getCoin.symbol).toLowerCase(), fromAmount: this.sendInput }, (r) => {

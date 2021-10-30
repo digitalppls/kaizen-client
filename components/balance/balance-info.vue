@@ -8,7 +8,7 @@
         <nuxt-link :to="localePath('my-deposit')" class="btn btn-solid btn-small">
           {{ $t("DEPOSIT") }}
         </nuxt-link>
-        <nuxt-link :to="localePath('my-buycrypto')" class="btn btn-solid btn-solid--tertiary btn-small">
+        <nuxt-link v-if="false" :to="localePath('my-buy')" class="btn btn-solid btn-solid--tertiary btn-small">
           {{ $t("BUY") }}
         </nuxt-link>
       </div>
