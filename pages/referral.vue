@@ -12,7 +12,7 @@
             class="inline-menu__item"
           >
             <nuxt-link
-              :exact="!!localePath('profile')"
+              :exact="!!localePath('my-profile')"
               no-prefetch
               :to="localePath(item.url)"
               active-class="inline-menu__link--active"

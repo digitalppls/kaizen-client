@@ -109,7 +109,7 @@ export default {
                 token: data.access_token,
                 user: data.user
               });
-              this.$router.push(this.localePath("index"));
+              this.$router.push(this.localePath("my"));
             }
           }, 3000);
         }, (error) => {

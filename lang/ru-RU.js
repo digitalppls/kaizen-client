@@ -253,5 +253,6 @@ export default {
   "RESEND_VIA": "Повторная отправка через",
   "BALANCE_INFORMATION": "Информация о балансе",
   "DEPOSIT": "Пополнить",
-  "ASSESSED_VALUE": "Оценочная стоимость"
+  "ASSESSED_VALUE": "Оценочная стоимость",
+  "CONFIRM_SWAP": "Подтверждаете обмен %{TOKEN_1} -> %{TOKEN_2}?",
 };

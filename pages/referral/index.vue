@@ -2,14 +2,14 @@
   <div class="">
     <section class="m-b-60">
       <p class="m-b-10">
-        <span class="color-gray-light">{{ $t("INVITED") }}</span>
+        <span class="color-gray">{{ $t("INVITED") }}</span>
         <ui-preloader v-if="loading" size="small" />
         <template v-else>
           <strong>{{ invitedUsers }}</strong> {{ $declOfNum(invitedUsers, $t("CASE_USERS")) }}
         </template>
       </p>
       <p class="m-b-10">
-        <span class="color-gray-light">{{ $t("EARNED") }}:</span>
+        <span class="color-gray">{{ $t("EARNED") }}:</span>
         <ui-preloader v-if="loading" size="small" />
         <template v-else>
           <strong>{{ earned.toLocaleString("en-US", $LOCALESTRING_USD()) }}</strong>

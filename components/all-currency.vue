@@ -4,18 +4,18 @@
       <div v-show="show" class="all-currency-collapse">
         <div class="container">
           <div class="all-currency__container">
-            <div
+            <currency-item
               v-for="(currency, idx) in currencies"
               :key="idx"
-              :class="['all-currency__item', {'all-currency__item--indice': currency[2]}]"
+              :class="['all-currency__item', {'all-currency__item--index': currency[2]}]"
             >
-              <div class="all-currency__symbol">
+              <template #icon>
                 {{ currency[0] }}
-              </div>
-              <div class="all-currency__price">
+              </template>
+              <template #value1>
                 {{ currency[1].toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
-              </div>
-            </div>
+              </template>
+            </currency-item>
           </div>
         </div>
       </div>
@@ -27,8 +27,10 @@
 </template>
 
 <script>
+import CurrencyItem from "~/components/currency-item";
 export default {
   name: "AllCurrency",
+  components: { CurrencyItem },
   data () {
     return {
       show: true
@@ -84,31 +86,11 @@ export default {
       width: 12.5%;
     }
 
-    &--indice {
-      #{$self}__price {
+    &--index {
+      &::v-deep .currency-item__icon {
         color: var(--color-tertiary);
       }
     }
-  }
-
-  &__symbol {
-    font-size: 11px;
-    margin-bottom: 5px;
-    @include fontTTNorms("medium");
-    color: var(--color-gray);
-
-    @include respond-before("xs") {
-      font-size: 13px;
-    }
-    @include respond-before("sm") {
-      font-size: 14px;
-    }
-  }
-
-  &__price {
-    font-size: 16px;
-    color: var(--color-primary);
-    @include fontTTNorms("bold");
   }
 
   &-collapse {

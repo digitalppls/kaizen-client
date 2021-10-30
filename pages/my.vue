@@ -3,6 +3,29 @@
     <all-currency />
     <div class="container">
       <div class="page-profile">
+        <div class="page-profile__inline-menu inline-menu-wrap">
+          <ul
+            v-if="menu.length"
+            class="inline-menu list"
+          >
+            <li
+              v-for="(item, i) in menu"
+              :key="i"
+              class="inline-menu__item"
+            >
+              <nuxt-link
+                :exact="!!localePath('my-profile')"
+                no-prefetch
+                :to="localePath(item.url)"
+                active-class="inline-menu__link--active"
+                class="inline-menu__link"
+                @click.native="scrollTo($event)"
+              >
+                {{ $t(item.name) }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
         <div class="page-profile__content">
           <nuxt-child />
         </div>
@@ -18,7 +41,7 @@
                 class="menu__item"
               >
                 <nuxt-link
-                  :exact="!!localePath('profile')"
+                  :exact="!!localePath('my-profile')"
                   no-prefetch
                   :to="localePath(item.url)"
                   active-class="menu__link--active"
@@ -58,6 +81,12 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    scrollTo (e) {
+      console.log(e.target.parentNode, e);
+      e.target.parentNode.scrollLeft = e.target.offsetLeft;
+    }
   }
 };
 </script>
@@ -70,15 +99,21 @@ export default {
     --sidebar-width: 220px;
   }
 
+  &__inline-menu {
+    margin-bottom: 30px;
+
+    @include respond-before("lg") {
+      display: none;
+    }
+  }
+
   &__sidebar {
     margin-top: 50px;
     display: none;
 
-    @include respond-before("md") {
-      display: block;
-    }
     @include respond-before("lg") {
       position: relative;
+      display: block;
       margin-top: 0;
       order: 1;
       width: var(--sidebar-width);
@@ -115,6 +150,42 @@ export default {
     color: var(--color-gray);
     display: block;
     padding: 15px;
+    transition: margin .2s ease-in-out;
+
+    &--active {
+      color: #fff;
+      //background-color: var(--color-primary);
+      background-color: #A7A9B7;
+      //margin-left: 10px;
+      @include fontTTNorms("bold");
+    }
+  }
+}
+
+.inline-menu {
+  display: flex;
+
+  &-wrap {
+    overflow-x: scroll;
+    border-radius: 12px;
+    background-color: #f8f8fb;
+  }
+  &__item {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+
+    &:before {
+      display: none;
+    }
+  }
+
+  &__link {
+    color: var(--color-gray);
+    display: block;
+    padding: 15px;
+    border-radius: 12px;
     transition: margin .2s ease-in-out;
 
     &--active {

@@ -253,6 +253,6 @@ export default {
   "RESEND_VIA": "Resend via",
   "BALANCE_INFORMATION": "Balance information",
   "DEPOSIT": "Deposit",
-  "ASSESSED_VALUE": "Assessed value"
-
+  "ASSESSED_VALUE": "Assessed value",
+  "CONFIRM_SWAP": "Do you confirm the exchange %{TOKEN_1} -> %{TOKEN_2}?",
 };

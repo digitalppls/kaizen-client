@@ -94,7 +94,7 @@ const socket = {
       }
     }
 
-    client = window.io.connect("/", params)
+    client = window.io.connect("/", params);
 
     client.on("connect", function () {
       console.log("connect", "connected");

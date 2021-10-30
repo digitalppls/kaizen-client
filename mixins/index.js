@@ -21,16 +21,21 @@ export default {
     Vue.prototype.$LOCALESTRING_USD = this.localeStringUSD;
     Vue.prototype.$LOCALESTRING_CRYPTO = this.localeStringCRYPTO;
     Vue.prototype.$symbolCurrency = this.symbolCurrency;
+    Vue.prototype.$symbolCurrencySplitUsdt = this.symbolCurrencySplitUsdt;
     Vue.prototype.$toUsd = this.toUsd;
-    Vue.prototype.$formUsd = this.fromUsd;
+    Vue.prototype.$fromUsd = this.fromUsd;
     Vue.prototype.$DateText = this.DateText;
     Vue.prototype.$TimeText = this.TimeText;
     Vue.prototype.$declOfNum = this.declOfNum;
+    Vue.prototype.$isDev = this.isDev;
   },
 
   computed: {
     user () {
       return this.$store.getters.user;
+    },
+    isDev () {
+      return process.env.isDev;
     }
   },
 
@@ -171,6 +176,10 @@ export default {
 
     symbolCurrency (coin) {
       return `${coin.toUpperCase()}USDT`;
+    },
+
+    symbolCurrencySplitUsdt (coin) {
+      return coin.toUpperCase().split("USDT")[0];
     },
 
     toUsd (symbol, amount) {

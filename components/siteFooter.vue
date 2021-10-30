@@ -19,7 +19,7 @@
       </ul>
 
       <div class="site-footer__copyrights">
-        &copy; Buzton Fund. {{ year }}
+        &copy; KaizenFund. {{ year }}
       </div>
     </div>
 

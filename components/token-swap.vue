@@ -50,7 +50,7 @@
       <ui-text-field
         v-model.number="getInput"
         :floating="true"
-        :label="$t('GET')"
+        :label="`≈ ${$t('GET')}`"
         type="number"
         min="0"
         step="0.01"
@@ -63,10 +63,10 @@
             @input="getSelect($event)"
           >
             <template #selected="{ option }">
-              {{ option.symbol.toUpperCase() }}
+              {{ option.symbol.split("USDT")[0].toUpperCase() }}
             </template>
             <template #default="{ option }">
-              {{ option.symbol.toUpperCase() }}
+              {{ option.symbol.split("USDT")[0].toUpperCase() }}
             </template>
           </ui-select>
         </template>
@@ -76,7 +76,7 @@
     <div class="m-t-40">
       <button
         class="btn btn-solid btn-full"
-        :disabled="loading || done || !wallets.length || sendInput > sendCoin.amount || !sendInput || !getInput"
+        :disabled="loading || done || !wallets.length || sendInput > sendCoin.amount || !sendInput || !getInput || $symbolCurrencySplitUsdt(sendCoin.symbol).toLowerCase() === $symbolCurrencySplitUsdt(getCoin.symbol).toLowerCase()"
         @click="onExchange"
       >
         <template v-if="loading">
@@ -114,12 +114,18 @@ export default {
       sendCoinList: [],
       errors: [],
       errorValidate: null,
-      feeMessageShow: null
+      feeMessageShow: null,
+
+      sendInputUsd: 0,
+      getInputUsd: 0
     };
   },
   computed: {
     wallets () {
       return this.$store.getters.wallets; // .filter(e => !["usdt", "bnb"].includes(e.symbol)) || [];
+    },
+    currencies () {
+      return this.$store.getters.currency;
     },
     feeSymbol () {
       return this.wallets.find(e => e.symbol === "oro").amount >= this.fee ? "oro" : this.getCoin.symbol;
@@ -134,17 +140,17 @@ export default {
   methods: {
     /** Устанавливаем значения списков по умолчанию */
     Update () {
-      this.getCoinList = this.wallets;
-      this.sendCoinList = this.wallets; // .filter(e => !["oro"].includes(e.symbol));
+      this.getCoinList = this.currencies.filter(e => ["CRYPTO10USDT", "BITWUSDT", "CIX100USDT", "DEFIUSDT"].includes(e.symbol));
+      this.sendCoinList = this.wallets;
 
-      this.sendCoin = this.sendCoinList[0];
+      this.sendCoin = this.sendCoinList[0]; // .filter(e => e.symbol === "usd");
       this.getCoin = this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
     },
 
     /** Слушатель события ввода получаемых монет */
     onSendInput () {
-      // this.fee = this.sendCoin.symbol === "fcoin" && this.getCoin.symbol === "oro" ? 0 : this.sendInput * 0.1;
-      this.getInput = this.sendInput;
+      this.sendInputUsd = this.$toUsd(this.$symbolCurrencySplitUsdt(this.sendCoin.symbol), this.sendInput);
+      this.getInput = this.$fromUsd(this.$symbolCurrencySplitUsdt(this.getCoin.symbol), this.sendInputUsd);
       this.errorValidate = this.sendInput > this.sendCoin.amount
         ? `Max ${this.sendCoin.amount.toLocaleString("en-US", this.$LOCALESTRING_CRYPTO())}`
         : "";
@@ -152,8 +158,8 @@ export default {
 
     /** Слушатель события ввода отправляемых монет */
     onGetInput () {
-      // this.fee = this.sendCoin.symbol === "fcoin" && this.getCoin.symbol === "oro" ? 0 : this.getInput * 0.1;
-      this.sendInput = this.getInput;
+      this.getInputUsd = this.$toUsd(this.$symbolCurrencySplitUsdt(this.getCoin.symbol), this.getInput);
+      this.sendInput = this.$fromUsd(this.$symbolCurrencySplitUsdt(this.sendCoin.symbol), this.getInputUsd);
       this.errorValidate = this.sendInput > this.sendCoin.amount
         ? `Max ${this.sendCoin.amount.toLocaleString("en-US", this.$LOCALESTRING_CRYPTO())}`
         : "";
@@ -162,15 +168,19 @@ export default {
     /** Обмен токенов */
     onExchange () {
       if (confirm(this.$t("CONFIRM_SWAP")
-        .replace("%{TOKEN_1}", `${this.sendInput}${this.sendCoin.symbol.toUpperCase()}`)
-        .replace("%{TOKEN_2}", `${this.getInput}${this.getCoin.symbol.toUpperCase()}`))) {
+        .replace("%{TOKEN_1}", `${this.sendInput} ${this.sendCoin.symbol.toUpperCase()}`)
+        .replace("%{TOKEN_2}", `${this.getInput} ${this.$symbolCurrencySplitUsdt(this.getCoin.symbol)}`))) {
         this.loading = true;
         this.$API.TokenSwap(
-          { fromSymbol: this.sendCoin.symbol, toSymbol: this.getCoin.symbol, fromAmount: this.sendInput }, (r) => {
+          { fromSymbol: this.sendCoin.symbol, toSymbol: this.$symbolCurrencySplitUsdt(this.getCoin.symbol).toLowerCase(), fromAmount: this.sendInput }, (r) => {
             this.exchangeSuccess(r);
           }, (error) => {
             this.loading = false;
             console.error("ERROR swap", error);
+            if (error.message === "incorrect_access_token") {
+              this.$store.dispatch("logout");
+              this.$router.push(this.localePath("auth"));
+            }
           });
       }
     },
@@ -232,7 +242,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.token-swap {
-  max-width: 600px;
-}
+
 </style>

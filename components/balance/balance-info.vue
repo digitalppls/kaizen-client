@@ -30,8 +30,12 @@ export default {
 .balance-info {
   background-color: #f9f9fa;
   border-radius: 12px;
-  padding: 30px;
+  padding: 15px;
   overflow: hidden;
+
+  @include respond-before("md") {
+    padding: 30px;
+  }
 
   &__top {
     margin-bottom: 30px;

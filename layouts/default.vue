@@ -5,7 +5,7 @@
       <Nuxt ref="nuxt" />
     </div>
     <site-footer />
-    <clear-storage v-if="isDev" />
+    <clear-storage v-if="$isDev" />
   </div>
 </template>
 
@@ -31,9 +31,6 @@ export default {
   computed: {
     hastToken () {
       return this.$store.getters.hasToken;
-    },
-    isDev () {
-      return process.env.isDev;
     }
   },
   watch: {
@@ -71,6 +68,10 @@ export default {
 
     /** Обновление юзера */
     updateUser (r) {
+      if (r.message === "incorrect_access_token") {
+        this.$store.dispatch("logout");
+        this.$router.push(this.localePath("auth"));
+      }
       this.$store.dispatch("updateUser", r);
     },
 

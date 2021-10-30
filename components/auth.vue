@@ -22,8 +22,8 @@
         <li v-for="(info, idx) in infos" :key="idx" class="color-success" v-html="info" />
       </ul>
       <p v-if="seconds" class="m-b-20">
-        <span class="color-gray-light">
-          Повторная отправка через
+        <span class="color-gray">
+          {{ $t("RESEND_VIA") }}
         </span>
         {{ timer }}
       </p>

@@ -17,6 +17,7 @@
             :key="idx"
           >
             <img
+              v-if="false"
               :src="require(`~/assets/img/tokens/icon-${wallet.symbol}.svg?inline`)"
               :alt="wallet.symbol.toUpperCase()"
               :title="wallet.symbol.toUpperCase()"
@@ -38,13 +39,10 @@
         <vc-donut
           foreground="#EAECEF"
           :size="175"
-          unit="px"
           :thickness="25"
           has-legend
           legend-placement="right"
           :sections="sections"
-          :total="total"
-          :auto-adjust-text-size="true"
         >
           <template #legend>
             <div class="cdc-legend">
@@ -92,7 +90,7 @@ export default {
         },
         {
           symbol: "zlw",
-          color: "#F9C910"
+          color: "#f9c910"
         },
         {
           symbol: "icw",
@@ -115,7 +113,7 @@ export default {
           color: "#e7b00f"
         },
         {
-          symbol: "",
+          symbol: "bitw",
           color: "#82bb47"
         }
       ]
@@ -126,30 +124,39 @@ export default {
       return this.$store.getters.wallets || [];
     },
     total () {
-      return this.$store.getters.wallets.map(x => x.amount).reduce((a, b) => a + b, 0);
+      return this.$store.getters.wallets.map(x => x.amount).reduce((a, b) => a + b, 0); // +1 нужен для корректного отображения графика
     },
     totalUSD () {
       return this.$store.getters.wallets.map(x => this.$toUsd(x.symbol, x.amount)).reduce((a, b) => a + b, 0);
     },
     sections () {
       const tmp = [];
+      let currentDefaultColorIdx = 0;
       this.wallets.map((e) => {
         tmp.push({
           label: e.symbol,
-          value: e.amount,
-          color: this.colors.find(i => i.symbol === e.symbol).color
+          value: (e.amount / this.total) * 100, // в процентах
+          color: this.defaultColors[currentDefaultColorIdx++]
         });
         return e;
       });
       return tmp;
     },
+    defaultColors () {
+      return [
+        "#ff6384", "#36a2eb", "#ffce56", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
+        "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
+        "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000"
+      ];
+    },
     legend () {
+      let currentDefaultColorIdx = 0;
       return this.sections.map((section, idx) => ({
         label: section.label || `Section ${idx + 1}`,
-        value: section.value,
-        percent: `${section.value} (${(section.value / this.total) * 100}%)`,
+        value: (section.value * this.total) / 100, // обратно преодразовываем из процентов в кол-во токенов
+        percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING_CRYPTO())})`,
         styles: {
-          backgroundColor: section.color
+          backgroundColor: this.defaultColors[currentDefaultColorIdx++]
         }
       }));
     }
@@ -211,7 +218,7 @@ export default {
   &-item {
     display: flex;
     align-items: center;
-    margin: 0.5em;
+    margin: 0.5em 0;
     font-size: 15px;
     letter-spacing: -0.02em;
     @include fontTTNorms("medium");
