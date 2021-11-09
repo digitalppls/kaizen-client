@@ -31,9 +31,6 @@
               :options="sendCoinList"
               @input="sendSelect($event)"
             >
-              <template #selected="{ option }">
-                {{ option.symbol.toUpperCase() }}
-              </template>
               <template #default="{ option }">
                 {{ option.symbol.toUpperCase() }}
               </template>
@@ -62,9 +59,6 @@
             :options="getCoinList"
             @input="getSelect($event)"
           >
-            <template #selected="{ option }">
-              {{ option.symbol.split("USDT")[0].toUpperCase() }}
-            </template>
             <template #default="{ option }">
               {{ option.symbol.split("USDT")[0].toUpperCase() }}
             </template>
@@ -132,6 +126,9 @@ export default {
     },
     feeMessage () {
       return `${this.$t("ADDITIONAL_COMMISSION")}: ${this.fee} ${this.feeSymbol.toUpperCase()}`;
+    },
+    indexFromUrl () {
+      return this.$route.query?.index ?? null;
     }
   },
   mounted () {
@@ -144,7 +141,10 @@ export default {
       this.sendCoinList = this.wallets;
 
       this.sendCoin = this.sendCoinList[0]; // .filter(e => e.symbol === "usd");
-      this.getCoin = this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
+      // Если в URL есть get параметр "index", то устанавливаем его по умолчанию для покупки
+      this.getCoin = this.indexFromUrl
+        ? this.getCoinList.find(e => e.symbol.split("USDT")[0] === this.indexFromUrl)
+        : this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
     },
 
     /** Слушатель события ввода получаемых монет */

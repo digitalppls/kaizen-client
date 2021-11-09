@@ -13,7 +13,7 @@
   >
     <div class="ui-select__container">
       <div class="ui-select__selected">
-        <slot name="selected" :option="value">
+        <slot :option="value">
           {{ value }}
         </slot>
       </div>

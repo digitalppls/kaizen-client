@@ -21,7 +21,7 @@
             </div>
             <div>
               <span
-                v-for="(cindex, idx) in cryptoindexes"
+                v-for="(cindex, idx) in cryptoIndexes"
                 :key="idx"
               >
                 {{ cindex }}
@@ -212,71 +212,72 @@
         </div>
 
         <div class="indexes__wrap">
-          <div class="indexes">
+          <div class="indexes" :style="cssVarCountCryptoIndexes">
             <div
               v-for="(index, i) in indexes"
               :key="i"
-              class="index"
+              class="indexes__item"
             >
-              <div class="index__header">
-                <div class="index__header__icon">
-                  <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M18.5879 0L6.31436 13.5057L18.5879 29H11.0896L0.157859 15.2043L0 12.1386L11.0896 0H18.5879Z"
-                      :fill="index.color"
-                    />
-                    <path
-                      d="M35.9882 0L23.4778 25.9757H35.9882V29H14.5193L27.0691 3.02429H14.4799V0H35.9882Z"
-                      :fill="index.color"
-                    />
-                    <path
-                      d="M40 5.42714V29H32.5412V0H40V5.42714Z"
-                      :fill="index.color"
-                    />
-                  </svg>
-                </div>
-                <div class="index__header__cnt">
-                  <div class="font-bold font-size-22" style="color: #000;">
-                    {{ index.title }}
+              <div class="index">
+                <div class="index__header">
+                  <div class="index__header__icon">
+                    <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M18.5879 0L6.31436 13.5057L18.5879 29H11.0896L0.157859 15.2043L0 12.1386L11.0896 0H18.5879Z"
+                        :fill="index.color"
+                      />
+                      <path
+                        d="M35.9882 0L23.4778 25.9757H35.9882V29H14.5193L27.0691 3.02429H14.4799V0H35.9882Z"
+                        :fill="index.color"
+                      />
+                      <path
+                        d="M40 5.42714V29H32.5412V0H40V5.42714Z"
+                        :fill="index.color"
+                      />
+                    </svg>
                   </div>
-                  <div class="small">
-                    {{ $t("TOKEN") }} {{ index.symbol }}
-                  </div>
-                </div>
-              </div>
-              <div class="index__body">
-                <div v-if="index.items.length" class="index__items">
-                  <div
-                    v-for="(item, idx) in index.items"
-                    :key="idx"
-                    class="index__item"
-                    :data-data="1+2 === 2 ? '33%' : ''"
-                  >
-                    <img :src="require(`~/assets/images/${item.img}`)" :alt="item.name" :title="item.name">
-                  </div>
-                </div>
-                <div class="index__price">
-                  <div class="index__price__l">
+                  <div class="index__header__cnt">
+                    <div class="font-bold font-size-22" style="color: #000;">
+                      {{ index.title }}
+                    </div>
                     <div class="small">
-                      {{ $t("COST") }}:
-                    </div>
-                    <div class="font-bold font-size-36 color-black">
-                      {{ index.price_usd.toLocaleString("en-US", $LOCALESTRING_USD(0, 0)) }}
-                    </div>
-                  </div>
-                  <div class="index__price__r">
-                    <div class="info-btn">
-                      <img :src="require('~/assets/img/icon-i.png')" alt="">
+                      {{ $t("TOKEN") }} {{ index.symbol }}
                     </div>
                   </div>
                 </div>
-                <!-- TODO: Сделать ссылку с параметром на покупу индекса в ЛК -->
-                <nuxt-link
-                  :to="localePath('auth')"
-                  :class="['btn', 'btn-solid', 'btn-full', {'btn-solid--secondary': index.id === 2}, {'btn-solid--tertiary': index.id === 3}]"
-                >
-                  {{ $t("JOIN") }}
-                </nuxt-link>
+                <div class="index__body">
+                  <div v-if="index.items.length" class="index__items">
+                    <div
+                      v-for="(item, idx) in index.items"
+                      :key="idx"
+                      class="index__item"
+                      :data-data="1+2 === 2 ? '33%' : ''"
+                    >
+                      <img :src="require(`~/assets/images/${item.img}`)" :alt="item.name" :title="item.name">
+                    </div>
+                  </div>
+                  <div class="index__price">
+                    <div class="index__price__l">
+                      <div class="small">
+                        {{ $t("COST") }}:
+                      </div>
+                      <div class="font-bold font-size-36 color-black">
+                        {{ index.price_usd.toLocaleString("en-US", $LOCALESTRING_USD(0, 0)) }}
+                      </div>
+                    </div>
+                    <div class="index__price__r">
+                      <div v-if="index.desc" v-tooltip.top="index.desc" class="info-btn">
+                        <img :src="require('~/assets/img/icon-i.png')" alt="">
+                      </div>
+                    </div>
+                  </div>
+                  <nuxt-link
+                    :to="localePath({name: hasToken ? 'my-buy' : 'auth', query: hasToken ? {index: index.title.toUpperCase()} : null})"
+                    :class="['btn', 'btn-solid', 'btn-full', {'btn-solid--secondary': index.id === 2}, {'btn-solid--tertiary': index.id === 3}]"
+                  >
+                    {{ $t(hasToken ? "BUY" : "JOIN") }}
+                  </nuxt-link>
+                </div>
               </div>
             </div>
           </div>
@@ -411,7 +412,7 @@ export default {
       indexes: [
         {
           id: 1,
-          title: "BUZ Crypto",
+          title: "BITW",
           color: "#58c1b9",
           symbol: "BUZC",
           price_usd: 300,
@@ -445,7 +446,7 @@ export default {
         },
         {
           id: 2,
-          title: "BUZ Blockchain",
+          title: "CRYPTO10",
           color: "#99c158",
           symbol: "BUZB",
           price_usd: 200,
@@ -467,11 +468,33 @@ export default {
         },
         {
           id: 3,
-          title: "BUZ Real",
+          title: "CIX100",
           color: "#7358c1",
           symbol: "BUZR",
           price_usd: 100,
           desc: "Buz real desc",
+          items: [
+            {
+              name: "Apple",
+              img: "apple.png"
+            },
+            {
+              name: "Google",
+              img: "google.png"
+            },
+            {
+              name: "Netflix",
+              img: "netflix.png"
+            }
+          ]
+        },
+        {
+          id: 4,
+          title: "DEFI",
+          color: "#7358c1",
+          symbol: "BUZR",
+          price_usd: 100,
+          desc: "DEFI desc",
           items: [
             {
               name: "Apple",
@@ -531,9 +554,14 @@ export default {
     hasToken () {
       return this.$store.getters.hasToken;
     },
-    cryptoindexes () {
+    cryptoIndexes () {
       return ["CRYPTO10", "BITW", "CIX100", "DEFI"];
-      // return this.$store.getters.currency.filter(e => e.index).map(i => i.symbol.split("USDT")[0]);
+      // return this.$store.getters.currency.filter(e => e.index).map(i => i?.symbol.split("USDT")[0]);
+    },
+    cssVarCountCryptoIndexes () {
+      return {
+        "--count-indexes": this.cryptoIndexes.length
+      };
     },
     tokenomicsTotal () {
       return this.tokenomics.map(x => x.value).reduce((a, b) => a + b, 0);
@@ -812,7 +840,7 @@ export default {
   $self: &;
 
   &es {
-    @include respond-before("md") {
+    @include respond-before("pre-md") {
       display: flex;
       flex-wrap: wrap;
       margin-left: -10px;
@@ -821,18 +849,24 @@ export default {
 
     &__wrap {
       margin: auto;
-      max-width: 985px;
+      //max-width: 985px;
+    }
+
+    &__item {
+      margin-bottom: 30px;
+
+      @include respond-before("pre-md") {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: calc(100% / (var(--count-indexes) / 2) );
+      }
+      @include respond-before("lg") {
+        width: calc(100% / var(--count-indexes));
+      }
     }
   }
 
   & {
-    margin-bottom: 30px;
-
-    @include respond-before("md") {
-      margin: 0 10px;
-      width: 30%;
-    }
-
     @include respond-before("xl") {
       &:first-child #{$self}__row {
         &:after {
@@ -881,6 +915,13 @@ export default {
     background-color: #f8f8fb;
     border-radius: 0 0 20px 20px;
     padding: 0 30px 30px;
+
+    @include respond-before("pre-md") {
+      padding: 0 20px 20px;
+    }
+    @include respond-before("md") {
+      padding: 0 30px 30px;
+    }
   }
 
   &__items {
@@ -929,8 +970,8 @@ export default {
   }
 
   .btn {
-    @include respond-before("md") {
-      @include respond-to("lg") {
+    @include respond-before("lg") {
+      @include respond-to("xl") {
         font-size: 13px;
       }
     }

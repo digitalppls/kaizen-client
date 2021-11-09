@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     scrollTo (e) {
-      console.log(e.target.parentNode, e);
+      // console.log(e.target.parentNode, e);
       e.target.parentNode.scrollLeft = e.target.offsetLeft;
     }
   }

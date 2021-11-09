@@ -136,7 +136,8 @@ export default {
     { src: "~plugins/api.js", ssr: false },
     { src: "~plugins/click-outside.js", ssr: false },
     { src: "~plugins/axios.js", ssr: false },
-    { src: "~plugins/donut.js", ssr: false }
+    { src: "~plugins/donut.js", ssr: false },
+    { src: "~plugins/tooltip.js", ssr: false },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
