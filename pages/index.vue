@@ -150,205 +150,130 @@
             </ul>
           </div>
           <div class="info-chart__right">
-            <div style="overflow: hidden; border-radius: 40px;">
-              <img src="~/assets/images/graphic.jpg" alt="">
-            </div>
+            <ui-tabs class="info-chart-tabs">
+              <ui-tab name="TOTAL_FUND_CAPITALIZATION">
+                <div style="overflow: hidden; border-radius: 40px;">
+                  <img src="~/assets/images/graphic.jpg" alt="">
+                </div>
+              </ui-tab>
+              <ui-tab name="TOTAL_VOLUME">
+                <div style="overflow: hidden; border-radius: 40px;">
+                  <img src="~/assets/images/graphic.jpg" alt="">
+                </div>
+              </ui-tab>
+              <ui-tab name="CRYPTO10" :selected="true">
+                <trading-view
+                  container-id="tradingview_crypto10"
+                  :options="{autosize: true, symbol: 'EIGHTCAP:CRYPTO10',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                  style="height: 500px; padding: 10px;"
+                />
+              </ui-tab>
+              <ui-tab name="BITW">
+                <trading-view
+                  container-id="tradingview_bitw"
+                  :options="{autosize: true, symbol: 'FTX:BITWUSD',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                  style="height: 500px; padding: 10px;"
+                />
+              </ui-tab>
+              <ui-tab name="CIX100">
+                <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
+                  <trading-view
+                    container-id="tradingview_cix100"
+                    :options="{autosize: true, symbol: 'CRYPTOINDEX:CIX100',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                    style="height: 500px; padding: 10px;"
+                  />
+                </div>
+              </ui-tab>
+              <ui-tab name="DEFI">
+                <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
+                  <trading-view
+                    container-id="tradingview_defi"
+                    :options="{autosize: true, symbol: 'BINANCE:DEFIUSDTPERP',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                    style="height: 500px; padding: 10px;"
+                  />
+                </div>
+              </ui-tab>
+            </ui-tabs>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Tariffs -->
-    <div class="tariffs-section">
+    <!-- Indexes -->
+    <div class="indexes-section">
       <div class="container">
-        <div class="tariffs-section__heading">
+        <div class="indexes-section__heading">
           <div class="h2 m-b-20">
-            {{ $t("HOME_TARIFFS_TITLE") }}
+            {{ $t("HOME_INDEXES_TITLE") }}
           </div>
           <p class="m-b-40 lh-135">
             {{ coverDesc }}
           </p>
         </div>
 
-        <div class="tariffs__wrap">
-          <div class="tariffs">
-            <div class="tariff">
-              <div class="tariff__header">
-                <div class="tariff__header__icon">
+        <div class="indexes__wrap">
+          <div class="indexes">
+            <div
+              v-for="(index, i) in indexes"
+              :key="i"
+              class="index"
+            >
+              <div class="index__header">
+                <div class="index__header__icon">
                   <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M18.5879 0L6.31436 13.5057L18.5879 29H11.0896L0.157859 15.2043L0 12.1386L11.0896 0H18.5879Z"
-                      fill="#58C1B9"
+                      :fill="index.color"
                     />
                     <path
                       d="M35.9882 0L23.4778 25.9757H35.9882V29H14.5193L27.0691 3.02429H14.4799V0H35.9882Z"
-                      fill="#58C1B9"
+                      :fill="index.color"
                     />
                     <path
                       d="M40 5.42714V29H32.5412V0H40V5.42714Z"
-                      fill="#58C1B9"
+                      :fill="index.color"
                     />
                   </svg>
                 </div>
-                <div class="tariff__header__cnt">
+                <div class="index__header__cnt">
                   <div class="font-bold font-size-22" style="color: #000;">
-                    BUZ Crypto
+                    {{ index.title }}
                   </div>
                   <div class="small">
-                    {{ $t("TOKEN") }} BUZC
+                    {{ $t("TOKEN") }} {{ index.symbol }}
                   </div>
                 </div>
               </div>
-              <div class="tariff__body">
-                <div class="tariff__row" data-data="33%">
-                  <img :src="require('~/assets/images/bitcoin.png')" alt="">
+              <div class="index__body">
+                <div v-if="index.items.length" class="index__items">
+                  <div
+                    v-for="(item, idx) in index.items"
+                    :key="idx"
+                    class="index__item"
+                    :data-data="1+2 === 2 ? '33%' : ''"
+                  >
+                    <img :src="require(`~/assets/images/${item.img}`)" :alt="item.name" :title="item.name">
+                  </div>
                 </div>
-                <div class="tariff__row" data-data="33%">
-                  <img :src="require('~/assets/images/ethereum.png')" alt="">
-                </div>
-                <div class="tariff__row" data-data="33%">
-                  <img :src="require('~/assets/images/ripple.png')" alt="">
-                </div>
-                <div class="tariff__price">
-                  <div class="tariff__price__l">
+                <div class="index__price">
+                  <div class="index__price__l">
                     <div class="small">
                       {{ $t("COST") }}:
                     </div>
                     <div class="font-bold font-size-36 color-black">
-                      $300
+                      {{ index.price_usd.toLocaleString("en-US", $LOCALESTRING_USD(0, 0)) }}
                     </div>
                   </div>
-                  <div class="tariff__price__r">
+                  <div class="index__price__r">
                     <div class="info-btn">
                       <img :src="require('~/assets/img/icon-i.png')" alt="">
                     </div>
                   </div>
                 </div>
+                <!-- TODO: Сделать ссылку с параметром на покупу индекса в ЛК -->
                 <nuxt-link
                   :to="localePath('auth')"
-                  class="btn btn-solid btn-full"
-                >
-                  {{ $t("JOIN") }}
-                </nuxt-link>
-              </div>
-            </div>
-
-            <div class="tariff">
-              <div class="tariff__header">
-                <div class="tariff__header__icon">
-                  <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M18.5879 0L6.31436 13.5057L18.5879 29H11.0896L0.157859 15.2043L0 12.1386L11.0896 0H18.5879Z"
-                      fill="#99C158"
-                    />
-                    <path
-                      d="M35.9882 0L23.4778 25.9757H35.9882V29H14.5193L27.0691 3.02429H14.4799V0H35.9882Z"
-                      fill="#99C158"
-                    />
-                    <path
-                      d="M40 5.42714V29H32.5412V0H40V5.42714Z"
-                      fill="#99C158"
-                    />
-                  </svg>
-                </div>
-                <div class="tariff__header__cnt">
-                  <div class="font-bold font-size-22" style="color: #000;">
-                    BUZ Blockchain
-                  </div>
-                  <div class="small">
-                    {{ $t("TOKEN") }} BUZB
-                  </div>
-                </div>
-              </div>
-              <div class="tariff__body">
-                <div class="tariff__row">
-                  <img :src="require('~/assets/images/polkadot.png')" alt="">
-                </div>
-                <div class="tariff__row">
-                  <img :src="require('~/assets/images/uniswap.png')" alt="">
-                </div>
-                <div class="tariff__row">
-                  <img :src="require('~/assets/images/pancakeswap.png')" alt="">
-                </div>
-                <div class="tariff__price">
-                  <div class="tariff__price__l">
-                    <div class="small">
-                      {{ $t("COST") }}:
-                    </div>
-                    <div class="font-bold font-size-36 color-black">
-                      $200
-                    </div>
-                  </div>
-                  <div class="tariff__price__r">
-                    <div class="info-btn">
-                      <img :src="require('~/assets/img/icon-i.png')" alt="">
-                    </div>
-                  </div>
-                </div>
-                <nuxt-link
-                  :to="localePath('auth')"
-                  class="btn btn-solid btn-solid--secondary btn-full"
-                >
-                  {{ $t("JOIN") }}
-                </nuxt-link>
-              </div>
-            </div>
-
-            <div class="tariff">
-              <div class="tariff__header">
-                <div class="tariff__header__icon">
-                  <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M18.5879 0L6.31436 13.5057L18.5879 29H11.0896L0.157859 15.2043L0 12.1386L11.0896 0H18.5879Z"
-                      fill="#7358C1"
-                    />
-                    <path
-                      d="M35.9882 0L23.4778 25.9757H35.9882V29H14.5193L27.0691 3.02429H14.4799V0H35.9882Z"
-                      fill="#7358C1"
-                    />
-                    <path
-                      d="M40 5.42714V29H32.5412V0H40V5.42714Z"
-                      fill="#7358C1"
-                    />
-                  </svg>
-                </div>
-                <div class="tariff__header__cnt">
-                  <div class="font-bold font-size-22" style="color: #000;">
-                    BUZ Real
-                  </div>
-                  <div class="small">
-                    {{ $t("TOKEN") }} BUZR
-                  </div>
-                </div>
-              </div>
-              <div class="tariff__body">
-                <div class="tariff__row">
-                  <img :src="require('~/assets/images/apple.png')" alt="">
-                </div>
-                <div class="tariff__row">
-                  <img :src="require('~/assets/images/google.png')" alt="">
-                </div>
-                <div class="tariff__row">
-                  <img :src="require('~/assets/images/netflix.png')" alt="">
-                </div>
-                <div class="tariff__price">
-                  <div class="tariff__price__l">
-                    <div class="small">
-                      {{ $t("COST") }}:
-                    </div>
-                    <div class="font-bold font-size-36 color-black">
-                      $100
-                    </div>
-                  </div>
-                  <div class="tariff__price__r">
-                    <div class="info-btn">
-                      <img :src="require('~/assets/img/icon-i.png')" alt="">
-                    </div>
-                  </div>
-                </div>
-                <nuxt-link
-                  :to="localePath('auth')"
-                  class="btn btn-solid btn-solid--tertiary btn-full"
+                  :class="['btn', 'btn-solid', 'btn-full', {'btn-solid--secondary': index.id === 2}, {'btn-solid--tertiary': index.id === 3}]"
                 >
                   {{ $t("JOIN") }}
                 </nuxt-link>
@@ -371,19 +296,73 @@
           </p>
         </div>
         <div class="roadmap-section__r">
-          <div class="timeline">
-            <div
-              v-for="(item, idx) in timeline"
-              :key="idx"
-              class="timeline-item"
-            >
-              <p
-                class="font-size-22 font-bold color-black m-b-5"
-                v-html="$t(item.title).toUpperCase()"
-              />
-              <p v-html="$t(item.desc)" />
+          <div class="roadmap">
+            <div class="timeline">
+              <div
+                v-for="(item, idx) in roadmap"
+                :key="idx"
+                class="timeline-item"
+              >
+                <p
+                  class="font-size-22 font-bold color-black m-b-5"
+                  v-html="$t(item.title).toUpperCase()"
+                />
+                <p v-html="$t(item.desc)" />
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tokenomics -->
+    <div class="container">
+      <div class="tokenomics-section">
+        <div class="tokenomics-section__l">
+          <div class="h2 m-b-20">
+            {{ $t("HOME_TOKENOMICS_TITLE") }}
+          </div>
+          <p class="m-b-10">
+            {{ $t("TOKENOMICS_TOTAL_INITIAL") }}
+          </p>
+          <div class="m-b-10 lh-135 tokenomics-section__highlight">
+            {{ tokenomicsTotal.toLocaleString() }} KZN
+          </div>
+          <p
+            class="m-b-40"
+            v-html="$t('TOKENOMICS_TOTAL_STABLECOIN').replace('%{TOTAL}', '<strong>100 000 000</strong>')"
+          />
+          <vc-donut
+            foreground="#EAECEF"
+            :size="320"
+            :thickness="30"
+            has-legend
+            legend-placement="left"
+            :sections="tokenomicsSections"
+          >
+            <strong class="cdc-total">
+              {{ tokenomicsTotal.toLocaleString() }} KZN
+            </strong>
+
+            <template #legend>
+              <div class="cdc-legend">
+                <div
+                  v-for="(item, idx) in legend"
+                  :key="idx"
+                  :title="item.percent"
+                  class="cdc-legend-item"
+                >
+                  <span class="cdc-legend-item-color" :style="item.styles" />
+                  <span class="cdc-legend-item-label">
+                    {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} - {{ item.label }}
+                  </span>
+                  <span v-if="false" class="cdc-legend-item-value">
+                    {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }}
+                  </span>
+                </div>
+              </div>
+            </template>
+          </vc-donut>
         </div>
       </div>
     </div>
@@ -391,15 +370,19 @@
 </template>
 
 <script>
+import UiTabs from "~/components/ui-tabs/ui-tabs";
+import UiTab from "~/components/ui-tabs/ui-tab";
+import TradingView from "~/components/trading-view";
 
 export default {
   name: "Home",
+  components: { TradingView, UiTab, UiTabs },
   layout: "public",
   data () {
     return {
       disabled: true,
       countIndices: 10,
-      timeline: [
+      roadmap: [
         {
           title: "TIMELINE_1_TITLE",
           desc: "TIMELINE_1_DESC"
@@ -411,7 +394,130 @@ export default {
         {
           title: "TIMELINE_3_TITLE",
           desc: "TIMELINE_3_DESC"
+        },
+        {
+          title: "TIMELINE_4_TITLE",
+          desc: "TIMELINE_4_DESC"
+        },
+        {
+          title: "TIMELINE_5_TITLE",
+          desc: "TIMELINE_5_DESC"
+        },
+        {
+          title: "TIMELINE_6_TITLE",
+          desc: "TIMELINE_6_DESC"
         }
+      ],
+      indexes: [
+        {
+          id: 1,
+          title: "BUZ Crypto",
+          color: "#58c1b9",
+          symbol: "BUZC",
+          price_usd: 300,
+          desc: "Buz crypto description",
+          items: [
+            {
+              name: "Bitcoin",
+              img: "bitcoin.png"
+            },
+            {
+              name: "Ethereum",
+              img: "ethereum.png"
+            },
+            {
+              name: "Ripple",
+              img: "ripple.png"
+            },
+            {
+              name: "Polkadot",
+              img: "polkadot.png"
+            },
+            {
+              name: "Uniswap",
+              img: "uniswap.png"
+            },
+            {
+              name: "Pancakeswap",
+              img: "pancakeswap.png"
+            }
+          ]
+        },
+        {
+          id: 2,
+          title: "BUZ Blockchain",
+          color: "#99c158",
+          symbol: "BUZB",
+          price_usd: 200,
+          desc: "",
+          items: [
+            {
+              name: "Polkadot",
+              img: "polkadot.png"
+            },
+            {
+              name: "Uniswap",
+              img: "uniswap.png"
+            },
+            {
+              name: "Pancakeswap",
+              img: "pancakeswap.png"
+            }
+          ]
+        },
+        {
+          id: 3,
+          title: "BUZ Real",
+          color: "#7358c1",
+          symbol: "BUZR",
+          price_usd: 100,
+          desc: "Buz real desc",
+          items: [
+            {
+              name: "Apple",
+              img: "apple.png"
+            },
+            {
+              name: "Google",
+              img: "google.png"
+            },
+            {
+              name: "Netflix",
+              img: "netflix.png"
+            }
+          ]
+        }
+      ],
+      tokenomics: [
+        {
+          label: "Private Sale I",
+          value: 1000000
+        },
+        {
+          label: "Private Sale II",
+          value: 1000000
+        },
+        {
+          label: "Pre-Sale",
+          value: 500000
+        },
+        {
+          label: "IDO",
+          value: 300000
+        },
+        {
+          label: this.$t("TOKENOMICS_COMPANY_WALLET"),
+          value: 2000000
+        },
+        {
+          label: this.$t("TOKENOMICS_PUBLIC_SELLING"),
+          value: 5200000
+        }
+      ],
+      defaultColors: [
+        "#ff6384", "#36a2eb", "#ffce56", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
+        "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
+        "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000"
       ]
     };
   },
@@ -428,6 +534,31 @@ export default {
     cryptoindexes () {
       return ["CRYPTO10", "BITW", "CIX100", "DEFI"];
       // return this.$store.getters.currency.filter(e => e.index).map(i => i.symbol.split("USDT")[0]);
+    },
+    tokenomicsTotal () {
+      return this.tokenomics.map(x => x.value).reduce((a, b) => a + b, 0);
+    },
+    tokenomicsSections () {
+      const tmp = [];
+      this.tokenomics.map((e) => {
+        tmp.push({
+          label: e.label,
+          value: parseInt(((e.value / this.tokenomicsTotal) * 100).toFixed(0), 10) // в процентах
+        });
+        return e;
+      });
+      return tmp;
+    },
+    legend () {
+      let currentDefaultColorIdx = 0;
+      return this.tokenomicsSections.map((section, idx) => ({
+        label: section.label || `Section ${idx + 1}`,
+        value: (section.value * this.tokenomicsTotal) / 100, // обратно преодразовываем из процентов в кол-во токенов
+        percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING_CRYPTO())})`,
+        styles: {
+          backgroundColor: this.defaultColors[currentDefaultColorIdx++]
+        }
+      }));
     }
   }
 };
@@ -513,7 +644,7 @@ export default {
     font-weight: 600;
 
     @include respond-before("xs") {
-      font-size: 48px;
+      font-size: 46px;
     }
   }
 }
@@ -614,7 +745,7 @@ export default {
   padding: 60px 0 80px;
 
   &__wrap {
-    @include respond-before("md") {
+    @include respond-before("lg") {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
@@ -624,21 +755,52 @@ export default {
   &__left {
     margin-bottom: 30px;
 
-    @include respond-before("md") {
+    @include respond-before("lg") {
       width: 400px;
       margin-bottom: 0;
     }
   }
 
   &__right {
-    @include respond-before("md") {
+    @include respond-before("lg") {
       flex: 1;
       margin-left: 20px;
     }
   }
+
+  // табы
+  &::v-deep .ui-tabs {
+    &-menu {
+      background-color: transparent;
+      border: 0;
+    }
+
+    &-menu__item {
+      font-size: 13px;
+      color: #555860;
+      border: 1px solid transparent; // #555860;
+      background-color: rgba(167, 169, 183, 0.07);
+      user-select: none;
+      border-radius: 12px;
+      padding: 15px 20px;
+      width: auto;
+      margin-right: 10px;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &--active {
+        color: var(--base-text-invert);
+        background-color: var(--color-primary);
+        border: 1px solid transparent;
+      }
+    }
+  }
 }
 
-.tariffs-section {
+.indexes-section {
   &__heading {
     margin: auto;
     text-align: center;
@@ -646,10 +808,10 @@ export default {
   }
 }
 
-.tariff {
+.index {
   $self: &;
 
-  &s {
+  &es {
     @include respond-before("md") {
       display: flex;
       flex-wrap: wrap;
@@ -721,7 +883,13 @@ export default {
     padding: 0 30px 30px;
   }
 
-  &__row {
+  &__items {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 360px;
+  }
+
+  &__item {
     height: 120px;
     display: flex;
     flex-direction: column;
@@ -786,6 +954,8 @@ export default {
       margin-left: auto;
       width: 400px;
       padding-left: 40px;
+      overflow-y: auto;
+      max-height: 630px;
     }
   }
 
@@ -845,6 +1015,95 @@ export default {
 
       @include respond-before("md") {
         left: -56px;
+      }
+    }
+  }
+}
+
+.tokenomics-section {
+  padding: 160px 0 70px;
+
+  @include respond-before("lg") {
+    margin-left: 84px;
+  }
+
+  &__highlight {
+    font-size: 30px;
+    display: inline-block;
+    color: #fff;
+    padding: 0 20px;
+    @include fontTTNorms("bold");
+    background: var(--color-primary);
+
+    @include respond-before("md") {
+      font-size: 39px;
+    }
+  }
+
+  &::v-deep .cdc {
+    @include respond-to("xs") {
+      width: 270px !important;
+      padding-bottom: 270px !important;
+    }
+
+    @include respond-before("lg") {
+      width: 400px !important;
+      padding-bottom: 400px !important;
+    }
+
+    @include respond-to("md") {
+      margin: auto;
+    }
+
+    &-container {
+      justify-content: flex-start;
+
+      @include respond-to("md") {
+        display: block;
+      }
+    }
+
+    &-total {
+      font-size: 20px;
+
+      @include respond-before("xs") {
+        font-size: 26px;
+      }
+    }
+
+    &-legend {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      @include respond-before("md") {
+        margin: 0 1em 0 0;
+        order: -1;
+      }
+
+      &-item {
+        display: flex;
+        align-items: center;
+        margin: 0.5em 0;
+        letter-spacing: -0.02em;
+        @include fontTTNorms("medium");
+
+        &-color {
+          height: .75em;
+          width: .75em;
+          min-width: .75em;
+          border-radius: 2px;
+          margin-right: 0.5em;
+        }
+
+        &-label {
+          margin-right: 16px;
+        }
+
+        &-value {
+          margin-left: auto;
+        }
       }
     }
   }

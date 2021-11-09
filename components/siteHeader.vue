@@ -164,20 +164,16 @@ export default {
           url: "index"
         },
         {
-          title: "FUNDS",
-          url: "funds"
+          title: "INDEXES",
+          url: "indexes"
         },
         {
-          title: "INCUBATION",
-          url: "incubation"
+          title: "PROJECTS",
+          url: "projects"
         },
         {
-          title: "ABOUT_US",
+          title: "COMPANY",
           url: "about"
-        },
-        {
-          title: "NEWS",
-          url: "news"
         }
       ]
     };

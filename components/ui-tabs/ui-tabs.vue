@@ -128,7 +128,7 @@ export default {
     }
 
     &__item {
-      font-size: 16px;
+      //font-size: 16px;
       padding: 10px 20px;
       text-align: right;
       cursor: pointer;
@@ -146,7 +146,7 @@ export default {
         }
       }
       @include respond-before("lg") {
-        font-size: 18px;
+        //font-size: 18px;
       }
 
       &--active {

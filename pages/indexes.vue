@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="m-b-30">
-      {{ $t("FUNDS") }}
+      {{ $t("INDEXES") }}
     </h1>
     <p>
       {{ $t("PAGE_UNDER_CONSTRUCTION") }}
@@ -12,7 +12,7 @@
 <script>
 
 export default {
-  name: "Funds",
+  name: "Indexes",
   layout: "public"
 };
 </script>

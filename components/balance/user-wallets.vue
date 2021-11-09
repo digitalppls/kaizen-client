@@ -79,43 +79,10 @@ export default {
   },
   data () {
     return {
-      colors: [
-        {
-          symbol: "usd",
-          color: "#27a17a"
-        },
-        {
-          symbol: "eth",
-          color: "#627eea"
-        },
-        {
-          symbol: "zlw",
-          color: "#f9c910"
-        },
-        {
-          symbol: "icw",
-          color: "#000d57"
-        },
-        {
-          symbol: "amc",
-          color: "#ed1c27"
-        },
-        {
-          symbol: "btc",
-          color: "#f6931a"
-        },
-        {
-          symbol: "doge",
-          color: "#b39832"
-        },
-        {
-          symbol: "bnb",
-          color: "#e7b00f"
-        },
-        {
-          symbol: "bitw",
-          color: "#82bb47"
-        }
+      defaultColors: [
+        "#ff6384", "#36a2eb", "#ffce56", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
+        "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
+        "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000"
       ]
     };
   },
@@ -141,13 +108,6 @@ export default {
         return e;
       });
       return tmp;
-    },
-    defaultColors () {
-      return [
-        "#ff6384", "#36a2eb", "#ffce56", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
-        "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
-        "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000"
-      ];
     },
     legend () {
       let currentDefaultColorIdx = 0;

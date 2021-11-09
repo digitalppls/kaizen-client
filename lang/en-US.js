@@ -11,6 +11,9 @@ export default {
   "INCUBATION": "Incubation",
   "NEWS": "News",
   "ABOUT_US": "About Us",
+  "COMPANY": "Company",
+  "INDEXES": "Indexes",
+  "PROJECTS": "Projects",
   "COOKIES_BANNER": "🍪 We use cookies.",
 
   "AUTH": {
@@ -230,9 +233,15 @@ export default {
   "CRYPTOCURRENCIES": "Cryptocurrencies",
   "EXCHANGES": "Exchanges",
   "TOP_COMPANIES": "Top companies",
+  "TOTAL_FUND_CAPITALIZATION": "Fund Capitalization",
+  "TOTAL_VOLUME": "Volume of funds",
+  "CRYPTO10": "CRYPTO10",
+  "BITW": "BITW",
+  "CIX100": "CIX100",
+  "DEFI": "DEFI",
 
   // Home tariffs
-  "HOME_TARIFFS_TITLE": "Highest credit of confidence and minimal risk",
+  "HOME_INDEXES_TITLE": "Highest credit of confidence and minimal risk",
   "JOIN": "Join",
   "HOME_ROADMAP_TITLE": "When can I buy BUZTON Token?",
   "TIMELINE_1_TITLE": "October 1st",
@@ -242,6 +251,14 @@ export default {
   "TIMELINE_3_TITLE": "November 3",
   "TIMELINE_3_DESC": "Start on the stock exchange $ 1 <br> (for $ 100 thousand) <br> The rest of the team freezes for 1 year with defrosting 1/365",
 
+  // Home tokenomics
+  "HOME_TOKENOMICS_TITLE": "Tokenomics",
+  "TOKENOMICS_COMPANY_WALLET": "Company wallet",
+  "TOKENOMICS_PUBLIC_SELLING": "Public Selling on Pancake Exchange and Kaizen Fund Platform",
+  "TOKENOMICS_TOTAL_INITIAL": "Total balance of the initial token emission",
+  "TOKENOMICS_TOTAL_STABLECOIN": "Total balance of USDK stablecoin: <br> %{TOTAL} units of account",
+
+  // Footer
   "FOOTER_CONTACTS": "Georgetown, Cayman Islands | <a href='tel:%{PHONE}'>%{PHONE}</a> | <a href='tel:%{EMAIL}'>%{EMAIL}</a>",
   "FOOTER_TXT_1": "Invictus Capital Financial Technologies SPC (the \"Fund\") has applied for registration as a virtual asset service provider in the Cayman Islands. Registration is pending (ID 1382154).",
   "FOOTER_TXT_2": "Invictus Asset Management Limited (the \"Manager\") is authorized and regulated by the Financial Services Commission (British Virgin Islands) (registration number IBR / AIM / 21/0515).",
