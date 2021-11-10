@@ -33,15 +33,9 @@ export default {
   components: { TokenSwap },
   middleware: ["verify"],
   data () {
-    return {
-      coin: "ZLWUSDT"
-    };
+    return {};
   },
   computed: {
-    balance () {
-      return this.$store.getters.wallets.filter(e => e.symbol === this.coin)[0]?.amount || 0;
-    },
-
     wallets () {
       return this.$store.getters.wallets || [];
     }

@@ -1,5 +1,5 @@
 // COLORS VARIABLES THEME
-$color-link: #fff; //getColor('black');
+$color-link: var(--color-black);
 $color-placeholder: rgba(var(--placeholder-color), .7);
 $color-req: var(--color-error);
 $color-error: var(--color-error);

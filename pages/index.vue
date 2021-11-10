@@ -238,7 +238,7 @@
                   </div>
                   <div class="index__header__cnt">
                     <div class="font-bold font-size-22" style="color: #000;">
-                      {{ index.title }}
+                      {{ index.title.toUpperCase() }}
                     </div>
                     <div class="small">
                       {{ $t("TOKEN") }} {{ index.symbol }}
@@ -271,8 +271,9 @@
                       </div>
                     </div>
                   </div>
+                  <!-- , query: hasToken ? {index: index.title.toUpperCase()} : null -->
                   <nuxt-link
-                    :to="localePath({name: hasToken ? 'my-buy' : 'auth', query: hasToken ? {index: index.title.toUpperCase()} : null})"
+                    :to="localePath({ name: hasToken ? 'my-indexes-id' : 'auth', params: hasToken ? { id: getIndexName(index.title.toUpperCase()) } : {} })"
                     :class="['btn', 'btn-solid', 'btn-full', {'btn-solid--secondary': index.id === 2}, {'btn-solid--tertiary': index.id === 3}]"
                   >
                     {{ $t(hasToken ? "BUY" : "JOIN") }}
@@ -412,11 +413,11 @@ export default {
       indexes: [
         {
           id: 1,
-          title: "BITW",
+          title: "KAIZEN",
           color: "#58c1b9",
           symbol: "BUZC",
           price_usd: 300,
-          desc: "Buz crypto description",
+          desc: "",
           items: [
             {
               name: "Bitcoin",
@@ -446,7 +447,7 @@ export default {
         },
         {
           id: 2,
-          title: "CRYPTO10",
+          title: "Coin10",
           color: "#99c158",
           symbol: "BUZB",
           price_usd: 200,
@@ -468,11 +469,11 @@ export default {
         },
         {
           id: 3,
-          title: "CIX100",
+          title: "Crypto100",
           color: "#7358c1",
           symbol: "BUZR",
           price_usd: 100,
-          desc: "Buz real desc",
+          desc: "",
           items: [
             {
               name: "Apple",
@@ -494,7 +495,7 @@ export default {
           color: "#7358c1",
           symbol: "BUZR",
           price_usd: 100,
-          desc: "DEFI desc",
+          desc: "",
           items: [
             {
               name: "Apple",
@@ -587,6 +588,11 @@ export default {
           backgroundColor: this.defaultColors[currentDefaultColorIdx++]
         }
       }));
+    }
+  },
+  methods: {
+    getIndexName (index) {
+      return index.split("USDT")[0];
     }
   }
 };

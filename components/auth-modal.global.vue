@@ -1,10 +1,10 @@
 <template>
-  <modal
+  <ui-modal
     v-if="showModal"
     @close="showModal = false"
   >
     <auth :mode="mode" @change-tab="changeTab" />
-  </modal>
+  </ui-modal>
 </template>
 
 <script>

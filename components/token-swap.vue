@@ -1,5 +1,11 @@
 <template>
   <div class="token-swap">
+    <h2 v-if="mode" class="sub-title text-center">
+      {{ $t(mode.toUpperCase()) }}
+      <span class="color-primary">
+        {{ propIndex.toUpperCase() }}
+      </span>
+    </h2>
     <div class="m-b-20">
       <div v-if="sendCoin" class="text-right small">
         <span class="color-gray">{{ $t("AVAILABLE") }}:</span>
@@ -80,7 +86,7 @@
           <ui-icon-done />
         </template>
         <template v-else>
-          {{ $t("BUY_INDEXES") }}
+          {{ $t(mode ? mode.toUpperCase() : "BUY") }}
         </template>
       </button>
     </div>
@@ -91,6 +97,16 @@
 
 export default {
   name: "TokenSwap",
+  props: {
+    propIndex: {
+      type: String,
+      default: ""
+    },
+    mode: {
+      type: String,
+      default: ""
+    }
+  },
   data () {
     return {
       loading: false,
@@ -137,14 +153,30 @@ export default {
   methods: {
     /** Устанавливаем значения списков по умолчанию */
     Update () {
-      this.getCoinList = this.currencies.filter(e => ["CRYPTO10USDT", "BITWUSDT", "CIX100USDT", "DEFIUSDT"].includes(e.symbol));
+      this.getCoinList = this.currencies.filter(e => ["CRYPTO10USDT", "BITWUSDT", "CIX100USDT", "DEFIUSDT", (this.propIndex && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       this.sendCoinList = this.wallets;
 
-      this.sendCoin = this.sendCoinList[0]; // .filter(e => e.symbol === "usd");
+      if (this.propIndex && this.mode === "sell") {
+        this.sendCoin = this.sendCoinList.find(e => e.symbol.toUpperCase() === this.propIndex.toUpperCase());
+        // this.getCoin = this.getCoinList.find(e => e.symbol.split("USDT")[0].toUpperCase() === "USD");
+        // console.log(this.getCoin, this.getCoinList);
+      } else {
+        this.sendCoin = this.sendCoinList[0]; // .filter(e => e.symbol === "usd");
+      }
+
       // Если в URL есть get параметр "index", то устанавливаем его по умолчанию для покупки
-      this.getCoin = this.indexFromUrl
-        ? this.getCoinList.find(e => e.symbol.split("USDT")[0] === this.indexFromUrl)
-        : this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
+      if (this.indexFromUrl) {
+        this.getCoin = this.getCoinList.find(
+          e => e.symbol.split("USDT")[0].toUpperCase() === this.indexFromUrl.toUpperCase());
+      } else if (this.propIndex && this.mode === "buy") {
+        this.getCoin = this.getCoinList.find(
+          e => e.symbol.split("USDT")[0].toUpperCase() === this.propIndex.toUpperCase());
+      } else {
+        this.getCoin = this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
+      }
+      // this.getCoin = this.indexFromUrl
+      //   ? this.getCoinList.find(e => e.symbol.split("USDT")[0] === this.indexFromUrl)
+      //   : this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
     },
 
     /** Слушатель события ввода получаемых монет */
@@ -167,12 +199,16 @@ export default {
 
     /** Обмен токенов */
     onExchange () {
-      if (confirm(this.$t("CONFIRM_BUY_INDEX")
+      if (confirm(this.$t(`CONFIRM_${this.mode ? this.mode.toUpperCase() : "BUY"}_INDEX`)
         .replace("%{TOKEN_2}", `${this.sendInput} ${this.sendCoin.symbol.toUpperCase()}`)
         .replace("%{TOKEN_1}", `${this.getInput} ${this.$symbolCurrencySplitUsdt(this.getCoin.symbol)}`))) {
         this.loading = true;
         this.$API.TokenSwap(
-          { fromSymbol: this.sendCoin.symbol, toSymbol: this.$symbolCurrencySplitUsdt(this.getCoin.symbol).toLowerCase(), fromAmount: this.sendInput }, (r) => {
+          {
+            fromSymbol: this.sendCoin.symbol,
+            toSymbol: this.$symbolCurrencySplitUsdt(this.getCoin.symbol).toLowerCase(),
+            fromAmount: this.sendInput
+          }, (r) => {
             this.exchangeSuccess(r);
           }, (error) => {
             this.loading = false;

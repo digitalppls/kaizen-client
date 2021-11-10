@@ -38,7 +38,7 @@
 
 <script>
 export default {
-  name: "Modal",
+  name: "UiModal",
   props: {
     // Show close button
     closeBtn: {
@@ -72,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$modal-overlay-bg: #f8f8fb;
+$modal-overlay-bg: #383640;
 $modal-bg: #fff;
 $padding-top: 70px; // зависит от высоты header
 .modal-bg {
@@ -84,7 +84,7 @@ $padding-top: 70px; // зависит от высоты header
   position: fixed;
   outline: none !important;
   -webkit-backface-visibility: hidden;
-  background-color: rgba($modal-overlay-bg, 0.7);
+  background-color: rgba($modal-overlay-bg, 0.25);
   transition: opacity 0.3s ease;
 }
 

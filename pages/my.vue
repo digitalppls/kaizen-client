@@ -73,7 +73,7 @@ export default {
         },
         {
           name: "BUY_INDEXES",
-          url: "my-buy"
+          url: "my-indexes"
         },
         {
           name: "PROFILE",
