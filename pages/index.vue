@@ -151,7 +151,7 @@
           </div>
           <div class="info-chart__right">
             <ui-tabs class="info-chart-tabs">
-              <ui-tab name="TOTAL_FUND_CAPITALIZATION">
+              <ui-tab name="TOTAL_FUND_CAPITALIZATION" :selected="true">
                 <div style="overflow: hidden; border-radius: 40px;">
                   <img src="~/assets/images/graphic.jpg" alt="">
                 </div>
@@ -161,7 +161,7 @@
                   <img src="~/assets/images/graphic.jpg" alt="">
                 </div>
               </ui-tab>
-              <ui-tab name="CRYPTO10" :selected="true">
+              <ui-tab name="CRYPTO10">
                 <trading-view
                   container-id="tradingview_crypto10"
                   :options="{autosize: true, symbol: 'EIGHTCAP:CRYPTO10',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
