@@ -153,7 +153,7 @@ export default {
   methods: {
     /** Устанавливаем значения списков по умолчанию */
     Update () {
-      this.getCoinList = this.currencies.filter(e => ["CRYPTO10USDT", "BITWUSDT", "CIX100USDT", "DEFIUSDT", (this.propIndex && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
+      this.getCoinList = this.currencies.filter(e => ["COIN10USDT", "KAIZENUSDT", "CRYPTO100USDT", "DEFIUSDT", (this.propIndex && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       this.sendCoinList = this.wallets;
 
       if (this.propIndex && this.mode === "sell") {

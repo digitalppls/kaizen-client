@@ -55,14 +55,14 @@ export default {
     },
     /** Формируем символ для графика */
     symbol () {
-      if (this.id.toUpperCase() === "BITW") {
+      if (this.id.toUpperCase() === "KAIZEN") {
         return "FTX:BITWUSD";
-      } else if (this.id.toUpperCase() === "CIX100") {
+      } else if (this.id.toUpperCase() === "CRYPTO100") {
         return "CRYPTOINDEX:CIX100";
       } else if (this.id.toUpperCase() === "DEFI") {
         return "BINANCE:DEFIUSDTPERP";
       } else {
-        return "EIGHTCAP:CRYPTO10";
+        return "EIGHTCAP:CRYPTO10"; // COIN10
       }
     },
     /** Конфиг графика */

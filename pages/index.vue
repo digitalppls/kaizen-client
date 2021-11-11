@@ -161,21 +161,21 @@
                   <img src="~/assets/images/graphic.jpg" alt="">
                 </div>
               </ui-tab>
-              <ui-tab name="CRYPTO10">
-                <trading-view
-                  container-id="tradingview_crypto10"
-                  :options="{autosize: true, symbol: 'EIGHTCAP:CRYPTO10',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
-                  style="height: 500px; padding: 10px;"
-                />
-              </ui-tab>
-              <ui-tab name="BITW">
+              <ui-tab name="KAIZEN">
                 <trading-view
                   container-id="tradingview_bitw"
                   :options="{autosize: true, symbol: 'FTX:BITWUSD',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
                   style="height: 500px; padding: 10px;"
                 />
               </ui-tab>
-              <ui-tab name="CIX100">
+              <ui-tab name="COIN10">
+                <trading-view
+                  container-id="tradingview_crypto10"
+                  :options="{autosize: true, symbol: 'EIGHTCAP:CRYPTO10',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                  style="height: 500px; padding: 10px;"
+                />
+              </ui-tab>
+              <ui-tab name="CRYPTO100">
                 <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
                   <trading-view
                     container-id="tradingview_cix100"
@@ -356,7 +356,7 @@
                 >
                   <span class="cdc-legend-item-color" :style="item.styles" />
                   <span class="cdc-legend-item-label">
-                    {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} - {{ item.label }}
+                    {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} - {{ item.label }} <small>({{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} KZN)</small>
                   </span>
                   <span v-if="false" class="cdc-legend-item-value">
                     {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }}
@@ -400,16 +400,17 @@ export default {
         {
           title: "TIMELINE_4_TITLE",
           desc: "TIMELINE_4_DESC"
-        },
-        {
-          title: "TIMELINE_5_TITLE",
-          desc: "TIMELINE_5_DESC"
-        },
-        {
-          title: "TIMELINE_6_TITLE",
-          desc: "TIMELINE_6_DESC"
         }
+        // {
+        //   title: "TIMELINE_5_TITLE",
+        //   desc: "TIMELINE_5_DESC"
+        // },
+        // {
+        //   title: "TIMELINE_6_TITLE",
+        //   desc: "TIMELINE_6_DESC"
+        // }
       ],
+      cryptoIndexes: ["KAIZEN", "COIN10", "CRYPTO100", "DEFI"],
       indexes: [
         {
           id: 1,
@@ -513,17 +514,17 @@ export default {
         }
       ],
       tokenomics: [
-        {
-          label: "Private Sale I",
-          value: 1000000
-        },
-        {
-          label: "Private Sale II",
-          value: 1000000
-        },
+        // {
+        //   label: "Private Sale I",
+        //   value: 1000000
+        // },
+        // {
+        //   label: "Private Sale II",
+        //   value: 1000000
+        // },
         {
           label: "Pre-Sale",
-          value: 500000
+          value: 2500000
         },
         {
           label: "IDO",
@@ -554,10 +555,6 @@ export default {
     },
     hasToken () {
       return this.$store.getters.hasToken;
-    },
-    cryptoIndexes () {
-      return ["CRYPTO10", "BITW", "CIX100", "DEFI"];
-      // return this.$store.getters.currency.filter(e => e.index).map(i => i?.symbol.split("USDT")[0]);
     },
     cssVarCountCryptoIndexes () {
       return {
