@@ -44,7 +44,8 @@ const fingerprint = async function (options = {}, hash = true) {
 
 const fingerint = async function () {
   // fpInt = fpInt || (await fingerprint()).replace(/[^0-9]/g, "").substr(0, 5);
-  fpInt = fpInt || (await fingerprint()).replace(new RegExp("[^0-9]", "g"), "").substr(0, 5);
+  fpInt = fpInt ||
+    (await fingerprint()).replace(new RegExp("[^0-9]", "g"), "").substr(0, 5);
   return fpInt;
 };
 fingerint();
@@ -85,14 +86,12 @@ const socket = {
       forceNew: true
     };
 
-    if (window.$nuxt.$store.getters.token) {
-      params.head = {
-        token: window.$nuxt.$store.getters.token
-      };
-      params.extraHeaders = {
-        Authorization: window.$nuxt.$store.getters.token
-      }
-    }
+    params.head = {
+      token: window.$nuxt.$store.getters.token ?? ""
+    };
+    params.extraHeaders = {
+      Authorization: window.$nuxt.$store.getters.token ?? ""
+    };
 
     client = window.io.connect("/", params);
 

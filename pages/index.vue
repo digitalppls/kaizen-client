@@ -141,7 +141,7 @@
               {{ $t("INFOCHART_TITLE") }}
             </div>
             <div class="m-b-40 lh-135">
-              {{ coverDesc }}
+              {{ $t("INFOCHART_DESC") }}
             </div>
             <ul class="list font-bold">
               <li>{{ $t("CRYPTOCURRENCIES").toUpperCase() }}</li>
@@ -161,19 +161,21 @@
                   <img src="~/assets/images/graphic.jpg" alt="">
                 </div>
               </ui-tab>
-              <ui-tab name="KAIZEN">
-                <trading-view
-                  container-id="tradingview_bitw"
-                  :options="{autosize: true, symbol: 'FTX:BITWUSD',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
-                  style="height: 500px; padding: 10px;"
-                />
-              </ui-tab>
               <ui-tab name="COIN10">
                 <trading-view
                   container-id="tradingview_crypto10"
                   :options="{autosize: true, symbol: 'EIGHTCAP:CRYPTO10',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
                   style="height: 500px; padding: 10px;"
                 />
+              </ui-tab>
+              <ui-tab name="DEFI">
+                <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
+                  <trading-view
+                    container-id="tradingview_defi"
+                    :options="{autosize: true, symbol: 'BINANCE:DEFIUSDTPERP',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                    style="height: 500px; padding: 10px;"
+                  />
+                </div>
               </ui-tab>
               <ui-tab name="CRYPTO100">
                 <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
@@ -184,14 +186,12 @@
                   />
                 </div>
               </ui-tab>
-              <ui-tab name="DEFI">
-                <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
-                  <trading-view
-                    container-id="tradingview_defi"
-                    :options="{autosize: true, symbol: 'BINANCE:DEFIUSDTPERP',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
-                    style="height: 500px; padding: 10px;"
-                  />
-                </div>
+              <ui-tab name="KAIZEN">
+                <trading-view
+                  container-id="tradingview_bitw"
+                  :options="{autosize: true, symbol: 'FTX:BITWUSD',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                  style="height: 500px; padding: 10px;"
+                />
               </ui-tab>
             </ui-tabs>
           </div>
@@ -203,12 +203,9 @@
     <div class="indexes-section">
       <div class="container">
         <div class="indexes-section__heading">
-          <div class="h2 m-b-20">
+          <div class="h2 m-b-40">
             {{ $t("HOME_INDEXES_TITLE") }}
           </div>
-          <p class="m-b-40 lh-135">
-            {{ coverDesc }}
-          </p>
         </div>
 
         <div class="indexes__wrap">
@@ -240,7 +237,7 @@
                     <div class="font-bold font-size-22" style="color: #000;">
                       {{ index.title.toUpperCase() }}
                     </div>
-                    <div class="small">
+                    <div v-if="index.symbol" class="small">
                       {{ $t("TOKEN") }} {{ index.symbol }}
                     </div>
                   </div>
@@ -286,16 +283,91 @@
       </div>
     </div>
 
+    <!-- Token KZN -->
+    <div class="about-token">
+      <div class="container">
+        <div class="h2 m-b-40 text-center">
+          {{ $t("TOKEN") }} KZN
+        </div>
+        <div class="about-token-section">
+          <div class="about-token-section__l">
+            <svg
+              width="207"
+              height="88"
+              viewBox="0 0 207 88"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="about-token__logo"
+            >
+              <path
+                d="M0 0H14.467V38.1341L59.7216 0H69.1251L26.1762 36.1675L80.6535 85.8978H62.2533L14.467 42.3386V85.8978H0V0Z"
+                fill="black"
+              />
+              <path
+                d="M140.918 0L78.7094 80.4048H140.918V85.8978H59.2694V83.7503L119.646 5.58335H59.2694V0H140.918Z"
+                fill="#58C1B9"
+              />
+              <path
+                d="M135.379 0H143.472L199.848 62.9088H200.504V0H206.855V88H203.442L142.409 18.0837H141.89V85.8978H135.334L135.379 0Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+          <div class="about-token-section__r">
+            <p class="about-token-txt-box lh-135 m-b-20">
+              {{ $t("TOKEN_KZN_DESC") }}
+            </p>
+            <p class="m-b-20">
+              <nuxt-link
+                :to="localePath({ name: hasToken ? 'my-indexes-id' : 'auth', params: hasToken ? { id: 'KAIZEN' } : {} })"
+                :class="['btn', 'btn-solid']"
+              >
+                {{ $t("BUY") }} KZN
+              </nuxt-link>
+            </p>
+            <p>
+              <a href="#">White Paper</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advantages -->
+    <div class="advantages">
+      <div class="container">
+        <h2 class="m-b-40 text-center">
+          {{ $t("ADVANTAGES_FUND_TITLE") }}
+        </h2>
+
+        <div class="advantages-list">
+          <div
+            v-for="(item, idx) in advantages"
+            :key="idx"
+            class="advantages-list__item"
+          >
+            <div class="advantages-item">
+              <div v-if="item.icon" class="advantages-item__icon" />
+              <div v-if="item.title" class="advantages-item__title" v-html="item.title" />
+              <div v-if="item.desc" class="advantages-item__desc" v-html="item.desc" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Roadmap -->
     <div class="container">
       <div class="roadmap-section">
         <div class="roadmap-section__l">
-          <div class="h2 m-b-20">
-            {{ $t("HOME_ROADMAP_TITLE") }}
+          <div class="roadmap-section__txt">
+            <div class="h2 m-b-20">
+              {{ $t("HOME_ROADMAP_TITLE") }}
+            </div>
+            <p class="m-b-40 lh-135">
+              {{ $t("HOME_ROADMAP_DESC") }}
+            </p>
           </div>
-          <p class="m-b-40 lh-135">
-            {{ coverDesc }}
-          </p>
         </div>
         <div class="roadmap-section__r">
           <div class="roadmap">
@@ -356,7 +428,8 @@
                 >
                   <span class="cdc-legend-item-color" :style="item.styles" />
                   <span class="cdc-legend-item-label">
-                    {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} - {{ item.label }} <small>({{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} KZN)</small>
+                    {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} - {{ item.label }}
+                    <small>({{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} KZN)</small>
                   </span>
                   <span v-if="false" class="cdc-legend-item-value">
                     {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }}
@@ -384,6 +457,7 @@ export default {
     return {
       disabled: true,
       countIndices: 10,
+      currencies: [],
       roadmap: [
         {
           title: "TIMELINE_1_TITLE",
@@ -400,23 +474,23 @@ export default {
         {
           title: "TIMELINE_4_TITLE",
           desc: "TIMELINE_4_DESC"
+        },
+        {
+          title: "TIMELINE_5_TITLE",
+          desc: "TIMELINE_5_DESC"
         }
-        // {
-        //   title: "TIMELINE_5_TITLE",
-        //   desc: "TIMELINE_5_DESC"
-        // },
         // {
         //   title: "TIMELINE_6_TITLE",
         //   desc: "TIMELINE_6_DESC"
         // }
       ],
-      cryptoIndexes: ["KAIZEN", "COIN10", "CRYPTO100", "DEFI"],
+      cryptoIndexes: ["CRYPTO100", "COIN10", "DEFI", "KAIZEN"],
       indexes: [
         {
           id: 1,
           title: "KAIZEN",
           color: "#58c1b9",
-          symbol: "BUZC",
+          symbol: "",
           price_usd: 300,
           desc: "",
           items: [
@@ -450,7 +524,7 @@ export default {
           id: 2,
           title: "Coin10",
           color: "#99c158",
-          symbol: "BUZB",
+          symbol: "",
           price_usd: 200,
           desc: "",
           items: [
@@ -472,7 +546,7 @@ export default {
           id: 3,
           title: "Crypto100",
           color: "#7358c1",
-          symbol: "BUZR",
+          symbol: "",
           price_usd: 100,
           desc: "",
           items: [
@@ -494,7 +568,7 @@ export default {
           id: 4,
           title: "DEFI",
           color: "#7358c1",
-          symbol: "BUZR",
+          symbol: "",
           price_usd: 100,
           desc: "",
           items: [
@@ -539,6 +613,23 @@ export default {
           value: 5200000
         }
       ],
+      advantages: [
+        {
+          icon: "",
+          title: this.$t("ADVANTAGES_ITEMS_1_TITLE"),
+          desc: this.$t("ADVANTAGES_ITEMS_1_DESC")
+        },
+        {
+          icon: "",
+          title: this.$t("ADVANTAGES_ITEMS_2_TITLE"),
+          desc: this.$t("ADVANTAGES_ITEMS_2_DESC")
+        },
+        {
+          icon: "",
+          title: this.$t("ADVANTAGES_ITEMS_3_TITLE"),
+          desc: this.$t("ADVANTAGES_ITEMS_3_DESC")
+        }
+      ],
       defaultColors: [
         "#ff6384", "#36a2eb", "#ffce56", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
         "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
@@ -548,10 +639,10 @@ export default {
   },
   computed: {
     coverTitle () {
-      return this.$t("COVER_TITLE").replace("%{COUNT}", this.countIndices);
+      return this.$t("COVER_TITLE"); // .replace("%{COUNT}", this.countIndices);
     },
     coverDesc () {
-      return this.$t("COVER_DESC").replace("%{INDEXNAME}", "CRYPTO10").replaceAll("%{INDEXCNT}", "10");
+      return this.$t("COVER_DESC"); // .replace("%{INDEXNAME}", "CRYPTO10").replaceAll("%{INDEXCNT}", "10");
     },
     hasToken () {
       return this.$store.getters.hasToken;
@@ -587,9 +678,22 @@ export default {
       }));
     }
   },
+  beforeDestroy () {
+    this.$socket.off("currency_update", this.updateCurrency);
+  },
+  mounted () {
+    // курсы валют
+    this.$socket.on("currency_update", this.updateCurrency);
+  },
   methods: {
     getIndexName (index) {
       return index.split("USDT")[0];
+    },
+
+    /** Обновление курсов валют */
+    updateCurrency (r) {
+      this.currencies = r.filter(e => e.index);
+      console.log(this.currencies);
     }
   }
 };
@@ -861,7 +965,7 @@ export default {
       @include respond-before("pre-md") {
         padding-left: 10px;
         padding-right: 10px;
-        width: calc(100% / (var(--count-indexes) / 2) );
+        width: calc(100% / (var(--count-indexes) / 2));
       }
       @include respond-before("lg") {
         width: calc(100% / var(--count-indexes));
@@ -981,9 +1085,100 @@ export default {
   }
 }
 
+.about-token {
+  margin: 50px auto;
+  padding: 50px 0;
+
+  &__logo {
+    margin-bottom: 30px;
+
+    @include respond-before("md") {
+      margin-bottom: 0;
+    }
+  }
+
+  &-section {
+    text-align: center;
+    max-width: 1000px;
+    margin: auto;
+
+    @include respond-before("md") {
+      display: flex;
+      text-align: left;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      &__l {
+        flex: 1;
+        max-width: 300px;
+      }
+
+      &__r {
+        width: 475px;
+        padding-left: 40px;
+        overflow-y: auto;
+        max-height: 630px;
+      }
+    }
+  }
+}
+
+.advantages {
+  background: #f8f8fb;
+  padding: 50px 0;
+  margin: 80px auto 50px;
+
+  &-list {
+    @include respond-before("md") {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+
+    &__item {
+      @include respond-to("md") {
+        margin-bottom: 30px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      @include respond-before("md") {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: calc(100% / 3);
+      }
+    }
+  }
+
+  &-item {
+    text-align: center;
+
+    &__icon {
+      margin-bottom: 20px;
+    }
+
+    &__title {
+      margin-bottom: 10px;
+      @include fontTTNorms("bold");
+    }
+
+    &__desc {
+      margin: auto;
+      max-width: 300px;
+    }
+  }
+}
+
 .roadmap-section {
-  padding: 160px 0 70px;
+  padding: 100px 0 70px;
   max-width: 1000px;
+
+  @include respond-before("lg") {
+    margin-left: 84px;
+  }
 
   @include respond-before("md") {
     display: flex;
@@ -998,8 +1193,13 @@ export default {
       margin-left: auto;
       width: 400px;
       padding-left: 40px;
-      overflow-y: auto;
-      max-height: 630px;
+      //overflow-y: auto;
+      //max-height: 630px;
+    }
+
+    &__txt {
+      position: sticky;
+      top: 100px;
     }
   }
 

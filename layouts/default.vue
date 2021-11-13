@@ -5,7 +5,6 @@
       <Nuxt ref="nuxt" />
     </div>
     <site-footer />
-    <clear-storage v-if="$isDev" />
   </div>
 </template>
 
@@ -13,11 +12,9 @@
 import VGlobalMixin from "~/mixins";
 import SiteHeader from "~/components/siteHeader.vue";
 import SiteFooter from "~/components/siteFooter.vue";
-import ClearStorage from "~/components/dev/clear-storage";
 
 export default {
   components: {
-    ClearStorage,
     SiteHeader,
     SiteFooter
   },

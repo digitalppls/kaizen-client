@@ -214,8 +214,8 @@ export default {
   "CRYPTOINDICES": "Cryptoindices",
 
   // Home
-  "COVER_TITLE": "Invest in %{COUNT} of the world's best projects",
-  "COVER_DESC": "%{INDEXNAME} is the world's first tokenized cryptocurrency index fund. The profitability of the top %{INDEXCNT} cryptocurrencies is tracked in one C%{INDEXCNT} cryptoasset.",
+  "COVER_TITLE": "Invest in the world's best cryptocurrency indices",
+  "COVER_DESC": "Kaizen Fund is a Defi Cryptocurrency Index Fund. We provide the ability to create capital with a new class of liquid and safe assets.",
   "START_INVESTING": "Start investing",
   "CABINET": "Cabinet",
 
@@ -232,7 +232,8 @@ export default {
   "HOME_INFO_BLOCK_T_3": "How it works",
 
   // Home info chart
-  "INFOCHART_TITLE": "Three indexes of the most highly profitable projects of the planet",
+  "INFOCHART_TITLE": "Four highly profitable and balanced indices of the planet",
+  "INFOCHART_DESC": "Choose a secure way to get diversified access to the world's leading cryptocurrencies. The fund monitors the leading segments of the cryptocurrency sector and ensures the safety and ease of access to financial instruments.",
   "CRYPTOCURRENCIES": "Cryptocurrencies",
   "EXCHANGES": "Exchanges",
   "TOP_COMPANIES": "Top companies",
@@ -242,21 +243,25 @@ export default {
   "BITW": "BITW",
   "CIX100": "CIX100",
   "DEFI": "DEFI",
+  "KAIZEN": "KAIZEN",
+  "COIN10": "COIN10",
+  "CRYPTO100": "CRYPTO100",
 
   // Home tariffs
-  "HOME_INDEXES_TITLE": "Highest credit of confidence and minimal risk",
+  "HOME_INDEXES_TITLE": "Choose the best index",
   "JOIN": "Join",
-  "HOME_ROADMAP_TITLE": "When can I buy BUZTON Token?",
-  "TIMELINE_1_TITLE": "15.11.21 - 05.01.22",
-  "TIMELINE_1_DESC": "Pre-Sale 25% <br>2 500 000 KZN",
-  "TIMELINE_2_TITLE": "10.01.22 - 27.01.22",
-  "TIMELINE_2_DESC": "IDO 3% <br>300 000 KZN",
-  "TIMELINE_3_TITLE": "",
-  "TIMELINE_3_DESC": "Company wallet 20% <br>2 000 000 KZN",
-  "TIMELINE_4_TITLE": "",
-  "TIMELINE_4_DESC": "Public Selling on Pancake Exchange and Kaizen Fund Platform",
-  "TIMELINE_5_TITLE": "",
-  "TIMELINE_5_DESC": "",
+  "HOME_ROADMAP_TITLE": "Roadmap",
+  "HOME_ROADMAP_DESC": "Check out KZN token sale dates and additional projects from the Kaizen Fund team.",
+  "TIMELINE_1_TITLE": "November 15th",
+  "TIMELINE_1_DESC": "Starting the Private Sale system",
+  "TIMELINE_2_TITLE": "November 20th",
+  "TIMELINE_2_DESC": "Vanguard Mining - Bitcoin mining tokens",
+  "TIMELINE_3_TITLE": "January 10, 2022",
+  "TIMELINE_3_DESC": "IDO 1200 seats for $ 1000",
+  "TIMELINE_4_TITLE": "January 20, 2022",
+  "TIMELINE_4_DESC": "Start on the Pancake exchange",
+  "TIMELINE_5_TITLE": "10 March 2022",
+  "TIMELINE_5_DESC": "BlackGold - Oil Backed Tokens",
   "TIMELINE_6_TITLE": "",
   "TIMELINE_6_DESC": "",
 
@@ -267,8 +272,20 @@ export default {
   "TOKENOMICS_TOTAL_INITIAL": "Total balance of the initial token emission",
   "TOKENOMICS_TOTAL_STABLECOIN": "Total balance of USDK stablecoin: <br> %{TOTAL} units of account",
 
+  // Home token about
+  "TOKEN_KZN_DESC": "KZN is a preferred DeFi token, which entitles you to receive a share of the profits from the Kaizen Fund, as well as a discount of up to 50% on trading commissions.",
+
+  // Home advantages fund
+  "ADVANTAGES_FUND_TITLE": "Fund Benefits",
+  "ADVANTAGES_ITEMS_1_TITLE": "Minimum fees",
+  "ADVANTAGES_ITEMS_1_DESC": "With KZN token you get discounts on trading commissions up to 50%",
+  "ADVANTAGES_ITEMS_2_TITLE": "Profitability",
+  "ADVANTAGES_ITEMS_2_DESC": "Get income from indices and wrap KZN in the USDT liquidity pool 24/7",
+  "ADVANTAGES_ITEMS_3_TITLE": "Security",
+  "ADVANTAGES_ITEMS_3_DESC": "All coins are in cold wallets with multi-sig technology",
+
   // Footer
-  "FOOTER_CONTACTS": "Georgetown, Cayman Islands | <a href='tel:%{PHONE}'>%{PHONE}</a> | <a href='tel:%{EMAIL}'>%{EMAIL}</a>",
+  "FOOTER_CONTACTS": "Georgetown, Cayman Islands | <a href='tel:%{PHONE}'>%{PHONE}</a> | <a href='mailto:%{EMAIL}'>%{EMAIL}</a>",
   "FOOTER_TXT_1": "Invictus Capital Financial Technologies SPC (the \"Fund\") has applied for registration as a virtual asset service provider in the Cayman Islands. Registration is pending (ID 1382154).",
   "FOOTER_TXT_2": "Invictus Asset Management Limited (the \"Manager\") is authorized and regulated by the Financial Services Commission (British Virgin Islands) (registration number IBR / AIM / 21/0515).",
   "DENIAL_OF_RESPONSIBILITY": "IMPORTANT DISCLAIMER Access to the products and services described on this website may be restricted to certain individuals or countries. In particular, the products and services mentioned in this document are not available to individuals from the United States, as this is defined in the US Securities and Exchange Commission Regulation S, as amended (“US Persons”). The information contained on this website is not available to residents of the US Investors who are “American” should not view this site The provision of information on this website does not constitute an offer of securities to any person in the United States or to any “person in the United States.” Invictus Capital is not registered under the US Investment Companies Act 1940, as amended, and the sale of Invictus tokens is not registered under with the United States Securities Act of 1933, as amended. Therefore, it cannot be put up for sale or sold in the United States, its territories , possessions or protectorates under their jurisdiction, as well as citizens, citizens or residents in any of these areas, except in accordance with the applicable exception. More generally, the products and services featured on this website may only be purchased in jurisdictions that permit their marketing and distribution. Invictus Capital recommends that all interested parties check in advance if they are legally entitled to purchase the products and / or services presented on the website. ",
