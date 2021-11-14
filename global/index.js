@@ -16,42 +16,42 @@ const INDEXES = [
       {
         name: "Ethereum",
         img: "ethereum.png",
-        weigth: 27.88
+        weight: 27.88
       },
       {
         name: "Solana",
         img: "solana.svg",
-        weigth: 3.62
+        weight: 3.62
       },
       {
         name: "Cardano",
         img: "cardano.png",
-        weigth: 3.44
+        weight: 3.44
       },
       {
         name: "LiteCoin",
         img: "litecoin.png",
-        weigth: 0.89
+        weight: 0.89
       },
       {
         name: "ChainLink",
         img: "chainlink.png",
-        weigth: 0.82
+        weight: 0.82
       },
       {
         name: "Bitcoin Cash",
         img: "bitcoincash.png",
-        weigth: 0.64
+        weight: 0.64
       },
       {
         name: "Algorand",
         img: "algorand.svg",
-        weigth: 0.63
+        weight: 0.63
       },
       {
         name: "Polygon",
         img: "polygon.png",
-        weigth: 0.59
+        weight: 0.59
       },
       {
         name: "Uniswap",

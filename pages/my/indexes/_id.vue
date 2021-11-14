@@ -26,6 +26,28 @@
       style="height: 500px;"
     />
 
+    <vue-good-table
+      :rows="rows"
+      :columns="columns"
+      style-class="vgt-table"
+      compact-mode
+    >
+      <template slot="table-row" slot-scope="props">
+        <div v-if="props.column.field == 'name'">
+          <div class="font-medium m-b-10">
+            {{ props.row.name }}
+          </div>
+          <div :style="{width: props.row.weight + '%', backgroundColor: 'var(--color-primary)', height: '5px'}" />
+        </div>
+        <div v-else-if="props.column.field == 'weight'">
+          {{ props.row.weight.toLocaleString($i18n.locale) }}%
+        </div>
+        <div v-else>
+          {{ props.formattedRow[props.column.field] }}
+        </div>
+      </template>
+    </vue-good-table>
+
     <ui-modal
       v-if="showModal"
       @close="showModal = false"
@@ -36,16 +58,32 @@
 </template>
 
 <script>
+import "vue-good-table/dist/vue-good-table.css";
+import { VueGoodTable } from "vue-good-table";
 import TradingView from "~/components/trading-view";
 import TokenSwap from "~/components/token-swap";
+import { INDEXES } from "~/global";
 
 export default {
   name: "IndexPage",
-  components: { TokenSwap, TradingView },
+  components: { TokenSwap, TradingView, VueGoodTable },
   data () {
     return {
       showModal: false,
-      mode: ""
+      mode: "",
+      loading: false,
+      columns: [
+        {
+          label: this.$t("NAME"),
+          field: "name",
+          sortable: false
+        },
+        {
+          label: "",
+          field: "weight",
+          sortable: false
+        }
+      ]
     };
   },
   computed: {
@@ -53,6 +91,7 @@ export default {
     id () {
       return this.$route.params?.id ?? "";
     },
+
     /** Формируем символ для графика */
     symbol () {
       if (this.id.toUpperCase() === "KAIZEN") {
@@ -65,6 +104,7 @@ export default {
         return "EIGHTCAP:CRYPTO10"; // COIN10
       }
     },
+
     /** Конфиг графика */
     options () {
       return {
@@ -83,12 +123,24 @@ export default {
         save_image: false
       };
     },
+
     /** Блокируем кнопку "Продать" если этой монеты нет в кошельке */
     disableSell () {
       return !this.$store.getters.wallets.find(e => e.symbol.toLowerCase() === this.id.toLowerCase());
+    },
+
+    /** */
+    indexData () {
+      return INDEXES.find(e => e.title.toUpperCase() === this.id.toUpperCase());
+    },
+
+    /** */
+    rows () {
+      return this.indexData?.items || [];
     }
   },
   methods: {
+    /** Открыть модальное окно */
     openModal (mode) {
       this.showModal = true;
       this.mode = mode;

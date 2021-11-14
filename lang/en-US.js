@@ -12,6 +12,7 @@ export default {
   "NEWS": "News",
   "ABOUT_US": "About Us",
   "COMPANY": "Company",
+  "INDEX": "Index",
   "INDEXES": "Indexes",
   "PROJECTS": "Projects",
   "COOKIES_BANNER": "🍪 We use cookies.",
@@ -151,8 +152,14 @@ export default {
   "YESTERDAY": "Yesterday",
   "TOMORROW": "Tomorrow",
   "TYPE": "Type",
+  "SUM": "Sum",
   "DATE": "Date",
   "DATETIME": "Date, time",
+  "TOTAL_AMOUNT": "Total amount",
+  "PERFORMANCE": "Performance",
+  "FEE": "Комиссия",
+  "WITHDRAWAL_REQUEST": "Withdrawal request",
+  "NAME": "Name",
 
   // History
   "OPERATIONS": "Operations",
@@ -222,6 +229,7 @@ export default {
   // Home info
   "DATE_OF_FOUNDATION": "Date of foundation",
   "TOKEN": "Token",
+  "TOKENS": "Tokens",
   "TOKEN_VALUE": "Token value",
   "VALUE_OF_ALL_FUND_ASSETS": "The value of all fund assets",
   "HOME_INFO_BLOCK_H_1": "Fund overview",
@@ -284,6 +292,9 @@ export default {
   "ADVANTAGES_ITEMS_3_TITLE": "Security",
   "ADVANTAGES_ITEMS_3_DESC": "All coins are in cold wallets with multi-sig technology",
 
+  // FAQ
+  "FAQ": "FAQ",
+
   // Footer
   "FOOTER_CONTACTS": "Georgetown, Cayman Islands | <a href='tel:%{PHONE}'>%{PHONE}</a> | <a href='mailto:%{EMAIL}'>%{EMAIL}</a>",
   "FOOTER_TXT_1": "Invictus Capital Financial Technologies SPC (the \"Fund\") has applied for registration as a virtual asset service provider in the Cayman Islands. Registration is pending (ID 1382154).",
@@ -300,5 +311,6 @@ export default {
   "DEPOSIT": "Deposit",
   "ASSESSED_VALUE": "Assessed value",
   "CONFIRM_SWAP": "Do you confirm the exchange %{TOKEN_1} -> %{TOKEN_2}?",
-  "PAGE_UNDER_CONSTRUCTION": "The content of the page is under construction."
+  "PAGE_UNDER_CONSTRUCTION": "The content of the page is under construction.",
+  "PORTFOLIO_YOUR_INDEXES": "Portfolio of your indexes"
 };

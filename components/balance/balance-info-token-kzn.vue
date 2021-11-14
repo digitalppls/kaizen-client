@@ -2,57 +2,57 @@
   <div class="balance-info">
     <div class="balance-info__top">
       <p class="font-bold">
-        {{ $t("BALANCE_INFORMATION") }}
+        {{ $t("TOKENS") }} KZN
       </p>
       <div class="m-l-a">
         <button
           :disabled="!$store.getters.user.emailVerified"
           class="btn btn-solid btn-small"
-          @click="openModal('deposit')"
+          @click="openModal('buy')"
         >
-          {{ $t("DEPOSIT") }}
+          {{ $t("BUY") }}
         </button>
         <button
-          :disabled="!$store.getters.user.emailVerified"
+          :disabled="!$store.getters.user.emailVerified || !balance"
           class="btn btn-solid--tertiary btn-small"
           @click="openModal('withdraw')"
         >
           {{ $t("WITHDRAW") }}
         </button>
-        <nuxt-link v-if="false" :to="localePath('my-buy')" class="btn btn-solid btn-solid--tertiary btn-small">
-          {{ $t("BUY") }}
-        </nuxt-link>
       </div>
     </div>
-    <user-wallets />
+    <div>
+      {{ $t("BALANCE") }}:
+    </div>
+    <div class="font-size-30 font-bold">
+      {{ balance.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
+      <span class="font-medium font-size-14">KZN</span>
+    </div>
+
 
     <ui-modal
       v-if="showModal"
-      :max-width="(modal === 'deposit' || modal === 'withdraw') ? '700px' : '580px'"
+      :max-width="modal === 'withdraw' ? '700px' : '580px'"
       @close="closeModal"
     >
       <h2 class="modal-title m-b-40">
-        {{ $t(modal.toUpperCase()) }}
+        {{ $t(modal.toUpperCase()) }} KZN
       </h2>
-      <wallet33
-        :method="modal === 'deposit' ? 0 : 1"
-        only-types="bep20usdt,trc20usdt,bep20btc"
-      />
+      <p>
+        In developing...
+      </p>
     </ui-modal>
   </div>
 </template>
 
 <script>
-import UserWallets from "~/components/balance/user-wallets";
-import Wallet33 from "~/components/wallet33";
-
 export default {
-  name: "BalanceInfo",
-  components: { Wallet33, UserWallets },
+  name: "BalanceInfoTokenKzn",
   data () {
     return {
       showModal: false,
-      modal: ""
+      modal: "",
+      balance: 0
     };
   },
   methods: {

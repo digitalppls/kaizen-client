@@ -7,13 +7,13 @@
             <currency-item
               v-for="(currency, idx) in currencies"
               :key="idx"
-              :class="['all-currency__item', {'all-currency__item--index': currency[2]}]"
+              :class="['all-currency__item', {'all-currency__item--index': currency.index}]"
             >
               <template #icon>
-                {{ currency[0] }}
+                {{ currency.symbol }}
               </template>
               <template #value1>
-                {{ currency[1].toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
+                {{ currency.price.toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
               </template>
             </currency-item>
           </div>
@@ -28,6 +28,7 @@
 
 <script>
 import CurrencyItem from "~/components/currency-item";
+
 export default {
   name: "AllCurrency",
   components: { CurrencyItem },
@@ -38,9 +39,9 @@ export default {
   },
   computed: {
     currencies () {
-      return this.$store.getters.currency
-        .filter(e => !["AMCUSDT", "OROUSDT", "BUSDUSDT", "ALLWINUSDT", "FCOINUSDT", "FCASHUSDT", "USDTUSDT", "USDCUSDT", "USDUSDT", "USDTRUB"].includes(e.symbol))
-        .map(i => [`${i.symbol.split("USDT")[0]}/USDT`, i.price, i.index]);
+      return this.$store.getters.currency;
+      // .filter(e => !["AMCUSDT", "OROUSDT", "BUSDUSDT", "ALLWINUSDT", "FCOINUSDT", "FCASHUSDT", "USDTUSDT", "USDCUSDT", "USDUSDT", "USDTRUB"].includes(e.symbol))
+      // .map(i => [`${i.symbol.split("USDT")[0]}/USDT`, i.price, i.index]);
     }
   },
   methods: {

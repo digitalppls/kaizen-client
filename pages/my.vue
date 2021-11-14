@@ -1,5 +1,6 @@
 <template>
   <div>
+    <all-currency v-if="$isDev" />
     <div class="container">
       <div class="page-profile">
         <div class="page-profile__inline-menu inline-menu-wrap">
@@ -36,6 +37,7 @@
             >
               <li
                 v-for="(item, i) in menu"
+                v-show="item.show"
                 :key="i"
                 class="menu__item"
               >
@@ -59,22 +61,32 @@
 
 <script>
 
+import AllCurrency from "~/components/all-currency";
 export default {
   name: "My",
+  components: { AllCurrency },
   data () {
     return {
       menu: [
         {
           name: "DASHBOARD",
-          url: "my"
+          url: "my",
+          show: true
         },
         {
           name: "BUY_INDEXES",
-          url: "my-indexes"
+          url: "my-indexes",
+          show: true
+        },
+        {
+          name: "OPERATIONS",
+          url: "my-operations",
+          show: this.$isDev
         },
         {
           name: "PROFILE",
-          url: "my-profile"
+          url: "my-profile",
+          show: true
         }
       ]
     };
@@ -114,11 +126,6 @@ export default {
       margin-top: 0;
       order: 1;
       width: var(--sidebar-width);
-
-      &-content {
-        position: sticky;
-        top: 115px; // 80px height of .header + 40px padding-top of .lk
-      }
     }
   }
 
@@ -166,6 +173,12 @@ export default {
     overflow-x: scroll;
     border-radius: 12px;
     background-color: #f8f8fb;
+
+    @include respond-to("lg") {
+      position: sticky;
+      top: 70px;
+      z-index: 10;
+    }
   }
   &__item {
     font-size: 16px;
@@ -201,5 +214,11 @@ export default {
   padding: 0;
   border-radius: 12px;
   overflow: hidden;
+
+  @include respond-before("lg") {
+    position: sticky;
+    top: 100px;
+    z-index: 10;
+  }
 }
 </style>

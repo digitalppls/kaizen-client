@@ -3,6 +3,7 @@
     <vue-good-table
       :rows="rows"
       :columns="columns"
+      style-class="vgt-table"
       compact-mode
     >
       <template slot="table-row" slot-scope="props">

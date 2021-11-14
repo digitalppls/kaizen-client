@@ -174,6 +174,7 @@ export default {
   &__list {
     position: absolute;
     top: calc(100% + 1px);
+    left: 0;
     right: 0;
     background: #e2e3e9; // var(--color-dark);
     z-index: 3;
