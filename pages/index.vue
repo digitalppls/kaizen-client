@@ -19,12 +19,12 @@
             <div class="font-medium">
               {{ $t("CRYPTOINDICES").toUpperCase() }}
             </div>
-            <div>
+            <div v-if="cryptoIndexes.length">
               <span
                 v-for="(cindex, idx) in cryptoIndexes"
                 :key="idx"
               >
-                {{ cindex }}
+                {{ cindex.symbol }}
               </span>
             </div>
           </div>
@@ -200,7 +200,7 @@
     </div>
 
     <!-- Indexes -->
-    <div class="indexes-section">
+    <div id="indexes" class="indexes-section">
       <div class="container">
         <div class="indexes-section__heading">
           <div class="h2 m-b-40">
@@ -250,7 +250,7 @@
                       class="index__item"
                       :data-data="1+2 === 2 ? '33%' : ''"
                     >
-                      <img :src="require(`~/assets/images/${item.img}`)" :alt="item.name" :title="item.name">
+                      <img :src="require(`~/assets/images/${item.img}?inline`)" :alt="item.name" :title="item.name">
                     </div>
                   </div>
                   <div class="index__price">
@@ -258,8 +258,9 @@
                       <div class="small">
                         {{ $t("COST") }}:
                       </div>
-                      <div class="font-bold font-size-36 color-black">
-                        {{ index.price_usd.toLocaleString("en-US", $LOCALESTRING_USD(0, 0)) }}
+                      <ui-preloader v-if="!cryptoIndexes.length" size="small" />
+                      <div v-else class="font-bold font-size-36 color-black">
+                        {{ getIndexPrice(index.title) }}
                       </div>
                     </div>
                     <div class="index__price__r">
@@ -347,7 +348,9 @@
             class="advantages-list__item"
           >
             <div class="advantages-item">
-              <div v-if="item.icon" class="advantages-item__icon" />
+              <div v-if="item.icon" class="advantages-item__icon">
+                <img :src="require(`~/assets/images/${item.icon}?inline`)" alt="">
+              </div>
               <div v-if="item.title" class="advantages-item__title" v-html="item.title" />
               <div v-if="item.desc" class="advantages-item__desc" v-html="item.desc" />
             </div>
@@ -448,16 +451,18 @@
 import UiTabs from "~/components/ui-tabs/ui-tabs";
 import UiTab from "~/components/ui-tabs/ui-tab";
 import TradingView from "~/components/trading-view";
+import { INDEXES } from "~/global";
+import UiPreloader from "~/components/ui/ui-preloader.global";
 
 export default {
   name: "Home",
-  components: { TradingView, UiTab, UiTabs },
+  components: { UiPreloader, TradingView, UiTab, UiTabs },
   layout: "public",
   data () {
     return {
       disabled: true,
       countIndices: 10,
-      currencies: [],
+      cryptoIndexes: [],
       roadmap: [
         {
           title: "TIMELINE_1_TITLE",
@@ -484,109 +489,7 @@ export default {
         //   desc: "TIMELINE_6_DESC"
         // }
       ],
-      cryptoIndexes: ["CRYPTO100", "COIN10", "DEFI", "KAIZEN"],
-      indexes: [
-        {
-          id: 1,
-          title: "KAIZEN",
-          color: "#58c1b9",
-          symbol: "",
-          price_usd: 300,
-          desc: "",
-          items: [
-            {
-              name: "Bitcoin",
-              img: "bitcoin.png"
-            },
-            {
-              name: "Ethereum",
-              img: "ethereum.png"
-            },
-            {
-              name: "Ripple",
-              img: "ripple.png"
-            },
-            {
-              name: "Polkadot",
-              img: "polkadot.png"
-            },
-            {
-              name: "Uniswap",
-              img: "uniswap.png"
-            },
-            {
-              name: "Pancakeswap",
-              img: "pancakeswap.png"
-            }
-          ]
-        },
-        {
-          id: 2,
-          title: "Coin10",
-          color: "#99c158",
-          symbol: "",
-          price_usd: 200,
-          desc: "",
-          items: [
-            {
-              name: "Polkadot",
-              img: "polkadot.png"
-            },
-            {
-              name: "Uniswap",
-              img: "uniswap.png"
-            },
-            {
-              name: "Pancakeswap",
-              img: "pancakeswap.png"
-            }
-          ]
-        },
-        {
-          id: 3,
-          title: "Crypto100",
-          color: "#7358c1",
-          symbol: "",
-          price_usd: 100,
-          desc: "",
-          items: [
-            {
-              name: "Apple",
-              img: "apple.png"
-            },
-            {
-              name: "Google",
-              img: "google.png"
-            },
-            {
-              name: "Netflix",
-              img: "netflix.png"
-            }
-          ]
-        },
-        {
-          id: 4,
-          title: "DEFI",
-          color: "#7358c1",
-          symbol: "",
-          price_usd: 100,
-          desc: "",
-          items: [
-            {
-              name: "Apple",
-              img: "apple.png"
-            },
-            {
-              name: "Google",
-              img: "google.png"
-            },
-            {
-              name: "Netflix",
-              img: "netflix.png"
-            }
-          ]
-        }
-      ],
+      // cryptoIndexes: ["CRYPTO100", "COIN10", "DEFI", "KAIZEN"],
       tokenomics: [
         // {
         //   label: "Private Sale I",
@@ -615,17 +518,17 @@ export default {
       ],
       advantages: [
         {
-          icon: "",
+          icon: "1.svg",
           title: this.$t("ADVANTAGES_ITEMS_1_TITLE"),
           desc: this.$t("ADVANTAGES_ITEMS_1_DESC")
         },
         {
-          icon: "",
+          icon: "2.svg",
           title: this.$t("ADVANTAGES_ITEMS_2_TITLE"),
           desc: this.$t("ADVANTAGES_ITEMS_2_DESC")
         },
         {
-          icon: "",
+          icon: "3.svg",
           title: this.$t("ADVANTAGES_ITEMS_3_TITLE"),
           desc: this.$t("ADVANTAGES_ITEMS_3_DESC")
         }
@@ -638,6 +541,9 @@ export default {
     };
   },
   computed: {
+    indexes () {
+      return INDEXES;
+    },
     coverTitle () {
       return this.$t("COVER_TITLE"); // .replace("%{COUNT}", this.countIndices);
     },
@@ -678,22 +584,33 @@ export default {
       }));
     }
   },
-  beforeDestroy () {
-    this.$socket.off("currency_update", this.updateCurrency);
-  },
   mounted () {
     // курсы валют
-    this.$socket.on("currency_update", this.updateCurrency);
+    this.getCurrency();
   },
   methods: {
+    /** Получаем название символа без 'USDT' */
     getIndexName (index) {
       return index.split("USDT")[0];
     },
 
-    /** Обновление курсов валют */
-    updateCurrency (r) {
-      this.currencies = r.filter(e => e.index);
-      console.log(this.currencies);
+    /** Получаем курсы валют */
+    getCurrency () {
+      this.$API.getCurrency((r) => {
+        this.cryptoIndexes = r.filter(e => e.index).map((x) => {
+          return {
+            index: x.index,
+            price: x.price,
+            symbol: this.getIndexName(x.symbol)
+          };
+        });
+      });
+    },
+
+    /** Получить курс конкретного индекса */
+    getIndexPrice (indexName) {
+      const price = this.cryptoIndexes.find(e => e.symbol.toUpperCase() === indexName.toUpperCase())?.price ?? 0;
+      return price.toLocaleString("en-US", this.$LOCALESTRING_USD(0, 0));
     }
   }
 };
@@ -877,7 +794,7 @@ export default {
 }
 
 .info-chart {
-  padding: 60px 0 80px;
+  padding: 60px 0 0;
 
   &__wrap {
     @include respond-before("lg") {
@@ -936,6 +853,8 @@ export default {
 }
 
 .indexes-section {
+  padding-top: 90px;
+
   &__heading {
     margin: auto;
     text-align: center;
@@ -1060,6 +979,10 @@ export default {
       }
     }
 
+    img {
+      max-width: 170px;
+    }
+
   }
 
   &__price {
@@ -1157,7 +1080,12 @@ export default {
     text-align: center;
 
     &__icon {
-      margin-bottom: 20px;
+      margin: 0 auto 20px;
+      width: 100px;
+
+      img {
+        max-width: 100%;
+      }
     }
 
     &__title {

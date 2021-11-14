@@ -6,7 +6,6 @@
     </div>
     <site-footer />
     <cookies-banner />
-    <clear-storage v-if="isDev" />
   </div>
 </template>
 
@@ -15,11 +14,9 @@ import SiteHeader from "~/components/siteHeader.vue";
 import SiteFooter from "~/components/siteFooter.vue";
 import CookiesBanner from "~/components/cookies-banner";
 import VGlobalMixin from "~/mixins";
-import ClearStorage from "~/components/dev/clear-storage";
 
 export default {
   components: {
-    ClearStorage,
     CookiesBanner,
     SiteHeader,
     SiteFooter

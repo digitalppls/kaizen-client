@@ -25,15 +25,28 @@
             :key="idx"
             class="site-header-menu__item"
           >
+            <a
+              v-if="item.url === 'indexes' && isHomePage"
+              :href="`#${item.url}`"
+              :class="['site-header-menu__link']"
+              @click="goTo(item.url)"
+              v-text="$t(item.title)"
+            />
             <nuxt-link
+              v-else-if="item.url === 'indexes'"
+              :to="`${localePath('index')}#${item.url}`"
+              :class="['site-header-menu__link']"
+              v-text="$t(item.title)"
+            />
+            <nuxt-link
+              v-else
               :exact="!!localePath('index')"
               no-prefetch
               :to="localePath(item.url)"
               :class="['site-header-menu__link', {'active' : $route.matched[0].path.replace('/', '') === item.url}]"
               active-class="active"
-            >
-              {{ $t(item.title) }}
-            </nuxt-link>
+              v-text="$t(item.title)"
+            />
           </li>
         </ul>
       </nav>
@@ -57,16 +70,30 @@
               :key="idx"
               class="site-header-menu__item"
             >
+              <a
+                v-if="item.url === 'indexes' && isHomePage"
+                :href="`#${item.url}`"
+                :class="['site-header-menu__link']"
+                @click="goTo(item.url)"
+                v-text="$t(item.title)"
+              />
               <nuxt-link
+                v-else-if="item.url === 'indexes'"
+                :to="`${localePath('index')}#${item.url}`"
+                :class="['site-header-menu__link']"
+                @click.native="toggleMenu()"
+                v-text="$t(item.title)"
+              />
+              <nuxt-link
+                v-else
                 :exact="!!localePath('index')"
                 no-prefetch
                 :to="localePath(item.url)"
                 active-class="active"
                 :class="['site-header-menu__link', {'active' : $route.matched[0].path.replace('/', '') === item.url}]"
                 @click.native="toggleMenu()"
-              >
-                {{ $t(item.title) }}
-              </nuxt-link>
+                v-text="$t(item.title)"
+              />
             </li>
           </ul>
 
@@ -174,6 +201,10 @@ export default {
         {
           title: "COMPANY",
           url: "about"
+        },
+        {
+          title: "FAQ",
+          url: "faq"
         }
       ]
     };
@@ -191,6 +222,9 @@ export default {
     },
     wallets () {
       return this.$store.getters.wallets || [];
+    },
+    isHomePage () {
+      return this.$route.matched[0].path.replace("/", "") === "";
     }
   },
   watch: {
@@ -209,6 +243,13 @@ export default {
     onchangePasswordModal () {
       this.changePasswordModal = !this.changePasswordModal;
       this.menuVisible = false;
+    },
+    /** Скроллинг к div */
+    goTo (id) {
+      const element = document.getElementById(id);
+      const top = element.offsetTop;
+
+      window.scrollTo(0, top);
     }
   }
 };
@@ -233,7 +274,7 @@ export default {
     display: flex;
     align-items: center;
     min-height: 70px;
-    border-bottom: 1px solid #E2E3E9;
+    border-bottom: 1px solid #e2e3e9;
 
     @include respond-before("lg") {
       min-height: 70px;

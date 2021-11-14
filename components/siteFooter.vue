@@ -9,12 +9,29 @@
           :key="idx"
           class="footer-menu__item"
         >
-          <a v-if="item.url.startsWith('http')" :href="item.url" :target="item.target">
+          <a
+            v-if="item.url.startsWith('http')"
+            :href="item.url"
+            :target="item.target"
+          >
             {{ $t(item.title) }}
           </a>
-          <nuxt-link v-else :to="localePath(item.url)">
-            {{ $t(item.title) }}
-          </nuxt-link>
+          <a
+            v-else-if="item.url === 'indexes' && isHomePage"
+            :href="`#${item.url}`"
+            @click="goTo(item.url)"
+            v-text="$t(item.title)"
+          />
+          <nuxt-link
+            v-else-if="item.url === 'indexes'"
+            :to="`${localePath('index')}#${item.url}`"
+            v-text="$t(item.title)"
+          />
+          <nuxt-link
+            v-else
+            :to="localePath(item.url)"
+            v-text="$t(item.title)"
+          />
         </li>
       </ul>
 
@@ -24,7 +41,10 @@
     </div>
 
     <div v-if="hideFooterText" class="site-footer__textblock container m-t-50">
-      <p class="lh-135 m-b-5" v-html="$t('FOOTER_CONTACTS').replaceAll('%{PHONE}', phone).replaceAll('%{EMAIL}', email)" />
+      <p
+        class="lh-135 m-b-5"
+        v-html="$t('FOOTER_CONTACTS').replaceAll('%{PHONE}', phone).replaceAll('%{EMAIL}', email)"
+      />
       <p class="lh-135 m-b-20" v-html="$t('FOOTER_TXT_1')" />
       <p class="lh-135 m-b-20" v-html="$t('FOOTER_TXT_2')" />
       <p class="lh-135" v-html="$t('DENIAL_OF_RESPONSIBILITY')" />
@@ -58,6 +78,10 @@ export default {
         {
           title: "COMPANY",
           url: "about"
+        },
+        {
+          title: "FAQ",
+          url: "faq"
         }
       ]
     };
@@ -72,9 +96,20 @@ export default {
     },
     hideFooterText () {
       return this.$nuxt.$data.layoutName === "public";
+    },
+    isHomePage () {
+      return this.$route.matched[0].path.replace("/", "") === "";
     }
   },
-  methods: {}
+  methods: {
+    /** Скроллинг к div */
+    goTo (id) {
+      const element = document.getElementById(id);
+      const top = element.offsetTop;
+
+      window.scrollTo(0, top);
+    }
+  }
 };
 </script>
 
