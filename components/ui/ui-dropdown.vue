@@ -93,8 +93,12 @@ export default {
     right: 0;
     width: 220px;
     border-radius: 12px;
-    top: calc(100% + 11px);
+    top: 100%;
     opacity: 1;
+
+    @include respond-before("md") {
+      top: calc(100% + 11px);
+    }
 
     &.dropdown-enter-active,
     &.dropdown-leave-active {

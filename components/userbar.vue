@@ -2,7 +2,7 @@
   <div v-if="$store.getters.hasToken" class="userbar">
     <ui-dropdown>
       <template #selected>
-        <button class="btn btn-small btn-outline">
+        <button class="btn btn-small btn-outline userbar-username">
           {{ userName }}
         </button>
       </template>
@@ -126,11 +126,27 @@ export default {
 }
 
 .userbar {
+  position: relative;
+  z-index: 25;
+
   &::v-deep .dropdown__content {
     background: #e2e3e9;
     box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
     border-radius: 0 0 12px 12px;
     overflow: hidden;
+
+    @include respond-to("md") {
+      position: relative;
+      border-radius: 12px;
+      width: auto;
+      left: 0;
+    }
+  }
+
+  &-username {
+    @include respond-to("md") {
+      width: 100%;
+    }
   }
 }
 

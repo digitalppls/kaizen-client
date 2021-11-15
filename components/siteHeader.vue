@@ -96,20 +96,22 @@
               />
             </li>
           </ul>
-
-          <nuxt-link
-            v-if="!$store.getters.hasToken"
-            :to="localePath('auth')"
-            class="btn btn-small btn-outline btn-full"
-          >
-            {{ $t("PARTICIPATE_IN_PROJECT") }}
-          </nuxt-link>
+          <div class="site-header-userbar-mobile">
+            <userbar v-if="hasToken" />
+            <nuxt-link
+              v-else
+              :to="localePath('auth')"
+              class="btn btn-small btn-outline btn-full"
+            >
+              {{ $t("PARTICIPATE_IN_PROJECT") }}
+            </nuxt-link>
+          </div>
         </div>
       </div>
 
       <div class="site-header-item site-header-item--desktop site-header-right">
         <userbar v-if="hasToken" />
-        <nuxt-link v-else :to="localePath('auth')" class="btn btn-small btn-outline">
+        <nuxt-link v-else :to="localePath('auth')" class="btn btn-small btn-outline" style="position: relative; z-index: 25;">
           {{ $t("PARTICIPATE_IN_PROJECT") }}
         </nuxt-link>
       </div>
@@ -311,6 +313,12 @@ export default {
   }
 }
 
+.site-header-userbar-mobile {
+  @include respond-before("md") {
+    display: none;
+  }
+}
+
 .site-header-logo {
   margin-right: 20px;
   margin-left: 0;
@@ -450,6 +458,7 @@ export default {
     z-index: 20;
     height: 100vh;
     padding: 70px 15px 40px;
+    overflow-y: auto;
     background: var(--body-bg);
 
     @include respond-before("lg") {

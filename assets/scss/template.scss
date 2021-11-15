@@ -43,6 +43,9 @@ h1, .h1 {
   font-weight: 600;
 
   @include respond-before("xs") {
+    font-size: 40px;
+  }
+  @include respond-before("sm") {
     font-size: 48px;
   }
 }

@@ -296,6 +296,17 @@ export default {
 
   // FAQ
   "FAQ": "FAQ",
+  "FAQ_TITLE": "Frequently asked questions and answers",
+  "FAQ_Q_1": "What is KAIZEN FOUNDATION?",
+  "FAQ_A_1": "KAIZEN FUND is an index-based investment fund that specializes in cryptocurrencies and blockchain.",
+  "FAQ_Q_2": "Is there a Lock-Up period?",
+  "FAQ_A_2": "No funds are blocked, you can apply every week after asset rebalancing every Monday.",
+  "FAQ_Q_3": "How can I see the performance of the index?",
+  "FAQ_A_3": "You can view it on the website, as well as in the personal account of the fund.",
+  "FAQ_Q_4": "Can I purchase multiple indices at once?",
+  "FAQ_A_4": "Yes, you can select multiple indices at once.",
+  "FAQ_Q_5": "How can I profit from KZN token?",
+  "FAQ_A_5": "You can get discounts when withdrawing profits from indices, as well as when selling a token in our liquidity pool on Dex exchanges, see the detailed instructions on the website.",
 
   // Footer
   "FOOTER_CONTACTS": "Georgetown, Cayman Islands | <a href='tel:%{PHONE}'>%{PHONE}</a> | <a href='mailto:%{EMAIL}'>%{EMAIL}</a>",

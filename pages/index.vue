@@ -1016,20 +1016,28 @@ export default {
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
+    }
 
-      &__l {
+    &__l {
+      margin-bottom: 20px;
+
+      @include respond-before("md") {
         flex: 1;
         max-width: 300px;
         text-align: center;
+        margin-bottom: 0;
       }
+    }
 
-      &__r {
+    &__r {
+      @include respond-before("md") {
         width: 570px;
         padding-left: 40px;
         overflow-y: auto;
         max-height: 630px;
       }
     }
+
   }
 
   &-txt-box {
