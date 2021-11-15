@@ -309,6 +309,19 @@ export default {
   "FAQ_Q_5": "How can I profit from KZN token?",
   "FAQ_A_5": "You can get discounts when withdrawing profits from indices, as well as when selling a token in our liquidity pool on Dex exchanges, see the detailed instructions on the website.",
 
+  // ABOUT PAGE
+  "ABOUT_KAIZENFUND": "About Kaizen Fund",
+  "ABOUT_VALUE": "Values",
+  "ABOUT_VALUE_DESC": "We strive to create convenient and profitable products for clients from all over the world. The principles of absolute transparency and utmost openness are a priority.",
+  "ABOUT_VISION": "Vision",
+  "ABOUT_VISION_DESC": "Tokenizing the traditional and intangible sector with the help of blockchain technology has become a reality, with the help of digitalization, we want to make what previously seemed impossible for many people from different countries and denominations, has become real.",
+  "ABOUT_TEAM": "Our team",
+  "ABOUT_TEAM_DESC": "Our highly professional team from different sectors combines traditional business, cryptocurrencies and decentralized finance.",
+  "MANAGEMENT": "Management",
+  "URAMAYEV_FARHAT": "Uramayev Farhat",
+  "RYSKULOV_ALTAI": "Ryskulov Altai",
+  "MANAGING_PARTNER": "Managing partner",
+
   // PROJECTS
   "VANGUARD_MINING_DESC": "Vanguard Mining is a project that provides participation in the creation of data centers for mining bitcoin and getting daily profit from mining cryptocurrencies. Starting from 11/16/21, have time to register!",
   "KOKSKHIMPROM_DESC": "A tokenized by-product coke plant will generate raw materials on an industrial scale and profit from digital cooperative participation and tax incentives.",
