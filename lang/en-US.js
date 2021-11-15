@@ -15,6 +15,7 @@ export default {
   "INDEX": "Index",
   "INDEXES": "Indexes",
   "PROJECTS": "Projects",
+  "SOON": "Soon",
   "COOKIES_BANNER": "🍪 We use cookies.",
 
   "AUTH": {
@@ -307,6 +308,10 @@ export default {
   "FAQ_A_4": "Yes, you can select multiple indices at once.",
   "FAQ_Q_5": "How can I profit from KZN token?",
   "FAQ_A_5": "You can get discounts when withdrawing profits from indices, as well as when selling a token in our liquidity pool on Dex exchanges, see the detailed instructions on the website.",
+
+  // PROJECTS
+  "VANGUARD_MINING_DESC": "Vanguard Mining is a project that provides participation in the creation of data centers for mining bitcoin and getting daily profit from mining cryptocurrencies. Starting from 11/16/21, have time to register!",
+  "KOKSKHIMPROM_DESC": "A tokenized by-product coke plant will generate raw materials on an industrial scale and profit from digital cooperative participation and tax incentives.",
 
   // Footer
   "FOOTER_CONTACTS": "Georgetown, Cayman Islands | <a href='tel:%{PHONE}'>%{PHONE}</a> | <a href='mailto:%{EMAIL}'>%{EMAIL}</a>",
