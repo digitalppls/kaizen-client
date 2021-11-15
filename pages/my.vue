@@ -81,7 +81,7 @@ export default {
         {
           name: "OPERATIONS",
           url: "my-operations",
-          show: this.$isDev
+          show: true
         },
         {
           name: "PROFILE",
