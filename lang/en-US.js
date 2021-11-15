@@ -60,6 +60,7 @@ export default {
   "SELECTED": "Selected",
   "SELECT_PLEASE": "Select",
   "MORE_DETAILS": "More details",
+  "SHOW_ALL": "View all",
 
   "INVALID_CODE": "Invalid code",
   "INVITED_YOU": "You have been invited.",
@@ -348,4 +349,8 @@ export default {
   "CRYPTO100_METHODOLOGY_ITEM_6": "The index functions according to the proprietary AI-based algorithm, ‘Zorax’",
   "CRYPTO100_METHODOLOGY_ITEM_7": "Rebalancing of the Crypto100 happens monthly",
   "CRYPTO100_METHODOLOGY_ITEM_8": "The data is streamed from the exchange APIs taking all trades for each particular coin",
+
+  // DEFI PAGE INDEX
+  "DEFI_DESC": "Index tracks and measures the performance of a basket of assets in a standardized way. There are two types of indices: single underlying price indices and composite price indices. The single underlying price indices mainly focus on tracking some specific underlying instrument price with the same underlying across different markets; while the composite price indices are combinations of different underlying instruments intended to measure the overall market (or subset) performance over time, the indices price usually calculated as weighted average price of the components.",
+
 };

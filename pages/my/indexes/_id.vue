@@ -58,7 +58,7 @@
 
     <!-- Портфолио -->
     <vue-good-table
-      :rows="rows"
+      :rows="id === 'CRYPTO100' ? rows100 : rows"
       :columns="columns"
       style-class="vgt-table"
       :line-numbers="true"
@@ -78,6 +78,14 @@
         </div>
       </template>
     </vue-good-table>
+    <div v-if="id === 'CRYPTO100' && rows100.length <= 5" class="text-center">
+      <button
+        class="btn-show-all font-medium"
+        @click="showAll"
+      >
+        {{ $t("SHOW_ALL") }}
+      </button>
+    </div>
 
     <!-- Информация -->
     <div class="index-page__info m-t-40">
@@ -117,7 +125,7 @@
     </div>
 
     <!-- Методология -->
-    <div class="index-page__methodology m-t-40">
+    <div v-if="id !== 'DEFI'" class="index-page__methodology m-t-40">
       <h3 class="sub-title" style="margin-bottom: 20px;">
         {{ $t("METHODOLOGY") }}
       </h3>
@@ -157,6 +165,7 @@
           </li>
         </ul>
       </div>
+      <!-- у Defi не нашел методологию -->
     </div>
 
     <!-- Модальные окна -->
@@ -196,6 +205,7 @@ export default {
           sortable: false
         }
       ],
+      rows100: [],
       localeDateStringOptions: { year: "numeric", month: "short", day: "numeric" }
     };
   },
@@ -249,7 +259,7 @@ export default {
 
     /** Формируем данные для таблицы с корзиной проектов */
     rows () {
-      return this.indexData?.items || [];
+      return this.indexData?.items;
     },
 
     /** Получаем текущий курс */
@@ -257,11 +267,19 @@ export default {
       return this.$store.getters.currency.find(e => e.symbol === `${this.id.toUpperCase()}USDT`);
     }
   },
+  mounted () {
+    this.rows100 = this.id === "CRYPTO100" ? this.indexData?.items.slice(0, 5) : [];
+  },
   methods: {
     /** Открыть модальное окно */
     openModal (mode) {
       this.showModal = true;
       this.mode = mode;
+    },
+
+    /** Показать все проекты в портфолио */
+    showAll () {
+      this.rows100 = this.indexData.items;
     }
   }
 };
@@ -344,6 +362,15 @@ export default {
         border-radius: 3px;
       }
     }
+  }
+
+  .btn-show-all {
+    background: linear-gradient(#f4f5f8,#f1f3f6);
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #dcdfe6;
+    border-top: 0;
   }
 }
 </style>

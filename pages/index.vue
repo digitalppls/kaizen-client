@@ -245,7 +245,7 @@
                 <div class="index__body">
                   <div v-if="index.items.length" class="index__items">
                     <div
-                      v-for="(item, idx) in index.items"
+                      v-for="(item, idx) in filterdItemsIndex(index.items)"
                       :key="idx"
                       class="index__item"
                       :data-data="1+2 === 2 ? '33%' : ''"
@@ -264,7 +264,7 @@
                       </div>
                     </div>
                     <div class="index__price__r">
-                      <div v-if="index.desc" v-tooltip.top="index.desc" class="info-btn">
+                      <div v-if="index.help_info" v-tooltip.top="index.help_info" class="info-btn">
                         <img :src="require('~/assets/img/icon-i.png')" alt="">
                       </div>
                     </div>
@@ -591,6 +591,11 @@ export default {
     getIndexPrice (indexName) {
       const price = this.cryptoIndexes.find(e => e.symbol.toUpperCase() === indexName.toUpperCase())?.price ?? 0;
       return price.toLocaleString("en-US", this.$LOCALESTRING_USD(0, 0));
+    },
+
+    /** Отфильтрованные индексы где есть картинки */
+    filterdItemsIndex (items) {
+      return items.filter(e => e.img.split(".")[1]);
     }
   }
 };
