@@ -70,8 +70,8 @@ const INDEXES = [
     symbol: "",
     price: 0,
     market_cap: 0,
-    inception_date: null,
-    desc: "",
+    inception_date: new Date(2016, 11, 31),
+    desc: "COIN10_DESC",
     items: [
       {
         name: "Bitcoin",
@@ -128,8 +128,8 @@ const INDEXES = [
     symbol: "",
     price: 0,
     market_cap: 0,
-    inception_date: null,
-    desc: "",
+    inception_date: new Date(2017, 4, 1),
+    desc: "CRYPTO100_DESC",
     items: [
       {
         name: "Bitcoin",

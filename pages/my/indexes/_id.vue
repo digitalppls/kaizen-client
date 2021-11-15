@@ -136,6 +136,27 @@
           {{ $t("KAIZEN_METHODOLOGY_ITEM_3") }}
         </div>
       </div>
+      <div v-else-if="id === 'COIN10'">
+        <ul class="list m-b-20">
+          <li
+            v-for="i in 4"
+            :key="i"
+          >
+            {{ $t(`COIN10_METHODOLOGY_ITEM_${i}`) }}
+          </li>
+        </ul>
+        <div class="lh-135" v-html="$t('COIN10_METHODOLOGY')" />
+      </div>
+      <div v-else-if="id === 'CRYPTO100'">
+        <ul class="list m-t-20">
+          <li
+            v-for="i in 8"
+            :key="i"
+          >
+            {{ $t(`CRYPTO100_METHODOLOGY_ITEM_${i}`) }}
+          </li>
+        </ul>
+      </div>
     </div>
 
     <!-- Модальные окна -->
@@ -311,6 +332,7 @@ export default {
       }
 
       &__label {
+        @include fontTTNorms("medium");
         //text-transform: uppercase;
       }
 

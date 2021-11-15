@@ -329,4 +329,23 @@ export default {
   "KAIZEN_METHODOLOGY_ITEM_1": "The most valuable assets, rebalanced monthly",
   "KAIZEN_METHODOLOGY_ITEM_2": "Robust diligence of eligibility criteria",
   "KAIZEN_METHODOLOGY_ITEM_3": "24/7 monitoring for sudden events",
+
+  // COIN10 PAGE INDEX
+  "COIN10_DESC": "The Coin10 Index is a market capitalization weighted index of the top 10 cryptocurrencies. Because it is composed of the top ten cryptocurrencies it is widely accepted as a benchmark for the strength or weakness of the broader cryptocurrency market. It was created by Crypto Finance AG and launched on December 31, 2016 with a value of 1,000. As of June 2020 it is managed and calculated by BITA GmbH and has a value around 2,650. Because cryptocurrencies often move up or down in tandem it isn’t unusual for this index to make very strong moves in either direction.",
+  "COIN10_METHODOLOGY": "",
+  "COIN10_METHODOLOGY_ITEM_1": "Only tokens or coins that are traded exclusively at exchanges, which have passed quantitative and qualitative requirements are taken into consideration and ranked by market capitalisation.",
+  "COIN10_METHODOLOGY_ITEM_2": "The top 10 tokens are then selected as the initial components of the BITA10 Index. Composition buffers are used in order to achieve this fixed number of components and this ensures the stability of the index. The end result is that the Crypto index accurately represents the performance of only the largest and most traded tokens in the world.",
+  "COIN10_METHODOLOGY_ITEM_3": "The largest positions, based on market capitalisation, are capped at 25%, to ensure greater diversification.",
+  "COIN10_METHODOLOGY_ITEM_4": "BITA evaluates changes in rankings at each reconstitution period, taking into account a 30% selection buffer. This means that any token that falls below the 13th position is removed and replaced by an incoming token. Any token that successfully grows into the first 30% of the ranking, are exempt from the selection buffer and they enter the index automatically.",
+
+  // CRYPTO100 PAGE INDEX
+  "CRYPTO100_DESC": "Crypto100 is a digital expression of the top 100 coins, that rebalances itself continuously as the cryptocurrency market ebbs and flows.",
+  "CRYPTO100_METHODOLOGY_ITEM_1": "Crypto100 is live since 0:00 UTC, May 1, 2017",
+  "CRYPTO100_METHODOLOGY_ITEM_2": "Crypto100 is a digital expression of the 100 best-performing coins, that recalculates itself continuously",
+  "CRYPTO100_METHODOLOGY_ITEM_3": "The amount of coins in the index is equal to 100 at all times",
+  "CRYPTO100_METHODOLOGY_ITEM_4": "The index started on May 1, 2017 with the initial portfolio with value of 5¢",
+  "CRYPTO100_METHODOLOGY_ITEM_5": "The index is calculated every second in real time, with a lag equal to one second",
+  "CRYPTO100_METHODOLOGY_ITEM_6": "The index functions according to the proprietary AI-based algorithm, ‘Zorax’",
+  "CRYPTO100_METHODOLOGY_ITEM_7": "Rebalancing of the Crypto100 happens monthly",
+  "CRYPTO100_METHODOLOGY_ITEM_8": "The data is streamed from the exchange APIs taking all trades for each particular coin",
 };
