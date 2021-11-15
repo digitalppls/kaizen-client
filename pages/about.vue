@@ -81,7 +81,7 @@ export default {
   margin-top: -60px;
 
   &__cover {
-    background: var(--color-gray-light) url("https://cdn.buttercms.com/l6MKg4Tzy2uvHxDvr1nA") no-repeat 50% 50%;
+    background: var(--color-gray-light) url("~/assets/images/about-cover.jpg") no-repeat 50% 50%;
     background-size: cover;
     height: 250px;
     display: flex;
