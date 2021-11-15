@@ -157,12 +157,13 @@ export default {
   "DATETIME": "Date, time",
   "TOTAL_AMOUNT": "Total amount",
   "PERFORMANCE": "Performance",
-  "FEE": "Комиссия",
-  "WITHDRAWAL_REQUEST": "Withdrawal request",
+  "FEE": "Fee",
+  "WITHDRAWAL_REQUEST": "Withdrawal",
   "NAME": "Name",
+  "WEIGHT": "Weight",
 
   // History
-  "OPERATIONS": "Operations",
+  "OPERATIONS": "Operations history",
   "OPERATION_ALL": "All operations",
   "OPERATION_BUY": "Purchase",
   "OPERATION_PAYMENT": "Payment",
@@ -312,5 +313,20 @@ export default {
   "ASSESSED_VALUE": "Assessed value",
   "CONFIRM_SWAP": "Do you confirm the exchange %{TOKEN_1} -> %{TOKEN_2}?",
   "PAGE_UNDER_CONSTRUCTION": "The content of the page is under construction.",
-  "PORTFOLIO_YOUR_INDEXES": "Portfolio of your indexes"
+  "PORTFOLIO_YOUR_INDEXES": "Portfolio of your indexes",
+  "MARKET_PRICE": "Market price",
+  "MARKET_CAP": "Market Cap",
+  "INCEPTION_DATE": "Inception Date",
+  "CAPITALIZATION": "Capitalization",
+  "PRICE_CHANGE": "Price change",
+  "N/A": "N/A",
+  "DESCRIPTION": "Description",
+  "METHODOLOGY": "Methodology",
+
+  // KAIZEN PAGE INDEX
+  "KAIZEN_DESC": "A secure way to get diversified exposure to bitcoin and leading cryptocurrencies. The Fund seeks to track an Index comprised of the 10 most highly valued cryptocurrencies, screened & monitored for certain risks, weighted by market capitalization, and rebalanced monthly. The fund provides the security and simplicity of a traditional investment vehicle, with shares tradable in brokerage accounts using ticker “BITW”.",
+  "KAIZEN_METHODOLOGY": "The KAIZEN Crypto Indexes follow clear, rules-based processes to make them both investable and replicable. The methodologies take into account crypto-native factors surrounding liquidity, security, regulatory status, market representation, network distributions and more to ensure they fully capture the investable cryptoasset market opportunity.",
+  "KAIZEN_METHODOLOGY_ITEM_1": "The most valuable assets, rebalanced monthly",
+  "KAIZEN_METHODOLOGY_ITEM_2": "Robust diligence of eligibility criteria",
+  "KAIZEN_METHODOLOGY_ITEM_3": "24/7 monitoring for sudden events",
 };

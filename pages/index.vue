@@ -19,12 +19,12 @@
             <div class="font-medium">
               {{ $t("CRYPTOINDICES").toUpperCase() }}
             </div>
-            <div v-if="cryptoIndexes.length">
+            <div v-if="cryptoIndexesOrdered.length">
               <span
-                v-for="(cindex, idx) in cryptoIndexes"
+                v-for="(cindex, idx) in cryptoIndexesOrdered"
                 :key="idx"
               >
-                {{ cindex.symbol }}
+                {{ cindex }}
               </span>
             </div>
           </div>
@@ -292,30 +292,10 @@
         </div>
         <div class="about-token-section">
           <div class="about-token-section__l">
-            <svg
-              width="207"
-              height="88"
-              viewBox="0 0 207 88"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              class="about-token__logo"
-            >
-              <path
-                d="M0 0H14.467V38.1341L59.7216 0H69.1251L26.1762 36.1675L80.6535 85.8978H62.2533L14.467 42.3386V85.8978H0V0Z"
-                fill="black"
-              />
-              <path
-                d="M140.918 0L78.7094 80.4048H140.918V85.8978H59.2694V83.7503L119.646 5.58335H59.2694V0H140.918Z"
-                fill="#58C1B9"
-              />
-              <path
-                d="M135.379 0H143.472L199.848 62.9088H200.504V0H206.855V88H203.442L142.409 18.0837H141.89V85.8978H135.334L135.379 0Z"
-                fill="black"
-              />
-            </svg>
+            <img :src="require('~/assets/images/kzn.svg?inline')" alt="KZN">
           </div>
           <div class="about-token-section__r">
-            <p class="about-token-txt-box lh-135 m-b-20">
+            <p class="about-token-txt-box lh-135 m-b-20 font-medium">
               {{ $t("TOKEN_KZN_DESC") }}
             </p>
             <p class="m-b-20">
@@ -327,7 +307,7 @@
               </nuxt-link>
             </p>
             <p>
-              <a href="#">White Paper</a>
+              <a href="#" class="font-medium">White Paper</a>
             </p>
           </div>
         </div>
@@ -489,7 +469,7 @@ export default {
         //   desc: "TIMELINE_6_DESC"
         // }
       ],
-      // cryptoIndexes: ["CRYPTO100", "COIN10", "DEFI", "KAIZEN"],
+      cryptoIndexesOrdered: ["CRYPTO100", "COIN10", "DEFI", "KAIZEN"],
       tokenomics: [
         // {
         //   label: "Private Sale I",
@@ -1029,19 +1009,29 @@ export default {
       display: flex;
       text-align: left;
       flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
 
       &__l {
         flex: 1;
         max-width: 300px;
+        text-align: center;
       }
 
       &__r {
-        width: 475px;
+        width: 570px;
         padding-left: 40px;
         overflow-y: auto;
         max-height: 630px;
       }
+    }
+  }
+
+  &-txt-box {
+    font-size: 18px;
+
+    @include respond-before("md") {
+      font-size: 22px;
     }
   }
 }

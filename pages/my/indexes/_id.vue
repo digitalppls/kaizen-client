@@ -1,6 +1,6 @@
 <template>
   <div class="index-page">
-    <div class="index-page__header">
+    <div class="index-page__header m-b-20">
       <div class="index-page__header__l">
         <h1 class="title">
           {{ id }}
@@ -20,17 +20,48 @@
       </div>
     </div>
 
+    <div class="index-page__data m-b-30">
+      <div class="index-page__data-item m-b-10">
+        <div class="font-medium font-size-20">
+          <template v-if="indexData.market_cap">
+            {{ indexData.market_cap.toLocaleString("en-US", $LOCALESTRING_USD()) }}
+          </template>
+          <template v-else>
+            {{ $t("N/A") }}
+          </template>
+        </div>
+        <div class="small">
+          {{ $t("MARKET_CAP") }}
+        </div>
+      </div>
+      <div class="index-page__data-item m-b-10">
+        <div class="font-medium font-size-20">
+          <template v-if="indexData.inception_date">
+            {{ indexData.inception_date.toLocaleDateString($i18n.locale, localeDateStringOptions) }}
+          </template>
+          <template v-else>
+            {{ $t("N/A") }}
+          </template>
+        </div>
+        <div class="small">
+          {{ $t("INCEPTION_DATE") }}
+        </div>
+      </div>
+    </div>
+
+    <!-- График -->
     <trading-view
       container-id="tradingview"
       :options="options"
       style="height: 500px;"
     />
 
+    <!-- Портфолио -->
     <vue-good-table
       :rows="rows"
       :columns="columns"
       style-class="vgt-table"
-      compact-mode
+      :line-numbers="true"
     >
       <template slot="table-row" slot-scope="props">
         <div v-if="props.column.field == 'name'">
@@ -48,6 +79,66 @@
       </template>
     </vue-good-table>
 
+    <!-- Информация -->
+    <div class="index-page__info m-t-40">
+      <div class="index-page__info-item m-b-10">
+        <div class="index-page__info-item__label m-b-5">
+          {{ $t("MARKET_PRICE") }}
+        </div>
+        <div class="index-page__info-item__value font-bold">
+          {{ currency.price.toLocaleString("en-US", $LOCALESTRING_USD()) }}
+        </div>
+      </div>
+      <div class="index-page__info-item m-b-10">
+        <div class="index-page__info-item__label m-b-5">
+          {{ $t("CAPITALIZATION") }}
+        </div>
+        <div class="index-page__info-item__value font-bold">
+          {{ indexData.market_cap.toLocaleString("en-US", $LOCALESTRING_USD()) }}
+        </div>
+      </div>
+      <div class="index-page__info-item m-b-10">
+        <div class="index-page__info-item__label m-b-5">
+          {{ $t("PRICE_CHANGE") }}
+        </div>
+        <div class="index-page__info-item__value font-bold">
+          {{ (0).toLocaleString("en-US", $LOCALESTRING_USD()) }}
+          / {{ (0).toLocaleString("en-US", $LOCALESTRING_PERCENT()) }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Описание -->
+    <div v-if="indexData.desc" class="index-page__desc m-t-40">
+      <h3 class="sub-title" style="margin-bottom: 20px;">
+        {{ $t("DESCRIPTION") }}
+      </h3>
+      <div class="lh-135" v-html="$t(indexData.desc)" />
+    </div>
+
+    <!-- Методология -->
+    <div class="index-page__methodology m-t-40">
+      <h3 class="sub-title" style="margin-bottom: 20px;">
+        {{ $t("METHODOLOGY") }}
+      </h3>
+      <div v-if="id === 'KAIZEN'">
+        <div class="lh-135" v-html="$t('KAIZEN_METHODOLOGY')" />
+        <div class="display-flex aic m-t-20">
+          <img :src="require('~/assets/images/icon-coins.svg?inline')" alt="" class="m-r-10">
+          {{ $t("KAIZEN_METHODOLOGY_ITEM_1") }}
+        </div>
+        <div class="display-flex aic m-t-20">
+          <img :src="require('~/assets/images/icon-finance.svg?inline')" alt="" class="m-r-10">
+          {{ $t("KAIZEN_METHODOLOGY_ITEM_2") }}
+        </div>
+        <div class="display-flex aic m-t-20">
+          <img :src="require('~/assets/images/icon-time.svg?inline')" alt="" class="m-r-10">
+          {{ $t("KAIZEN_METHODOLOGY_ITEM_3") }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Модальные окна -->
     <ui-modal
       v-if="showModal"
       @close="showModal = false"
@@ -79,11 +170,12 @@ export default {
           sortable: false
         },
         {
-          label: "",
+          label: this.$t("WEIGHT"),
           field: "weight",
           sortable: false
         }
-      ]
+      ],
+      localeDateStringOptions: { year: "numeric", month: "short", day: "numeric" }
     };
   },
   computed: {
@@ -129,14 +221,19 @@ export default {
       return !this.$store.getters.wallets.find(e => e.symbol.toLowerCase() === this.id.toLowerCase());
     },
 
-    /** */
+    /** Статичные данные из конфига для текущего индекса */
     indexData () {
       return INDEXES.find(e => e.title.toUpperCase() === this.id.toUpperCase());
     },
 
-    /** */
+    /** Формируем данные для таблицы с корзиной проектов */
     rows () {
       return this.indexData?.items || [];
+    },
+
+    /** Получаем текущий курс */
+    currency () {
+      return this.$store.getters.currency.find(e => e.symbol === `${this.id.toUpperCase()}USDT`);
     }
   },
   methods: {
@@ -152,8 +249,6 @@ export default {
 <style lang="scss" scoped>
 .index-page {
   &__header {
-    margin-bottom: 40px;
-
     @include respond-before("pre-md") {
       display: flex;
       flex-wrap: wrap;
@@ -179,6 +274,52 @@ export default {
 
       @include respond-before("pre-md") {
         margin-bottom: 0;
+      }
+    }
+  }
+
+  // Данные
+  &__data {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      padding: 0;
+      margin-right: 30px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // Informatoin
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-item {
+      padding: 0;
+      margin-right: 30px;
+
+      @include respond-before("md") {
+        width: 25%;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &__label {
+        //text-transform: uppercase;
+      }
+
+      &__value {
+        text-align: center;
+        font-size: 16px;
+        padding: 8px 20px;
+        background: rgba(var(--color-primary-rgb), .5);
+        border-radius: 3px;
       }
     }
   }

@@ -15,7 +15,7 @@
           </nuxt-link>
         </div>
         <div v-if="props.column.field == 'price'" class="font-medium">
-          {{ props.row.price.toLocaleString("en-US", $LOCALESTRING_USD()) }}
+          {{ props.row.price.toLocaleString("en-US", $LOCALESTRING_USD(3,4)) }}
         </div>
         <div v-else>
           {{ props.formattedRow[props.column.field] }}

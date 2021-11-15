@@ -6,7 +6,9 @@ const INDEXES = [
     color: "#58c1b9",
     symbol: "",
     price: 0,
-    desc: "",
+    market_cap: 822000000,
+    inception_date: new Date(2020, 10, 14),
+    desc: "KAIZEN_DESC",
     items: [
       {
         name: "Bitcoin",
@@ -67,6 +69,8 @@ const INDEXES = [
     color: "#99c158",
     symbol: "",
     price: 0,
+    market_cap: 0,
+    inception_date: null,
     desc: "",
     items: [
       {
@@ -123,6 +127,8 @@ const INDEXES = [
     color: "#7358c1",
     symbol: "",
     price: 0,
+    market_cap: 0,
+    inception_date: null,
     desc: "",
     items: [
       {
@@ -154,6 +160,8 @@ const INDEXES = [
     color: "#7358c1",
     symbol: "",
     price: 0,
+    market_cap: 0,
+    inception_date: null,
     desc: "",
     items: [
       {

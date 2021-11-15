@@ -18,6 +18,7 @@ export default {
     Vue.prototype.$usd_to_value = this.usd_to_value;
     Vue.prototype.$user = this.user;
     Vue.prototype.$countdown = this.countdown;
+    Vue.prototype.$LOCALESTRING_PERCENT = this.localeStringPERCENT;
     Vue.prototype.$LOCALESTRING_USD = this.localeStringUSD;
     Vue.prototype.$LOCALESTRING_CRYPTO = this.localeStringCRYPTO;
     Vue.prototype.$symbolCurrency = this.symbolCurrency;
@@ -40,6 +41,13 @@ export default {
   },
 
   methods: {
+    localeStringPERCENT (min = 2, max = 2) {
+      return {
+        style: "percent",
+        minimumFractionDigits: min,
+        maximumFractionDigits: max
+      };
+    },
     localeStringUSD (min = 2, max = 2) {
       return {
         style: "currency",

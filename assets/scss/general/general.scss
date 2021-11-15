@@ -354,14 +354,6 @@ svg {
   @include fontTTNorms("extrabold");
 }
 
-.font-size-20 {
-  font-size: 28px;
-
-  @include respond-before("md") {
-    font-size: 20px;
-  }
-}
-
 .space-70 {
   height: 55px;
 
@@ -427,6 +419,13 @@ svg {
 
 .display-flex {
   display: flex;
+}
+
+.aic {
+  align-items: center;
+}
+.aife {
+  align-items: flex-end;
 }
 
 /* footer to bottom */

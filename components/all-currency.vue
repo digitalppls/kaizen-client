@@ -34,7 +34,7 @@ export default {
   components: { CurrencyItem },
   data () {
     return {
-      show: true
+      show: false
     };
   },
   computed: {

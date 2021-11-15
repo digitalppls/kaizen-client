@@ -6,14 +6,11 @@
       </p>
     </div>
 
-    <pre v-if="rows.length && $isDev">
-      {{ rows }}
-    </pre>
-
     <vue-good-table
       v-if="rows.length"
       :rows="rows"
       :columns="columns"
+      style-class="vgt-table"
       compact-mode
     >
       <template slot="table-row" slot-scope="props">
@@ -47,6 +44,13 @@
       </nuxt-link>
     </p>
 
+    <details v-if="$isDev" class="m-t-20">
+      <summary>Rows array</summary>
+      <pre v-if="rows.length">
+        {{ rows }}
+      </pre>
+    </details>
+
     <ui-modal
       v-if="showModal"
       @close="closeModal"
@@ -78,49 +82,49 @@ export default {
         {
           label: this.$t("NAME"),
           field: "name",
-          width: "15%",
+          width: "12%",
           sortable: false
         },
         {
           label: this.$t("DATE"),
           field: "date",
-          width: "12.14%",
+          width: "12%",
           sortable: false
         },
         {
           label: this.$t("SUM"),
           field: "sum",
-          width: "12.14%",
+          width: "13.6%",
           sortable: false
         },
         {
           label: this.$t("STATUS"),
           field: "status",
-          width: "12.14%",
+          width: "13.6%",
           sortable: false
         },
         {
           label: this.$t("FEE"),
           field: "fee",
-          width: "12.14%",
+          width: "6%",
           sortable: false
         },
         {
           label: this.$t("PERFORMANCE"),
           field: "performance",
-          width: "12.14%",
+          width: "13.6%",
           sortable: false
         },
         {
           label: this.$t("TOTAL_AMOUNT"),
           field: "total_amount",
-          width: "12.14%",
+          width: "15.6%",
           sortable: false
         },
         {
           label: this.$t("WITHDRAWAL_REQUEST"),
           field: "withdraw",
-          width: "12.14%",
+          width: "12.5%",
           sortable: false
         }
       ]
