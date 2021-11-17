@@ -414,6 +414,15 @@
               </div>
             </template>
           </vc-donut>
+
+          <div class="m-t-30">
+            <nuxt-link
+              :to="localePath(hasToken ? 'my' : 'auth')"
+              class="btn btn-solid"
+            >
+              {{ $t(hasToken ? "DASHBOARD" : "START_INVESTING") }}
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -892,10 +901,10 @@ export default {
       @include respond-before("pre-md") {
         padding-left: 10px;
         padding-right: 10px;
-        width: calc(100% / (var(--count-indexes) / 2));
+        width: calc(100% / 2);
       }
       @include respond-before("lg") {
-        width: calc(100% / var(--count-indexes));
+        width: calc(100% / 4);
       }
     }
   }

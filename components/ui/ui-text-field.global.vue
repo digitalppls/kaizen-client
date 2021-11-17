@@ -232,9 +232,6 @@ export default {
     }
   }
 
-  // Add some height to date inputs on iOS
-  // https://github.com/twbs/bootstrap/issues/23307
-  // TODO: we can remove this workaround once https://bugs.webkit.org/show_bug.cgi?id=198959 is resolved
   &::-webkit-date-and-time-value {
     // Multiply line-height by 1em if it has no unit
     height: 1.5em; // from mixin p();
