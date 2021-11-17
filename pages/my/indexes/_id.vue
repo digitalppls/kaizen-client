@@ -239,10 +239,10 @@ export default {
         style: 3,
         locale: this.$i18n.locale,
         toolbar_bg: "#f1f3f6",
-        hide_legend: false,
+        hide_legend: true,
         withdateranges: true,
-        enable_publishing: false,
         hide_top_toolbar: false,
+        enable_publishing: false,
         save_image: false
       };
     },

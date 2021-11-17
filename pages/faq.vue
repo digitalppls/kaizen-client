@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="m-b-30">
+    <h1 class="m-b-40">
       {{ $t("FAQ_TITLE") }}
     </h1>
 

@@ -6,14 +6,7 @@
         <!-- Криптоиндексы -->
         <div class="cryptoindices">
           <div class="cryptoindices__logo">
-            <svg width="101" height="42" viewBox="0 0 101 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M40.6135 0L23.0219 19.56L40.6135 42H29.8662L14.1978 22.02H10.6907V42H0V0H10.6907V17.58H13.9715L29.8662 0H40.6135Z"
-                fill="#58C1B9"
-              />
-              <path d="M65.5533 0L47.6223 37.62H65.5533V42H34.7821L52.7697 4.38H34.7255V0H65.5533Z" fill="#58C1B9" />
-              <path d="M90.3658 0H101V42H90.3658V19.8L71.3035 7.86V42H60.6127V0H71.3035L90.3658 12V0Z" fill="#58C1B9" />
-            </svg>
+            <img :src="require('~/assets/images/kzn.svg?inline')" alt="KZN">
           </div>
           <div class="cryptoindices__cnt">
             <div class="font-medium">
@@ -161,35 +154,35 @@
                   <img src="~/assets/images/graphic.jpg" alt="">
                 </div>
               </ui-tab>
+              <ui-tab name="CRYPTO100">
+                <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
+                  <trading-view
+                    container-id="tradingview_1"
+                    :options="TWChartConfig('CRYPTOINDEX:CIX100')"
+                    style="height: 500px; padding: 10px;"
+                  />
+                </div>
+              </ui-tab>
               <ui-tab name="COIN10">
                 <trading-view
-                  container-id="tradingview_crypto10"
-                  :options="{autosize: true, symbol: 'EIGHTCAP:CRYPTO10',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                  container-id="tradingview_2"
+                  :options="TWChartConfig('EIGHTCAP:CRYPTO10')"
                   style="height: 500px; padding: 10px;"
                 />
               </ui-tab>
               <ui-tab name="DEFI">
                 <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
                   <trading-view
-                    container-id="tradingview_defi"
-                    :options="{autosize: true, symbol: 'BINANCE:DEFIUSDTPERP',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
-                    style="height: 500px; padding: 10px;"
-                  />
-                </div>
-              </ui-tab>
-              <ui-tab name="CRYPTO100">
-                <div style="overflow: hidden; border-radius: 40px; min-height: 510px;">
-                  <trading-view
-                    container-id="tradingview_cix100"
-                    :options="{autosize: true, symbol: 'CRYPTOINDEX:CIX100',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                    container-id="tradingview_3"
+                    :options="TWChartConfig('BINANCE:DEFIUSDTPERP')"
                     style="height: 500px; padding: 10px;"
                   />
                 </div>
               </ui-tab>
               <ui-tab name="KAIZEN">
                 <trading-view
-                  container-id="tradingview_bitw"
-                  :options="{autosize: true, symbol: 'FTX:BITWUSD',interval: 'D', timezone: 'Etc/UTC', theme: 'light', style: 3, locale: 'ru', toolbar_bg: '#f1f3f6', enable_publishing: false, hide_top_toolbar: true, save_image: false}"
+                  container-id="tradingview_4"
+                  :options="TWChartConfig('FTX:BITWUSD')"
                   style="height: 500px; padding: 10px;"
                 />
               </ui-tab>
@@ -596,6 +589,35 @@ export default {
     /** Отфильтрованные индексы где есть картинки */
     filterdItemsIndex (items) {
       return items.filter(e => e.img.split(".")[1]);
+    },
+
+    /** Конфиг графика */
+    TWChartConfig (symbol) {
+      if (symbol.toUpperCase() === "KAIZEN") {
+        symbol = "FTX:BITWUSD";
+      } else if (symbol.toUpperCase() === "CRYPTO100") {
+        symbol = "CRYPTOINDEX:CIX100";
+      } else if (symbol.toUpperCase() === "DEFI") {
+        symbol = "BINANCE:DEFIUSDTPERP";
+      } else {
+        symbol = "EIGHTCAP:CRYPTO10"; // COIN10
+      }
+
+      return {
+        autosize: true,
+        symbol,
+        interval: "D",
+        timezone: "Etc/UTC",
+        theme: "light",
+        style: 3,
+        locale: this.$i18n.locale,
+        toolbar_bg: "#f1f3f6",
+        hide_legend: true,
+        withdateranges: true,
+        hide_top_toolbar: false,
+        enable_publishing: false,
+        save_image: false
+      };
     }
   }
 };
@@ -612,6 +634,7 @@ export default {
 
   &__logo {
     margin-right: 25px;
+    width: 100px;
   }
 
   &__cnt {
