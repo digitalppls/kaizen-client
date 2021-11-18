@@ -206,7 +206,7 @@
             <div
               v-for="(index, i) in indexes"
               :key="i"
-              class="indexes__item"
+              :class="['indexes__item', `indexes__item--${index.title.toLowerCase()}`]"
             >
               <div class="index">
                 <div class="index__header">
@@ -243,7 +243,7 @@
                       class="index__item"
                       :data-data="1+2 === 2 ? '33%' : ''"
                     >
-                      <img :src="require(`~/assets/images/${item.img}?inline`)" :alt="item.name" :title="item.name">
+                      <img :src="require(`~/assets/images/cryptocurrencies/${item.img}?inline`)" :alt="item.name" :title="item.name">
                     </div>
                   </div>
                   <div class="index__price">
@@ -901,10 +901,10 @@ export default {
       @include respond-before("pre-md") {
         padding-left: 10px;
         padding-right: 10px;
-        width: calc(100% / 2);
+        width: 50%;
       }
       @include respond-before("lg") {
-        width: calc(100% / 4);
+        width: 25%;
       }
     }
   }
@@ -974,30 +974,31 @@ export default {
   }
 
   &__item {
-    height: 120px;
+    //height: 120px;
+    padding: 30px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
 
-    @include respond-before("xl") {
-      &:after {
-        content: "";
-        height: 1px;
-        background-image: linear-gradient(to right, #d8dae5 33%, rgba(255, 255, 255, 0) 0%);
-        background-position: bottom;
-        background-size: 10px 1px;
-        background-repeat: repeat-x;
-        left: -38px;
-        right: -38px;
-        position: absolute;
-        top: 100%;
-      }
+    //@include respond-before("xl") {
+    &:after {
+      content: "";
+      height: 1px;
+      background-image: linear-gradient(to right, #d8dae5 33%, rgba(255, 255, 255, 0) 0%);
+      background-position: bottom;
+      background-size: 10px 1px;
+      background-repeat: repeat-x;
+      left: -38px;
+      right: -38px;
+      position: absolute;
+      top: 100%;
     }
+    //}
 
     img {
-      max-width: 170px;
+      max-height: 80px;
     }
 
   }

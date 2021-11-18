@@ -156,7 +156,7 @@ const INDEXES = [
       },
       {
         name: "XRP",
-        img: "xrp",
+        img: "ripple.png",
         weight: "2.88"
       },
       {
@@ -166,7 +166,7 @@ const INDEXES = [
       },
       {
         name: "Dogecoin",
-        img: "dogecoin",
+        img: "dogecoin.png",
         weight: "1.98"
       },
       {
@@ -201,82 +201,82 @@ const INDEXES = [
       },
       {
         name: "Stellar",
-        img: "stellar",
+        img: "stellar.png",
         weight: "0.47"
       },
       {
         name: "Cosmos",
-        img: "cosmos",
+        img: "cosmos.png",
         weight: "0.43"
       },
       {
         name: "Ethereum Classic",
-        img: "ethereumclassic",
+        img: "ethereumclassic.png",
         weight: "0.42"
       },
       {
         name: "VeChain",
-        img: "vechain",
+        img: "vechain.svg",
         weight: "0.39"
       },
       {
         name: "Compound",
-        img: "compound",
+        img: "compound.svg",
         weight: "0.37"
       },
       {
         name: "FTX Token",
-        img: "ftxtoken",
+        img: "ftxtoken.png",
         weight: "0.36"
       },
       {
         name: "THETA",
-        img: "theta",
+        img: "theta.png",
         weight: "0.35"
       },
       {
         name: "TRON",
-        img: "tron",
+        img: "tron.png",
         weight: "0.33"
       },
       {
         name: "Tezos",
-        img: "tezos",
+        img: "tezos.png",
         weight: "0.30"
       },
       {
         name: "Monero",
-        img: "monero",
+        img: "monero.png",
         weight: "0.27"
       },
       {
         name: "EOS",
-        img: "eos",
+        img: "eos.png",
         weight: "0.25"
       },
       {
         name: "Decred",
-        img: "decred",
+        img: "decred.png",
         weight: "0.23"
       },
       {
         name: "Crypto.com Coin",
-        img: "cryptocomcoin",
+        img: "cryptocom.png",
         weight: "0.20"
       },
       {
         name: "Neo",
-        img: "neo",
+        img: "neo.png",
         weight: "0.18"
       },
       {
         name: "yearn.finance",
-        img: "yearnfinance",
+        img: "yearnfinance.png",
         weight: "0.17"
       },
       {
         name: "IOTA",
-        img: "iota",
+        img: "iota.png",
         weight: "0.17"
       },
       {
@@ -286,7 +286,7 @@ const INDEXES = [
       },
       {
         name: "Waves",
-        img: "waves",
+        img: "waves.png",
         weight: "0.16"
       },
       {
@@ -296,152 +296,152 @@ const INDEXES = [
       },
       {
         name: "Chiliz",
-        img: "chiliz",
+        img: "chiliz.png",
         weight: "0.14"
       },
       {
         name: "Basic Attention Token",
-        img: "basicattentiontoken",
+        img: "basicattentiontoken.png",
         weight: "0.13"
       },
       {
         name: "Enjin Coin",
-        img: "enjincoin",
+        img: "enjincoin.png",
         weight: "0.12"
       },
       {
         name: "NEM",
-        img: "nem",
+        img: "nem.png",
         weight: "0.12"
       },
       {
         name: "BitTorrent",
-        img: "bittorrent",
+        img: "bittorrent.png",
         weight: "0.11"
       },
       {
         name: "Bancor",
-        img: "bancor",
+        img: "bancor.png",
         weight: "0.10"
       },
       {
         name: "Decentraland",
-        img: "decentraland",
+        img: "decentraland.png",
         weight: "0.10"
       },
       {
         name: "IoTeX",
-        img: "iotex",
+        img: "iotex.svg",
         weight: "0.09"
       },
       {
         name: "Harmony",
-        img: "harmony",
+        img: "harmony.png",
         weight: "0.08"
       },
       {
         name: "Ontology",
-        img: "ontology",
+        img: "ontology.png",
         weight: "0.07"
       },
       {
         name: "Ravencoin",
-        img: "ravencoin",
+        img: "ravencoin.png",
         weight: "0.07"
       },
       {
         name: "Lisk",
-        img: "lisk",
+        img: "lisk.png",
         weight: "0.07"
       },
       {
         name: "Huobi Token",
-        img: "huobitoken",
+        img: "huobitoken.png",
         weight: "0.07"
       },
       {
         name: "UMA",
-        img: "uma",
+        img: "uma.png",
         weight: "0.06"
       },
       {
         name: "Zcash",
-        img: "zcash",
+        img: "zcash.png",
         weight: "0.06"
       },
       {
         name: "Qtum",
-        img: "qtum",
+        img: "qtum.png",
         weight: "0.04"
       },
       {
         name: "Nano",
-        img: "nano",
+        img: "nano.png",
         weight: "0.04"
       },
       {
         name: "iExec RLC",
-        img: "iexecrlc",
+        img: "iexec.png",
         weight: "0.04"
       },
       {
         name: "SushiSwap",
-        img: "sushiswap",
+        img: "sushiswap.png",
         weight: "0.03"
       },
       {
         name: "Dash",
-        img: "dash",
+        img: "dash.png",
         weight: "0.03"
       },
       {
         name: "OMG Network",
-        img: "omgnetwork",
+        img: "omgnetwork.png",
         weight: "0.02"
       },
       {
         name: "Siacoin",
-        img: "siacoin",
+        img: "siacoin.png",
         weight: "0.02"
       },
       {
         name: "Bitcoin Diamond",
-        img: "bitcoindiamond",
+        img: "bitcoindiamond.png",
         weight: "0.02"
       },
       {
         name: "Augur",
-        img: "augur",
+        img: "augur.png",
         weight: "0.02"
       },
       {
         name: "ICON",
-        img: "icon",
+        img: "icon.png",
         weight: "0.02"
       },
       {
         name: "Bitcoin Gold",
-        img: "bitcoingold",
+        img: "bitcoingold.png",
         weight: "0.02"
       },
       {
         name: "Zilliqa",
-        img: "zilliqa",
+        img: "zilliqa.png",
         weight: "0.02"
       },
       {
         name: "Storj",
-        img: "storj",
+        img: "storj.png",
         weight: "0.01"
       },
       {
         name: "OKB",
-        img: "okb",
+        img: "okb.png",
         weight: "0.01"
       },
       {
         name: "Nexo",
-        img: "nexo",
+        img: "nexo.png",
         weight: "0.01"
       },
       {
@@ -451,187 +451,187 @@ const INDEXES = [
       },
       {
         name: "BitShares",
-        img: "bitshares",
+        img: "bitshares.png",
         weight: "0.01"
       },
       {
         name: "IOST",
-        img: "iost",
+        img: "iost.png",
         weight: "0.01"
       },
       {
         name: "DigiByte",
-        img: "digibyte",
+        img: "digibyte.png",
         weight: "0.01"
       },
       {
         name: "Loopring",
-        img: "loopring",
+        img: "loopring.png",
         weight: "0.01"
       },
       {
         name: "Fetch.ai",
-        img: "fetchai",
+        img: "fetchai.png",
         weight: "0.01"
       },
       {
         name: "Komodo",
-        img: "komodo",
+        img: "komodo.png",
         weight: "0.01"
       },
       {
         name: "WAX",
-        img: "wax",
+        img: "wax.png",
         weight: "0.01"
       },
       {
         name: "Gnosis",
-        img: "gnosis",
+        img: "gnosis.png",
         weight: "0.01"
       },
       {
         name: "Polymath",
-        img: "polymath",
+        img: "polymath.png",
         weight: "0.01"
       },
       {
         name: "Verge",
-        img: "verge",
+        img: "verge.png",
         weight: "0.01"
       },
       {
         name: "Status",
-        img: "status",
+        img: "status.png",
         weight: "0.004"
       },
       {
         name: "aelf",
-        img: "aelf",
+        img: "aelf.png",
         weight: "0.004"
       },
       {
         name: "Hive",
-        img: "hive",
+        img: "hive.png",
         weight: "0.004"
       },
       {
         name: "Civic",
-        img: "civic",
+        img: "civic.png",
         weight: "0.004"
       },
       {
         name: "Ardor",
-        img: "ardor",
+        img: "ardor.png",
         weight: "0.004"
       },
       {
         name: "GateToken",
-        img: "gatetoken",
+        img: "gatetoken.png",
         weight: "0.004"
       },
       {
         name: "Steem",
-        img: "steem",
+        img: "steem.png",
         weight: "0.003"
       },
       {
         name: "Ark",
-        img: "ark",
+        img: "ark.png",
         weight: "0.003"
       },
       {
         name: "Metal",
-        img: "metal",
+        img: "metal.png",
         weight: "0.003"
       },
       {
         name: "Electroneum",
-        img: "electroneum",
+        img: "electroneum.png",
         weight: "0.003"
       },
       {
         name: "FUNToken",
-        img: "funtoken",
+        img: "funtoken.png",
         weight: "0.003"
       },
       {
         name: "Wanchain",
-        img: "wanchain",
+        img: "wanchain.png",
         weight: "0.002"
       },
       {
         name: "Neblio",
-        img: "neblio",
+        img: "neblio.png",
         weight: "0.002"
       },
       {
         name: "Powerledger",
-        img: "powerledger",
+        img: "powerledger.png",
         weight: "0.002"
       },
       {
         name: "Aragon",
-        img: "aragon",
+        img: "aragon.png",
         weight: "0.002"
       },
       {
         name: "Groestlcoin",
-        img: "groestlcoin",
+        img: "groestlcoin.png",
         weight: "0.002"
       },
       {
         name: "Gas",
-        img: "gas",
+        img: "gas.png",
         weight: "0.002"
       },
       {
         name: "Molecular Future",
-        img: "molecularfuture",
+        img: "molecularfuture.png",
         weight: "0.002"
       },
       {
         name: "Bytom",
-        img: "bytom",
+        img: "bytom.png",
         weight: "0.001"
       },
       {
         name: "Streamr",
-        img: "streamr",
+        img: "steamr.png",
         weight: "0.001"
       },
       {
         name: "Loom Network",
-        img: "loomnetwork",
+        img: "loomnetwork.png",
         weight: "0.001"
       },
       {
         name: "Nebulas",
-        img: "nebulas",
+        img: "nebulas.png",
         weight: "0.001"
       },
       {
         name: "GXChain",
-        img: "gxchain",
+        img: "gxchain.png",
         weight: "0.001"
       },
       {
         name: "Waltonchain",
-        img: "waltonchain",
+        img: "waltonchain.png",
         weight: "0.001"
       },
       {
         name: "NULS",
-        img: "nuls",
+        img: "nuls.png",
         weight: "0.001"
       },
       {
         name: "DigixDAO",
-        img: "digixdao",
+        img: "digixdao.png",
         weight: "0.001"
       },
       {
         name: "v.systems",
-        img: "vsystems",
+        img: "vsystems.png",
         weight: "0.0005"
       }
     ]
@@ -655,7 +655,7 @@ const INDEXES = [
       },
       {
         name: "Compound",
-        img: "compound.png",
+        img: "compound.svg",
         weight: 7.61
       },
       {
