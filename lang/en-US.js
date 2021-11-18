@@ -73,6 +73,9 @@ export default {
 
   "CASE_USERS": ["user", "user", "users"],
   "CASE_DAYS": ["day", "days", "days"],
+  "DAY": "Day",
+  "WEEK": "Week",
+  "MONTH": "Month",
 
   "LOGIN": "Login",
   "LOGOUT": "Sign out",

@@ -152,6 +152,26 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+  getCurrencyHistory (data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      "currency/history/",
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
+  getCurrencyMarketCap (data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      "currency/cap/",
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
   // Массив всех статусов маркетинга
   getStatusList (promiseFuncSuccess, promiseFuncFail) {
     this.request(

@@ -23,12 +23,7 @@
     <div class="index-page__data m-b-30">
       <div class="index-page__data-item m-b-10">
         <div class="font-medium font-size-20">
-          <template v-if="indexData.market_cap">
-            {{ indexData.market_cap.toLocaleString("en-US", $LOCALESTRING_USD()) }}
-          </template>
-          <template v-else>
-            {{ $t("N/A") }}
-          </template>
+          {{ marketCap.toLocaleString("en-US", $LOCALESTRING_USD(0, 0)) }}
         </div>
         <div class="small">
           {{ $t("MARKET_CAP") }}
@@ -102,7 +97,7 @@
           {{ $t("CAPITALIZATION") }}
         </div>
         <div class="index-page__info-item__value font-bold">
-          {{ indexData.market_cap.toLocaleString("en-US", $LOCALESTRING_USD()) }}
+          {{ marketCap.toLocaleString("en-US", $LOCALESTRING_USD()) }}
         </div>
       </div>
       <div class="index-page__info-item m-b-10">
@@ -110,8 +105,8 @@
           {{ $t("PRICE_CHANGE") }}
         </div>
         <div class="index-page__info-item__value font-bold">
-          {{ (0).toLocaleString("en-US", $LOCALESTRING_USD()) }}
-          / {{ (0).toLocaleString("en-US", $LOCALESTRING_PERCENT()) }}
+          {{ (priceDiff).toLocaleString("en-US", $LOCALESTRING_USD()) }}
+          / {{ (priceDiff / currency.price).toLocaleString("en-US", $LOCALESTRING_PERCENT()) }}
         </div>
       </div>
     </div>
@@ -193,6 +188,7 @@ export default {
       showModal: false,
       mode: "",
       loading: false,
+      marketCap: 0,
       columns: [
         {
           label: this.$t("NAME"),
@@ -206,6 +202,7 @@ export default {
         }
       ],
       rows100: [],
+      priceDiff: 0,
       localeDateStringOptions: { year: "numeric", month: "short", day: "numeric" }
     };
   },
@@ -268,7 +265,20 @@ export default {
     }
   },
   mounted () {
+    const ourDate = new Date();
+
     this.rows100 = this.id === "CRYPTO100" ? this.indexData?.items.slice(0, 5) : [];
+
+    this.$API.getCurrencyMarketCap({ symbols: `${this.id}USDT` }, (r) => {
+      this.marketCap = r[0].value;
+    });
+
+    this.$API.getCurrencyHistory({
+      symbol: `${this.id}USDT`,
+      fromTimestamp: ourDate.setDate(ourDate.getDate() - 1)
+    }, (r) => {
+      this.priceDiff = r[r.length - 1].price - r[0].price;
+    });
   },
   methods: {
     /** Открыть модальное окно */
@@ -365,7 +375,7 @@ export default {
   }
 
   .btn-show-all {
-    background: linear-gradient(#f4f5f8,#f1f3f6);
+    background: linear-gradient(#f4f5f8, #f1f3f6);
     width: 100%;
     padding: 15px;
     font-size: 16px;
