@@ -1,22 +1,23 @@
 <template>
-  <div class="balance-info">
+  <div id="token-vng" class="balance-info">
     <div class="balance-info__top">
       <p class="font-bold">
-        {{ $t("TOKENS") }} KZN
+        {{ $t("TOKENS") }} VNG
       </p>
       <div class="m-l-a">
         <button
-          :disabled="true && !$store.getters.user.emailVerified"
+          :disabled="!$store.getters.user.emailVerified"
           class="btn btn-solid btn-small"
           @click="openModal('buy')"
         >
           {{ $t("BUY") }}
         </button>
         <button
-          :disabled="true && !$store.getters.user.emailVerified && !balance"
+          :disabled="true"
           class="btn btn-solid--tertiary btn-small"
           @click="openModal('sell')"
         >
+          <!--  && !$store.getters.user.emailVerified && !balance -->
           {{ $t("WITHDRAW") }}
         </button>
       </div>
@@ -27,10 +28,10 @@
     <div>
       <span class="font-size-30 font-bold">
         {{ balance.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
-        <span class="font-medium font-size-14">KZN</span>
+        <span class="font-medium font-size-14">VNG</span>
       </span>
       <small class="color-gray">
-        ≈ ${{ $toUsd("KZN", balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
+        ≈ ${{ $toUsd("VNG", balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
       </small>
     </div>
 
@@ -39,28 +40,26 @@
       v-if="showModal"
       @close="closeModal"
     >
-      <h2 class="modal-title m-b-40">
-        {{ $t(modal.toUpperCase()) }} KZN
-      </h2>
-      <p>
-        In developing...
-      </p>
+      <token-swap input-currency="VNG" type="token" :mode="modal" />
     </ui-modal>
   </div>
 </template>
 
 <script>
+import TokenSwap from "~/components/token-swap";
 export default {
-  name: "BalanceInfoTokenKzn",
+  name: "BalanceInfoTokenVng",
+  components: { TokenSwap },
   data () {
     return {
       showModal: false,
-      modal: ""
+      modal: "",
+      mode: ""
     };
   },
   computed: {
     balance () {
-      return this.$store.getters.wallets.find(e => e.symbol === "kzn")?.amount ?? 0;
+      return this.$store.getters.wallets.find(e => e.symbol === "vng")?.amount ?? 0;
     }
   },
   methods: {

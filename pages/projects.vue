@@ -18,7 +18,7 @@
           </h2>
           <div class="m-b-20">
             <a
-              v-if="project.website"
+              v-if="project.website === ''"
               :href="project.website"
               target="_blank"
               class="project__website"
@@ -30,6 +30,14 @@
             </span>
           </div>
           <div class="project__desc" v-html="project.desc" />
+          <div
+            v-if="project.id === 1"
+            class="project__desc m-t-20"
+          >
+            <nuxt-link :to="`${localePath('my')}#token-vng`" class="btn btn-solid">
+              {{ $t("BUY_TOKENS") }} VNG
+            </nuxt-link>
+          </div>
         </div>
       </article>
     </div>
@@ -45,12 +53,14 @@ export default {
     return {
       projects: [
         {
+          id: 1,
           title: "VANGUARD MINING",
-          website: "https://vanguardmining.io",
+          website: "", // https://vanguardmining.io",
           image: "vanguardmining.jpeg",
           desc: this.$t("VANGUARD_MINING_DESC")
         },
         {
+          id: 2,
           title: "KokskhimProm",
           website: null,
           image: "kokskhimprom.jpg",

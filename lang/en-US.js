@@ -166,6 +166,7 @@ export default {
   "WITHDRAWAL_REQUEST": "Withdrawal",
   "NAME": "Name",
   "WEIGHT": "Weight",
+  "INCORRECT_TYPE": "Incorrect type",
 
   // History
   "OPERATIONS": "Operations history",
