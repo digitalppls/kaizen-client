@@ -61,7 +61,7 @@ export default {
         },
         {
           id: 2,
-          title: "KokskhimProm",
+          title: this.$t("KOKSKHIMPROM_TITLE"),
           website: null,
           image: "kokskhimprom.jpg",
           desc: this.$t("KOKSKHIMPROM_DESC")

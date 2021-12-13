@@ -293,7 +293,7 @@
             </p>
             <p class="m-b-20">
               <nuxt-link
-                :to="localePath({ name: hasToken ? 'my-indexes-id' : 'auth', params: hasToken ? { id: 'KAIZEN' } : {} })"
+                :to="localePath('my')"
                 :class="['btn', 'btn-solid']"
               >
                 {{ $t("BUY") }} KZN

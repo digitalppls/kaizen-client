@@ -275,8 +275,8 @@ export default {
   "TIMELINE_3_DESC": "IDO 1200 seats for $ 1000",
   "TIMELINE_4_TITLE": "January 20, 2022",
   "TIMELINE_4_DESC": "Start on the Pancake exchange",
-  "TIMELINE_5_TITLE": "10 March 2022",
-  "TIMELINE_5_DESC": "BlackGold - Oil Backed Tokens",
+  "TIMELINE_5_TITLE": "10 June 2022",
+  "TIMELINE_5_DESC": "Tokens secured by the release of goods at a tokenized enterprise of the real sector of the economy",
   "TIMELINE_6_TITLE": "",
   "TIMELINE_6_DESC": "",
 
@@ -328,7 +328,8 @@ export default {
 
   // PROJECTS
   "VANGUARD_MINING_DESC": "Vanguard Mining is a project that provides participation in the creation of data centers for mining bitcoin and getting daily profit from mining cryptocurrencies. Starting from 11/16/21, have time to register!",
-  "KOKSKHIMPROM_DESC": "A tokenized by-product coke plant will generate raw materials on an industrial scale and profit from digital cooperative participation and tax incentives.",
+  "KOKSKHIMPROM_TITLE": "Manufacturing enterprise in the real sector of the economy",
+  "KOKSKHIMPROM_DESC": "Participation in a tokenized manufacturing enterprise, the purpose of which is to produce demanded products on an industrial scale. The start of construction is scheduled for June 2022.",
 
   // Footer
   "FOOTER_CONTACTS": "Georgetown, Cayman Islands | <a href='tel:%{PHONE}'>%{PHONE}</a> | <a href='mailto:%{EMAIL}'>%{EMAIL}</a>",
