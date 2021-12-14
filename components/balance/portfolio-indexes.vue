@@ -44,13 +44,6 @@
       </nuxt-link>
     </p>
 
-    <details v-if="$isDev" class="m-t-20">
-      <summary>Rows array</summary>
-      <pre v-if="rows.length">
-        {{ rows }}
-      </pre>
-    </details>
-
     <ui-modal
       v-if="showModal"
       @close="closeModal"

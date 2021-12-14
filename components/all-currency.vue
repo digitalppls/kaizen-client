@@ -40,8 +40,6 @@ export default {
   computed: {
     currencies () {
       return this.$store.getters.currency;
-      // .filter(e => !["AMCUSDT", "OROUSDT", "BUSDUSDT", "ALLWINUSDT", "FCOINUSDT", "FCASHUSDT", "USDTUSDT", "USDCUSDT", "USDUSDT", "USDTRUB"].includes(e.symbol))
-      // .map(i => [`${i.symbol.split("USDT")[0]}/USDT`, i.price, i.index]);
     }
   },
   methods: {

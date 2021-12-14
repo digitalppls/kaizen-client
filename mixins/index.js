@@ -196,7 +196,7 @@ export default {
       const usd = symbol.toUpperCase() === "USDT" ? amount : !coin
         ? 0
         : (coin.price * amount);
-      return Math.floor(usd * 1e2) / 1e2;
+      return Math.round(usd * 1e8) / 1e8;
     },
 
     fromUsd (symbol, amountUsd) {
@@ -205,7 +205,7 @@ export default {
       const usd = symbol.toUpperCase() === "USDT" ? amountUsd : !coin
         ? 0
         : (amountUsd / coin.price);
-      return Math.floor(usd * 1e8) / 1e8;
+      return Math.round(usd * 1e8) / 1e8;
     },
 
     DateText (date) {

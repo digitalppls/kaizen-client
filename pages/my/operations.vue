@@ -136,10 +136,9 @@ export default {
     types () {
       return [
         "all",
-        // "payment",
+        "payment",
         "withdraw",
-        "token_swap",
-        "token_swap_fee"
+        "token_swap"
       ].map((e) => {
         return {
           label: `OPERATION_${e.toUpperCase()}`,

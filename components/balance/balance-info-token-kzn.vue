@@ -6,14 +6,14 @@
       </p>
       <div class="m-l-a">
         <button
-          :disabled="true && !$store.getters.user.emailVerified"
+          :disabled="!balance"
           class="btn btn-solid btn-small"
           @click="openModal('buy')"
         >
           {{ $t("BUY") }}
         </button>
         <button
-          :disabled="true && !$store.getters.user.emailVerified && !balance"
+          :disabled="!balance"
           class="btn btn-solid--tertiary btn-small"
           @click="openModal('sell')"
         >

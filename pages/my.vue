@@ -1,6 +1,5 @@
 <template>
   <div>
-    <all-currency v-if="$isDev" />
     <div class="container">
       <div class="page-profile">
         <div class="page-profile__inline-menu inline-menu-wrap">
@@ -60,11 +59,8 @@
 </template>
 
 <script>
-
-import AllCurrency from "~/components/all-currency";
 export default {
   name: "My",
-  components: { AllCurrency },
   data () {
     return {
       menu: [

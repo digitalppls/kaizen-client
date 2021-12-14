@@ -1,3 +1,7 @@
+const currentTime = new Date().getTime();
+const TERMS = "/terms.pdf";
+const WHITEPAPER = `#?${currentTime}`;
+
 const INDEXES = [
   {
     id: 1,
@@ -701,5 +705,4 @@ const INDEXES = [
     ]
   }
 ];
-const TERMS = "/terms.pdf";
-export { INDEXES, TERMS };
+export { INDEXES, TERMS, WHITEPAPER };

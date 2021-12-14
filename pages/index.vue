@@ -300,7 +300,9 @@
               </nuxt-link>
             </p>
             <p>
-              <a href="#" class="font-medium">White Paper</a>
+              <a :href="WHITEPAPER" target="_blank" class="font-medium">
+                White Paper
+              </a>
             </p>
           </div>
         </div>
@@ -433,7 +435,7 @@
 import UiTabs from "~/components/ui-tabs/ui-tabs";
 import UiTab from "~/components/ui-tabs/ui-tab";
 import TradingView from "~/components/trading-view";
-import { INDEXES } from "~/global";
+import { INDEXES, WHITEPAPER } from "~/global";
 import UiPreloader from "~/components/ui/ui-preloader.global";
 
 export default {
@@ -442,6 +444,7 @@ export default {
   layout: "public",
   data () {
     return {
+      WHITEPAPER,
       disabled: true,
       countIndices: 10,
       cryptoIndexes: [],

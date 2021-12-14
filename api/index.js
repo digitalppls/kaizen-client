@@ -111,17 +111,6 @@ export default $axios => (proxy, store) => ({
     );
   },
 
-  // Статистика инвестиций: своих и партнеров
-  UserStatInfo (promiseFuncSuccess, promiseFuncFail) {
-    this.request(
-      "post",
-      "user/stat/info/",
-      false,
-      promiseFuncSuccess,
-      promiseFuncFail
-    );
-  },
-
   GetUsername (data, promiseFuncSuccess, promiseFuncFail) {
     this.request(
       "get",

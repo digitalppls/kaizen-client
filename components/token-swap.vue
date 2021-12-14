@@ -72,7 +72,6 @@
         </template>
       </ui-text-field>
     </div>
-    <p v-if="fee > 0" class="color-info small" v-html="feeMessage" />
     <div class="m-t-40">
       <button
         class="btn btn-solid btn-full"
@@ -123,39 +122,30 @@ export default {
   },
   data () {
     return {
-      loading: false,
       done: false,
+      loading: false,
       sendInput: "",
-      getInput: "",
-      fee: 0,
+      sendInputUsd: 0,
+      sendCoinList: [],
       sendCoin: {
         symbol: ""
       },
+      getInput: "",
+      getInputUsd: 0,
+      getCoinList: [],
       getCoin: {
         symbol: ""
       },
-      getCoinList: [],
-      sendCoinList: [],
       errors: [],
-      errorValidate: null,
-      feeMessageShow: null,
-
-      sendInputUsd: 0,
-      getInputUsd: 0
+      errorValidate: null
     };
   },
   computed: {
     wallets () {
-      return this.$store.getters.wallets; // .filter(e => !["usdt", "bnb"].includes(e.symbol)) || [];
+      return this.$store.getters.wallets;
     },
     currencies () {
       return this.$store.getters.currency;
-    },
-    feeSymbol () {
-      return this.wallets.find(e => e.symbol === "oro").amount >= this.fee ? "oro" : this.getCoin.symbol;
-    },
-    feeMessage () {
-      return `${this.$t("ADDITIONAL_COMMISSION")}: ${this.fee} ${this.feeSymbol.toUpperCase()}`;
     },
     indexFromUrl () {
       return this.$route.query?.index ?? null;
@@ -167,8 +157,6 @@ export default {
   methods: {
     /** Устанавливаем значения списков по умолчанию */
     Update () {
-      console.log("aaaa", this.inputCurrency, this.mode, this.type);
-
       if (this.type === "index") {
         this.getCoinList = this.currencies.filter(e => ["COIN10USDT", "KAIZENUSDT", "CRYPTO100USDT", "DEFIUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       } else {
@@ -178,8 +166,6 @@ export default {
 
       if (this.inputCurrency && this.mode === "sell") {
         this.sendCoin = this.sendCoinList.find(e => e.symbol.toUpperCase() === this.inputCurrency.toUpperCase());
-        // this.getCoin = this.getCoinList.find(e => e.symbol.split("USDT")[0].toUpperCase() === "USD");
-        // console.log(this.getCoin, this.getCoinList);
       } else {
         this.sendCoin = this.sendCoinList[0]; // .filter(e => e.symbol === "usd");
       }
@@ -192,9 +178,6 @@ export default {
       } else {
         this.getCoin = this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
       }
-      // this.getCoin = this.indexFromUrl
-      //   ? this.getCoinList.find(e => e.symbol.split("USDT")[0] === this.indexFromUrl)
-      //   : this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
     },
 
     /** Слушатель события ввода получаемых монет */
@@ -258,33 +241,17 @@ export default {
     sendSelect (event) {
       this.sendCoin = event;
       this.clearFields();
-      if (this.sendCoin.symbol === "fcoin") {
-        this.getCoin = this.wallets.filter(e => e.symbol === "oro")[0];
-        this.getCoinList = this.wallets.filter(e => ["fcash", "oro"].includes(e.symbol));
-      }
-      if (this.sendCoin.symbol === "fcash") {
-        this.getCoin = this.wallets.filter(e => e.symbol === "fcoin")[0];
-        this.getCoinList = this.wallets.filter(e => ["fcoin"].includes(e.symbol));
-      }
     },
 
     /** Выбор типа получаемой монеты */
     getSelect (event) {
       this.getCoin = event;
       this.clearFields();
-      if (this.getCoin.symbol === "fcoin") {
-        this.sendCoin = this.wallets.filter(e => e.symbol === "fcash")[0];
-        this.sendCoinList = this.wallets.filter(e => ["fcash", "fcoin"].includes(e.symbol));
-      }
-      if (this.getCoin.symbol === "fcash") {
-        this.sendCoin = this.wallets.filter(e => e.symbol === "fcoin")[0];
-        this.sendCoinList = this.wallets.filter(e => ["fcoin", "fcash"].includes(e.symbol));
-      }
     },
 
     /** Очистка полей формы и данных */
     clearFields () {
-      this.getInput = this.sendInput = this.fee = this.errorValidate = null;
+      this.getInput = this.sendInput = this.errorValidate = null;
     },
 
     /** Установить max значение в поле */

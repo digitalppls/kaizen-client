@@ -6,14 +6,14 @@
       </p>
       <div class="m-l-a">
         <button
-          :disabled="!$store.getters.user.emailVerified"
+          :disabled="!emailVerified"
           class="btn btn-solid btn-small"
           @click="openModal('deposit')"
         >
           {{ $t("DEPOSIT") }}
         </button>
         <button
-          :disabled="!$store.getters.user.emailVerified"
+          :disabled="!emailVerified"
           class="btn btn-solid--tertiary btn-small"
           @click="openModal('withdraw')"
         >
@@ -54,6 +54,11 @@ export default {
       showModal: false,
       modal: ""
     };
+  },
+  computed: {
+    emailVerified () {
+      return this.$store.getters.user?.emailVerified ?? false;
+    }
   },
   methods: {
     /** Открыть модальное окно */
