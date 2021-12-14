@@ -89,7 +89,6 @@ sw.*
 
 # Vim swap files
 *.swp
-/allwin.tar.gz
 
 # zip
 *.gz

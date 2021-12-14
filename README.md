@@ -1,5 +1,3 @@
-# allwin
-
 ## Build Setup
 
 ```bash

@@ -16,11 +16,6 @@ Vue.prototype.$toFixed = function (num, fixed) {
   return num.toFixed(10).toString().match(re)[0];
 };
 Vue.prototype.$isAddress = function (address, coinType) {
-  if (coinType === "alpha") { return address.length === 42; }
-  if (coinType.toLowerCase() === "allwin") { coinType = "eth"; }
-  if (coinType.toLowerCase() === "usdt") { coinType = "eth"; }
-  if (coinType.toLowerCase() === "zlw") { coinType = "eth"; }
-
   let status = true;
 
   try {
