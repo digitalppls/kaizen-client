@@ -45,42 +45,7 @@
     <!-- Information -->
     <div class="info info-section">
       <div class="container">
-        <div class="info-items m-b-40">
-          <div class="info-item">
-            <div class="info-item__label">
-              {{ $t("DATE_OF_FOUNDATION") }}
-            </div>
-            <div class="info-item__value">
-              Декабрь 2017
-            </div>
-          </div>
-          <div class="info-item">
-            <div class="info-item__label">
-              {{ $t("TOKEN") }}
-            </div>
-            <div class="info-item__value">
-              <img :src="require('~/assets/img/tokens/kzn.svg?inline')" alt="KZN">
-              KZN
-            </div>
-          </div>
-          <div class="info-item">
-            <div class="info-item__label">
-              {{ $t("TOKEN_VALUE") }}
-            </div>
-            <div class="info-item__value">
-              $ 4.595
-            </div>
-          </div>
-          <div class="info-item">
-            <div class="info-item__label">
-              {{ $t("VALUE_OF_ALL_FUND_ASSETS") }}
-            </div>
-            <div class="info-item__value">
-              $ 85.7M
-            </div>
-          </div>
-        </div>
-
+        <token-kzn-info/>
         <div class="info-blocks">
           <div class="info-block">
             <div class="info-block__icon">
@@ -437,10 +402,11 @@ import UiTab from "~/components/ui-tabs/ui-tab";
 import TradingView from "~/components/trading-view";
 import { INDEXES, WHITEPAPER } from "~/global";
 import UiPreloader from "~/components/ui/ui-preloader.global";
+import TokenKznInfo from "~/components/token-kzn-info";
 
 export default {
   name: "Home",
-  components: { UiPreloader, TradingView, UiTab, UiTabs },
+  components: { TokenKznInfo, UiPreloader, TradingView, UiTab, UiTabs },
   layout: "public",
   data () {
     return {
