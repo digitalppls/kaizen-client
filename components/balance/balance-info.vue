@@ -1,9 +1,16 @@
 <template>
   <div class="balance-info">
+    <nuxt-link :to="localePath('/my/profile')">
+      <div v-if="!emailVerified" class="w-100 text-center btn btn-outline--primary btn-small m-b-20">
+        Please Verify your email address for access to deposit!
+      </div>
+    </nuxt-link>
+
     <div class="balance-info__top">
       <p class="font-bold">
         {{ $t("BALANCE_INFORMATION") }}
       </p>
+
       <div class="m-l-a">
         <button
           :disabled="!emailVerified"
@@ -36,7 +43,7 @@
       </h2>
       <wallet33
         :method="modal === 'deposit' ? 0 : 1"
-        only-types="bep20usdt,trc20usdt,bep20btc"
+        only-types="bep20usdt,trc20usdt,bep20btc,bep20kzn,bep20vng,bep20srk"
       />
     </ui-modal>
   </div>

@@ -1,5 +1,8 @@
 <template>
-  <div class="token-swap">
+  <div v-if="!sendCoinList.length">
+    Please replenish your wallet before buy tokens...
+  </div>
+  <div v-else class="token-swap">
     <h2 v-if="mode" class="sub-title text-center">
       {{ $t(mode.toUpperCase()) }}
       <span class="color-primary">
@@ -38,7 +41,9 @@
               @input="sendSelect($event)"
             >
               <template #default="{ option }">
-                {{ option.symbol.toUpperCase() }}
+                <div style="text-transform: uppercase">
+                  {{ option ? option.symbol : "NO_SYMBOL" }}
+                </div>
               </template>
             </ui-select>
           </div>
@@ -66,7 +71,7 @@
             @input="getSelect($event)"
           >
             <template #default="{ option }">
-              {{ option.symbol.split("USDT")[0].toUpperCase() }}
+              {{ option ? option.symbol.split("USDT")[0].toUpperCase() : "NONE" }}
             </template>
           </ui-select>
         </template>
@@ -158,11 +163,11 @@ export default {
     /** Устанавливаем значения списков по умолчанию */
     Update () {
       if (this.type === "index") {
-        this.getCoinList = this.currencies.filter(e => ["COIN10USDT", "KAIZENUSDT", "CRYPTO100USDT", "DEFIUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
+        this.getCoinList = this.currencies.filter(e => ["KAIZENUSDT", "CRYPTO100USDT", "DEFIUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       } else {
-        this.getCoinList = this.currencies.filter(e => ["VNGUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
+        this.getCoinList = this.currencies.filter(e => ["VNGUSDT", "KZNUSDT", "SRKUSDT", "COIN10USDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       }
-      this.sendCoinList = this.wallets;
+      this.sendCoinList = this.mode === "sell" ? [] : this.wallets.filter(x => ["usdt", "usdc", "busd", "bnb", "eth", "btc", "trx"].includes(x.symbol));
 
       if (this.inputCurrency && this.mode === "sell") {
         this.sendCoin = this.sendCoinList.find(e => e.symbol.toUpperCase() === this.inputCurrency.toUpperCase());
@@ -184,6 +189,9 @@ export default {
     onSendInput () {
       this.sendInputUsd = this.$toUsd(this.$symbolCurrencySplitUsdt(this.sendCoin.symbol), this.sendInput);
       this.getInput = this.$fromUsd(this.$symbolCurrencySplitUsdt(this.getCoin.symbol), this.sendInputUsd);
+      console.log(this.sendCoin.symbol, this.sendInput);
+      console.log(this.sendInputUsd, this.getInput);
+
       this.errorValidate = this.sendInput > this.sendCoin.amount
         ? `Max ${this.sendCoin.amount.toLocaleString("en-US", this.$LOCALESTRING_CRYPTO())}`
         : "";

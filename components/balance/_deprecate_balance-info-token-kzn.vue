@@ -34,7 +34,6 @@
       </small>
     </div>
 
-
     <ui-modal
       v-if="showModal"
       @close="closeModal"

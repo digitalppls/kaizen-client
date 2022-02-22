@@ -8,7 +8,7 @@
         {{ tokenName }}
       </p>
       <p class="font-bold m-r-10">
-       {{ symbol.toUpperCase() }}
+        {{ symbol.toUpperCase() }}
       </p>
       <p class="font-light">
         {{ $t("PRICE") }} ≈ ${{ priceUsd }}
@@ -22,11 +22,11 @@
           {{ $t("BUY") }}
         </button>
         <button
-          :disabled="!balance"
-          class="btn btn-solid--tertiary btn-small"
+          disabled
+          class="btn btn-solid--secondary btn-small"
           @click="openModal('sell')"
         >
-          {{ $t("WITHDRAW") }}
+          {{ $t("SELL") }}
         </button>
       </div>
     </div>
@@ -49,12 +49,11 @@
       v-if="showModal"
       @close="closeModal"
     >
-      <h2 class="modal-title m-b-40">
-        {{ $t(modal.toUpperCase()) }} {{ symbol.toUpperCase() }}
-      </h2>
-      <p>
-        In developing...
-      </p>
+      <!--      <h2 class="modal-title m-b-40">-->
+      <!--        {{ $t(modal.toUpperCase()) }} {{ symbol.toUpperCase() }}-->
+      <!--      </h2>-->
+
+      <token-swap :input-currency="symbol.toUpperCase()" type="token" :mode="modal" />
     </ui-modal>
   </div>
 </template>
@@ -64,6 +63,7 @@ export default {
   name: "BalanceInfoToken",
   props: {
     symbol: {
+      default: "",
       type: String
     }
   },
@@ -73,11 +73,6 @@ export default {
       showModal: false,
       modal: ""
     };
-  },
-  mounted () {
-    this.$API.TokenSaleList(this.symbol, (sale) => {
-      this.sale = !sale?.list ? null : sale.list.find(x => x.isCurrent === true);
-    });
   },
   computed: {
     tokenName () {
@@ -92,6 +87,11 @@ export default {
     balance () {
       return this.$store.getters.wallets.find(e => e.symbol === this.symbol)?.amount ?? 0;
     }
+  },
+  mounted () {
+    this.$API.TokenSaleList(this.symbol, (sale) => {
+      this.sale = !sale?.list ? null : sale.list.find(x => x.isCurrent === true);
+    });
   },
   methods: {
     /** Открыть модальное окно */

@@ -40,6 +40,7 @@ export default {
   name: "TokenKznInfo",
   data () {
     return {
+      symbol: "kzn",
       sale: null
     };
   },

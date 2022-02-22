@@ -45,7 +45,7 @@
     <!-- Information -->
     <div class="info info-section">
       <div class="container">
-        <token-kzn-info/>
+        <token-kzn-info />
         <div class="info-blocks">
           <div class="info-block">
             <div class="info-block__icon">
@@ -405,6 +405,7 @@ import UiPreloader from "~/components/ui/ui-preloader.global";
 import TokenKznInfo from "~/components/token-kzn-info";
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: "Home",
   components: { TokenKznInfo, UiPreloader, TradingView, UiTab, UiTabs },
   layout: "public",

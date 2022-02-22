@@ -3,9 +3,11 @@ export default {
     PROXY: process.env.PROXY || "",
     isDev: process.env.NODE_ENV !== "production"
   },
-  server: {
-    port: process.env.PORT
-  },
+  server: process.env.PROXY
+    ? {
+        port: process.env.PORT
+      }
+    : {},
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
   target: "static", // target: "static",
@@ -182,22 +184,22 @@ export default {
     ? {
         "/server": {
           target: process.env.PROXY
-          // pathRewrite: { "^/server": "/" }
+        // pathRewrite: { "^/server": "/" }
         },
         "/socket.io": {
           target: process.env.PROXY
-          // pathRewrite: { "^/socket.io": "/" }
+        // pathRewrite: { "^/socket.io": "/" }
         },
         "/api": {
           target: process.env.PROXY
-          // pathRewrite: { "^/api": "/" }
+        // pathRewrite: { "^/api": "/" }
         }
       }
     : {},
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // baseURL: ""
+    baseURL: "/"
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

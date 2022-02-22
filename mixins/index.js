@@ -187,7 +187,9 @@ export default {
     },
 
     symbolCurrencySplitUsdt (coin) {
-      return coin.toUpperCase().split("USDT")[0];
+      const UPCASE = coin.toUpperCase();
+      if (UPCASE==="USDT") return "USDT";
+      return UPCASE.split("USDT")[0];
     },
 
     toUsd (symbol, amount) {

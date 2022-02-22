@@ -171,7 +171,6 @@ $checkbox-size-checked: 14px;
       }
     }
 
-
     // стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked
     &:focus:not(:checked) + #{$label} {
       &:before {

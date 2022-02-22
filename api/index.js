@@ -60,7 +60,6 @@ export default $axios => (proxy, store) => ({
     );
   },
 
-
   UserEmailVerify (promiseFuncSuccess, promiseFuncFail) {
     this.request(
       "post",
@@ -182,7 +181,6 @@ export default $axios => (proxy, store) => ({
       promiseFuncFail
     );
   },
-
 
   request (type, path, data, promiseFuncSuccess, promiseFuncFail) {
     const config = {};
