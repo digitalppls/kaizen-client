@@ -60,6 +60,7 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+
   UserEmailVerify (promiseFuncSuccess, promiseFuncFail) {
     this.request(
       "post",
@@ -96,6 +97,16 @@ export default $axios => (proxy, store) => ({
       "post",
       "ref/list/",
       data,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
+  TokenSaleList (symbol, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      `token/${symbol}/sale/list/`,
+      false,
       promiseFuncSuccess,
       promiseFuncFail
     );
@@ -182,7 +193,7 @@ export default $axios => (proxy, store) => ({
     // console.log("API Request", type, path, data);
 
     if (type === "post") {
-      $axios.$post(`${proxy}/api/${path}`, data, config).then((response) => {
+      $axios.$post(`/api/${path}`, data, config).then((response) => {
         if (promiseFuncSuccess) {
           promiseFuncSuccess(response);
         }
@@ -199,7 +210,7 @@ export default $axios => (proxy, store) => ({
       if (data) {
         config.params = data;
       }
-      $axios.$get(`${proxy}/api/${path}`, config).then((response) => {
+      $axios.$get(`/api/${path}`, config).then((response) => {
         if (promiseFuncSuccess) {
           promiseFuncSuccess(response);
         }

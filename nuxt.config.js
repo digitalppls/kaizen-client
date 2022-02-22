@@ -1,20 +1,10 @@
-import fs from "fs";
-import path from "path";
-// "https://kaizenfund.io" // http://165.232.120.92"
 export default {
   env: {
     PROXY: process.env.PROXY || "",
     isDev: process.env.NODE_ENV !== "production"
   },
   server: {
-    port: 80,
-    https: process.env.HTTPS === "true"
-      ? {
-        key: fs.readFileSync(path.resolve(__dirname, "cert", "server.key")),
-        cert: fs.readFileSync(path.resolve(__dirname, "cert", "server.crt"))
-      }
-      : null,
-    host: "0.0.0.0"
+    port: process.env.PORT
   },
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -144,7 +134,7 @@ export default {
     { src: "~plugins/click-outside.js", ssr: false },
     { src: "~plugins/axios.js", ssr: false },
     { src: "~plugins/donut.js", ssr: false },
-    { src: "~plugins/tooltip.js", ssr: false },
+    { src: "~plugins/tooltip.js", ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -190,21 +180,24 @@ export default {
 
   proxy: process.env.PROXY
     ? {
-      "/server": {
-        target: process.env.PROXY,
-        pathRewrite: { "^/server": "/" }
-      },
-      "/socket.io": {
-        target: process.env.PROXY
+        "/server": {
+          target: process.env.PROXY
+          // pathRewrite: { "^/server": "/" }
+        },
+        "/socket.io": {
+          target: process.env.PROXY
+          // pathRewrite: { "^/socket.io": "/" }
+        },
+        "/api": {
+          target: process.env.PROXY
+          // pathRewrite: { "^/api": "/" }
+        }
       }
-    }
     : {},
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: process.env.PROXY
-      ? "/server"
-      : "/"
+    // baseURL: ""
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
