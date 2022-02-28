@@ -60,7 +60,7 @@
 import VerifyEmail from "~/components/verify-email";
 
 export default {
-  name: "Profile",
+  name: "PageProfile",
   components: { VerifyEmail },
   data () {
     return {

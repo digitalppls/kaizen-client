@@ -1,5 +1,15 @@
 <template>
-  <div
+  <ul class="header_lang">
+    <li>
+      <a class="active" href="#">RU</a>
+    </li>
+    <li>
+      <a href="#">EN</a>
+    </li>
+  </ul>
+
+  <!-- <div
+    v-if="false"
     v-click-outside="close"
     class="lang"
   >
@@ -32,7 +42,7 @@
         >
       </nuxt-link>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>

@@ -29,6 +29,7 @@ export default {
     Vue.prototype.$TimeText = this.TimeText;
     Vue.prototype.$declOfNum = this.declOfNum;
     Vue.prototype.$isDev = this.isDev;
+    Vue.prototype.$externalLink = this.externalLink;
   },
 
   computed: {
@@ -41,6 +42,10 @@ export default {
   },
 
   methods: {
+    externalLink (link) {
+      return link.includes("http");
+    },
+
     localeStringPERCENT (min = 2, max = 2) {
       return {
         style: "percent",

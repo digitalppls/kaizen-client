@@ -33,7 +33,7 @@
 import UiDropdown from "~/components/ui/ui-dropdown";
 
 export default {
-  name: "Userbar",
+  name: "UserBar",
   components: { UiDropdown },
   data () {
     return {};

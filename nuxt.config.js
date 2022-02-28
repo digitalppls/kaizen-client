@@ -117,10 +117,19 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   styleResources: {
-    scss: ["@/assets/scss/variables.scss", "@/assets/scss/mixins/mixins.scss"]
+    scss: [
+      "@/assets/scss/variables.scss",
+      "@/assets/scss/mixins/mixins.scss",
+      "@/assets/scss/vars.scss",
+      "@/assets/scss/functions.scss"
+    ]
   },
 
   css: [
+    {
+      src: "@/assets/scss/style.scss",
+      lang: "scss"
+    },
     {
       src: "@/assets/scss/template.scss",
       lang: "scss"

@@ -1,53 +1,56 @@
 <template>
-  <footer class="site-footer">
-    <div class="site-footer__container container">
-      <logo class="site-footer__logo" />
-
-      <ul class="site-footer__menu footer-menu">
-        <li
-          v-for="(item, idx) in menuItems"
-          :key="idx"
-          class="footer-menu__item"
-        >
-          <a
-            v-if="item.url.startsWith('http')"
-            :href="item.url"
-            :target="item.target"
-          >
-            {{ $t(item.title) }}
-          </a>
-          <a
-            v-else-if="item.url === 'indexes' && isHomePage"
-            :href="`#${item.url}`"
-            @click="goTo(item.url)"
-            v-text="$t(item.title)"
-          />
-          <nuxt-link
-            v-else-if="item.url === 'indexes'"
-            :to="`${localePath('index')}#${item.url}`"
-            v-text="$t(item.title)"
-          />
-          <nuxt-link
-            v-else
-            :to="localePath(item.url)"
-            v-text="$t(item.title)"
-          />
-        </li>
-      </ul>
-
-      <div class="site-footer__copyrights">
-        &copy; KaizenFund. {{ year }}
+  <footer class="footer">
+    <div class="container">
+      <div class="footer_logo">
+        <img src="~/assets/img/logo.svg" alt="">
       </div>
-    </div>
-
-    <div v-if="hideFooterText" class="site-footer__textblock container m-t-50">
-      <p
-        class="lh-135 m-b-5"
-        v-html="$t('FOOTER_CONTACTS').replaceAll('%{PHONE}', phone).replaceAll('%{EMAIL}', email)"
-      />
-      <p class="lh-135 m-b-20" v-html="$t('FOOTER_TXT_1')" />
-      <p class="lh-135 m-b-20" v-html="$t('FOOTER_TXT_2')" />
-      <p class="lh-135" v-html="$t('DENIAL_OF_RESPONSIBILITY')" />
+      <div class="footer_menu">
+        <nav class="menu">
+          <ul class="menu_list">
+            <li
+              v-for="(item, idx) in menuItems"
+              :key="idx"
+            >
+              <a
+                v-if="$externalLink(item.url)"
+                :class="['animate__animated', 'wow', 'animate__slideInDown']"
+                :data-wow-delay="`${1 / menuItems.length}s`"
+                :href="item.url"
+                v-text="$t(item.title)"
+              />
+              <nuxt-link
+                v-else-if="item.url === 'indexes'"
+                :to="`${localePath('index')}#${item.url}`"
+                :class="['animate__animated', 'wow', 'animate__slideInDown']"
+                :data-wow-delay="`${1 / menuItems.length}s`"
+                @click="goTo(item.url)"
+                v-text="$t(item.title)"
+              />
+              <nuxt-link
+                v-else
+                :exact="!!localePath('index')"
+                no-prefetch
+                :to="localePath(item.url)"
+                :class="['animate__animated', 'wow', 'animate__slideInDown', {'active' : $route.matched[0].path.replace('/', '') === item.url}]"
+                :data-wow-delay="`${1 / menuItems.length}s`"
+                active-class="active"
+                v-text="$t(item.title)"
+              />
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer_social">
+        <a href="#" class="social">
+          <img src="~/assets/img/youtube.svg" alt="">
+        </a>
+        <a href="#" class="social">
+          <img src="~/assets/img/telegram.svg" alt="">
+        </a>
+        <a href="#" class="social">
+          <img src="~/assets/img/twitter.svg" alt="">
+        </a>
+      </div>
     </div>
   </footer>
 </template>
@@ -62,6 +65,7 @@ export default {
       menuVisible: false,
       phone: "+1 (345) 769-4099",
       email: "info@invictuscapital.com",
+      TERMS,
       menuItems: [
         {
           title: "HOME",
@@ -91,12 +95,6 @@ export default {
       const year = new Date().getFullYear().toString().slice(2);
       return `2k${year}`;
     },
-    terms () {
-      return TERMS;
-    },
-    hideFooterText () {
-      return this.$nuxt.$data.layoutName === "public";
-    },
     isHomePage () {
       return this.$route.matched[0].path.replace("/", "") === "";
     }
@@ -114,103 +112,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.site-footer {
-  padding: 50px 0;
-  background-color: var(--color-gray-light);
 
-  &__container {
-    @include respond-before("lg") {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-  }
-
-  &__logo {
-    @include respond-before("lg") {
-      margin-right: 20px;
-    }
-  }
-
-  &__copyrights {
-    @include fontGothamPro("regular", true);
-    margin-top: 20px;
-    font-size: 14px;
-
-    @include respond-before("lg") {
-      margin-top: 0;
-    }
-  }
-
-  &__textblock {
-    @include fontGothamPro("regular", true);
-    font-size: 14px;
-    color: #a7a9b7;
-
-    &::v-deep a {
-      color: #a7a9b7;
-    }
-  }
-}
-
-.footer-menu {
-  list-style-type: none;
-  margin: 30px -10px 0;
-
-  @include respond-before("md") {
-    display: flex;
-    margin: 30px -20px 0;
-    align-items: center;
-  }
-  @include respond-before("lg") {
-    margin: 0 auto;
-  }
-
-  &__item {
-    margin: auto;
-    padding: 0;
-    line-height: 1em;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    display: inline-block;
-
-    @include respond-before("md") {
-      display: block;
-      margin: 0;
-
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-    @include respond-before("lg") {
-    }
-
-    a {
-      color: #555860;
-      display: block;
-      padding: 15px 10px;
-      border-radius: 12px;
-
-      @include respond-before("md") {
-        padding: 15px 20px;
-      }
-      @include respond-before("lg") {
-        padding: 15px;
-      }
-      @include respond-before("xl") {
-        padding: 15px 20px;
-      }
-
-      &:hover {
-        color: var(--color-dark);
-      }
-
-      &.nuxt-link-exact-active {
-        color: var(--color-dark);
-        font-weight: 600;
-      }
-    }
-  }
-}
 </style>

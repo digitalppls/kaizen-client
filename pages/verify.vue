@@ -23,7 +23,7 @@
 import VerifyEmail from "~/components/verify-email";
 
 export default {
-  name: "Verify",
+  name: "PageVerify",
   components: { VerifyEmail },
   layout: "public",
   computed: {

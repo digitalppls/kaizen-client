@@ -47,7 +47,7 @@
 <script>
 
 export default {
-  name: "Projects",
+  name: "PageProjects",
   layout: "public",
   data () {
     return {

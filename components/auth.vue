@@ -189,7 +189,7 @@
 
 <script>
 export default {
-  name: "Auth",
+  name: "LoginAuth",
   props: {
     mode: {
       type: String,

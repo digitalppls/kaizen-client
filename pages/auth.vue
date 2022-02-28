@@ -10,7 +10,7 @@
 import Auth from "~/components/auth";
 
 export default {
-  name: "Login",
+  name: "PageLogin",
   components: { Auth },
   layout: "public",
   middleware: ["auth"],

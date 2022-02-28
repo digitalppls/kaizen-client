@@ -1,11 +1,9 @@
 <template>
   <div>
     <site-header />
-    <div class="site-content">
-      <Nuxt ref="nuxt" />
-    </div>
+    <Nuxt ref="nuxt" />
     <site-footer />
-    <cookies-banner />
+    <cookies-banner v-if="false" />
   </div>
 </template>
 
@@ -27,24 +25,9 @@ export default {
       return process.env.isDev;
     }
   },
-  watch: {
-    $route () {
-      setTimeout(this.FooterToBottom, 100);
-    }
-  },
   mounted () {
-    this.FooterToBottom();
   },
   methods: {
-    FooterToBottom () {
-      const bodyHeight = document.querySelector("body").offsetHeight;
-      const siteContentHeight = document.querySelector(".site-content").offsetHeight;
-      if (siteContentHeight <= bodyHeight) {
-        document.querySelector("body").classList.add("footer-to-bottom");
-      } else {
-        document.querySelector("body").classList.remove("footer-to-bottom");
-      }
-    }
   }
 };
 </script>
