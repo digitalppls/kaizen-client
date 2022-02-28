@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="hero-section">
     <div class="container">
       <div class="page-profile">
         <div class="page-profile__inline-menu inline-menu-wrap">

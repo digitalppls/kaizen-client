@@ -106,6 +106,7 @@ body {
     width: 100%;
     padding: 25px 50px;
     margin-bottom: 20px;
+
     @include min(768px) {
       width: auto;
     }
@@ -294,46 +295,6 @@ img {
   @include min(768px) {
     font-size: 64px;
     line-height: 100%;
-  }
-}
-
-.btn {
-  display: inline-block;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 19px;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  color: white;
-  transition: 0.3s;
-  text-align: center;
-  background: rgba(20, 21, 23, 0.8);
-
-  &:hover {
-    transform: scale(1.05);
-  }
-
-  &-blue,
-  &-red,
-  &-yellow,
-  &-accent {
-    color: var(--col-black);
-  }
-
-  &-blue {
-    background-color: var(--col-blue);
-  }
-
-  &-red {
-    background-color: var(--col-red);
-  }
-
-  &-yellow {
-    background-color: var(--col-yellow);
-  }
-
-  &-accent {
-    background: var(--col-accent);
   }
 }
 
@@ -564,5 +525,46 @@ img {
         height: calc(80px * var(--arrow-vertical) + 20px * var(--arrow-horizontal));
       }
     }
+  }
+}
+
+.btn {
+  $self: &;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: white;
+  transition: 0.3s;
+  text-align: center;
+  background: rgba(20, 21, 23, 0.8);
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &-blue,
+  &-red,
+  &-yellow,
+  &-accent {
+    color: var(--col-black) !important;
+  }
+
+  &-blue {
+    background-color: var(--col-blue);
+  }
+
+  &-red {
+    background-color: var(--col-red);
+  }
+
+  &-yellow {
+    background-color: var(--col-yellow);
+  }
+
+  &-accent {
+    background: var(--col-accent);
   }
 }

@@ -185,7 +185,7 @@ export default {
               {
                 label: `${this.$t("BUY")} VNG`,
                 url: "",
-                classes: ["btn-blue", "action"]
+                classes: ["btn-yellow", "action"]
               },
               {
                 label: this.$t("MORE_DETAILS"),
@@ -202,7 +202,7 @@ export default {
               {
                 label: `${this.$t("BUY")} SRK`,
                 url: "",
-                classes: ["btn-blue", "action"]
+                classes: ["btn-red", "action"]
               },
               {
                 label: this.$t("MORE_DETAILS"),
