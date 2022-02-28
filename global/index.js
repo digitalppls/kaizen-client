@@ -1,7 +1,14 @@
 const currentTime = new Date().getTime();
 const TERMS = "/terms.pdf";
 const WHITEPAPER = `#?${currentTime}`;
-
+const SOCIALS = {
+  youtube: "http://youtube.com/",
+  telegram: "https://t.me/",
+  twitter: "https://twitter.com/",
+  instagram: "",
+  facebook: "",
+  discord: ""
+};
 const INDEXES = [
   {
     id: 1,
@@ -705,4 +712,4 @@ const INDEXES = [
     ]
   }
 ];
-export { INDEXES, TERMS, WHITEPAPER };
+export { INDEXES, TERMS, WHITEPAPER, SOCIALS };

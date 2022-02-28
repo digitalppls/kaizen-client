@@ -8,47 +8,47 @@
         <nav class="menu">
           <ul class="menu_list">
             <li
-              v-for="(item, idx) in menuItems"
-              :key="idx"
+              v-for="(item, key) in menuItems"
+              :key="key"
             >
               <a
                 v-if="$externalLink(item.url)"
                 :class="['animate__animated', 'wow', 'animate__slideInDown']"
-                :data-wow-delay="`${1 / menuItems.length}s`"
+                :data-wow-delay="`${key / menuItems.length}s`"
                 :href="item.url"
-                v-text="$t(item.title)"
+                v-text="item.title"
               />
               <nuxt-link
                 v-else-if="item.url === 'indexes'"
                 :to="`${localePath('index')}#${item.url}`"
                 :class="['animate__animated', 'wow', 'animate__slideInDown']"
-                :data-wow-delay="`${1 / menuItems.length}s`"
+                :data-wow-delay="`${key / menuItems.length}s`"
                 @click="goTo(item.url)"
-                v-text="$t(item.title)"
+                v-text="item.title"
               />
               <nuxt-link
                 v-else
                 :exact="!!localePath('index')"
                 no-prefetch
-                :to="localePath(item.url)"
+                :to="item.url"
                 :class="['animate__animated', 'wow', 'animate__slideInDown', {'active' : $route.matched[0].path.replace('/', '') === item.url}]"
-                :data-wow-delay="`${1 / menuItems.length}s`"
+                :data-wow-delay="`${key / menuItems.length}s`"
                 active-class="active"
-                v-text="$t(item.title)"
+                v-text="item.title"
               />
             </li>
           </ul>
         </nav>
       </div>
       <div class="footer_social">
-        <a href="#" class="social">
-          <img src="~/assets/img/youtube.svg" alt="">
-        </a>
-        <a href="#" class="social">
-          <img src="~/assets/img/telegram.svg" alt="">
-        </a>
-        <a href="#" class="social">
-          <img src="~/assets/img/twitter.svg" alt="">
+        <a
+          v-for="(link, type, key) in socials"
+          :key="key"
+          :href="link"
+          class="social"
+          target="_blank"
+        >
+          <img :src="require(`~/assets/img/${type}.svg`)" alt="">
         </a>
       </div>
     </div>
@@ -56,36 +56,37 @@
 </template>
 
 <script>
-import { TERMS } from "~/global";
+import { TERMS, SOCIALS } from "~/global";
 
 export default {
   name: "SiteFooter",
   data () {
     return {
-      menuVisible: false,
-      phone: "+1 (345) 769-4099",
-      email: "info@invictuscapital.com",
       TERMS,
       menuItems: [
         {
-          title: "HOME",
-          url: "index"
+          title: this.$t("HOME"),
+          url: this.localePath("index")
         },
         {
-          title: "INDEXES",
-          url: "indexes"
+          title: this.$t("INDEXES"),
+          url: this.localePath("indexes")
         },
         {
-          title: "PROJECTS",
-          url: "projects"
+          title: this.$t("MINING"),
+          url: this.localePath("mining")
         },
         {
-          title: "COMPANY",
-          url: "about"
+          title: this.$t("PRODUCTION"),
+          url: this.localePath("production")
         },
         {
-          title: "FAQ",
-          url: "faq"
+          title: this.$t("INDICATORS"),
+          url: this.localePath("indicators")
+        },
+        {
+          title: this.$t("COMPANY"),
+          url: this.localePath("about")
         }
       ]
     };
@@ -95,17 +96,17 @@ export default {
       const year = new Date().getFullYear().toString().slice(2);
       return `2k${year}`;
     },
+    socials () {
+      const list = [];
+      for (const prop in SOCIALS) {
+        if (Object.prototype.hasOwnProperty.call(SOCIALS, prop)) {
+          list[prop] = SOCIALS[prop];
+        }
+      }
+      return list;
+    },
     isHomePage () {
       return this.$route.matched[0].path.replace("/", "") === "";
-    }
-  },
-  methods: {
-    /** Скроллинг к div */
-    goTo (id) {
-      const element = document.getElementById(id);
-      const top = element.offsetTop;
-
-      window.scrollTo(0, top);
     }
   }
 };

@@ -1,9 +1,7 @@
 <template>
   <div>
     <site-header />
-    <div class="site-content">
-      <Nuxt ref="nuxt" />
-    </div>
+    <Nuxt ref="nuxt" />
     <site-footer />
   </div>
 </template>
