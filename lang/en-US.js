@@ -77,6 +77,7 @@ export default {
   "DAY": "Day",
   "WEEK": "Week",
   "MONTH": "Month",
+  "DECEMBER": "December",
 
   "LOGIN": "Login",
   "LOGOUT": "Sign out",
@@ -216,21 +217,8 @@ export default {
   "START_INVESTING": "Start investing",
   "CABINET": "Cabinet",
 
-  // Home info
-  "DATE_OF_FOUNDATION": "Date of foundation",
-  "TOKEN": "Token",
-  "TOKENS": "Tokens",
-  "TOKEN_VALUE": "Token value",
-  "VALUE_OF_ALL_FUND_ASSETS": "The value of all fund assets",
-  "HOME_INFO_BLOCK_H_1": "Fund overview",
-  "HOME_INFO_BLOCK_T_1": "One page overview",
-  "HOME_INFO_BLOCK_H_2": "Quarterly reports",
-  "HOME_INFO_BLOCK_T_2": "Market analytics and financial results",
-  "HOME_INFO_BLOCK_H_3": "Detailed report",
-  "HOME_INFO_BLOCK_T_3": "How it works",
-
   // Home info chart
-  "INFOCHART_TITLE": "Four highly profitable and balanced indices of the planet",
+  "INFOCHART_TITLE": "Four high-yield market project indices",
   "INFOCHART_DESC": "Choose a secure way to get diversified access to the world's leading cryptocurrencies. The fund monitors the leading segments of the cryptocurrency sector and ensures the safety and ease of access to financial instruments.",
   "CRYPTOCURRENCIES": "Cryptocurrencies",
   "EXCHANGES": "Exchanges",
@@ -370,4 +358,16 @@ export default {
   // DEFI PAGE INDEX
   "DEFI_DESC": "Index tracks and measures the performance of a basket of assets in a standardized way. There are two types of indices: single underlying price indices and composite price indices. The single underlying price indices mainly focus on tracking some specific underlying instrument price with the same underlying across different markets; while the composite price indices are combinations of different underlying instruments intended to measure the overall market (or subset) performance over time, the indices price usually calculated as weighted average price of the components.",
 
+  // Indexes page
+  "DATE_OF_FOUNDATION": "Date of foundation",
+  "TOKEN": "Token",
+  "TOKENS": "Tokens",
+  "TOKEN_VALUE": "Token value",
+  "VALUE_OF_ALL_FUND_ASSETS": "The value of all fund assets",
+  "HOME_INFO_BLOCK_H_1": "Fund overview",
+  "HOME_INFO_BLOCK_T_1": "One page overview",
+  "HOME_INFO_BLOCK_H_2": "Quarterly reports",
+  "HOME_INFO_BLOCK_T_2": "Market analytics and financial results",
+  "HOME_INFO_BLOCK_H_3": "Detailed report",
+  "HOME_INFO_BLOCK_T_3": "How it works",
 };

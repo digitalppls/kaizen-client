@@ -101,7 +101,7 @@ export default {
   width: 100%;
   border: 1px solid #55585f;
   outline: none;
-  background: transparent;
+  background: #242527;
   transition: border-color .5s ease;
   border-radius: 0;
   resize: none;

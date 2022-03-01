@@ -3,3 +3,47 @@
 @include font("Aktiv Grotesk Corp", "AktivGroteskCorp-Regular", "500", "normal");
 @include font("Aktiv Grotesk Corp", "AktivGroteskCorp-Bold", "700", "normal");
 @include font("Ford Antenna", "FordAntenna-Bold", "700", "normal");
+
+.font-300 {
+  font-weight: 300;
+}
+.font-400 {
+  font-weight: 400;
+}
+.font-500 {
+  font-weight: 500;
+}
+.font-700 {
+  font-weight: 700;
+}
+
+.h2 { @include h2; }
+.h3 { @include h3; }
+.h4 { @include h4; }
+
+$font-size-data: (
+  // desktop : mobile
+  10px: 10px,
+  12px: 12px,
+  14px: 14px,
+  16px: 16px,
+  18px: 20px,
+  20px: 20px,
+  22px: 22px,
+  24px: 24px,
+  26px: 30px,
+  28px: 28px,
+  30px: 30px,
+  36px: 36px,
+);
+.font-size {
+  @each $font-size-desktop, $font-size-mobile in $font-size-data {
+    &-#{strip-unit($font-size-desktop)} {
+      font-size: $font-size-mobile;
+
+      @include respond-before('md') {
+        font-size: $font-size-desktop;
+      }
+    }
+  }
+}

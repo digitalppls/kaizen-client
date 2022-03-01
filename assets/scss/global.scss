@@ -8,12 +8,18 @@
   --col-red: #ff434e;
   --col-bg: #121212;
 }
-
 .error-text {
   color: var(--col-red);
 }
 .color-success {
   color: var(--col-accent);
+}
+.color-main,
+.color-white {
+  color: var(--col-main);
+}
+.color-gray {
+  color: var(--col-gray);
 }
 
 html {
@@ -37,22 +43,23 @@ body {
 
 .main {
   position: relative;
-  @include min(768px) {
-    &:before {
-      content: "";
-      position: absolute;
-      display: block;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("~/assets/img/Stars-Twinkling.gif");
-      background-size: 100% auto;
-      background-repeat: repeat;
-      opacity: 0.2;
-      pointer-events: none;
-    }
-  }
+
+  //@include min(768px) {
+  //  &:before {
+  //    content: "";
+  //    position: absolute;
+  //    display: block;
+  //    top: 0;
+  //    left: 0;
+  //    width: 100%;
+  //    height: 100%;
+  //    background-image: url("~/assets/img/Stars-Twinkling.gif");
+  //    background-size: 100% auto;
+  //    background-repeat: repeat;
+  //    opacity: 0.2;
+  //    pointer-events: none;
+  //  }
+  //}
 }
 
 .container {
@@ -637,6 +644,10 @@ img {
 
   &-small {
     padding: 10px;
+  }
+
+  &-medium {
+    padding: 15px 30px;
   }
 
   &[disabled] {

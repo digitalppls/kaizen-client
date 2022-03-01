@@ -7,11 +7,11 @@
         </h1>
       </div>
       <div class="index-page__header__r">
-        <button class="btn btn-solid btn-small" @click="openModal('buy')">
+        <button class="btn btn-blue btn-medium" @click="openModal('buy')">
           {{ $t("BUY") }}
         </button>
         <button
-          class="btn btn-solid btn-small"
+          class="btn btn-red btn-medium"
           :disabled="disableSell"
           @click="openModal('sell')"
         >
@@ -22,7 +22,7 @@
 
     <div class="index-page__data m-b-30">
       <div class="index-page__data-item m-b-10">
-        <div class="font-medium font-size-20">
+        <div class="font-medium font-size-20 color-main">
           {{ marketCap.toLocaleString("en-US", $LOCALESTRING_USD(0, 0)) }}
         </div>
         <div class="small">
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="index-page__data-item m-b-10">
-        <div class="font-medium font-size-20">
+        <div class="font-medium font-size-20 color-main">
           <template v-if="indexData.inception_date">
             {{ indexData.inception_date.toLocaleDateString($i18n.locale, localeDateStringOptions) }}
           </template>
@@ -232,7 +232,7 @@ export default {
         symbol: this.symbol,
         interval: "D",
         timezone: "Etc/UTC",
-        theme: "light",
+        theme: "dark",
         style: 3,
         locale: this.$i18n.locale,
         toolbar_bg: "#f1f3f6",

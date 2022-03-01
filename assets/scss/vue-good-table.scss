@@ -48,6 +48,11 @@ table.vgt-table.vgt-table--dark {
     }
   }
 
+  th.line-numbers,
+  th.vgt-checkbox-col {
+    background: #1F2124;
+  }
+
   td.align-middle {
     vertical-align: middle;
   }

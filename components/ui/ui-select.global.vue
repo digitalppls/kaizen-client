@@ -114,10 +114,8 @@ export default {
 <style lang="scss" scoped>
 .ui-select {
   $self: &;
-  $input-padding-x: var(--input-padding-x);
-  $input-padding-y: var(--input-padding-y);
-  $input-padding-x-mob: var(--input-padding-x-mob);
-  $input-padding-y-mob: var(--input-padding-y-mob);
+  $input-padding-x: 10px;
+  $input-padding-y: 10px;
 
   &:focus,
   &:hover {
@@ -135,11 +133,10 @@ export default {
     flex-wrap: nowrap;
     align-items: center;
     width: 100%;
-    border: 1px solid var(--color-gray);
+    border: 1px solid #55585f;
     outline: none;
-    background: var(--body-bg);
+    background: #242527;
     transition: border-color 300ms ease;
-    border-radius: 6px;
 
     #{$self}--open & {
       //border-color: #fff;
@@ -171,15 +168,15 @@ export default {
 
   &__list {
     position: absolute;
-    top: calc(100% + 1px);
-    left: 0;
-    right: 0;
-    background: #e2e3e9; // var(--color-dark);
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    background: #242527; // var(--color-dark);
     z-index: 3;
+    border: 1px solid #55585f;
     max-height: 300px;
     overflow-x: auto;
     padding-top: 10px;
-    border-radius: 0 0 6px 6px;
 
     @include respond-before("md") {
       max-height: 400px;
@@ -206,17 +203,14 @@ export default {
     }
 
     &:hover {
-      background: #d4d5de; // var(--body-bg);
+      background: #353638; // var(--body-bg);
     }
   }
 
   &--inside {
     margin-left: -15px;
-    margin-right: calc(#{$input-padding-x-mob} * -1);
+    margin-right: calc(#{$input-padding-x} * -1);
 
-    @include respond-before('md') {
-      margin-right: calc(#{$input-padding-x} * -1);
-    }
     #{$self}__container {
       border: 0;
     }

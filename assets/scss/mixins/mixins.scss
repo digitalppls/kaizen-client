@@ -126,13 +126,13 @@
     font-size: 26px;
   }
   @include respond-before("md") {
-    font-size: 28px;
+    font-size: 30px;
   }
   @include respond-before("lg") {
-    font-size: 30px;
+    font-size: 32px;
   }
   @include respond-before("xl") {
-    font-size: 30px;
+    font-size: 32px;
   }
   @include respond-before("xxl") {
   }
