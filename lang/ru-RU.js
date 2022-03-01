@@ -257,7 +257,8 @@ export default {
   "MANAGING_PARTNER": "Управляющий партнер",
 
   // Cabinet
-  "DASHBOARD": "Кошелек",
+  "START_INVESTING": "Начать инвестировать",
+  "DASHBOARD": "Панель управления",
   "SHOW_CURRENCY": "Курсы монет",
   "CURRENCY_QUOTES": "Котировки валют",
   "COLLAPSE": "Свернуть",

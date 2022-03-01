@@ -10,7 +10,7 @@
       v-if="rows.length"
       :rows="rows"
       :columns="columns"
-      style-class="vgt-table"
+      style-class="vgt-table vgt-table--dark"
       compact-mode
     >
       <template slot="table-row" slot-scope="props">
@@ -163,7 +163,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/layouts/balance-info.scss";
+@import "~/assets/scss/components/balance-info.scss";
 
 .portfolio-indexes {
   border: 0;

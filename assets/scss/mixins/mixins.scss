@@ -98,7 +98,6 @@
   line-height: 1.25em;
   margin-bottom: 0;
   letter-spacing: $letter-spc-2;
-  @include fontTTNorms("bold");
 
   @include respond-before("sm") {
     font-size: 30px;
@@ -122,7 +121,6 @@
   margin-top: 1.5em;
   margin-bottom: 0.8em;
   letter-spacing: $letter-spc-2;
-  @include fontTTNorms("bold");
 
   @include respond-before("sm") {
     font-size: 26px;
@@ -141,7 +139,6 @@
 }
 
 @mixin h3() {
-  @include fontTTNorms("bold");
   font-size: 16px;
   line-height: 1.25em;
   margin-top: 1.5em;
@@ -159,7 +156,6 @@
   font-size: 20px;
   line-height: 1.35em;
   letter-spacing: $letter-spc-2;
-  @include fontTTNorms("bold");
 
   @include respond-before("sm") {
     font-size: 18px;
@@ -215,5 +211,4 @@
   margin-bottom: 30px;
   font-size: 20px;
   text-align: center;
-  @include fontTTNorms("bold");
 }

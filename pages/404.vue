@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <div class="hero-section">
+    <div class="main-section">
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn" v-text="$t('404_TITLE')" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="error.message" />

@@ -34,7 +34,6 @@ export default {
     font-size: 11px;
     margin-bottom: 5px;
     color: var(--color-primary);
-    @include fontTTNorms("bold");
 
     @include respond-before("xs") {
       font-size: 13px;
@@ -49,7 +48,6 @@ export default {
     color: var(--color-gray);
     font-size: 16px;
 
-    @include fontTTNorms("medium");
   }
 
   &__value2 {

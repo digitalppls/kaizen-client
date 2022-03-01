@@ -151,7 +151,6 @@ export default {
     font-size: 16px;
     color: var(--color-dark);
     word-break: break-all;
-    @include fontTTNorms("bold");
 
     @include respond-before("md") {
       overflow: hidden;

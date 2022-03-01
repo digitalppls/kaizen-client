@@ -34,7 +34,6 @@
           <ui-text-field
             v-if="false"
             v-model="ref"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="text"
@@ -57,7 +56,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="username"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="text"
@@ -70,7 +68,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="email"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="email"
@@ -83,7 +80,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="password"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             :type="viewPassword ? 'text' : 'password'"
@@ -112,7 +108,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="email"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="email"
@@ -125,7 +120,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="password"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             :type="viewPassword ? 'text' : 'password'"
@@ -162,7 +156,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="email"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="email"
@@ -500,16 +493,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ui-form__fieldset + .ui-form__fieldset {
+  margin-top: 20px;
+}
 .auth {
   &__box {
-    background: #fff;
+    background: #242527;
     margin: auto;
     width: 100%;
     max-width: 540px;
-    border-radius: 12px;
-    padding-bottom: 18px;
     overflow: hidden;
-    //box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
   }
 
   &__header {

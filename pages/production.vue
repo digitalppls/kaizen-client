@@ -4,9 +4,12 @@
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />
-        <button class="btn btn-yellow animate__animated wow animate__fadeIn" data-wow-delay=".5s">
-          {{ $t("BUY") }} SKR
-        </button>
+        <nuxt-link
+          :to="localePath(hasToken ? 'my' : 'auth')"
+          class="btn btn-yellow animate__animated wow animate__fadeIn"
+          data-wow-delay=".5s"
+          v-text="`${$t('BUY')} SRK`"
+        />
       </div>
     </div>
     <!-- Схема -->

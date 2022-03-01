@@ -1,13 +1,11 @@
 <template>
-  <div v-if="!sendCoinList.length">
+  <div v-if="!sendCoinList.length" style="padding: 30px;">
     Please replenish your wallet before buy tokens...
   </div>
   <div v-else class="token-swap">
-    <h2 v-if="mode" class="sub-title text-center">
+    <h2 v-if="mode" class="modal-title m-b-40">
       {{ $t(mode.toUpperCase()) }}
-      <span class="color-primary">
-        {{ inputCurrency.toUpperCase() }}
-      </span>
+      {{ inputCurrency.toUpperCase() }}
     </h2>
     <div class="m-b-20">
       <div v-if="sendCoin" class="text-right small">
@@ -19,7 +17,6 @@
       </div>
       <ui-text-field
         v-model.number="sendInput"
-        :floating="true"
         :label="$t('GIVE')"
         type="number"
         min="0"
@@ -57,7 +54,6 @@
     <div class="m-b-20">
       <ui-text-field
         v-model.number="getInput"
-        :floating="true"
         :label="`≈ ${$t('GET')}`"
         type="number"
         min="0"

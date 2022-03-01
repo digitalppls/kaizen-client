@@ -106,7 +106,6 @@ export default {
     font-size: 16px;
     z-index: 1;
     background-color: darken(#f8f8fb, 0%);
-    @include fontTTNorms("medium");
 
     &:before,
     &:after {

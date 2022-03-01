@@ -1,5 +1,5 @@
 <template>
-  <div class="page-login">
+  <div class="main-section">
     <div class="container">
       <auth :mode="mode" @change-tab="changeTab" />
     </div>
@@ -28,11 +28,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page-login {
-  padding-top: 50px;
-}
-</style>
-
-<style lang="scss">
-
 </style>

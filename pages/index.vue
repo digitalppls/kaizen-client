@@ -8,9 +8,12 @@
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s">
           {{ coverDesc }}
         </p>
-        <button class="btn btn-accent animate__animated wow animate__fadeIn" data-wow-delay=".5s">
-          Панель инструментов
-        </button>
+        <nuxt-link
+          :to="localePath(hasToken ? 'my' : 'auth')"
+          class="btn btn-accent animate__animated wow animate__fadeIn"
+          data-wow-delay=".5s"
+          v-text="$t(hasToken ? 'DASHBOARD' : 'START_INVESTING')"
+        />
       </div>
     </div>
 
@@ -156,63 +159,6 @@ export default {
           }
         ]
       },
-      DirectionsForDevelopment: {
-        title: "Направления развития",
-        desc: "На сегодняшний день, Kaizen располагает широким выбором инструментов и имеет в распоряжении развитую инфраструктуру.",
-        items: [
-          {
-            id: 2,
-            title: "Криптовалютные <span> ⸺ индексы</span>",
-            text: "Четыре самых высокодоходных криптовалютных индекса из разных секторов.",
-            buttons: [
-              {
-                label: `${this.$t("BUY")} KZN`,
-                url: "",
-                classes: ["btn-blue", "action"]
-              },
-              {
-                label: this.$t("MORE_DETAILS"),
-                url: "",
-                classes: ["details"]
-              }
-            ]
-          },
-          {
-            id: 1,
-            title: "Индустриальный <span> ⸺ майнинг</span>",
-            text: "Участвуйте в индустриальном майнинге Биткоина.",
-            buttons: [
-              {
-                label: `${this.$t("BUY")} VNG`,
-                url: "",
-                classes: ["btn-yellow", "action"]
-              },
-              {
-                label: this.$t("MORE_DETAILS"),
-                url: "",
-                classes: ["details"]
-              }
-            ]
-          },
-          {
-            id: 3,
-            title: "Реальный сектор <span> ⸺ производства</span>",
-            text: "Получайте прибыль от предприятий из реального сектора экономики.",
-            buttons: [
-              {
-                label: `${this.$t("BUY")} SRK`,
-                url: "",
-                classes: ["btn-red", "action"]
-              },
-              {
-                label: this.$t("MORE_DETAILS"),
-                url: "",
-                classes: ["details"]
-              }
-            ]
-          }
-        ]
-      },
       roadmap: {
         title: "Roadmap",
         desc: "2022 - 2023",
@@ -273,6 +219,65 @@ export default {
     },
     hasToken () {
       return this.$store.getters.hasToken;
+    },
+    DirectionsForDevelopment () {
+      return {
+        title: "Направления развития",
+        desc: "На сегодняшний день, Kaizen располагает широким выбором инструментов и имеет в распоряжении развитую инфраструктуру.",
+        items: [
+          {
+            id: 2,
+            title: "Криптовалютные <span> ⸺ индексы</span>",
+            text: "Четыре самых высокодоходных криптовалютных индекса из разных секторов.",
+            buttons: [
+              {
+                label: `${this.$t("BUY")} KZN`,
+                url: this.localePath(this.hasToken ? "my" : "auth"),
+                classes: ["btn-blue", "action"]
+              },
+              {
+                label: this.$t("MORE_DETAILS"),
+                url: this.localePath("indexes"),
+                classes: ["btn-outline details"]
+              }
+            ]
+          },
+          {
+            id: 1,
+            title: "Индустриальный <span> ⸺ майнинг</span>",
+            text: "Участвуйте в индустриальном майнинге Биткоина.",
+            buttons: [
+              {
+                label: `${this.$t("BUY")} VNG`,
+                url: this.localePath(this.hasToken ? "my" : "auth"),
+                classes: ["btn-yellow", "action"]
+              },
+              {
+                label: this.$t("MORE_DETAILS"),
+                url: this.localePath("mining"),
+                classes: ["btn-outline details"]
+              }
+            ]
+          },
+          {
+            id: 3,
+            title: "Реальный сектор <span> ⸺ производства</span>",
+            text: "Получайте прибыль от предприятий из реального сектора экономики.",
+            buttons: [
+              {
+                label: `${this.$t("BUY")} SRK`,
+                url: this.localePath(this.hasToken ? "my" : "auth"),
+                classes: ["btn-red", "action"]
+              },
+              {
+                label: this.$t("MORE_DETAILS"),
+                url: this.localePath("production"),
+                classes: ["btn-outline details"]
+              }
+            ]
+          }
+        ]
+      };
     }
   },
   mounted () {

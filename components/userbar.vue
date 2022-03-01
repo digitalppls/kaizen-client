@@ -85,7 +85,6 @@ export default {
     margin: 0 -20px;
     padding: 15px 20px;
     color: var(--base-text);
-    @include fontTTNorms("medium");
 
     &:first-child {
       margin-top: -15px;
@@ -112,7 +111,6 @@ export default {
 
     &--email {
       font-size: 20px;
-      @include fontTTNorms("bold");
     }
 
     &--wide {

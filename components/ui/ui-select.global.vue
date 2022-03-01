@@ -153,17 +153,11 @@ export default {
     cursor: pointer;
     overflow: hidden;
     background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0)'%3E%3Cpath d='M12 3.70745L10.585 2.29248L6 6.87747L1.41502 2.29248L8.91824e-07 3.70745L6 9.70745L12 3.70745Z' fill='%23D3D3D3'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect width='12' height='12' fill='white' transform='translate(12) rotate(90)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
-    background-position: right $input-padding-x-mob top 50%;
+    background-position: right $input-padding-x top 50%;
     background-repeat: no-repeat;
-    padding: $input-padding-y-mob $input-padding-x-mob;
+    padding: $input-padding-y $input-padding-x;
     padding-right: 40px;
     user-select: none;
-
-    @include respond-before("md") {
-      padding: $input-padding-y $input-padding-x;
-      padding-right: 50px;
-      background-position: right $input-padding-x top 50%;
-    }
 
     img,
     svg {

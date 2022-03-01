@@ -55,7 +55,7 @@
     <vue-good-table
       :rows="id === 'CRYPTO100' ? rows100 : rows"
       :columns="columns"
-      style-class="vgt-table"
+      style-class="vgt-table vgt-table--dark"
       :line-numbers="true"
     >
       <template slot="table-row" slot-scope="props">
@@ -360,7 +360,6 @@ export default {
       }
 
       &__label {
-        @include fontTTNorms("medium");
         //text-transform: uppercase;
       }
 

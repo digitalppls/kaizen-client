@@ -1,5 +1,5 @@
 <template>
-  <div class="hero-section">
+  <div class="main-section">
     <div class="container">
       <div class="page-profile">
         <div class="page-profile__inline-menu inline-menu-wrap">
@@ -98,6 +98,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main-section {
+  max-height: none;
+  min-height: auto;
+}
+
 .page-profile {
   @include respond-before("lg") {
     display: flex;
@@ -156,9 +161,8 @@ export default {
     &--active {
       color: #fff;
       //background-color: var(--color-primary);
-      background-color: #A7A9B7;
+      background-color: #373b40;
       //margin-left: 10px;
-      @include fontTTNorms("bold");
     }
   }
 }
@@ -168,8 +172,7 @@ export default {
 
   &-wrap {
     overflow-x: scroll;
-    border-radius: 12px;
-    background-color: #f8f8fb;
+    background-color:#1F2124;
 
     @include respond-to("lg") {
       position: sticky;
@@ -192,24 +195,18 @@ export default {
     color: var(--color-gray);
     display: block;
     padding: 15px;
-    border-radius: 12px;
     transition: margin .2s ease-in-out;
 
     &--active {
       color: #fff;
-      //background-color: var(--color-primary);
-      background-color: #A7A9B7;
-      //margin-left: 10px;
-      @include fontTTNorms("bold");
+      background-color: #373b40;
     }
   }
 }
 
 .sidebar {
-  background: #f9f9fa;
-  //height: 100%;
+  background: #1F2124;
   padding: 0;
-  border-radius: 12px;
   overflow: hidden;
 
   @include respond-before("lg") {

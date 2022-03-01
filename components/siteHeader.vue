@@ -2,7 +2,12 @@
   <header class="header">
     <div class="container">
       <div class="header_logo">
-        <img src="~/assets/img/logo.svg" alt="">
+        <nuxt-link
+          exact
+          :to="localePath('index')"
+        >
+          <img src="~/assets/img/logo.svg" alt="">
+        </nuxt-link>
       </div>
 
       <div class="header_menu">

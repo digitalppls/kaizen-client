@@ -14,23 +14,24 @@
       <div class="m-l-a">
         <button
           :disabled="!emailVerified"
-          class="btn btn-solid btn-small"
+          class="btn btn-blue"
           @click="openModal('deposit')"
         >
           {{ $t("DEPOSIT") }}
         </button>
         <button
           :disabled="!emailVerified"
-          class="btn btn-solid--tertiary btn-small"
+          class="btn"
           @click="openModal('withdraw')"
         >
           {{ $t("WITHDRAW") }}
         </button>
-        <nuxt-link v-if="false" :to="localePath('my-buy')" class="btn btn-solid btn-solid--tertiary btn-small">
+        <nuxt-link v-if="false" :to="localePath('my-buy')" class="btn btn-yellow">
           {{ $t("BUY") }}
         </nuxt-link>
       </div>
     </div>
+
     <user-wallets />
 
     <ui-modal
@@ -84,5 +85,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/layouts/balance-info.scss";
+@import "~/assets/scss/components/balance-info.scss";
 </style>

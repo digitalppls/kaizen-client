@@ -37,7 +37,8 @@
       </div>
       <div v-if="!hideChart && total" class="user-wallets-box__right">
         <vc-donut
-          foreground="#EAECEF"
+          background="#1F2124"
+          foreground="transparent"
           :size="175"
           :thickness="25"
           has-legend
@@ -181,7 +182,6 @@ export default {
     margin: 0.5em 0;
     font-size: 15px;
     letter-spacing: -0.02em;
-    @include fontTTNorms("medium");
 
     &-color {
       height: .75em;

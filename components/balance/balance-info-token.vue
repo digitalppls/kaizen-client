@@ -1,5 +1,5 @@
 <template>
-  <div class="balance-info">
+  <div :id="symbol" class="balance-info">
     <div class="balance-info__top">
       <p class="font-bold m-r-5">
         {{ $t("TOKENS") }}
@@ -16,7 +16,7 @@
       <div class="m-l-a">
         <button
           :disabled="!balance"
-          class="btn btn-solid btn-small"
+          :class="['btn', {'btn-blue': symbol === 'kzn'}, {'btn-yellow': symbol === 'vng'}, {'btn-red': symbol === 'srk'}]"
           @click="openModal('buy')"
         >
           {{ $t("BUY") }}
@@ -45,6 +45,7 @@
       ≈ ${{ $toUsd(symbol.toUpperCase(), balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
     </small>
     <vc-donut
+      background="#1F2124"
       foreground="#EAECEF"
       :size="175"
       :thickness="25"
@@ -149,7 +150,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/layouts/balance-info.scss";
+@import "~/assets/scss/components/balance-info.scss";
 .user-wallets {
  &-box {
    @include respond-before("md") {
@@ -206,7 +207,6 @@ export default {
     margin: 0.5em 0;
     font-size: 15px;
     letter-spacing: -0.02em;
-    @include fontTTNorms("medium");
 
     &-color {
       height: .75em;
