@@ -41,8 +41,17 @@ body {
   }
 }
 
+#__nuxt,
+#__layout,
+#__layout > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .main {
   position: relative;
+  flex: 1 0 auto;
 
   //@include min(768px) {
   //  &:before {

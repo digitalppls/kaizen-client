@@ -62,6 +62,7 @@ export default {
   "SELECTED": "Выбран",
   "SELECT_PLEASE": "Выберите",
   "MORE_DETAILS": "Подробнее",
+  "DOWNLOAD": "Скачать",
   "SHOW_ALL": "Показать все",
   "404_TITLE": "Страница не найдена",
 
@@ -319,4 +320,5 @@ export default {
   "HOME_INFO_BLOCK_T_3": "Как это работает",
   "HOME_INDEXES_TITLE": "Высочайший кредит доверия и минимальный риск",
   "JOIN": "Присоединиться",
+  "REPORT_NUMBER": "№ отчета"
 };

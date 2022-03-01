@@ -1,47 +1,77 @@
 <template>
-  <div class="container">
-    <h1 class="m-b-40">
-      Indicators
-    </h1>
+  <main class="main">
+    <div class="main-section">
+      <div class="container">
+        <h1 class="title">
+          {{ $t("INDICATORS") }}
+        </h1>
 
-    <details v-for="(item, idx) in faqItems" :key="idx">
-      <summary>
-        {{ $t(item.q) }}
-      </summary>
-      <div>
-        {{ $t(item.a) }}
+        <vue-good-table
+          :columns="columns"
+          :rows="rows"
+          style-class="vgt-table vgt-table--dark"
+        >
+          <template slot="table-row" slot-scope="props">
+            <template v-if="props.column.field == 'link'">
+              <a :href="props.row.link" class="btn btn-small">
+                {{ $t("DOWNLOAD") }}
+              </a>
+            </template>
+            <div v-else>
+              {{ props.formattedRow[props.column.field] }}
+            </div>
+          </template>
+        </vue-good-table>
       </div>
-    </details>
-  </div>
+    </div>
+  </main>
 </template>
 
 <script>
+import "vue-good-table/dist/vue-good-table.css";
+import { VueGoodTable } from "vue-good-table";
 
 export default {
-  name: "FAQ",
+  name: "PageIndicators",
+  components: { VueGoodTable },
   layout: "public",
   data () {
     return {
-      faqItems: [
+      columns: [
         {
-          q: "FAQ_Q_1",
-          a: "FAQ_A_1"
+          label: this.$t("DATE"),
+          field: "date",
+          type: "date",
+          sortable: false,
+          width: "10%",
+          dateInputFormat: "yyyy-MM-dd",
+          dateOutputFormat: "dd.MM.yyyy"
         },
         {
-          q: "FAQ_Q_2",
-          a: "FAQ_A_2"
+          label: this.$t("REPORT_NUMBER"),
+          field: "number",
+          width: "10%",
+          sortable: false
         },
         {
-          q: "FAQ_Q_3",
-          a: "FAQ_A_3"
+          label: this.$t("DESCRIPTION"),
+          field: "desc",
+          sortable: false
         },
         {
-          q: "FAQ_Q_4",
-          a: "FAQ_A_4"
-        },
+          label: this.$t("MORE_DETAILS"),
+          field: "link",
+          width: "10%",
+          sortable: false
+        }
+      ],
+      rows: [
         {
-          q: "FAQ_Q_5",
-          a: "FAQ_A_5"
+          id: 1,
+          date: "2021-09-21",
+          number: 1,
+          desc: "С 20.09 рынок показал параболлический рост, что обусловлено корелляцией первой криптовалюты с фондовым индексом S&P 500. Смотрите подробный отчёт",
+          link: "#"
         }
       ]
     };
