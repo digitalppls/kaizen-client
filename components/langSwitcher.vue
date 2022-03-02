@@ -1,5 +1,5 @@
 <template>
-  <ul class="header_lang">
+  <ul v-if="false" class="header_lang">
     <li>
       <a class="active" href="#">RU</a>
     </li>
