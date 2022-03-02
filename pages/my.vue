@@ -176,8 +176,9 @@ export default {
 
     @include respond-to("lg") {
       position: sticky;
-      top: 70px;
+      top: 90px;
       z-index: 10;
+      box-shadow: 0 0 18px var(--col-black);
     }
   }
   &__item {

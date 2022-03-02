@@ -8,8 +8,8 @@
       {{ inputCurrency.toUpperCase() }}
     </h2>
     <div class="m-b-20">
-      <div v-if="sendCoin" class="text-right small">
-        <span class="color-gray">{{ $t("AVAILABLE") }}:</span>
+      <div v-if="sendCoin" class="text-right small m-b-5">
+        <span class="color-gray font-300">{{ $t("AVAILABLE") }}:</span>
         <span class="font-medium">
           {{ (sendCoin.amount > 0 ? sendCoin.amount : 0).toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
         </span>
@@ -67,7 +67,7 @@
             @input="getSelect($event)"
           >
             <template #default="{ option }">
-              {{ option ? option.symbol.split("USDT")[0].toUpperCase() : "NONE" }}
+              {{ option ? option.symbol.split("USDT")[0] : "NONE" }}
             </template>
           </ui-select>
         </template>
@@ -76,14 +76,14 @@
     <div class="m-t-40">
       <button
         class="btn btn-solid btn-full"
-        :disabled="loading || done || !wallets.length || sendInput > sendCoin.amount || !sendInput || !getInput || $symbolCurrencySplitUsdt(sendCoin.symbol).toLowerCase() === $symbolCurrencySplitUsdt(getCoin.symbol).toLowerCase()"
+        :disabled="loading || !wallets.length || sendInput > sendCoin.amount || !sendInput || !getInput || $symbolCurrencySplitUsdt(sendCoin.symbol).toLowerCase() === $symbolCurrencySplitUsdt(getCoin.symbol).toLowerCase()"
         @click="onExchange"
       >
         <template v-if="loading">
-          <ui-preloader size="small" color="black" />
+          <ui-preloader size="small" color="white" />
         </template>
         <template v-else-if="done">
-          <ui-icon-done />
+          <ui-icon-done fill="#deff82" />
         </template>
         <template v-else>
           {{ $t(mode ? mode.toUpperCase() : "BUY") }}
@@ -159,9 +159,9 @@ export default {
     /** Устанавливаем значения списков по умолчанию */
     Update () {
       if (this.type === "index") {
-        this.getCoinList = this.currencies.filter(e => ["KAIZENUSDT", "CRYPTO100USDT", "DEFIUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
+        this.getCoinList = this.currencies.filter(e => ["KAIZENUSDT", "CRYPTO100USDT", "COIN10USDT", "DEFIUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       } else {
-        this.getCoinList = this.currencies.filter(e => ["VNGUSDT", "KZNUSDT", "SRKUSDT", "COIN10USDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
+        this.getCoinList = this.currencies.filter(e => ["VNGUSDT", "KZNUSDT", "SRKUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       }
       this.sendCoinList = this.mode === "sell" ? [] : this.wallets.filter(x => ["usdt", "usdc", "busd", "bnb", "eth", "btc", "trx"].includes(x.symbol));
 

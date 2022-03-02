@@ -1,9 +1,9 @@
 <template>
-  <div class="portfolio-indexes balance-info">
+  <section class="portfolio-indexes balance-info">
     <div class="balance-info__top">
-      <p class="font-bold">
+      <h2 class="color-white m-b-5">
         {{ $t("PORTFOLIO_YOUR_INDEXES") }}
-      </p>
+      </h2>
     </div>
 
     <vue-good-table
@@ -55,7 +55,7 @@
         In developing...
       </p>
     </ui-modal>
-  </div>
+  </section>
 </template>
 
 <script>

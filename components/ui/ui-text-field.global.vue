@@ -110,8 +110,7 @@ export default {
   padding: 0 15px;
 
   &__input {
-    width: 100%;
-    flex: 1 1 auto;
+    flex: 1;
     padding: 15px 0;
 
     input {
@@ -138,6 +137,7 @@ export default {
   }
 
   &__append {
+    flex: 0 0 auto;
     padding-left: 15px;
   }
 

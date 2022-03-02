@@ -31,6 +31,10 @@ table.vgt-table.vgt-table--dark {
         border-top-color: #fff;
       }
 
+      &.line-numbers {
+        background: var(--col-black);
+      }
+
       &.sortable button {
         height: 16px;
         top: auto;
@@ -51,6 +55,7 @@ table.vgt-table.vgt-table--dark {
   th.line-numbers,
   th.vgt-checkbox-col {
     background: #1F2124;
+    border: 0;
   }
 
   td.align-middle {

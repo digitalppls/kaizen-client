@@ -10,11 +10,17 @@
     align-items: center;
     justify-content: space-between;
     padding-top: 20px;
+    padding-bottom: 20px;
+    transition: padding .2s linear;
   }
 
   &_logo {
     min-width: 90px;
     z-index: 3;
+
+    a  {
+      opacity: 1 !important;
+    }
   }
 
   &_menu {

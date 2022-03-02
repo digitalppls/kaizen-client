@@ -208,7 +208,7 @@ export default {
   }
 
   &--inside {
-    margin-left: -15px;
+    //margin-left: -15px;
     margin-right: calc(#{$input-padding-x} * -1);
 
     #{$self}__container {

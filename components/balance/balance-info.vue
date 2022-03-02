@@ -6,10 +6,10 @@
       </div>
     </nuxt-link>
 
-    <div class="balance-info__top">
-      <p class="font-bold">
+    <section class="balance-info__top">
+      <h2 class="color-white">
         {{ $t("BALANCE_INFORMATION") }}
-      </p>
+      </h2>
 
       <div class="m-l-a">
         <button
@@ -30,7 +30,7 @@
           {{ $t("BUY") }}
         </nuxt-link>
       </div>
-    </div>
+    </section>
 
     <user-wallets />
 

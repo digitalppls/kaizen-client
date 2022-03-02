@@ -17,9 +17,18 @@
   font-weight: 700;
 }
 
-.h2 { @include h2; }
-.h3 { @include h3; }
-.h4 { @include h4; }
+h2, .h2 {
+  @include h2;
+  margin-top: 0;
+}
+h3, .h3 {
+  @include h3;
+  margin-top: 0;
+}
+h4, .h4 {
+  @include h4;
+  margin-top: 0;
+}
 
 $font-size-data: (
   // desktop : mobile

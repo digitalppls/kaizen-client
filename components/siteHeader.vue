@@ -1,5 +1,7 @@
 <template>
-  <header class="header">
+  <header
+    :class="['header', {'header--fixed': scrollY > 100}]"
+  >
     <div class="container">
       <div class="header_logo">
         <nuxt-link
@@ -11,10 +13,7 @@
       </div>
 
       <div class="header_menu">
-        <nav
-          id="menu"
-          class="menu"
-        >
+        <nav class="menu">
           <ul class="menu_list">
             <li
               v-for="(item, key) in menuItems"
@@ -80,6 +79,7 @@ export default {
   },
   data () {
     return {
+      scrollY: 0,
       menuVisible: false,
       changePasswordModal: false,
       menuItems: [
@@ -126,9 +126,22 @@ export default {
     },
     isHomePage () {
       return this.$route.matched[0].path.replace("/", "") === "";
+    },
+    isMy () {
+      return this.$route.matched[0].path.replace("/", "") === "my";
     }
   },
+  beforeMount () {
+    window.addEventListener("scroll", this.headerFixed);
+  },
+  beforeDestroy () {
+    window.removeEventListener("scroll", this.headerFixed);
+  },
   methods: {
+    headerFixed () {
+      this.scrollY = window.scrollY;
+    },
+
     /** Переключение меню */
     toggleMenu () {
       this.menuVisible = !this.menuVisible;
@@ -153,4 +166,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  position: fixed;
+  transition: transform .2s linear;
+
+  &--fixed {
+    position: fixed;
+    background: rgba(#121212, .9);
+    backdrop-filter: blur(2px);
+    transform: translateY(0) !important;
+
+    .container {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
 </style>

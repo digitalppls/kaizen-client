@@ -1,18 +1,18 @@
 <template>
-  <div :id="symbol" class="balance-info">
+  <section :id="symbol" class="balance-info">
     <div class="balance-info__top">
-      <p class="font-bold m-r-5">
-        {{ $t("TOKENS") }}
-      </p>
-      <p class=" m-r-5">
-        {{ tokenName }}
-      </p>
-      <p class="font-bold m-r-10">
-        {{ symbol.toUpperCase() }}
-      </p>
-      <p class="font-light">
-        {{ $t("PRICE") }} ≈ ${{ priceUsd }}
-      </p>
+      <div>
+        <h3 class="color-white m-b-5">
+          {{ $t("TOKENS") }}
+
+          {{ tokenName }}
+
+          {{ symbol.toUpperCase() }}
+        </h3>
+        <p class="color-white">
+          {{ $t("PRICE") }} ≈ ${{ priceUsd }}
+        </p>
+      </div>
       <div class="m-l-a">
         <button
           :disabled="!balance"
@@ -94,7 +94,7 @@
 
       <token-swap :input-currency="symbol.toUpperCase()" type="token" :mode="modal" />
     </ui-modal>
-  </div>
+  </section>
 </template>
 
 <script>
