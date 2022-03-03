@@ -32,7 +32,6 @@
       <form v-if="mode === 'sign_up'" @submit.prevent="registerHandle">
         <div class="ui-form__fieldset">
           <ui-text-field
-            v-if="false"
             v-model="ref"
             autocomplete="off"
             autofocus="off"

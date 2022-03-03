@@ -102,10 +102,6 @@ export default {
         {
           title: this.$t("INDICATORS"),
           url: this.localePath("indicators")
-        },
-        {
-          title: this.$t("COMPANY"),
-          url: this.localePath("about")
         }
       ]
     };

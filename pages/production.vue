@@ -30,7 +30,7 @@
                 </div>
               </div>
               <div class="scheme__block scheme__block-2">
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Биржа, где
@@ -49,7 +49,7 @@
                 </div>
               </div>
               <div class="scheme__block scheme__block-3">
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Личный кабинет
@@ -83,7 +83,7 @@
                 </div>
               </div>
               <div class="scheme__block scheme__block-5">
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Платформа
@@ -108,7 +108,7 @@
                   <div class="custom-arrow" />
                   <div class="custom-arrow white" />
                 </div>
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Конвертация USDT
@@ -121,7 +121,7 @@
               </div>
               <div class="scheme__block scheme__block-8">
                 <div class="custom-arrow" />
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Производственное
@@ -134,7 +134,7 @@
                 <div class="custom-arrow" />
               </div>
               <div class="scheme__block scheme__block-9">
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Накопление
@@ -165,16 +165,16 @@
     <!-- Контент -->
     <div class="industry-data-section">
       <div class="container">
-        <div :class="['story', {'hidden': storyHidden}]">
+        <div :class="['story', {'hidden': storyHidden}]" id="story">
           <div class="story__text">
-            <p>
+            <p class="animate__animated wow animate__fadeIn">
               KAIZENFUND создает Блокчейн платформу Коллективного инвестирования, для применения ее в инвестировании
               Проектов в специальных
               Экономических Зонах (СЭЗ) с рядом льгот и преференций. Где компания Оператор Проекта одновременно и
               Оператор блокчейн платформы
               KAIZENFUND.
             </p>
-            <p>
+            <p class="animate__animated wow animate__fadeIn">
               В платформе произведена эмиссия Токенов SRK, в количестве 100 млн.единиц для распределения Участникам.
               <br>
               Данные Токены будут долями создаваемого производственного предприятия в рамках Проекта. Участником проекта
@@ -185,15 +185,15 @@
               покупку, так и продажу
               токенов на бирже (на которой представлен токен).
             </p>
-            <p>
+            <p class="animate__animated wow animate__fadeIn">
               Платформа и токен создаётся ради строительства и обслуживания производственного предприятия, таким образом
               средства от продажи токенов
               идут на первом этапе на проектные и строительные работы. При строительных работах требуется как материалы
               и конструкции так и машины,
               механизмы и квалифицированные работники в различных сферах.
             </p>
-            <div class="story__hidden">
-              <p>
+            <div class="story__hidden" :class="{ 'story_show': !storyHidden }">
+              <p class="animate__animated wow animate__fadeIn">
                 Участник проекта может осуществить покупку токенов и альтернативным платежам. Альтернативным платежам за
                 Токены мы называем услуги
                 для строительства , например: машино-механизмы; подрядные работы, которые участник должен выполнить
@@ -202,7 +202,7 @@
                 при строительстве
                 Производственного предприятия.
               </p>
-              <p>
+              <p class="animate__animated wow animate__fadeIn">
                 Расчет стоимости услуг участника для начисления ему соответствующего количества токенов производит
                 Компания Оператор проекта
                 используя для расчёта государственные сборники и нормативы, данные сборники и нормативы актуализируются
@@ -210,16 +210,33 @@
                 ежегодно и стоимость работ и материалов зачастую даже превышают рыночные.
               </p>
             </div>
+            <div class="story__new">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officia, atque soluta in minima qui vero explicabo labore
+                adipisci est! Tempora quas, sit commodi in odit mollitia! Officiis sit obcaecati vel quos totam id eveniet porro hic deserunt in
+                repudiandae vero aperiam voluptate doloremque dicta animi, earum, similique corporis? Optio.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis maxime iusto, sint iure perferendis illum quod nihil deserunt
+                fugiat porro laborum voluptatibus alias, consectetur quae explicabo debitis numquam beatae earum ea possimus! Quasi, ipsum
+                temporibus?
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero facere delectus dignissimos officia quaerat repudiandae dolorum
+                eveniet dolores non quod?
+              </p>
+            </div>
           </div>
           <button
             v-if="storyHidden"
             class="btn story__btn"
+            id="show_story"
             @click="storyHidden = false"
           >
             Читать все
           </button>
         </div>
-        <div class="text">
+        <div class="text animate__animated wow animate__fadeIn">
           Осуществляя деятельность, реализуя проведённую продукцию на рынке Производственное предприятие получает
           прибыль. Часть прибыли
           направляется на конвертацию в расчетные единицы децентрализованных рынков через Оператора Платформы
@@ -236,7 +253,7 @@
     <div class="industry-tokenomic-section tokenomic-section">
       <div class="container">
         <div class="diagram-box">
-          <div class="diagram-box__diagram">
+          <div class="diagram-box__diagram animate__animated wow animate__slideInLeft">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               version="1.1"
@@ -303,30 +320,30 @@
           </div>
           <div class="diagram-box__legend">
             <ul>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".1s">
                 Pre-sale
                 <span class="number" v-text="'1%'" />
               </li>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".2s">
                 IDO
                 <span class="number" v-text="'0.3%'" />
               </li>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".3s">
                 Company Wallet
                 <span class="number" v-text="'15%'" />
               </li>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".4s">
                 Compensation fund
                 <span class="number" v-text="'5%'" />
               </li>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".5s">
                 Public sale
                 <span class="number" v-text="'78.3%'" />
               </li>
             </ul>
           </div>
         </div>
-        <div class="content">
+        <div class="content animate__animated wow animate__slideInUp">
           <h2 class="title">
             Токеномика
           </h2>
@@ -371,5 +388,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.story_show {
+  -webkit-text-fill-color: unset;
+}
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="page-verify">
+  <div class="page-verify main-section">
     <div class="container">
       <div class="page-verify__content">
         <h1

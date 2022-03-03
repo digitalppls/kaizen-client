@@ -1,6 +1,16 @@
 <template>
   <main class="main">
     <div class="section-1">
+      <div class="bg">
+        <picture>
+          <!--          <source srcset="./img/s1-bg-mob.webp" media="(max-width: 768px)" type="image/webp" />-->
+          <!--          <source srcset="./img/s1-bg.webp" media="(min-width: 768px)" type="image/webp" />-->
+
+          <!--          <source srcset="./img/s1-bg-mob.png" media="(max-width: 768px)" />-->
+          <!--          <source srcset="./img/s1-bg.png" media="(min-width: 768px)" />-->
+<!--          <img alt="" :src="require('~/assets/img/s1-bg.png')" />-->
+        </picture>
+      </div>
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn">
           {{ coverTitle }}

@@ -113,8 +113,8 @@
         <div class="diagram-box">
           <div class="diagram-box__diagram">
             <svg
-              width="400"
-              height="400"
+              width="100%"
+              height="100%"
               viewBox="0 0 400 400"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +141,7 @@
               />
             </svg>
 
-            <div class="number" v-text="'100 000 000 SRK'" />
+            <div class="number" v-text="'10 000 000 KZN'" />
           </div>
           <div class="diagram-box__legend">
             <ul>
@@ -404,8 +404,9 @@ export default {
     @include respond-before("pre-md") {
       display: flex;
       flex-wrap: wrap;
-      margin-left: -10px;
-      margin-right: -10px;
+      justify-content: space-between;
+      //margin-left: -10px;
+      //margin-right: -10px;
     }
 
     &__wrap {
@@ -415,14 +416,15 @@ export default {
 
     &__item {
       margin-bottom: 30px;
+      border: 1px solid #47484e;
 
       @include respond-before("pre-md") {
-        padding-left: 10px;
-        padding-right: 10px;
-        width: 50%;
+        //padding-left: 10px;
+        //padding-right: 10px;
+        width: calc(50% - 14px);
       }
       @include respond-before("lg") {
-        width: 25%;
+        width: calc(25% - 15px);
       }
     }
   }
@@ -459,7 +461,7 @@ export default {
   &__header {
     display: flex;
     align-items: center;
-    background-color: #242527;
+    background-color: #333438;
     padding: 25px 30px;
     text-transform: uppercase;
     color: #fff;
@@ -476,6 +478,7 @@ export default {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 360px;
+    background-color: #242527;
   }
 
   &__item {
@@ -513,6 +516,7 @@ export default {
 
   &__footer {
     padding: 20px;
+    background-color: #242527;
   }
 
   &__price {
@@ -532,6 +536,7 @@ export default {
   .btn {
     border-color: #fff;
     color: #fff;
+    background-color: transparent;
 
     @include respond-before("lg") {
       @include respond-to("xl") {
