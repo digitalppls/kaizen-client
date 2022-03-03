@@ -185,7 +185,7 @@ export default {
         ],
         langDir: "lang/",
         defaultLocale: "ru",
-        vueI18nLoader: true,
+        vueI18nLoader: true
       }
     ]
   ],
