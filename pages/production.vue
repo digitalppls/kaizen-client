@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <div class="industry-hero-section hero-section">
+    <div class="industry-hero-section hero-section section-1">
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />
@@ -192,7 +192,7 @@
               и конструкции так и машины,
               механизмы и квалифицированные работники в различных сферах.
             </p>
-            <div class="story__hidden" :class="{ 'story_show': !storyHidden }">
+            <div class="story__hidden">
               <p class="animate__animated wow animate__fadeIn">
                 Участник проекта может осуществить покупку токенов и альтернативным платежам. Альтернативным платежам за
                 Токены мы называем услуги

@@ -1056,10 +1056,10 @@
     height: 100%;
   }
 
-  &::before {
-    background: linear-gradient(183.37deg, rgba(18, 18, 18, 0.8) 11.48%, rgba(18, 18, 18, 0) 32.4%),
-    linear-gradient(0deg, #121212 8.96%, rgba(18, 18, 18, 0) 44.43%), rgba(18, 18, 18, 0.4);
-  }
+  //&::before {
+  //  background: linear-gradient(183.37deg, rgba(18, 18, 18, 0.8) 11.48%, rgba(18, 18, 18, 0) 32.4%),
+  //  linear-gradient(0deg, #121212 8.96%, rgba(18, 18, 18, 0) 44.43%), rgba(18, 18, 18, 0.4);
+  //}
 
   &::after {
     background-image: url("~/assets/img/industry-hero-pump.png");

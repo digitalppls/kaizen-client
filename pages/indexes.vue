@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <div class="indexes-hero-section hero-section">
+    <div class="indexes-hero-section hero-section section-1">
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />

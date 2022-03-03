@@ -1,6 +1,6 @@
 <template>
   <main class="main">
-    <div class="main-section">
+    <div class="main-section section-1">
       <div class="container">
         <h1 class="title">
           {{ $t("INDICATORS") }}
