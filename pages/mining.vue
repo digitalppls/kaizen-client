@@ -1,6 +1,7 @@
 <template>
   <main class="main">
     <div class="mining-hero-section hero-section">
+      <div class="bg"></div>
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />
@@ -31,7 +32,7 @@
             </div>
             <div class="scheme__blocks">
               <div class="scheme__block scheme__block-1">
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Биржа, где
@@ -46,7 +47,7 @@
                 </div>
               </div>
               <div class="scheme__block scheme__block-2">
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Майнинг BTC
@@ -70,7 +71,7 @@
               </div>
               <div class="scheme__block scheme__block-4">
                 <div class="custom-arrow" />
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Конвертация
@@ -83,7 +84,7 @@
                 <div class="custom-arrow" />
               </div>
               <div class="scheme__block scheme__block-5">
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Личный кабинет
@@ -115,7 +116,7 @@
                 </div>
               </div>
               <div class="scheme__block scheme__block-7">
-                <div class="scheme__card">
+                <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
                       Платформа
@@ -129,7 +130,7 @@
               </div>
             </div>
             <div class="scheme__diagrams">
-              <div class="scheme__diagram">
+              <div class="scheme__diagram animate__animated wow animate__fadeInLeft">
                 <div class="scheme__diagram-img">
                   <div class="progress">
                     <img src="~/assets/img/mining-scheme-diagram-yellow.svg" alt="">
@@ -147,7 +148,7 @@
                   </div>
                 </div>
               </div>
-              <div class="scheme__diagram">
+              <div class="scheme__diagram animate__animated wow animate__fadeInLeft">
                 <div class="scheme__diagram-img">
                   <div class="progress">
                     <img src="~/assets/img/mining-scheme-diagram-green.svg" alt="">
@@ -176,14 +177,14 @@
     <div class="mining-data-section">
       <div class="container">
         <div class="content">
-          <h2 class="title" v-html="content.title" />
+          <h2 class="title animate__animated wow animate__fadeInUp" v-html="content.title" />
           <div class="text">
-            <p v-html="content.text_1" />
-            <p v-html="content.text_2" />
+            <p class="animate__animated wow animate__fadeInLeft" v-html="content.text_1" />
+            <p class="animate__animated wow animate__fadeInLeft" v-html="content.text_2" />
           </div>
-          <div class="text-white" v-html="content.text_3" />
+          <div class="text-white animate__animated wow animate__fadeInLeft" v-html="content.text_3" />
         </div>
-        <div class="img">
+        <div class="img animate__animated wow animate__fadeInRight">
           <img src="~/assets/img/mining-data.jpg" alt="">
         </div>
       </div>
@@ -193,7 +194,7 @@
     <div class="mining-tokenomic-section tokenomic-section">
       <div class="container">
         <div class="diagram-box">
-          <div class="diagram-box__diagram">
+          <div class="diagram-box__diagram animate__animated wow animate__slideInLeft">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               version="1.1"
@@ -260,30 +261,30 @@
           </div>
           <div class="diagram-box__legend">
             <ul>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".1s">
                 Pre-sale
                 <span class="number" v-text="'15%'" />
               </li>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".2s">
                 IDO
                 <span class="number" v-text="'3%'" />
               </li>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".3s">
                 Company Wallet
                 <span class="number" v-text="'15%'" />
               </li>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".4s">
                 Compensation fund
                 <span class="number" v-text="'5%'" />
               </li>
-              <li>
+              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".5s">
                 Public sale
                 <span class="number" v-text="'62%'" />
               </li>
             </ul>
           </div>
         </div>
-        <div class="content">
+        <div class="content animate__animated wow animate__slideInUp">
           <h2 class="title">
             Токеномика
           </h2>
@@ -303,6 +304,7 @@
 </template>
 
 <script>
+
 export default {
   name: "PageMining",
   layout: "public",
@@ -328,6 +330,16 @@ export default {
     }
   },
   mounted () {
+    this.$nextTick(() => {
+      if (process.browser) { // On the page mounted In the life cycle Instantiate according to the environment WOW
+        // eslint-disable-next-line no-undef
+        const { WOW } = require("wowjs");
+        new WOW({
+          offset: 50
+          // mobile: false,
+        }).init();
+      }
+    });
   },
   methods: {}
 };

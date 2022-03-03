@@ -1,6 +1,7 @@
 <template>
   <main class="main">
     <div class="industry-hero-section hero-section section-1">
+      <div class="bg"></div>
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />
@@ -192,7 +193,7 @@
               и конструкции так и машины,
               механизмы и квалифицированные работники в различных сферах.
             </p>
-            <div class="story__hidden">
+            <div class="story__hidden" :class="{ 'show_story': !storyHidden}">
               <p class="animate__animated wow animate__fadeIn">
                 Участник проекта может осуществить покупку токенов и альтернативным платежам. Альтернативным платежам за
                 Токены мы называем услуги
@@ -382,6 +383,16 @@ export default {
     }
   },
   mounted () {
+    this.$nextTick(() => {
+      if (process.browser) { // On the page mounted In the life cycle Instantiate according to the environment WOW
+        // eslint-disable-next-line no-undef
+        const { WOW } = require("wowjs");
+        new WOW({
+          offset: 50
+          // mobile: false,
+        }).init();
+      }
+    });
   },
   methods: {}
 };
@@ -389,8 +400,29 @@ export default {
 
 <style lang="scss" scoped>
 
-.story_show {
-  -webkit-text-fill-color: unset;
+.story {
+  &.hidden {
+    .story__new p {
+      font-size: 0!important;
+      margin: 0;
+    }
+  }
+  &__hidden {
+    &.show_story {
+      -webkit-text-fill-color: unset;
+    }
+  }
+  &__text p {
+    font-size: 16px;
+    line-height: 187%;
+    margin-bottom: 40px;
+  }
+  &__new p {
+    -webkit-transition: .5s;
+    -o-transition: .5s;
+    transition: .5s;
+  }
 }
+
 
 </style>

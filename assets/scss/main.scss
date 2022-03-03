@@ -1,5 +1,57 @@
 // ################ INDEX.HTML
+
+//.bg {
+//  position: absolute;
+//  top: 0;
+//  left: 0;
+//  width: 100%;
+//  height: 100%;
+//  background-image: url(../img/Stars-Twinkling.gif);
+//  background-size: 100% auto;
+//  background-repeat: repeat;
+//  opacity: .2;
+//  pointer-events: none;
+//}
+
+.bg {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  @include min(768px) {
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+  @include min(1024px) {
+    align-items: stretch;
+  }
+
+  img {
+    height: 550px;
+    width: auto;
+    object-fit: cover;
+
+    @include min(768px) {
+      width: 100%;
+      height: auto;
+      margin-right: -20vw;
+    }
+    @include min(1024px) {
+      height: 100%;
+      width: auto;
+      margin: 0;
+    }
+  }
+}
+
 .section-1 {
+  position: relative;
   padding-top: 150px;
 
   text-align: center;
@@ -59,6 +111,7 @@
   }
 
   .container {
+    position: relative;
     width: 100%;
     margin: auto;
   }
@@ -107,6 +160,56 @@
 
   .btn {
     padding: 25px 45px;
+  }
+
+  .bg {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    overflow: hidden;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+  }
+
+  .section-1 .bg img {
+    //height: 550px;
+    //width: auto;
+    //-o-object-fit: cover;
+    //object-fit: cover;
+    width: 100%;
+    height: auto;
+    margin-right: -20vw;
+  }
+
+  .section-1::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/Stars-Twinkling.gif");
+    background-size: 100% auto;
+    background-repeat: repeat;
+    opacity: 0.2;
+    pointer-events: none;
   }
 }
 
@@ -474,6 +577,7 @@
 // ################ MINING.HTML
 
 .mining-hero-section {
+  position: relative;
   &::before,
   &::after {
     content: "";
@@ -491,6 +595,19 @@
     background-size: cover;
     mix-blend-mode: screen;
     filter: blur(2px);
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/Stars-Twinkling.gif");
+    background-size: 100% auto;
+    background-repeat: repeat;
+    opacity: 0.2;
+    pointer-events: none;
   }
 
   &::after {
@@ -970,8 +1087,23 @@
 
 .mining-data-section {
   padding: 100px 0 60px;
+  background-color: var(--col-bg);
+  position: relative;
   @include min(768px) {
     padding: 100px 0;
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/Stars-Twinkling.gif");
+    background-size: 100% auto;
+    background-repeat: repeat;
+    opacity: 0.2;
+    pointer-events: none;
   }
 
   .container {
@@ -1077,6 +1209,19 @@
     @include min(768px) {
       max-width: 315px;
     }
+  }
+
+  .bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/Stars-Twinkling.gif");
+    background-size: 100% auto;
+    background-repeat: repeat;
+    opacity: 0.2;
+    pointer-events: none;
   }
 }
 
@@ -1617,7 +1762,8 @@
 
 .industry-data-section {
   padding: 100px 0;
-
+  background-color: var(--col-bg);
+  position: relative;
   .container {
   }
 
@@ -1656,10 +1802,36 @@
     }
 
     &__btn {
+      opacity: 0;
       margin: 0 auto;
       padding: 25px 52px 26px;
       border: 1px solid #55565b;
       display: block;
+    }
+
+    &.hidden .story__btn {
+      opacity: 1;
+    }
+
+    &.hidden .story__new {
+      p {
+        font-size: 0px !important;
+        margin: 0;
+      }
+    }
+    &__new {
+      -webkit-transition: 0.5s;
+      -o-transition: 0.5s;
+      transition: 0.5s;
+      p {
+        -webkit-transition: 0.5s;
+        -o-transition: 0.5s;
+        transition: 0.5s;
+
+        &:first-child {
+          margin-top: 40px;
+        }
+      }
     }
   }
 

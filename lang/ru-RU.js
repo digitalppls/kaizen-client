@@ -320,7 +320,7 @@ export default {
       },
     ]
   },
-  "MODERN_SOLUTIONS": "Modern blockchain solutions",
+  "MODERN_SOLUTIONS": "Современные блокчейн решения",
   "INVEST_IN_TOKEN": "Инвестируйте в токенизированные предприятия, майнинг, а также криптовалютные индексы вместе с Kaizen",
   "DIRECTIONS_FOR_DEV": {
     "TITLE": "Направления развития",
