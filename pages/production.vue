@@ -165,7 +165,7 @@
     <!-- Контент -->
     <div class="industry-data-section">
       <div class="container">
-        <div :class="['story', {'hidden': storyHidden}]" id="story">
+        <div id="story" :class="['story', {'hidden': storyHidden}]">
           <div class="story__text">
             <p class="animate__animated wow animate__fadeIn">
               KAIZENFUND создает Блокчейн платформу Коллективного инвестирования, для применения ее в инвестировании
@@ -229,8 +229,8 @@
           </div>
           <button
             v-if="storyHidden"
-            class="btn story__btn"
             id="show_story"
+            class="btn story__btn"
             @click="storyHidden = false"
           >
             Читать все

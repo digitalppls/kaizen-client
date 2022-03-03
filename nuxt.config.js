@@ -134,7 +134,7 @@ export default {
       src: "@/assets/scss/template.scss",
       lang: "scss"
     },
-    "animate.css/animate.css"
+    "animate.css/animate.min.css"
   ],
 
   loading: false,
