@@ -101,6 +101,7 @@ export default {
 .main-section {
   max-height: none;
   min-height: auto;
+  flex: 1 0 auto;
 }
 
 .page-profile {

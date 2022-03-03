@@ -3,10 +3,10 @@
     <div class="user-wallets-box">
       <div :class="[{ 'user-wallets-box__left': !hideChart }]">
         <div class="total m-b-20">
-          <div>
+          <div class="accessed-value">
             {{ $t("ASSESSED_VALUE") }}:
           </div>
-          <div class="font-size-30 font-bold">
+          <div class="font-size-30 font-bold total__balance">
             {{ totalUSD.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
             <span class="font-medium font-size-14">USDT</span>
           </div>
@@ -200,4 +200,21 @@ export default {
   }
 }
 
+.accessed-value {
+  font-size: 14px;
+  line-height: 16px;
+  color: #898B8C;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+.total {
+  &__balance {
+       font-weight: bold;
+       font-size: 30px;
+       line-height: 35px;
+       letter-spacing: -0.02em;
+       color: #F5CF48;
+     }
+}
 </style>

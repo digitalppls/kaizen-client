@@ -10,20 +10,20 @@
           {{ symbol.toUpperCase() }}
         </h3>
         <p class="color-white">
-          {{ $t("PRICE") }} ≈ ${{ priceUsd }}
+          {{ $t("PRICE") }} ≈ <span class="price">${{ priceUsd }}</span>
         </p>
       </div>
       <div class="m-l-a">
         <button
           :disabled="!balance"
-          :class="['btn', {'btn-blue': symbol === 'kzn'}, {'btn-yellow': symbol === 'vng'}, {'btn-red': symbol === 'srk'}]"
+          :class="['btn', {'btn-buy': symbol === 'kzn'}, {'btn-buy': symbol === 'vng'}, {'btn-buy': symbol === 'srk'}]"
           @click="openModal('buy')"
         >
           {{ $t("BUY") }}
         </button>
         <button
           disabled
-          class="btn btn-solid--secondary btn-small"
+          class="btn btn-solid--secondary btn-small btn_set-opacity"
           @click="openModal('sell')"
         >
           {{ $t("SELL") }}
@@ -31,17 +31,17 @@
       </div>
     </div>
     <div class="m-b-20">
-      <p>Available</p>
-      {{ available.toLocaleString() }} {{ symbol.toUpperCase() }}
+      <p class="m-b-5">Available</p>
+      <span class="color-white">{{ available.toLocaleString() }} {{ symbol.toUpperCase() }}</span>
     </div>
-    <div>
+    <div class="m-b-5">
       {{ $t("BALANCE") }}:
     </div>
-    <span class="font-size-30 font-bold">
+    <span class="font-size-30 font-bold color-white">
       {{ balance.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
       <span class="font-medium font-size-14">{{ symbol.toUpperCase() }}</span>
     </span>
-    <small class="color-gray">
+    <small class="color-white">
       ≈ ${{ $toUsd(symbol.toUpperCase(), balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
     </small>
     <vc-donut
@@ -52,32 +52,32 @@
       has-legend
       legend-placement="right"
       :sections="[
-        { label:'Pre-sale', value: 15, color: '#a200dd' },
-        { label:'IDO', value: 3, color: '#dd008c' },
-        { label:'Кошелек компании', value: 15, color: '#0f00dd' },
-        { label:'Фонд вознаграждения', value: 5, color: '#00dd25' },
-        { label:'Public sale', value: 62, color: '#dd8500' }
+        { label:'Pre-sale', value: 15, color: '#BFEA44' },
+        { label:'IDO', value: 3, color: '#F0C149' },
+        { label:'Кошелек компании', value: 15, color: '#51ECA1' },
+        { label:'Фонд вознаграждения', value: 5, color: '#629CF2' },
+        { label:'Public sale', value: 62, color: '#FFFFFF' }
       ]"
     >
       <template #legend>
         <div class="cdc-legend">
           <div
             v-for="(item, idx) in [
-              { label:'Pre-sale', value: 15, percent: 15, style: {backgroundColor: '#a200dd'} },
-              { label:'IDO', value: 3, percent: 3, style: {backgroundColor: '#dd008c'} },
-              { label:'Кошелек компании', value: 15, percent: 15, style: {backgroundColor: '#0f00dd'} },
-              { label:'Фонд вознаграждения', value: 5, percent: 6, style: {backgroundColor: '#00dd25'} },
-              { label:'Public sale', value: 62, percent: 62, style: {backgroundColor: '#dd8500'} }
+              { label:'Pre-sale', value: 15, percent: 15, style: {backgroundColor: '#BFEA44'} },
+              { label:'IDO', value: 3, percent: 3, style: {backgroundColor: '#F0C149'} },
+              { label:'Кошелек компании', value: 15, percent: 15, style: {backgroundColor: '#51ECA1'} },
+              { label:'Фонд вознаграждения', value: 5, percent: 6, style: {backgroundColor: '#629CF2'} },
+              { label:'Public sale', value: 62, percent: 62, style: {backgroundColor: '#FFFFFF'} }
             ]"
             :key="idx"
             :title="item.percent"
             class="cdc-legend-item"
           >
-            <span class="cdc-legend-item-color" :style="item.styles" />
-            <span class="cdc-legend-item-label m-r-5">
+            <span class="cdc-legend-item-color" :style="item.style" />
+            <span class="cdc-legend-item-label m-r-5 color-white">
               {{ item.label.toUpperCase() }}
             </span>
-            <span class="cdc-legend-item-value">
+            <span class="cdc-legend-item-value" :style="{ color: item.style.backgroundColor}">
               {{ item.value }} %
             </span>
           </div>
@@ -224,6 +224,10 @@ export default {
     }
   }
 }
+
+.price {
+    color: #F5CF48;
+  }
 
 </style>
 

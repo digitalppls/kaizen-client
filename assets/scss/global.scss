@@ -142,6 +142,7 @@ body {
 
   display: flex;
   align-items: center;
+  flex: 1 0 auto;
 
   @include min(768px) {
     padding-top: 150px;
@@ -616,6 +617,10 @@ img {
   text-align: center;
   background: rgba(20, 21, 23, 0.8);
 
+  &_set-opacity {
+    color: rgba(255,255,255,.5);
+  }
+
   &:hover {
     transform: scale(1.05);
   }
@@ -623,7 +628,9 @@ img {
   &-blue,
   &-red,
   &-yellow,
-  &-accent {
+  &-accent,
+  &-buy,
+  &-deposit {
     color: var(--col-black) !important;
   }
 
@@ -660,9 +667,17 @@ img {
   }
 
   &[disabled] {
-    filter: grayscale(60%);
-    opacity: .9;
+    //filter: grayscale(60%);
+    //opacity: .9;
     cursor: not-allowed;
+  }
+
+  &-deposit {
+    background: #F5CF48;
+  }
+
+  &-buy {
+    background: var(--col-blue);
   }
 }
 

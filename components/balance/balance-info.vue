@@ -14,19 +14,19 @@
       <div class="m-l-a">
         <button
           :disabled="!emailVerified"
-          class="btn btn-blue"
+          class="btn btn-deposit"
           @click="openModal('deposit')"
         >
           {{ $t("DEPOSIT") }}
         </button>
         <button
           :disabled="!emailVerified"
-          class="btn"
+          class="btn btn_set-opacity"
           @click="openModal('withdraw')"
         >
           {{ $t("WITHDRAW") }}
         </button>
-        <nuxt-link v-if="false" :to="localePath('my-buy')" class="btn btn-yellow">
+        <nuxt-link v-if="false" :to="localePath('my-buy')" class="btn btn-buy">
           {{ $t("BUY") }}
         </nuxt-link>
       </div>
