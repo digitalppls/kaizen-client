@@ -14,6 +14,10 @@ export default {
   "COMPANY": "Company",
   "INDEX": "Index",
   "INDEXES": "Indexes",
+  "CRYPTO": "Cryptocurrency",
+  "INDUSTRIAL": "Industrial",
+  "REAL_SECTOR": "Real Sector",
+  "OF_PRODUCTION": "of production",
   "PROJECTS": "Projects",
   "SOON": "Soon",
   "COOKIES_BANNER": "🍪 We use cookies.",
@@ -335,6 +339,70 @@ export default {
   "KAIZEN_METHODOLOGY_ITEM_1": "The most valuable assets, rebalanced monthly",
   "KAIZEN_METHODOLOGY_ITEM_2": "Robust diligence of eligibility criteria",
   "KAIZEN_METHODOLOGY_ITEM_3": "24/7 monitoring for sudden events",
+  "FEATURES": {
+    "TITLE": "Platform capabilities",
+    "DESC": "Today, Kaizen has a wide range of instruments and a well-developed infrastructure at its disposal.",
+    "TEXT": "Risk diversification is a priority, and includes three main areas:",
+    "ITEMS": [
+      {
+        "TITLE": "RISK MANAGEMENT",
+        "DESC": "Three projects in one platform are involved in order to minimize the risks of users. If deposits in one of the projects represented by the platform become unprofitable, the user is reimbursed for funds from the activities of the other two projects, through the redemption of his tokens by the operator company."
+      },
+      {
+        "TITLE": "ADVANTAGEOUS CONDITIONS",
+        "DESC": "Extremely low electricity rates - only $0.001 per kWh in the Vanguard project. Preferential terms of taxation and customs tariffs. The Company is a member of industrial economic zones in Kazakhstan."
+      },
+      {
+        "TITLE": "LIQUIDITY",
+        "DESC": "Buy and sell tokens from Kaizen on global crypto exchanges with high liquidity."
+      },
+    ]
+  },
+  "ROADMAP": {
+    "ITEMS": [
+      {
+        "DATE": "March 2022",
+        "TEXT": "Pre-sale KZN token index and VNG token mining"
+      },
+      {
+        "DATE": "May 2022",
+        "TEXT": "IDO KZN token index and VNG token mining"
+      },
+      {
+        "DATE": "June 2022",
+        "TEXT": "Public sale KZN token index and VNG token mining"
+      },
+      {
+        "DATE": "July 2022",
+        "TEXT": "Pre-sale of SRK production company token"
+      },
+      {
+        "DATE": "August 2022",
+        "TEXT": "IDO of SRK Production Enterprise token"
+      },
+      {
+        "DATE": "August 2022",
+        "TEXT": "Public sale of SRK Production Enterprise token."
+      },
+    ]
+  },
+  "MODERN_SOLUTIONS": "Modern blockchain solutions",
+  "INVEST_IN_TOKEN": "Invest in tokenized businesses, mining, and cryptocurrency indices with Kaizen",
+  "DIRECTIONS_FOR_DEV": {
+    "TITLE": "Directions for development",
+    "DESC": "Today, Kaizen has a wide range of instruments and a well-developed infrastructure at its disposal.",
+    "ITEMS": [
+      {
+        "TEXT": "Four of the highest-yielding cryptocurrency indices from different sectors."
+      },
+      {
+        "TEXT": "Participate in industrial Bitcoin mining."
+      },
+      {
+        "TEXT": "Profit from businesses from the real economy."
+      },
+    ]
+  },
 
   // COIN10 PAGE INDEX
   "COIN10_DESC": "The Coin10 Index is a market capitalization weighted index of the top 10 cryptocurrencies. Because it is composed of the top ten cryptocurrencies it is widely accepted as a benchmark for the strength or weakness of the broader cryptocurrency market. It was created by Crypto Finance AG and launched on December 31, 2016 with a value of 1,000. As of June 2020 it is managed and calculated by BITA GmbH and has a value around 2,650. Because cryptocurrencies often move up or down in tandem it isn’t unusual for this index to make very strong moves in either direction.",

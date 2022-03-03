@@ -28,7 +28,7 @@
               />
               <nuxt-link
                 v-else-if="item.url === 'indexes'"
-                :to="`${localePath('index')}#${item.url}`"
+                :to="localePath('index')"
                 :class="['animate__animated', 'wow', 'animate__slideInDown']"
                 :data-wow-delay="`${key / menuItems.length}s`"
                 @click="goTo(item.url)"
@@ -47,7 +47,8 @@
             </li>
           </ul>
         </nav>
-        <lang-switcher />
+        <lang-switcher class="m-r-40" />
+        <user-bar />
       </div>
       <button
         class="header_burger"
@@ -60,11 +61,12 @@
 </template>
 
 <script>
+import UserBar from "./userbar";
 import langSwitcher from "~/components/langSwitcher.vue";
 
 export default {
   name: "SiteHeader",
-  components: { langSwitcher },
+  components: { UserBar, langSwitcher },
   props: {
     user: {
       type: Object,

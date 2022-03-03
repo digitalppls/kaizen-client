@@ -8,7 +8,7 @@
 
           <!--          <source srcset="./img/s1-bg-mob.png" media="(max-width: 768px)" />-->
           <!--          <source srcset="./img/s1-bg.png" media="(min-width: 768px)" />-->
-<!--          <img alt="" :src="require('~/assets/img/s1-bg.png')" />-->
+          <!--          <img alt="" :src="require('~/assets/img/s1-bg.png')" />-->
         </picture>
       </div>
       <div class="container">
@@ -145,27 +145,27 @@ export default {
       WHITEPAPER,
       disabled: true,
       Features: {
-        title: "Возможности платформы",
-        desc: "На сегодняшний день, Kaizen располагает широким выбором инструментов и имеет в распоряжении развитую инфраструктуру.",
-        text: "Диверсификация рисков является приоритетом, и включает в себя три основных направления:",
+        title: this.$t("FEATURES.TITLE"),
+        desc: this.$t("FEATURES.DESC"),
+        text: this.$t("FEATURES.TEXT"),
         items: [
           {
             id: 1,
             img: require("~/assets/img/s2-card-1.svg"),
-            title: "Риск менеджмент",
-            desc: "Три проекта в одной платформе задействованы с целью минимизации рисков пользователей. В случае убыточности вкладов в один из проектов, представленных платформой, пользователю возмещается средства из деятельности двух других проектов, посредством выкупа его токенов компанией оператора."
+            title: this.$t("FEATURES.ITEMS[0].TITLE"),
+            desc: this.$t("FEATURES.ITEMS[0].DESC")
           },
           {
             id: 2,
             img: require("~/assets/img/s2-card-2.svg"),
-            title: "Выгодные условия",
-            desc: "Чрезвычайно низкие тарифы на электроэнергию - всего $0.001 за кВт/ч в проекте Vanguard. Льготные условия налогового обложения и таможенных тарифов. Компания является участником индустриальных экономических зон на территории РК."
+            title: this.$t("FEATURES.ITEMS[1].TITLE"),
+            desc: this.$t("FEATURES.ITEMS[1].DESC")
           },
           {
             id: 3,
             img: require("~/assets/img/s2-card-3.svg"),
-            title: "Ликвидность",
-            desc: "Продавайте и покупайте токены от Kaizen на мировых крипто биржах c высокой ликвидностью."
+            title: this.$t("FEATURES.ITEMS[2].TITLE"),
+            desc: this.$t("FEATURES.ITEMS[2].DESC")
           }
         ]
       },
@@ -174,34 +174,34 @@ export default {
         desc: "2022 - 2023",
         items: [
           {
-            date: "Март 2022",
+            date: this.$t("ROADMAP.ITEMS[0].DATE"),
             img: require("~/assets/img/roadmap-1.svg"),
-            text: "Pre-sale Индекс токена KZN и майнинг токена VNG"
+            text: this.$t("ROADMAP.ITEMS[0].TEXT")
           },
           {
-            date: "Май 2022",
+            date: this.$t("ROADMAP.ITEMS[1].DATE"),
             img: require("~/assets/img/roadmap-2.svg"),
-            text: "IDO Индекс токена KZN и майнинг токена VNG"
+            text: this.$t("ROADMAP.ITEMS[1].TEXT")
           },
           {
-            date: "Июнь 2022",
+            date: this.$t("ROADMAP.ITEMS[2].DATE"),
             img: require("~/assets/img/roadmap-3.svg"),
-            text: "Public sale Индекс токена KZN и майнинг токена VNG"
+            text: this.$t("ROADMAP.ITEMS[2].TEXT")
           },
           {
-            date: "Июль 2022",
+            date: this.$t("ROADMAP.ITEMS[3].DATE"),
             img: require("~/assets/img/roadmap-4.svg"),
-            text: "Pre-sale токена производственного предприятия SRK"
+            text: this.$t("ROADMAP.ITEMS[3].TEXT")
           },
           {
-            date: "Август 2022",
+            date: this.$t("ROADMAP.ITEMS[4].DATE"),
             img: require("~/assets/img/roadmap-5.svg"),
-            text: "IDO токена производственного предприятия SRK"
+            text: this.$t("ROADMAP.ITEMS[4].TEXT")
           },
           {
-            date: "Август 2022",
+            date: this.$t("ROADMAP.ITEMS[5].DATE"),
             img: require("~/assets/img/roadmap-6.svg"),
-            text: "Public sale токена производственного предприятия SRK"
+            text: this.$t("ROADMAP.ITEMS[5].TEXT")
           }
         ]
       },
@@ -222,23 +222,23 @@ export default {
       return INDEXES;
     },
     coverTitle () {
-      return "Современные блокчейн решения";
+      return this.$t("MODERN_SOLUTIONS");
     },
     coverDesc () {
-      return "Инвестируйте в токенизированные предприятия, майнинг, а также криптовалютные индексы вместе с Kaizen";
+      return this.$t("INVEST_IN_TOKEN");
     },
     hasToken () {
       return this.$store.getters.hasToken;
     },
     DirectionsForDevelopment () {
       return {
-        title: "Направления развития",
-        desc: "На сегодняшний день, Kaizen располагает широким выбором инструментов и имеет в распоряжении развитую инфраструктуру.",
+        title: this.$t("DIRECTIONS_FOR_DEV.TITLE"),
+        desc: this.$t("DIRECTIONS_FOR_DEV.DESC"),
         items: [
           {
             id: 2,
-            title: "Криптовалютные <span> ⸺ индексы</span>",
-            text: "Четыре самых высокодоходных криптовалютных индекса из разных секторов.",
+            title: `${this.$t("CRYPTO")} <span> ⸺ ${this.$t("INDEXES")}</span>`,
+            text: this.$t("DIRECTIONS_FOR_DEV.ITEMS[0].TEXT"),
             buttons: [
               {
                 label: `${this.$t("BUY")} KZN`,
@@ -254,8 +254,8 @@ export default {
           },
           {
             id: 1,
-            title: "Индустриальный <span> ⸺ майнинг</span>",
-            text: "Участвуйте в индустриальном майнинге Биткоина.",
+            title: `${this.$t("INDUSTRIAL")} <span> ⸺ ${this.$t("MINING")}</span>`,
+            text: this.$t("DIRECTIONS_FOR_DEV.ITEMS[1].TEXT"),
             buttons: [
               {
                 label: `${this.$t("BUY")} VNG`,
@@ -271,8 +271,8 @@ export default {
           },
           {
             id: 3,
-            title: "Реальный сектор <span> ⸺ производства</span>",
-            text: "Получайте прибыль от предприятий из реального сектора экономики.",
+            title: `${this.$t("REAL_SECTOR")} <span> ⸺ ${this.$t("OF_PRODUCTION")}</span>`,
+            text: this.$t("DIRECTIONS_FOR_DEV.ITEMS[2].TEXT"),
             buttons: [
               {
                 label: `${this.$t("BUY")} SRK`,
