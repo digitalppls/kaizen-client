@@ -21,7 +21,7 @@
             <div class="scheme__blocks">
               <div class="scheme__block scheme__block-1">
                 <div class="scheme__text">
-                  {{ $t("SRK_REDEMPTION")}}
+                  {{ $t("SRK_REDEMPTION") }}
                 </div>
                 <div class="arrows">
                   <div class="custom-arrow white" />
@@ -34,13 +34,13 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      {{ $t("EXCHANGE_WHERE")}}
+                      {{ $t("EXCHANGE_WHERE") }}
                       <span class="accent">
-                        {{ `${$t("TOKEN_IS_TRAIDED")} SRK`}}
+                        {{ `${$t("TOKEN_IS_TRAIDED")} SRK` }}
                       </span>
                     </h3>
                     <div class="scheme__card-text">
-                      {{ $t("USER_SENDS_TOKENS_TO_EXCHANGE")}}
+                      {{ $t("USER_SENDS_TOKENS_TO_EXCHANGE") }}
                     </div>
                   </div>
                 </div>
@@ -53,9 +53,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      {{ $t("PERSONAL_ACCOUNT")}}
+                      {{ $t("PERSONAL_ACCOUNT") }}
                       <span class="accent">
-                        {{ $t("OF_THE_INVESTOR")}}
+                        {{ $t("OF_THE_INVESTOR") }}
                       </span>
                     </h3>
                   </div>
@@ -87,7 +87,7 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      {{ $t("PLATFORM")}}
+                      {{ $t("PLATFORM") }}
                       <span class="accent">
                         KAIZEN
                       </span>
@@ -98,7 +98,7 @@
               </div>
               <div class="scheme__block scheme__block-6">
                 <div class="scheme__text">
-                  {{ $t("PRODUCTION_TEXT_1")}}
+                  {{ $t("PRODUCTION_TEXT_1") }}
                 </div>
                 <div class="custom-arrow" />
               </div>
@@ -110,9 +110,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                       {{ $t("CONVERSION")}} USDT
+                      {{ $t("CONVERSION") }} USDT
                       <span class="accent">
-                        {{ $t("TO_FIAT_CURRENCY")}}
+                        {{ $t("TO_FIAT_CURRENCY") }}
                       </span>
                     </h3>
                   </div>
@@ -123,9 +123,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      {{ $t("MANUFACTURING")}}
+                      {{ $t("MANUFACTURING") }}
                       <span class="accent">
-                        {{ $t("ENTERPRISE")}}
+                        {{ $t("ENTERPRISE") }}
                       </span>
                     </h3>
                   </div>
@@ -136,9 +136,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      {{ $t("ACCUMULATION")}}
+                      {{ $t("ACCUMULATION") }}
                       <span class="accent">
-                        {{$t("IN_FIAT_CURRENCY")}}
+                        {{ $t("IN_FIAT_CURRENCY") }}
                       </span>
                     </h3>
                   </div>
@@ -149,9 +149,9 @@
                   <div class="custom-arrow" />
                 </div>
                 <div class="scheme__text">
-                  {{$t("PART_OF_THE_FUNDS")}},
+                  {{ $t("PART_OF_THE_FUNDS") }},
                   <span class="accent">
-                    {{$t("FOR_CONVERSION")}}
+                    {{ $t("FOR_CONVERSION") }}
                   </span>
                 </div>
               </div>
@@ -211,17 +211,22 @@
             </div>
             <div class="story__new">
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officia, atque soluta in minima qui vero explicabo labore
-                adipisci est! Tempora quas, sit commodi in odit mollitia! Officiis sit obcaecati vel quos totam id eveniet porro hic deserunt in
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officia, atque soluta in minima qui
+                vero explicabo labore
+                adipisci est! Tempora quas, sit commodi in odit mollitia! Officiis sit obcaecati vel quos totam id
+                eveniet porro hic deserunt in
                 repudiandae vero aperiam voluptate doloremque dicta animi, earum, similique corporis? Optio.
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis maxime iusto, sint iure perferendis illum quod nihil deserunt
-                fugiat porro laborum voluptatibus alias, consectetur quae explicabo debitis numquam beatae earum ea possimus! Quasi, ipsum
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis maxime iusto, sint iure perferendis
+                illum quod nihil deserunt
+                fugiat porro laborum voluptatibus alias, consectetur quae explicabo debitis numquam beatae earum ea
+                possimus! Quasi, ipsum
                 temporibus?
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero facere delectus dignissimos officia quaerat repudiandae dolorum
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero facere delectus dignissimos officia
+                quaerat repudiandae dolorum
                 eveniet dolores non quod?
               </p>
             </div>
@@ -344,7 +349,7 @@
         </div>
         <div class="content animate__animated wow animate__slideInUp">
           <h2 class="title">
-            {{ $t("TOKENOMICS")}}
+            {{ $t("TOKENOMICS") }}
           </h2>
           <div class="amount">
             <span>{{ $t("TOKEN_AMOUNT") }}</span>
@@ -380,16 +385,16 @@ export default {
     }
   },
   mounted () {
-    this.$nextTick(() => {
-      if (process.browser) { // On the page mounted In the life cycle Instantiate according to the environment WOW
-        // eslint-disable-next-line no-undef
-        const { WOW } = require("wowjs");
-        new WOW({
-          offset: 50
-          // mobile: false,
-        }).init();
-      }
-    });
+    // this.$nextTick(() => {
+    //   if (process.browser) { // On the page mounted In the life cycle Instantiate according to the environment WOW
+    //     // eslint-disable-next-line no-undef
+    //     const { WOW } = require("wowjs");
+    //     new WOW({
+    //       offset: 50
+    //       // mobile: false,
+    //     }).init();
+    //   }
+    // });
   },
   methods: {}
 };
@@ -400,20 +405,23 @@ export default {
 .story {
   &.hidden {
     .story__new p {
-      font-size: 0!important;
+      font-size: 0 !important;
       margin: 0;
     }
   }
+
   &__hidden {
     &.show_story {
       -webkit-text-fill-color: unset;
     }
   }
+
   &__text p {
     font-size: 16px;
     line-height: 187%;
     margin-bottom: 40px;
   }
+
   &__new p {
     -webkit-transition: .5s;
     -o-transition: .5s;

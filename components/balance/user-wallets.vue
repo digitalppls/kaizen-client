@@ -16,20 +16,21 @@
             v-for="(wallet, idx) in wallets"
             :key="idx"
           >
-<!--            <img-->
-<!--              v-if="false"-->
-<!--              :src="require(`~/assets/img/tokens/icon-${wallet.symbol}.svg?inline`)"-->
-<!--              :alt="wallet.symbol.toUpperCase()"-->
-<!--              :title="wallet.symbol.toUpperCase()"-->
-<!--              style="height: 21px; display: inline-block; vertical-align: middle; margin-right: 3px;"-->
-<!--            >-->
+            <!--            <img-->
+            <!--              v-if="false"-->
+            <!--              :src="require(`~/assets/img/tokens/icon-${wallet.symbol}.svg?inline`)"-->
+            <!--              :alt="wallet.symbol.toUpperCase()"-->
+            <!--              :title="wallet.symbol.toUpperCase()"-->
+            <!--              style="height: 21px; display: inline-block; vertical-align: middle; margin-right: 3px;"-->
+            <!--            >-->
             <span style="display: inline-block; vertical-align: middle;">
               <strong class="font-size-14 color-orange">{{ wallet.symbol.toUpperCase() }}:</strong>
               <span class="font-medium font-size-14 color-white m-r-5">
                 {{ wallet.amount.toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
               </span>
               <small class="font-size-14 color-white">
-                <span class="m-r-5">~</span> ${{ $toUsd(wallet.symbol, wallet.amount).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
+                <span class="m-r-5">~</span>
+                ${{ $toUsd(wallet.symbol, wallet.amount).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
               </small>
             </span>
           </li>
@@ -81,7 +82,7 @@ export default {
   data () {
     return {
       defaultColors: [
-        "#BFEA44", "#F0C149", "#FFFFFF", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
+        "#bfea44", "#f0c149", "#fff", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
         "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
         "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000"
       ]
@@ -116,9 +117,7 @@ export default {
         label: section.label || `Section ${idx + 1}`,
         value: (section.value * this.total) / 100, // обратно преодразовываем из процентов в кол-во токенов
         percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING_CRYPTO())})`,
-        styles: {
-          backgroundColor: this.defaultColors[currentDefaultColorIdx++]
-        }
+        styles: { backgroundColor: this.defaultColors[currentDefaultColorIdx++] }
       }));
     }
   }
@@ -203,15 +202,15 @@ export default {
 
 .total {
   &__balance {
-       font-weight: bold;
-       font-size: 30px;
-       line-height: 35px;
-       letter-spacing: -0.02em;
-       color: #F5CF48;
-     }
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    letter-spacing: -0.02em;
+    color: #f5cf48;
+  }
 }
 
 .color-orange {
-  color: #F5CF48;
+  color: #f5cf48;
 }
 </style>

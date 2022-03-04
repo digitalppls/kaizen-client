@@ -12,6 +12,7 @@
 import BalanceInfo from "~/components/balance/balance-info";
 import BalanceInfoToken from "~/components/balance/balance-info-token";
 import PortfolioIndexes from "~/components/balance/portfolio-indexes";
+
 export default {
   name: "MyIndex",
   components: { PortfolioIndexes, BalanceInfoToken, BalanceInfo }

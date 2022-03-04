@@ -27,7 +27,7 @@
           <div class="display-flex aic">
             <button
               class="btn btn-small"
-              style="color: var(--base-text);"
+              style="color: #fff;"
               @click="setMax"
             >
               {{ $t("ALL") }}
@@ -163,13 +163,13 @@ export default {
       } else {
         this.getCoinList = this.currencies.filter(e => ["VNGUSDT", "KZNUSDT", "SRKUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       }
-      this.sendCoinList = this.mode === "sell" ? [] : this.wallets.filter(x => ["usdt", "usdc", "busd", "bnb", "eth", "btc", "trx"].includes(x.symbol));
+      this.sendCoinList = this.mode === "sell"
+        ? []
+        : this.wallets.filter(e => e.amount > 0 && !["crypto10", "coin10", "defi", "kaizen", "bitw", this.inputCurrency.toLowerCase()].includes(e.symbol));
 
-      if (this.inputCurrency && this.mode === "sell") {
-        this.sendCoin = this.sendCoinList.find(e => e.symbol.toUpperCase() === this.inputCurrency.toUpperCase());
-      } else {
-        this.sendCoin = this.sendCoinList[0]; // .filter(e => e.symbol === "usd");
-      }
+      this.sendCoin = this.inputCurrency && this.mode === "sell"
+        ? this.sendCoinList.find(e => e.symbol.toUpperCase() === this.inputCurrency.toUpperCase())
+        : this.sendCoin = this.sendCoinList[0]; // .filter(e => e.symbol === "usd");
 
       // Если в URL есть get параметр "index", то устанавливаем его по умолчанию для покупки
       if (this.indexFromUrl) {
