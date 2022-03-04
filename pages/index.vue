@@ -19,7 +19,7 @@
           {{ coverDesc }}
         </p>
         <nuxt-link
-          :to="localePath(hasToken ? 'my' : 'auth')"
+          :to="localePath($store.getters.hasToken ? 'my' : 'auth')"
           class="btn btn-accent animate__animated wow animate__fadeIn"
           data-wow-delay=".5s"
           v-text="$t(hasToken ? 'DASHBOARD' : 'START_INVESTING')"

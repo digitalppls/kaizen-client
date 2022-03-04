@@ -7,7 +7,7 @@
     </nuxt-link>
 
     <section class="balance-info__top">
-      <h2 class="color-white">
+      <h2 class="color-white font-size-24">
         {{ $t("BALANCE_INFORMATION") }}
       </h2>
 

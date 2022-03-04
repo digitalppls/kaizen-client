@@ -48,10 +48,7 @@
           </ul>
         </nav>
         <lang-switcher class="m-r-40" />
-        <user-bar v-if="hasToken" />
-        <button v-else class="btn btn-small btn-outline userbar-username">
-          {{ $t("LOGIN") }}
-        </button>
+        <user-bar />
       </div>
       <button
         class="header_burger"

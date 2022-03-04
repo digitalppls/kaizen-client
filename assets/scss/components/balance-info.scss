@@ -1,7 +1,7 @@
 .balance-info {
   background-color: #1F2124;
   padding: 15px;
-  overflow: hidden;
+  overflow: visible;
 
   @include respond-before("md") {
     padding: 30px;

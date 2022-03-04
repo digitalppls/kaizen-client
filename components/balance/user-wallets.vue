@@ -2,34 +2,34 @@
   <div class="user-wallets">
     <div class="user-wallets-box">
       <div :class="[{ 'user-wallets-box__left': !hideChart }]">
-        <div class="total m-b-20">
-          <div class="accessed-value">
+        <div class="m-b-40">
+          <p class="accessed-value m-b-5">
             {{ $t("ASSESSED_VALUE") }}:
-          </div>
-          <div class="font-size-30 font-bold total__balance">
+          </p>
+          <p class="font-size-30 font-bold total__balance">
             {{ totalUSD.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
-            <span class="font-medium font-size-14">USDT</span>
-          </div>
+            <span class="font-medium font-size-20">USDT</span>
+          </p>
         </div>
         <ul class="list list--none">
           <li
             v-for="(wallet, idx) in wallets"
             :key="idx"
           >
-            <img
-              v-if="false"
-              :src="require(`~/assets/img/tokens/icon-${wallet.symbol}.svg?inline`)"
-              :alt="wallet.symbol.toUpperCase()"
-              :title="wallet.symbol.toUpperCase()"
-              style="height: 21px; display: inline-block; vertical-align: middle; margin-right: 3px;"
-            >
+<!--            <img-->
+<!--              v-if="false"-->
+<!--              :src="require(`~/assets/img/tokens/icon-${wallet.symbol}.svg?inline`)"-->
+<!--              :alt="wallet.symbol.toUpperCase()"-->
+<!--              :title="wallet.symbol.toUpperCase()"-->
+<!--              style="height: 21px; display: inline-block; vertical-align: middle; margin-right: 3px;"-->
+<!--            >-->
             <span style="display: inline-block; vertical-align: middle;">
-              <strong>{{ wallet.symbol.toUpperCase() }}:</strong>
-              <span class="font-medium">
+              <strong class="font-size-14 color-orange">{{ wallet.symbol.toUpperCase() }}:</strong>
+              <span class="font-medium font-size-14 color-white m-r-5">
                 {{ wallet.amount.toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
               </span>
-              <small class="color-gray">
-                ≈ ${{ $toUsd(wallet.symbol, wallet.amount).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
+              <small class="font-size-14 color-white">
+                <span class="m-r-5">~</span> ${{ $toUsd(wallet.symbol, wallet.amount).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
               </small>
             </span>
           </li>
@@ -39,8 +39,8 @@
         <vc-donut
           background="#1F2124"
           foreground="transparent"
-          :size="175"
-          :thickness="25"
+          :size="225"
+          :thickness="40"
           has-legend
           legend-placement="right"
           :sections="sections"
@@ -54,10 +54,10 @@
                 class="cdc-legend-item"
               >
                 <span class="cdc-legend-item-color" :style="item.styles" />
-                <span class="cdc-legend-item-label">
+                <span class="cdc-legend-item-label color-white">
                   {{ item.label.toUpperCase() }}
                 </span>
-                <span class="cdc-legend-item-value">
+                <span class="cdc-legend-item-value" :style="{ color: item.styles.backgroundColor}">
                   {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
                 </span>
               </div>
@@ -81,7 +81,7 @@ export default {
   data () {
     return {
       defaultColors: [
-        "#ff6384", "#36a2eb", "#ffce56", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
+        "#BFEA44", "#F0C149", "#FFFFFF", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
         "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
         "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000"
       ]
@@ -131,6 +131,7 @@ export default {
     @include respond-before("md") {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     &__left {
@@ -141,7 +142,7 @@ export default {
         margin-bottom: 0;
       }
       @include respond-before("xl") {
-        width: 45%;
+        width: 30%;
       }
     }
 
@@ -150,7 +151,7 @@ export default {
         width: 65%;
       }
       @include respond-before("xl") {
-        width: 55%;
+        width: 60%;
       }
 
       .cdc-container {
@@ -173,7 +174,7 @@ export default {
   justify-content: center;
 
   @include respond-before("md") {
-    margin: 0 0 0 1em;
+    margin: 0 0 0 4em;
   }
 
   &-item {
@@ -195,17 +196,9 @@ export default {
     }
 
     &-value {
-      margin-left: auto;
+      //margin-left: auto;
     }
   }
-}
-
-.accessed-value {
-  font-size: 14px;
-  line-height: 16px;
-  color: #898B8C;
-  font-weight: 300;
-  margin-bottom: 10px;
 }
 
 .total {
@@ -216,5 +209,9 @@ export default {
        letter-spacing: -0.02em;
        color: #F5CF48;
      }
+}
+
+.color-orange {
+  color: #F5CF48;
 }
 </style>
