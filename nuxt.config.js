@@ -4,9 +4,7 @@ export default {
     isDev: process.env.NODE_ENV !== "production"
   },
   server: process.env.PROXY
-    ? {
-        port: process.env.PORT
-      }
+    ? { port: process.env.PORT }
     : {},
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -16,7 +14,7 @@ export default {
     extendRoutes (routes, resolve) {
       routes.push({
         name: "custom",
-        path: "*",
+        path: "/:lang/*",
         component: resolve(__dirname, "pages/404.vue")
       });
     }
@@ -191,19 +189,19 @@ export default {
 
   proxy: process.env.PROXY
     ? {
-        "/server": {
-          target: process.env.PROXY
+      "/server": {
+        target: process.env.PROXY
         // pathRewrite: { "^/server": "/" }
-        },
-        "/socket.io": {
-          target: process.env.PROXY
+      },
+      "/socket.io": {
+        target: process.env.PROXY
         // pathRewrite: { "^/socket.io": "/" }
-        },
-        "/api": {
-          target: process.env.PROXY
+      },
+      "/api": {
+        target: process.env.PROXY
         // pathRewrite: { "^/api": "/" }
-        }
       }
+    }
     : {},
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
