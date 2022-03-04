@@ -441,4 +441,6 @@ export default {
   "ACCUMULATION": "Накопление",
   "PART_OF_THE_FUNDS": "Часть средств",
   "FOR_CONVERSION": "направленных на конвертацию",
+
+
 };

@@ -9,14 +9,11 @@
 
           {{ symbol.toUpperCase() }}
         </h3>
-        <p class="color-white">
-          {{ $t("PRICE") }} ≈ <span class="price">${{ priceUsd }}</span>
-        </p>
       </div>
       <div class="m-l-a">
         <button
           :disabled="!balance"
-          :class="['btn', {'btn-buy': symbol === 'kzn'}, {'btn-buy': symbol === 'vng'}, {'btn-buy': symbol === 'srk'}]"
+          :class="['btn', {'btn-blue': symbol === 'kzn'}, {'btn-yellow': symbol === 'vng'}, {'btn-red': symbol === 'srk'}]"
           @click="openModal('buy')"
         >
           {{ $t("BUY") }}
@@ -30,72 +27,84 @@
         </button>
       </div>
     </div>
-    <div class="m-b-20">
-      <p class="m-b-5">
-        Available
-      </p>
-      <span class="color-white">{{ available.toLocaleString() }} {{ symbol.toUpperCase() }}</span>
-    </div>
-    <div class="m-b-5">
-      {{ $t("BALANCE") }}:
-    </div>
-    <span class="font-size-30 font-bold color-white">
-      {{ balance.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
-      <span class="font-medium font-size-14">{{ symbol.toUpperCase() }}</span>
-    </span>
-    <small class="color-white">
-      ≈ ${{ $toUsd(symbol.toUpperCase(), balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
-    </small>
-    <vc-donut
-      background="#1F2124"
-      foreground="#EAECEF"
-      :size="175"
-      :thickness="25"
-      has-legend
-      legend-placement="right"
-      :sections="[
-        { label:'Pre-sale', value: 15, color: '#BFEA44' },
-        { label:'IDO', value: 3, color: '#F0C149' },
-        { label:'Кошелек компании', value: 15, color: '#51ECA1' },
-        { label:'Фонд вознаграждения', value: 5, color: '#629CF2' },
-        { label:'Public sale', value: 62, color: '#FFFFFF' }
-      ]"
-    >
-      <template #legend>
-        <div class="cdc-legend">
-          <div
-            v-for="(item, idx) in [
-              { label:'Pre-sale', value: 15, percent: 15, style: {backgroundColor: '#BFEA44'} },
-              { label:'IDO', value: 3, percent: 3, style: {backgroundColor: '#F0C149'} },
-              { label:'Кошелек компании', value: 15, percent: 15, style: {backgroundColor: '#51ECA1'} },
-              { label:'Фонд вознаграждения', value: 5, percent: 6, style: {backgroundColor: '#629CF2'} },
-              { label:'Public sale', value: 62, percent: 62, style: {backgroundColor: '#FFFFFF'} }
-            ]"
-            :key="idx"
-            :title="item.percent"
-            class="cdc-legend-item"
-          >
-            <span class="cdc-legend-item-color" :style="item.style" />
-            <span class="cdc-legend-item-label m-r-5 color-white">
-              {{ item.label.toUpperCase() }}
-            </span>
-            <span class="cdc-legend-item-value" :style="{ color: item.style.backgroundColor}">
-              {{ item.value }} %
-            </span>
-          </div>
+    <div class="user-wallets-box">
+      <div class="user-wallets-box__left">
+        <div class="m-b-40">
+          <p class="m-b-10 accessed-value">
+            {{ $t("PRICE") }}:
+          </p>
+          <span class="price">${{ priceUsd }}</span>
         </div>
-      </template>
-    </vc-donut>
-    <ui-modal
-      v-if="showModal"
-      @close="closeModal"
-    >
-      <!--      <h2 class="modal-title m-b-40">-->
-      <!--        {{ $t(modal.toUpperCase()) }} {{ symbol.toUpperCase() }}-->
-      <!--      </h2>-->
+        <div class="m-b-20">
+          <p class="m-b-5 accessed-value">
+            {{ $t("AVAILABLE") }}:
+          </p>
+          <span class="color-white font-bold font-size-24">{{ available.toLocaleString() }} {{ symbol.toUpperCase() }}</span>
+        </div>
+        <div class="m-b-10 accessed-value">
+          {{ $t("BALANCE") }}:
+        </div>
+        <span class="font-size-24 font-bold color-white m-r-5">
+          {{ balance.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
+          <span class="font-medium">{{ symbol.toUpperCase() }}</span>
+        </span>
+        <small class="color-white font-size-14">
+          <span class="m-r-5">~</span> ${{ $toUsd(symbol.toUpperCase(), balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
+        </small>
+      </div>
+      <div class="user-wallets-box__right">
+        <vc-donut
+          background="#1F2124"
+          foreground="#EAECEF"
+          :size="225"
+          :thickness="40"
+          has-legend
+          legend-placement="right"
+          :sections="[
+            { label:'Pre-sale', value: 15, color: '#BFEA44' },
+            { label:'IDO', value: 3, color: '#F0C149' },
+            { label:'Кошелек компании', value: 15, color: '#51ECA1' },
+            { label:'Фонд вознаграждения', value: 5, color: '#629CF2' },
+            { label:'Public sale', value: 62, color: '#FFFFFF' }
+          ]"
+        >
+          <template #legend>
+            <div class="cdc-legend">
+              <div
+                v-for="(item, idx) in [
+                  { label:'Pre-sale', value: 15, percent: 15, style: {backgroundColor: '#BFEA44'} },
+                  { label:'IDO', value: 3, percent: 3, style: {backgroundColor: '#F0C149'} },
+                  { label:'Кошелек компании', value: 15, percent: 15, style: {backgroundColor: '#51ECA1'} },
+                  { label:'Фонд вознаграждения', value: 5, percent: 6, style: {backgroundColor: '#629CF2'} },
+                  { label:'Public sale', value: 62, percent: 62, style: {backgroundColor: '#FFFFFF'} }
+                ]"
+                :key="idx"
+                :title="item.percent"
+                class="cdc-legend-item"
+              >
+                <span class="cdc-legend-item-color" :style="item.style" />
+                <span class="cdc-legend-item-label m-r-5 color-white">
+                  {{ item.label.toUpperCase() }}
+                </span>
+                <span class="cdc-legend-item-value" :style="{ color: item.style.backgroundColor}">
+                  {{ item.value }} %
+                </span>
+              </div>
+            </div>
+          </template>
+        </vc-donut>
+        <ui-modal
+          v-if="showModal"
+          @close="closeModal"
+        >
+          <!--      <h2 class="modal-title m-b-40">-->
+          <!--        {{ $t(modal.toUpperCase()) }} {{ symbol.toUpperCase() }}-->
+          <!--      </h2>-->
 
-      <token-swap :input-currency="symbol.toUpperCase()" type="token" :mode="modal" />
-    </ui-modal>
+          <token-swap :input-currency="symbol.toUpperCase()" type="token" :mode="modal" />
+        </ui-modal>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -158,6 +167,7 @@ export default {
    @include respond-before("md") {
      display: flex;
      flex-wrap: wrap;
+     align-items: center;
    }
 
    &__left {
@@ -168,7 +178,7 @@ export default {
        margin-bottom: 0;
      }
      @include respond-before("xl") {
-       width: 45%;
+       width: 30%;
      }
    }
 
@@ -177,7 +187,7 @@ export default {
        width: 65%;
      }
      @include respond-before("xl") {
-       width: 55%;
+       width: 60%;
      }
 
      .cdc-container {
@@ -200,7 +210,7 @@ export default {
   justify-content: center;
 
   @include respond-before("md") {
-    margin: 0 0 0 1em;
+    margin: 0 0 0 4em;
   }
 
   &-item {
@@ -228,7 +238,10 @@ export default {
 }
 
 .price {
-    color: #F5CF48;
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  color: #F5CF48;
   }
 
 </style>
