@@ -96,7 +96,7 @@ export default {
       {
         rel: "theme-color",
         content: "#000"
-      },
+      }
       // {
       //   rel: "preconnect",
       //   href: "https://fonts.googleapis.com"

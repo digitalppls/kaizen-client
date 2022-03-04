@@ -1,7 +1,7 @@
 <template>
   <main class="main">
     <div class="industry-hero-section hero-section section-1">
-      <div class="bg"></div>
+      <div class="bg" />
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />
@@ -21,7 +21,7 @@
             <div class="scheme__blocks">
               <div class="scheme__block scheme__block-1">
                 <div class="scheme__text">
-                  Выкуп SRK на бирже для сжигания и удержания курса
+                  {{ $t("SRK_REDEMPTION")}}
                 </div>
                 <div class="arrows">
                   <div class="custom-arrow white" />
@@ -34,13 +34,13 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Биржа, где
+                      {{ $t("EXCHANGE_WHERE")}}
                       <span class="accent">
-                        торгуется токен SRK
+                        {{ `${$t("TOKEN_IS_TRAIDED")} SRK`}}
                       </span>
                     </h3>
                     <div class="scheme__card-text">
-                      Пользователь по своему усмотрению отправляет токены на биржу.
+                      {{ $t("USER_SENDS_TOKENS_TO_EXCHANGE")}}
                     </div>
                   </div>
                 </div>
@@ -53,9 +53,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Личный кабинет
+                      {{ $t("PERSONAL_ACCOUNT")}}
                       <span class="accent">
-                        инвестора
+                        {{ $t("OF_THE_INVESTOR")}}
                       </span>
                     </h3>
                   </div>
@@ -87,7 +87,7 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Платформа
+                      {{ $t("PLATFORM")}}
                       <span class="accent">
                         KAIZEN
                       </span>
@@ -98,9 +98,7 @@
               </div>
               <div class="scheme__block scheme__block-6">
                 <div class="scheme__text">
-                  Альтернативный вклад от участника в услугах, стройматериалы, машино-механизмы, трудочасы, подрядные
-                  работы и прочие. За
-                  альтернативный вклад участнику начисляются токены SRK
+                  {{ $t("PRODUCTION_TEXT_1")}}
                 </div>
                 <div class="custom-arrow" />
               </div>
@@ -112,9 +110,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Конвертация USDT
+                       {{ $t("CONVERSION")}} USDT
                       <span class="accent">
-                        в фиатную валюту
+                        {{ $t("TO_FIAT_CURRENCY")}}
                       </span>
                     </h3>
                   </div>
@@ -125,9 +123,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Производственное
+                      {{ $t("MANUFACTURING")}}
                       <span class="accent">
-                        предприятие
+                        {{ $t("ENTERPRISE")}}
                       </span>
                     </h3>
                   </div>
@@ -138,9 +136,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeIn">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Накопление
+                      {{ $t("ACCUMULATION")}}
                       <span class="accent">
-                        в фиатной валюте
+                        {{$t("IN_FIAT_CURRENCY")}}
                       </span>
                     </h3>
                   </div>
@@ -151,9 +149,9 @@
                   <div class="custom-arrow" />
                 </div>
                 <div class="scheme__text">
-                  Часть средств,
+                  {{$t("PART_OF_THE_FUNDS")}},
                   <span class="accent">
-                    направленных на конвертацию
+                    {{$t("FOR_CONVERSION")}}
                   </span>
                 </div>
               </div>
@@ -234,7 +232,7 @@
             class="btn story__btn"
             @click="storyHidden = false"
           >
-            Читать все
+            {{ $t("READ_ALL") }}
           </button>
         </div>
         <div class="text animate__animated wow animate__fadeIn">
@@ -346,15 +344,14 @@
         </div>
         <div class="content animate__animated wow animate__slideInUp">
           <h2 class="title">
-            Токеномика
+            {{ $t("TOKENOMICS")}}
           </h2>
           <div class="amount">
-            <span>Общая сумма токенов:</span>
+            <span>{{ $t("TOKEN_AMOUNT") }}</span>
             <span class="accent">100 000 000 SRK</span>
           </div>
           <div class="text">
-            Эмиссия в интересах пользователей является ограниченой и дополнительная эмиссия не предполагается. Все токены которые не будут проданы
-            на этапах Pre-Sale и IDO будут направлены в фонд Public Sale.
+            {{ $t("ISSUANCE") }}
           </div>
         </div>
       </div>
@@ -376,7 +373,7 @@ export default {
       return "SARY-ARKA INDUSTRY";
     },
     coverDesc () {
-      return "Участвуйте в токенизированном производственном предприятии с токеном SRK";
+      return this.$t("PARTICIPATE_IN");
     },
     hasToken () {
       return this.$store.getters.hasToken;

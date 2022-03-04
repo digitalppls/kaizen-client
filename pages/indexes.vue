@@ -170,11 +170,10 @@
         </div>
         <div class="content">
           <h2 class="title">
-            Токеномика
+            {{ $t("TOKENOMICS") }}
           </h2>
           <div class="text font-300">
-            Эмиссия в интересах пользователей является ограниченой и дополнительная эмиссия не предполагается. Все
-            токены которые не будут проданы на этапах Pre-Sale и IDO будут направлены в фонд Public Sale.
+            {{ $t("EMISSION") }}
           </div>
         </div>
       </div>
@@ -200,10 +199,10 @@ export default {
       return INDEXES;
     },
     coverTitle () {
-      return "Инвестируйте в 9 лучших мировых проектов"; // .replace("%{COUNT}", this.countIndices);
+      return this.$t("COVER_TITLE"); // .replace("%{COUNT}", this.countIndices);
     },
     coverDesc () {
-      return "CRYPTO20 — первый в мире токенизированный криптовалютный индексный фонд. Доходность 20 топовых криптовалют отслеживается в одном криптоактиве C20."; // .replace("%{INDEXNAME}", "CRYPTO10").replaceAll("%{INDEXCNT}", "10");
+      return this.$t("COVER_DESC"); // .replace("%{INDEXNAME}", "CRYPTO10").replaceAll("%{INDEXCNT}", "10");
     },
     hasToken () {
       return this.$store.getters.hasToken;

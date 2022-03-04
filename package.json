@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "PROXY='https://kaizenfund.io' nuxt",
+    "dev": "nuxt",
     "dev:prod": "HTTPS='true' nuxt",
     "build": "nuxt build",
     "start": "nuxt start",

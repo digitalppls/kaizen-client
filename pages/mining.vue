@@ -1,7 +1,7 @@
 <template>
   <main class="main">
     <div class="mining-hero-section hero-section">
-      <div class="bg"></div>
+      <div class="bg" />
       <div class="container">
         <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />
@@ -19,9 +19,9 @@
         <div class="scheme">
           <div class="scheme__text">
             <span class="accent">
-              Платформа Kaizen выкупает токены VNG
+              {{ $t("KAIZEN_REDEEMS_TOKENS") }}
             </span>
-            на бирже для поддержания цены и ликвидности
+            {{ $t("TO_MAINTAIN") }}
           </div>
           <div class="scheme__body">
             <div class="scheme__body-right-line">
@@ -35,13 +35,13 @@
                 <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Биржа, где
+                      {{ $t("EXCHANGE_WHERE") }}
                       <span class="accent">
-                        торгуется токен VNG
+                        {{ `${$t("TOKEN_IS_TRAIDED")} VNG` }}
                       </span>
                     </h3>
                     <div class="scheme__card-text">
-                      Пользователь по своему усмотрению отправляет токены на биржу.
+                      {{ $t("USER_SENDS_TOKENS_TO_EXCHANGE") }}
                     </div>
                   </div>
                 </div>
@@ -50,13 +50,13 @@
                 <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Майнинг BTC
+                      {{ $t("BTC_MINING") }}
                       <span class="accent">
-                        и других криптовалют
+                        {{ $t("AND_OTHER_CRYPTOCURRENCIES") }}
                       </span>
                     </h3>
                     <div class="scheme__card-text">
-                      в дата-центрах Vanguard
+                      {{ $t("VANGUARD_DATA_CENTER") }}
                     </div>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
                   <span class="custom-arrow__item" />
                 </div>
                 <span class="accent">
-                  VNG
+                  {{ $t("VNG") }}
                 </span>
               </div>
               <div class="scheme__block scheme__block-4">
@@ -74,9 +74,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Конвертация
+                      {{ $t("CONVERSION") }}
                       <span class="accent">
-                        BTC в USDC на бирже
+                        {{ $t("BTC_TO_USDC") }}
                       </span>
                     </h3>
                   </div>
@@ -87,9 +87,9 @@
                 <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Личный кабинет
+                      {{ $t("PERSONAL_ACCOUNT") }}
                       <span class="accent">
-                        инвестора
+                        {{ $t("OF_THE_INVESTOR") }}
                       </span>
                     </h3>
                   </div>
@@ -119,7 +119,7 @@
                 <div class="scheme__card animate__animated wow animate__fadeInUp">
                   <div class="scheme__card-content">
                     <h3 class="scheme__card-title">
-                      Платформа
+                      {{ $t("PLATFORM") }}
                       <span class="accent">
                         KAIZEN
                       </span>
@@ -141,10 +141,10 @@
                 </div>
                 <div class="scheme__diagram-content">
                   <div class="scheme__diagram-title">
-                    Пул ликвидности
+                    {{ $t("LIQUIDITY_POOL") }}
                   </div>
                   <div class="scheme__diagram-text">
-                    Пул ликвидности для Dex бирж и обратный выкуп токенов VNG для сжигания через Smart-контракт
+                    {{ $t("LIQUIDITY_POOL_FOR") }}
                   </div>
                 </div>
               </div>
@@ -159,11 +159,10 @@
                 </div>
                 <div class="scheme__diagram-content">
                   <div class="scheme__diagram-title">
-                    Операционные расходы
+                    {{ $t("TRANSACTION_COSTS") }}
                   </div>
                   <div class="scheme__diagram-text">
-                    Операционные расходы компании и покупка майнинг-оборудования для
-                    развития дата-центров
+                    {{ $t("COMPANY_COSTS") }}
                   </div>
                 </div>
               </div>
@@ -286,16 +285,14 @@
         </div>
         <div class="content animate__animated wow animate__slideInUp">
           <h2 class="title">
-            Токеномика
+            {{ $t("TOKENOMICS") }}
           </h2>
           <div class="amount">
-            <span>Общая сумма токенов:</span>
+            <span>{{ $t("TOKEN_AMOUNT") }}</span>
             <span class="accent">10 000 000 VNG</span>
           </div>
           <div class="text">
-            Эмиссия в интересах пользователей является ограниченой и дополнительная эмиссия не предполагается. Все
-            токены которые не будут проданы
-            на этапах Pre-Sale и IDO будут направлены в фонд Public Sale.
+            {{ $t("ISSUANCE") }}
           </div>
         </div>
       </div>
@@ -311,19 +308,19 @@ export default {
   data () {
     return {
       content: {
-        title: "Бизнес-процесс инсталляции и управления дата-центрами",
-        text_1: "Компания оператор проекта «Индустриальный майнинг» размещает майнинговое оборудование на нефтяном месторождении, с компанией владельцем месторождения заключено соглашение о использовании попутного газа. Электроэнергия вырабатывается электростанцией гпг (газопоршневой генератор) использующий в качестве топлива попутный газ месторождения. Опытный генератор ГПГ мощностью 2 мВт уже задействован на месторождении, и показывает стабильную безотказную работу. Также есть возможность развития потенциала мощности до 8 мВт. Из опыта эксплуатации электростанции ГПГ выявлена себестоимость 1 кВт/ч и составляет 0.007$, что значительно ниже стоимости электроэнергии у поставщиков на рынке. 70% от добытых биткойнов отправляется в пул ликвидности на децентрализованные биржи, 30% отправляется в счет операционных расходов включая электроэнергию, менеджмент компании и покупку нового майнинг оборудования.",
-        text_2: "Автономное электроснабжение действует вне сетей общего пользования и не создает дефицит в энергобалансе региона. Автономное электроснабжение не может быть отключено какими-либо административными предписаниями в связи с возможным дефицитом электроэнергии в регионе.",
-        text_3: "Низкая стоимость электроэнергии и автономностьявляется фактором высокой рентабельности проекта «Индустриальный майнинг» платформы Kaizenfund"
+        title: this.$t("MINING_CONTENT.TITLE"),
+        text_1: this.$t("MINING_CONTENT.TEXT_1"),
+        text_2: this.$t("MINING_CONTENT.TEXT_2"),
+        text_3: this.$t("MINING_CONTENT.TEXT_3")
       }
     };
   },
   computed: {
     coverTitle () {
-      return "Участвуйте в индустриальном майнинге с токеном VNG";
+      return this.$t("MINING_COVER_TITLE");
     },
     coverDesc () {
-      return "Kaizen предоставляет доступ к майнингу биткойна с самыми выгодными условиями.";
+      return this.$t("MINING_COVER_DESC");
     },
     hasToken () {
       return this.$store.getters.hasToken;

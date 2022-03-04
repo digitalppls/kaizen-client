@@ -31,7 +31,9 @@
       </div>
     </div>
     <div class="m-b-20">
-      <p class="m-b-5">Available</p>
+      <p class="m-b-5">
+        Available
+      </p>
       <span class="color-white">{{ available.toLocaleString() }} {{ symbol.toUpperCase() }}</span>
     </div>
     <div class="m-b-5">
