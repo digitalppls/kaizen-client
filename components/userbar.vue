@@ -48,7 +48,7 @@
           <path d="M4.5 14.25H13.5C13.5 14.0833 13.5 13.9166 13.5 13.7498C13.5 11.5408 11.7093 9.74997 9.50022 9.74997C9.16681 9.74997 8.83341 9.74997 8.5 9.74997C6.29086 9.74999 4.5 11.5409 4.5 13.75C4.5 13.9167 4.5 14.0833 4.5 14.25Z" fill="#555860" />
         </svg>
         <nuxt-link
-          class="btn btn-small login-btn"
+          class="login-btn"
           :to="localePath('auth')"
           data-wow-delay=".5s"
         >
@@ -182,8 +182,9 @@ export default {
 .userbar__login-wrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background: #202125;
-  width: 151px;
+  width: 96px;
 }
 
 .userbar__dropdown {
@@ -210,5 +211,7 @@ export default {
 
 .login-btn {
   background-color: transparent;
+  color: white !important;
+  opacity: 1;
 }
 </style>

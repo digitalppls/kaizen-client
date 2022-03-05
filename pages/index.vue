@@ -2,16 +2,6 @@
   <main class="main">
     <div class="section-1">
       <div class="container">
-        <div class="bg">
-          <!--          <picture>-->
-          <!--&lt;!&ndash;            <source :srcset="require(`~/assets/img/s1-bg-mob.webp`)" media="(max-width: 768px)" type="image/webp">&ndash;&gt;-->
-          <!--&lt;!&ndash;            <source :srcset="require(`~/assets/img/s1-bg.webp`)" media="(min-width: 768px)" type="image/webp">&ndash;&gt;-->
-
-          <!--            <source :srcset="require(`~/assets/img/s1-bg-mob.png`)" media="(max-width: 768px)">-->
-          <!--            <source :srcset="require(`~/assets/img/s1-bg.png`)" media="(min-width: 768px)">-->
-          <!--            <img alt="" :srcset="require(`~/assets/img/s1-bg.png`)">-->
-          <!--          </picture>-->
-        </div>
         <h1 class="title animate__animated wow animate__fadeIn">
           {{ coverTitle }}
         </h1>

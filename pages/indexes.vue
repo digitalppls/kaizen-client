@@ -199,10 +199,10 @@ export default {
       return INDEXES;
     },
     coverTitle () {
-      return this.$t("COVER_TITLE"); // .replace("%{COUNT}", this.countIndices);
+      return this.$t("INDEXES_COVER_TITLE"); // .replace("%{COUNT}", this.countIndices);
     },
     coverDesc () {
-      return this.$t("COVER_DESC"); // .replace("%{INDEXNAME}", "CRYPTO10").replaceAll("%{INDEXCNT}", "10");
+      return this.$t("INDEXES_COVER_DESC"); // .replace("%{INDEXNAME}", "CRYPTO10").replaceAll("%{INDEXCNT}", "10");
     },
     hasToken () {
       return this.$store.getters.hasToken;

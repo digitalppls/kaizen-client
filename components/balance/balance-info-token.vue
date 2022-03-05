@@ -12,7 +12,6 @@
       </div>
       <div class="m-l-a">
         <button
-          :disabled="!balance"
           :class="['btn', {'btn-blue': symbol === 'kzn'}, {'btn-yellow': symbol === 'vng'}, {'btn-red': symbol === 'srk'}]"
           @click="openModal('buy')"
         >
@@ -74,8 +73,8 @@
                 v-for="(item, idx) in [
                   { label:'Pre-sale', value: 15, percent: 15, style: {backgroundColor: '#BFEA44'} },
                   { label:'IDO', value: 3, percent: 3, style: {backgroundColor: '#F0C149'} },
-                  { label:'Кошелек компании', value: 15, percent: 15, style: {backgroundColor: '#51ECA1'} },
-                  { label:'Фонд вознаграждения', value: 5, percent: 6, style: {backgroundColor: '#629CF2'} },
+                  { label:$t('COMPANY_WALLET'), value: 15, percent: 15, style: {backgroundColor: '#51ECA1'} },
+                  { label: $t(`REMUNERATION_FUND`), value: 5, percent: 6, style: {backgroundColor: '#629CF2'} },
                   { label:'Public sale', value: 62, percent: 62, style: {backgroundColor: '#FFFFFF'} }
                 ]"
                 :key="idx"

@@ -75,7 +75,8 @@
     </div>
     <div class="m-t-40">
       <button
-        class="btn btn-solid btn-full"
+        class="btn btn-full"
+        :class="['btn', {'btn-blue': inputCurrency === 'KZN'}, {'btn-yellow': inputCurrency === 'VNG'}, {'btn-red': inputCurrency === 'SRK'}]"
         :disabled="loading || !wallets.length || sendInput > sendCoin.amount || !sendInput || !getInput || $symbolCurrencySplitUsdt(sendCoin.symbol).toLowerCase() === $symbolCurrencySplitUsdt(getCoin.symbol).toLowerCase()"
         @click="onExchange"
       >
