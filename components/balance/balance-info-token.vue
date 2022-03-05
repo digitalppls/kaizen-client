@@ -38,7 +38,9 @@
           <p class="m-b-5 accessed-value">
             {{ $t("AVAILABLE") }}:
           </p>
-          <span class="color-white font-bold font-size-24">{{ available.toLocaleString() }} {{ symbol.toUpperCase() }}</span>
+          <span class="color-white font-bold font-size-24">
+            {{ available.toLocaleString() }} {{ symbol.toUpperCase() }}
+          </span>
         </div>
         <div class="m-b-10 accessed-value">
           {{ $t("BALANCE") }}:
@@ -48,7 +50,8 @@
           <span class="font-medium">{{ symbol.toUpperCase() }}</span>
         </span>
         <small class="color-white font-size-14">
-          <span class="m-r-5">~</span> ${{ $toUsd(symbol.toUpperCase(), balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
+          <span class="m-r-5">~</span>
+          ${{ $toUsd(symbol.toUpperCase(), balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
         </small>
       </div>
       <div class="user-wallets-box__right">
@@ -60,11 +63,11 @@
           has-legend
           legend-placement="right"
           :sections="[
-            { label:'Pre-sale', value: 15, color: '#BFEA44' },
-            { label:'IDO', value: 3, color: '#F0C149' },
-            { label:'Кошелек компании', value: 15, color: '#51ECA1' },
-            { label:'Фонд вознаграждения', value: 5, color: '#629CF2' },
-            { label:'Public sale', value: 62, color: '#FFFFFF' }
+            { label:'Pre-sale', value: 15, color: '#bfea44' },
+            { label:'IDO', value: 3, color: '#f0c149' },
+            { label:'Кошелек компании', value: 15, color: '#51eca1' },
+            { label:'Фонд вознаграждения', value: 5, color: '#629cf2' },
+            { label:'Public sale', value: 62, color: '#fff' }
           ]"
         >
           <template #legend>
@@ -161,39 +164,40 @@ export default {
 
 <style lang="scss" scoped>
 @import "~/assets/scss/components/balance-info.scss";
+
 .user-wallets {
- &-box {
-   @include respond-before("md") {
-     display: flex;
-     flex-wrap: wrap;
-     align-items: center;
-   }
+  &-box {
+    @include respond-before("md") {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
-   &__left {
-     margin-bottom: 30px;
+    &__left {
+      margin-bottom: 30px;
 
-     @include respond-before("md") {
-       width: 35%;
-       margin-bottom: 0;
-     }
-     @include respond-before("xl") {
-       width: 30%;
-     }
-   }
+      @include respond-before("md") {
+        width: 35%;
+        margin-bottom: 0;
+      }
+      @include respond-before("xl") {
+        width: 30%;
+      }
+    }
 
-   &__right {
-     @include respond-before("md") {
-       width: 65%;
-     }
-     @include respond-before("xl") {
-       width: 60%;
-     }
+    &__right {
+      @include respond-before("md") {
+        width: 65%;
+      }
+      @include respond-before("xl") {
+        width: 60%;
+      }
 
-     .cdc-container {
-       justify-content: left;
-     }
-   }
- }
+      .cdc-container {
+        justify-content: left;
+      }
+    }
+  }
 }
 
 .cdc-container {
@@ -240,8 +244,8 @@ export default {
   font-weight: bold;
   font-size: 30px;
   letter-spacing: -0.02em;
-  color: #F5CF48;
-  }
+  color: #f5cf48;
+}
 
 </style>
 

@@ -283,16 +283,16 @@ export default {
   mounted () {
     // курсы валют
     this.getCurrency();
-    this.$nextTick(() => {
-      if (process.browser) { // On the page mounted In the life cycle Instantiate according to the environment WOW
-        // eslint-disable-next-line no-undef
-        const { WOW } = require("wowjs");
-        new WOW({
-          offset: 50
-          // mobile: false,
-        }).init();
-      }
-    });
+    // this.$nextTick(() => {
+    //   if (process.browser) { // On the page mounted In the life cycle Instantiate according to the environment WOW
+    //     // eslint-disable-next-line no-undef
+    //     const { WOW } = require("wowjs");
+    //     new WOW({
+    //       offset: 50
+    //       // mobile: false,
+    //     }).init();
+    //   }
+    // });
   },
   methods: {
     /** Получаем название символа без 'USDT' */
