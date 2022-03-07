@@ -222,8 +222,6 @@ export default {
   "CABINET": "Cabinet",
 
   // Home info chart
-  "INFOCHART_TITLE": "Four high-yield market project indices",
-  "INFOCHART_DESC": "Choose a secure way to get diversified access to the world's leading cryptocurrencies. The fund monitors the leading segments of the cryptocurrency sector and ensures the safety and ease of access to financial instruments.",
   "CRYPTOCURRENCIES": "Cryptocurrencies",
   "EXCHANGES": "Exchanges",
   "TOP_COMPANIES": "Top companies",
@@ -440,10 +438,12 @@ export default {
   "HOME_INFO_BLOCK_T_3": "How it works",
   "LOWEST_RISK": "Highest credibility and lowest risk",
   "REPORT_NUMBER": "№",
-  "INDEXES_COVER_TITLE": "Invest in 9 of the world's best projects",
-  "INDEXES_COVER_DESC": "CRYPTO20 is the world's first tokenized cryptocurrency index fund. The returns of 20 top cryptocurrencies are tracked in a single C20 crypto-asset.",
+  "INDEXES_COVER_TITLE": "Invest in the world's best cryptocurrency indices",
+  "INDEXES_COVER_DESC": "Kaizen Fund is a Defi cryptocurrency index fund. We provide the opportunity to build capital with a new class of liquid and safe assets.",
   "EMISSION": "Issuance for the benefit of users is limited and no additional issuance is envisaged. All tokens that will not be sold at the Pre-Sale and IDO stages will be sent to the Public Sale fund.",
   "TOKENOMICS": "Tokenomics",
+  "INFOCHART_TITLE": "Four high-yield and balanced indices of the planet",
+  "INFOCHART_DESC": "Choose a secure way to gain diversified access to the world's leading cryptocurrencies. The fund monitors the leading segments of the cryptocurrency sector and provides safe and easy access to financial instruments.",
 
   // MINING PAGE
   "MINING_COVER_TITLE": "Participate in industrial mining with VNG token.",
