@@ -49,12 +49,12 @@ const INDEXES = [
       },
       {
         name: "ChainLink",
-        img: "chainlink.png",
+        img: "chainlink.svg",
         weight: 0.82
       },
       {
         name: "Bitcoin Cash",
-        img: "bitcoincash.png",
+        img: "bitcoincash.svg",
         weight: 0.64
       },
       {
@@ -108,7 +108,7 @@ const INDEXES = [
       },
       {
         name: "ChainLink",
-        img: "chainlink.png",
+        img: "chainlink.svg",
         weight: 6.695
       },
       {
@@ -118,7 +118,7 @@ const INDEXES = [
       },
       {
         name: "Bitcoin Cash",
-        img: "bitcoincash.png",
+        img: "bitcoincash.svg",
         weight: 6.141
       },
       {
@@ -192,12 +192,12 @@ const INDEXES = [
       },
       {
         name: "Chainlink",
-        img: "chainlink.png",
+        img: "chainlink.svg",
         weight: "0.70"
       },
       {
         name: "Bitcoin Cash",
-        img: "bitcoincash.png",
+        img: "bitcoincash.svg",
         weight: "0.67"
       },
       {
@@ -686,7 +686,7 @@ const INDEXES = [
       },
       {
         name: "ChainLink",
-        img: "chainlink.png",
+        img: "chainlink.svg",
         weight: 27.36
       },
       {
