@@ -114,25 +114,25 @@ export default {
       modal: "",
       token: {
         kzn: [
-          { label: "Pre-sale", value: 1, percent: 15, style: { backgroundColor: "#BFEA44" } },
-          { label: "IDO", value: 3, percent: 3, style: { backgroundColor: "#F0C149" } },
-          { label: this.$t("COMPANY_WALLET"), value: 15, percent: 15, style: { backgroundColor: "#51ECA1" } },
-          { label: this.$t("REMUNERATION_FUND"), value: 5, percent: 6, style: { backgroundColor: "#629CF2" } },
-          { label: "Public sale", value: 62, percent: 62, style: { backgroundColor: "#FFFFFF" } }
+          { label: "Pre-sale", value: 1, percent: 1, color: "#BFEA44", style: { backgroundColor: "#BFEA44" } },
+          { label: "IDO", value: 3, percent: 3, color: "#F0C149", style: { backgroundColor: "#F0C149" } },
+          { label: this.$t("COMPANY_WALLET"), value: 15, color: "#51ECA1", percent: 15, style: { backgroundColor: "#51ECA1" } },
+          { label: this.$t("REMUNERATION_FUND"), value: 5, color: "#629CF2", percent: 5, style: { backgroundColor: "#629CF2" } },
+          { label: "Public sale", value: 62, percent: 62, color: "#FFFFFF", style: { backgroundColor: "#FFFFFF" } }
         ],
         vng: [
-          { label: "Pre-sale", value: 15, percent: 15, style: { backgroundColor: "#BFEA44" } },
-          { label: "IDO", value: 3, percent: 3, style: { backgroundColor: "#F0C149" } },
-          { label: this.$t("COMPANY_WALLET"), value: 15, percent: 15, style: { backgroundColor: "#51ECA1" } },
-          { label: this.$t("REMUNERATION_FUND"), value: 5, percent: 6, style: { backgroundColor: "#629CF2" } },
-          { label: "Public sale", value: 62, percent: 62, style: { backgroundColor: "#FFFFFF" } }
+          { label: "Pre-sale", value: 15, percent: 15, color: "#BFEA44", style: { backgroundColor: "#BFEA44" } },
+          { label: "IDO", value: 3, percent: 3, color: "#F0C149", style: { backgroundColor: "#F0C149" } },
+          { label: this.$t("COMPANY_WALLET"), value: 15, color: "#51ECA1", percent: 15, style: { backgroundColor: "#51ECA1" } },
+          { label: this.$t("REMUNERATION_FUND"), value: 5, color: "#629CF2", percent: 6, style: { backgroundColor: "#629CF2" } },
+          { label: "Public sale", value: 62, percent: 62, color: "#FFFFFF", style: { backgroundColor: "#FFFFFF" } }
         ],
         srk: [
-          { label: "Pre-sale", value: 1, percent: 15, style: { backgroundColor: "#BFEA44" } },
-          { label: "IDO", value: 0.3, percent: 3, style: { backgroundColor: "#F0C149" } },
-          { label: this.$t("COMPANY_WALLET"), value: 15, percent: 15, style: { backgroundColor: "#51ECA1" } },
-          { label: this.$t("REMUNERATION_FUND"), value: 5, percent: 6, style: { backgroundColor: "#629CF2" } },
-          { label: "Public sale", value: 78.3, percent: 62, style: { backgroundColor: "#FFFFFF" } }
+          { label: "Pre-sale", value: 1, percent: 15, color: "#BFEA44", style: { backgroundColor: "#BFEA44" } },
+          { label: "IDO", value: 0.3, percent: 3, color: "#F0C149", style: { backgroundColor: "#F0C149" } },
+          { label: this.$t("COMPANY_WALLET"), value: 15, color: "#51ECA1", percent: 15, style: { backgroundColor: "#51ECA1" } },
+          { label: this.$t("REMUNERATION_FUND"), value: 5, color: "#629CF2", percent: 6, style: { backgroundColor: "#629CF2" } },
+          { label: "Public sale", value: 78.3, percent: 62, color: "#FFFFFF", style: { backgroundColor: "#FFFFFF" } }
         ]
       }
     };
