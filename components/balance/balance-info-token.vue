@@ -62,24 +62,12 @@
           :thickness="40"
           has-legend
           legend-placement="right"
-          :sections="[
-            { label:'Pre-sale', value: 15, color: '#bfea44' },
-            { label:'IDO', value: 3, color: '#f0c149' },
-            { label:'Кошелек компании', value: 15, color: '#51eca1' },
-            { label:'Фонд вознаграждения', value: 5, color: '#629cf2' },
-            { label:'Public sale', value: 62, color: '#fff' }
-          ]"
+          :sections="token[symbol]"
         >
           <template #legend>
             <div class="cdc-legend">
               <div
-                v-for="(item, idx) in [
-                  { label:'Pre-sale', value: 15, percent: 15, style: {backgroundColor: '#BFEA44'} },
-                  { label:'IDO', value: 3, percent: 3, style: {backgroundColor: '#F0C149'} },
-                  { label:$t('COMPANY_WALLET'), value: 15, percent: 15, style: {backgroundColor: '#51ECA1'} },
-                  { label: $t(`REMUNERATION_FUND`), value: 5, percent: 6, style: {backgroundColor: '#629CF2'} },
-                  { label:'Public sale', value: 62, percent: 62, style: {backgroundColor: '#FFFFFF'} }
-                ]"
+                v-for="(item, idx) in token[symbol]"
                 :key="idx"
                 :title="item.percent"
                 class="cdc-legend-item"
@@ -123,7 +111,30 @@ export default {
     return {
       sale: null,
       showModal: false,
-      modal: ""
+      modal: "",
+      token: {
+        kzn: [
+          { label: "Pre-sale", value: 1, percent: 15, style: { backgroundColor: "#BFEA44" } },
+          { label: "IDO", value: 3, percent: 3, style: { backgroundColor: "#F0C149" } },
+          { label: this.$t("COMPANY_WALLET"), value: 15, percent: 15, style: { backgroundColor: "#51ECA1" } },
+          { label: this.$t("REMUNERATION_FUND"), value: 5, percent: 6, style: { backgroundColor: "#629CF2" } },
+          { label: "Public sale", value: 62, percent: 62, style: { backgroundColor: "#FFFFFF" } }
+        ],
+        vng: [
+          { label: "Pre-sale", value: 15, percent: 15, style: { backgroundColor: "#BFEA44" } },
+          { label: "IDO", value: 3, percent: 3, style: { backgroundColor: "#F0C149" } },
+          { label: this.$t("COMPANY_WALLET"), value: 15, percent: 15, style: { backgroundColor: "#51ECA1" } },
+          { label: this.$t("REMUNERATION_FUND"), value: 5, percent: 6, style: { backgroundColor: "#629CF2" } },
+          { label: "Public sale", value: 62, percent: 62, style: { backgroundColor: "#FFFFFF" } }
+        ],
+        srk: [
+          { label: "Pre-sale", value: 1, percent: 15, style: { backgroundColor: "#BFEA44" } },
+          { label: "IDO", value: 0.3, percent: 3, style: { backgroundColor: "#F0C149" } },
+          { label: this.$t("COMPANY_WALLET"), value: 15, percent: 15, style: { backgroundColor: "#51ECA1" } },
+          { label: this.$t("REMUNERATION_FUND"), value: 5, percent: 6, style: { backgroundColor: "#629CF2" } },
+          { label: "Public sale", value: 78.3, percent: 62, style: { backgroundColor: "#FFFFFF" } }
+        ]
+      }
     };
   },
   computed: {
@@ -213,7 +224,7 @@ export default {
   justify-content: center;
 
   @include respond-before("md") {
-    margin: 0 0 0 4em;
+    margin: 0 0 0 2em;
   }
 
   &-item {
@@ -222,6 +233,7 @@ export default {
     margin: 0.5em 0;
     font-size: 15px;
     letter-spacing: -0.02em;
+    min-width: 250px;
 
     &-color {
       height: .75em;

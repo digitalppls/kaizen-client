@@ -173,7 +173,7 @@ export default {
   justify-content: center;
 
   @include respond-before("md") {
-    margin: 0 0 0 4em;
+    margin: 0 0 0 2em;
   }
 
   &-item {

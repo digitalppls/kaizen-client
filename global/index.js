@@ -24,7 +24,7 @@ const INDEXES = [
     items: [
       {
         name: "Bitcoin",
-        img: "bitcoin.svg",
+        img: "bitcoin.png",
         weight: 60.99
       },
       {
@@ -49,7 +49,7 @@ const INDEXES = [
       },
       {
         name: "ChainLink",
-        img: "chainlink.svg",
+        img: "chainlink.png",
         weight: 0.82
       },
       {
@@ -88,7 +88,7 @@ const INDEXES = [
     items: [
       {
         name: "Bitcoin",
-        img: "bitcoin.svg",
+        img: "bitcoin.png",
         weight: 26.458
       },
       {
@@ -108,7 +108,7 @@ const INDEXES = [
       },
       {
         name: "ChainLink",
-        img: "chainlink.svg",
+        img: "chainlink.png",
         weight: 6.695
       },
       {
@@ -147,7 +147,7 @@ const INDEXES = [
     items: [
       {
         name: "Bitcoin",
-        img: "bitcoin.svg",
+        img: "bitcoin.png",
         weight: "48.34"
       },
       {
@@ -192,7 +192,7 @@ const INDEXES = [
       },
       {
         name: "Chainlink",
-        img: "chainlink.svg",
+        img: "chainlink.png",
         weight: "0.70"
       },
       {
@@ -232,7 +232,7 @@ const INDEXES = [
       },
       {
         name: "Compound",
-        img: "compound.svg",
+        img: "compound.png",
         weight: "0.37"
       },
       {
@@ -247,7 +247,7 @@ const INDEXES = [
       },
       {
         name: "TRON",
-        img: "tron.svg",
+        img: "tron.png",
         weight: "0.33"
       },
       {
@@ -332,7 +332,7 @@ const INDEXES = [
       },
       {
         name: "Bancor",
-        img: "bancor.svg",
+        img: "bancor.png",
         weight: "0.10"
       },
       {
@@ -427,7 +427,7 @@ const INDEXES = [
       },
       {
         name: "ICON",
-        img: "icon.svg",
+        img: "icon.png",
         weight: "0.02"
       },
       {
@@ -477,7 +477,7 @@ const INDEXES = [
       },
       {
         name: "Loopring",
-        img: "loopring.svg",
+        img: "loopring.png",
         weight: "0.01"
       },
       {
@@ -527,7 +527,7 @@ const INDEXES = [
       },
       {
         name: "Civic",
-        img: "civic.svg",
+        img: "civic.png",
         weight: "0.004"
       },
       {
@@ -666,7 +666,7 @@ const INDEXES = [
       },
       {
         name: "Compound",
-        img: "compound.svg",
+        img: "compound.png",
         weight: 7.61
       },
       {
@@ -686,7 +686,7 @@ const INDEXES = [
       },
       {
         name: "ChainLink",
-        img: "chainlink.svg",
+        img: "chainlink.png",
         weight: 27.36
       },
       {
@@ -701,7 +701,7 @@ const INDEXES = [
       },
       {
         name: "Swipe",
-        img: "swipe.svg",
+        img: "swipe.png",
         weight: 9.12
       },
       {

@@ -130,6 +130,7 @@ export default {
   "SETTINGS": "Settings",
   "CHANGE_PASSWORD": "Change password",
   "BUY": "Buy",
+  "JOIN": "Join",
   "SELL": "Sell",
   "CONFIRM_BUY": "Confirm purchase",
   "CONFIRM_BUY_INDEX": "Confirm purchase %{TOKEN_1} for %{TOKEN_2}?",
@@ -237,7 +238,6 @@ export default {
 
   // Home tariffs
   "HOME_INDEXES_TITLE": "Choose the best index",
-  "JOIN": "Join",
   "HOME_ROADMAP_TITLE": "Roadmap",
   "HOME_ROADMAP_DESC": "Check out KZN token sale dates and additional projects from the Kaizen Fund team.",
   "TIMELINE_1_TITLE": "November 15th",

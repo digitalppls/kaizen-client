@@ -498,7 +498,7 @@ export default {
     &:after {
       content: "";
       height: 1px;
-      background-image: linear-gradient(to right, #27282b 70%, rgba(255, 255, 255, 0) 0%);
+      //background-image: linear-gradient(to right, #27282b 70%, rgba(255, 255, 255, 0) 0%);
       background-position: bottom;
       background-size: 10px 1px;
       background-repeat: repeat-x;

@@ -132,6 +132,7 @@ export default {
   "SETTINGS": "Настройки",
   "CHANGE_PASSWORD": "Изменить пароль",
   "BUY": "Купить",
+  "JOIN": "Присоединиться",
   "SELL": "Продать",
   "CONFIRM_BUY": "Подтверждаете покупку",
   "CONFIRM_BUY_INDEX": "Подтверждаете покупку %{TOKEN_1} за %{TOKEN_2}?",
