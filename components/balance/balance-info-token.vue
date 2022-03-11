@@ -55,10 +55,22 @@
         { label:'IDO', value: 3, color: '#dd008c' },
         { label:'Кошелек компании', value: 15, color: '#0f00dd' },
         { label:'Фонд вознаграждения', value: 5, color: '#00dd25' },
-        { label:'Public sale', value: 62, color: '#dd8500' }
+        { label:'Public sale', value: 62, color: '#dd8500' },
+        // { label:'Доля ваших токенов', value: balance / value * 100, color: '#228500' }
       ]"
     >
+      <vc-donut
+        foreground="#EAECEF"
+        :size="130"
+        :thickness="25"
+        :sections="[
+          { label:'Доля ваших токенов', value: Math.min(100, balance / value * 100), color: '#070e50' }
+        ]"
+      />
       <template #legend>
+        {{mySharePercent}}/
+        {{balance}}/
+        {{value}}
         <div class="cdc-legend">
           <div
             v-for="(item, idx) in [
@@ -66,13 +78,14 @@
               { label:'IDO', value: 3, percent: 3, style: {backgroundColor: '#dd008c'} },
               { label:'Кошелек компании', value: 15, percent: 15, style: {backgroundColor: '#0f00dd'} },
               { label:'Фонд вознаграждения', value: 5, percent: 6, style: {backgroundColor: '#00dd25'} },
-              { label:'Public sale', value: 62, percent: 62, style: {backgroundColor: '#dd8500'} }
+              { label:'Public sale', value: 62, percent: 62, style: {backgroundColor: '#dd8500'} },
+              { label:'Доля ваших '+symbol, value: mySharePercent, percent: mySharePercent, style: {backgroundColor: '#070e50'} }
             ]"
             :key="idx"
             :title="item.percent"
             class="cdc-legend-item"
           >
-            <span class="cdc-legend-item-color" :style="item.styles" />
+            <span class="cdc-legend-item-color" :style=" item.style" />
             <span class="cdc-legend-item-label m-r-5">
               {{ item.label.toUpperCase() }}
             </span>
@@ -103,22 +116,31 @@ export default {
     symbol: {
       default: "",
       type: String
+    },
+    sale: {
+      default: null,
+      type: Object
     }
   },
   data () {
     return {
-      sale: null,
       showModal: false,
       modal: ""
     };
   },
   computed: {
 
+    mySharePercent () {
+      return (this.balance / this.value * 100).toLocaleString();
+    },
     tokenName () {
       return this.sale?.name ?? "";
     },
     priceUsd () {
       return this.sale?.priceUsd ?? 0;
+    },
+    value () {
+      return this.sale?.value ?? 0;
     },
     available () {
       return ((this.sale?.maxValue ?? 0) - (this.sale?.value ?? 0));
@@ -126,11 +148,6 @@ export default {
     balance () {
       return this.$store.getters.wallets.find(e => e.symbol === this.symbol)?.amount ?? 0;
     }
-  },
-  mounted () {
-    this.$API.TokenSaleList(this.symbol, (sale) => {
-      this.sale = !sale?.list ? null : sale.list.find(x => x.isCurrent === true);
-    });
   },
   methods: {
     /** Открыть модальное окно */

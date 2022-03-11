@@ -31,7 +31,7 @@
         </nuxt-link>
       </div>
     </div>
-    <user-wallets />
+    <user-wallets :sales="sales" />
 
     <ui-modal
       v-if="showModal"
@@ -56,6 +56,12 @@ import Wallet33 from "~/components/wallet33";
 export default {
   name: "BalanceInfo",
   components: { Wallet33, UserWallets },
+  props: {
+    sales: {
+      type: Array,
+      default: Array
+    }
+  },
   data () {
     return {
       showModal: false,

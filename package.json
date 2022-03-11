@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "PROXY='https://kaizenfund.io' PORT=3000 nuxt",
-    "dev:prod": "HTTPS='true' nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",

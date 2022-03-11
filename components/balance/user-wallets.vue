@@ -75,6 +75,10 @@ export default {
     hideChart: {
       type: Boolean,
       default: false
+    },
+    sales: {
+      type: Array,
+      default: Array
     }
   },
   data () {
