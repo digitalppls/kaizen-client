@@ -8,16 +8,20 @@
   --col-red: #ff434e;
   --col-bg: #121212;
 }
+
 .error-text {
   color: var(--col-red);
 }
+
 .color-success {
   color: var(--col-accent);
 }
+
 .color-main,
 .color-white {
   color: var(--col-main);
 }
+
 .color-gray {
   color: var(--col-gray);
 }
@@ -48,6 +52,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 
 .main {
   position: relative;
@@ -377,19 +382,26 @@ img {
 .footer {
   .menu {
     // margin: 0 auto;
+
     &_list {
       display: flex;
       align-items: center;
+      text-transform: uppercase;
 
       a {
         padding: 10px 15px;
         font-size: 14px;
         line-height: 16px;
+
         @include min($burger) {
-          font-size: 13px;
+          font-size: 12px;
           line-height: 15px;
+          padding: 10px 10px;
         }
         @include min(1024px) {
+          font-size: 13px;
+        }
+        @include min(1200px) {
           padding: 10px 25px;
         }
       }
@@ -411,7 +423,6 @@ img {
   a {
     display: inline-block;
     letter-spacing: -0.02em;
-    text-transform: uppercase;
     color: var(--col-main);
     opacity: 0.5;
     transition: 0.3s;
@@ -602,6 +613,7 @@ img {
     }
   }
 }
+
 // #button
 .btn {
   $self: &;
@@ -619,7 +631,7 @@ img {
   background: rgba(20, 21, 23, 0.8);
 
   &_set-opacity {
-    color: rgba(255,255,255,.5);
+    color: rgba(255, 255, 255, .5);
   }
 
   &:hover {
@@ -651,6 +663,10 @@ img {
     background: var(--col-accent);
   }
 
+  &-dark {
+    background: #202125;
+  }
+
   &-outline {
     border-color: #55565B;
   }
@@ -669,7 +685,7 @@ img {
 
   &[disabled] {
     //filter: grayscale(60%);
-    //opacity: .9;
+    opacity: .8;
     cursor: not-allowed;
   }
 
@@ -697,6 +713,7 @@ img {
 .display-flex {
   display: flex;
 }
+
 .aic {
   align-items: center;
 }

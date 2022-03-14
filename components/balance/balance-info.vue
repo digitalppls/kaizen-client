@@ -1,15 +1,23 @@
 <template>
   <div class="balance-info">
-    <nuxt-link :to="localePath('/my/profile')">
-      <div v-if="!emailVerified" class="w-100 text-center btn btn-outline--primary btn-small m-b-20">
+    <div
+      v-if="!emailVerified"
+      class="color-white m-b-20"
+      style="background: #446ca9; padding: 20px;"
+    >
+      <div class="m-b-20">
         Please Verify your email address for access to deposit!
       </div>
-    </nuxt-link>
+
+      <nuxt-link :to="localePath('/my/profile')" class="btn btn-yellow btn-small" style="padding: 10px 20px; font-size: 14px;">
+        {{ $t("CONFIRM_EMAIL") }}
+      </nuxt-link>
+    </div>
 
     <section class="balance-info__top">
-      <h2 class="color-white font-size-24">
+      <h3 class="color-white m-b-5">
         {{ $t("BALANCE_INFORMATION") }}
-      </h2>
+      </h3>
 
       <div class="m-l-a">
         <button
@@ -21,7 +29,7 @@
         </button>
         <button
           :disabled="!emailVerified"
-          class="btn btn_set-opacity"
+          class="btn btn-dark btn_set-opacity"
           @click="openModal('withdraw')"
         >
           {{ $t("WITHDRAW") }}
@@ -32,7 +40,7 @@
       </div>
     </section>
 
-    <user-wallets />
+    <user-wallets :sales="sales" />
 
     <ui-modal
       v-if="showModal"
@@ -57,6 +65,12 @@ import Wallet33 from "~/components/wallet33";
 export default {
   name: "BalanceInfo",
   components: { Wallet33, UserWallets },
+  props: {
+    sales: {
+      type: Array,
+      default: Array
+    }
+  },
   data () {
     return {
       showModal: false,

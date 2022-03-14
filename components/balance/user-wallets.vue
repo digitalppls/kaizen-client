@@ -7,7 +7,7 @@
             {{ $t("ASSESSED_VALUE") }}:
           </p>
           <p class="font-size-30 font-bold total__balance">
-            {{ totalUSD.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
+            {{ totalUSD.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(2, 3)) }}
             <span class="font-medium font-size-20">USDT</span>
           </p>
         </div>
@@ -24,7 +24,7 @@
             <!--              style="height: 21px; display: inline-block; vertical-align: middle; margin-right: 3px;"-->
             <!--            >-->
             <span style="display: inline-block; vertical-align: middle;">
-              <strong class="font-size-14 color-orange">{{ wallet.symbol.toUpperCase() }}:</strong>
+              <strong class="font-size-14 color-orange m-r-10">{{ wallet.symbol.toUpperCase() }}:</strong>
               <span class="font-medium font-size-14 color-white m-r-5">
                 {{ wallet.amount.toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
               </span>
@@ -38,8 +38,8 @@
       </div>
       <div v-if="!hideChart && total" class="user-wallets-box__right">
         <vc-donut
-          background="#1F2124"
-          foreground="transparent"
+          background="#151618"
+          foreground="#EAECEF"
           :size="225"
           :thickness="40"
           has-legend
@@ -77,12 +77,24 @@ export default {
     hideChart: {
       type: Boolean,
       default: false
+    },
+    sales: {
+      type: Array,
+      default: Array
     }
   },
   data () {
     return {
+      tokenColors: {
+        kzn: "#44f3ff",
+        vng: "#ffdc82",
+        srk: "#ff434e",
+        usdt: "#099169",
+        usd: "#099169",
+        btc: "#f69014"
+      },
       defaultColors: [
-        "#bfea44", "#f0c149", "#fff", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
+        // "#bfea44", "#f0c149", "#fff", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
         "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
         "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000"
       ]
@@ -99,25 +111,34 @@ export default {
       return this.$store.getters.wallets.map(x => this.$toUsd(x.symbol, x.amount)).reduce((a, b) => a + b, 0);
     },
     sections () {
-      const tmp = [];
+      const sections = [];
+      const tokenColors = this.tokenColors;
       let currentDefaultColorIdx = 0;
+
       this.wallets.map((e) => {
-        tmp.push({
+        let color = this.defaultColors[currentDefaultColorIdx++];
+        for (const symbol in tokenColors) {
+          if (e.symbol === symbol) {
+            color = tokenColors[symbol];
+          }
+        }
+
+        sections.push({
           label: e.symbol,
           value: (e.amount / this.total) * 100, // в процентах
-          color: this.defaultColors[currentDefaultColorIdx++]
+          color
         });
         return e;
       });
-      return tmp;
+      return sections;
     },
     legend () {
-      let currentDefaultColorIdx = 0;
+      // let currentDefaultColorIdx = 0;
       return this.sections.map((section, idx) => ({
         label: section.label || `Section ${idx + 1}`,
         value: (section.value * this.total) / 100, // обратно преодразовываем из процентов в кол-во токенов
         percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING_CRYPTO())})`,
-        styles: { backgroundColor: this.defaultColors[currentDefaultColorIdx++] }
+        styles: { backgroundColor: section.color /* this.defaultColors[currentDefaultColorIdx++] */ }
       }));
     }
   }
@@ -151,6 +172,7 @@ export default {
       }
       @include respond-before("xl") {
         width: 60%;
+        margin-left: 10%;
       }
 
       .cdc-container {

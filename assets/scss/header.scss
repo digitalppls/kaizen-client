@@ -1,9 +1,9 @@
 .header {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  z-index: 2;
+  right: 0;
+  z-index: 50;
 
   .container {
     display: flex;
@@ -12,6 +12,16 @@
     padding-top: 20px;
     padding-bottom: 20px;
     transition: padding .2s linear;
+  }
+
+  &--fixed {
+    position: fixed;
+    background: var(--col-bg);
+
+    .container {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 
   &_logo {
@@ -27,8 +37,6 @@
     display: flex;
     align-items: center;
     transition: 0.3s;
-
-    // ------
     position: fixed;
     background: rgba(0, 0, 0, 0.9);
     height: 100vh;
@@ -70,6 +78,7 @@
           display: inline-block;
           text-align: center;
           width: 100%;
+
           @include min(768px) {
             font-size: 20px;
             line-height: 25px;
@@ -83,33 +92,6 @@
     }
 
     // --mobile end
-  }
-
-  &_lang {
-    display: flex;
-    margin-top: 20px;
-    margin-bottom: auto;
-
-    @include min($burger) {
-      margin-top: 0;
-      margin-bottom: 0;
-      li:last-child {
-        a {
-          padding-right: 0;
-        }
-      }
-    }
-
-    a {
-      padding: 5px 14px;
-      font-size: 16px;
-      line-height: 20px;
-
-      @include min($burger) {
-        font-size: 12px;
-        line-height: 14px;
-      }
-    }
   }
 
   &_burger {

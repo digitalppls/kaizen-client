@@ -1,48 +1,11 @@
 <template>
   <div>
     <div class="ref-link-bar">
-      <button
-        v-if="hasPayedMembershipFee"
-        id="copy"
-        class="ref-link-bar__btn"
-        @click.prevent="copyText"
-      >
-        <svg
-          v-if="!copied"
-          width="44"
-          height="44"
-          viewBox="0 0 44 44"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="44" height="44" rx="22" fill="black" />
-          <path
-            d="M17.7497 33H23.7498C25.8176 33 27.4999 31.3327 27.4999 29.2833V18.5263C27.4999 16.4769 25.8176 14.8096 23.7498 14.8096H17.7497C15.6819 14.8096 13.9996 16.4769 13.9996 18.5263V29.2833C13.9996 31.3327 15.6819 33 17.7497 33ZM23.7498 16.0485C25.1284 16.0485 26.2499 17.16 26.2499 18.5263V29.2833C26.2499 30.6495 25.1284 31.7611 23.7498 31.7611H17.7497C16.3712 31.7611 15.2496 30.6495 15.2496 29.2833V18.5263C15.2496 17.16 16.3712 16.0485 17.7497 16.0485H23.7498ZM28.75 27.0517V14.7167C28.75 13.3504 27.6285 12.2389 26.2499 12.2389H20.2498C19.4314 12.2389 18.6633 12.6374 18.1952 13.3048C17.9982 13.5857 17.6087 13.6551 17.3253 13.4599C17.0419 13.2647 16.9718 12.8786 17.1688 12.5977C17.8703 11.5973 19.0221 11 20.2498 11H26.2499C28.3177 11 30 12.6673 30 14.7167V27.0517C30 27.3938 29.7202 27.6712 29.375 27.6712C29.0298 27.6712 28.75 27.3938 28.75 27.0517Z"
-            fill="#ffffff"
-          />
-        </svg>
-        <svg
-          v-if="copied"
-          width="44"
-          height="44"
-          viewBox="0 0 44 44"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect width="44" height="44" rx="22" fill="black" />
-          <path
-            d="M15 25L19.5 29.5L28.5 15"
-            stroke="#ffffff"
-            stroke-width="2"
-            stroke-linecap="square"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </button>
+      <div v-if="label" class="ref-link-bar__label">
+        {{ label }}:
+      </div>
+
       <div class="ref-link-bar__group">
-        <div class="ref-link-bar__label">
-          {{ $t(label) }}:
-        </div>
         <div class="ref-link-bar__input">
           <template v-if="hasPayedMembershipFee">
             {{ ref }}
@@ -51,9 +14,41 @@
             {{ $t("REFERRAL_LINK_AVAILABLE") }}
           </template>
         </div>
+        <button
+          v-if="hasPayedMembershipFee"
+          id="copy"
+          class="ref-link-bar__btn"
+          @click.prevent="copyText"
+        >
+          <svg
+            v-if="!copied"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 7V17C18 17.2652 17.8946 17.5196 17.7071 17.7071C17.5196 17.8946 17.2652 18 17 18H7C6.73478 18 6.48043 17.8946 6.29289 17.7071C6.10536 17.5196 6 17.2652 6 17V7C6 6.73478 6.10536 6.48043 6.29289 6.29289C6.48043 6.10535 6.73478 6 7 6H17C17.2652 6 17.5196 6.10535 17.7071 6.29289C17.8946 6.48043 18 6.73478 18 7ZM3 11H2V2H11V3C11 3.26522 11.1054 3.51957 11.2929 3.70711C11.4804 3.89464 11.7348 4 12 4C12.2652 4 12.5196 3.89464 12.7071 3.70711C12.8946 3.51957 13 3.26522 13 3V1C13 0.734783 12.8946 0.480429 12.7071 0.292893C12.5196 0.105357 12.2652 0 12 0H1C0.734784 0 0.48043 0.105357 0.292893 0.292893C0.105357 0.480429 0 0.734783 0 1V12C0 12.2652 0.105357 12.5196 0.292893 12.7071C0.48043 12.8946 0.734784 13 1 13H3C3.26522 13 3.51957 12.8946 3.70711 12.7071C3.89464 12.5196 4 12.2652 4 12C4 11.7348 3.89464 11.4804 3.70711 11.2929C3.51957 11.1054 3.26522 11 3 11Z"
+              fill="#898b8c"
+            />
+          </svg>
+          <svg
+            v-if="copied"
+            width="18"
+            height="13"
+            viewBox="0 0 18 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5.71681 10.2576L1.44839 6.21657L0 7.58776L5.71681 13L18 1.37123L16.5516 0L5.71681 10.2576Z"
+              fill="var(--col-accent)"
+            />
+          </svg>
+        </button>
       </div>
     </div>
-    <p v-if="false" class="color-gray-light m-t-20 lh-15 small" v-html="$t('REFERRAL_LINK_DESC')" />
   </div>
 </template>
 
@@ -71,7 +66,7 @@ export default {
     },
     label: {
       type: String,
-      default: "YOU_LINK"
+      default: ""
     }
   },
   data () {
@@ -117,59 +112,50 @@ export default {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  padding: 15px 30px;
-  background: var(--color-primary);
-  border-radius: var(--border-radius);
+  padding: 15px;
+  background-color: #151618;
 
-  @include respond-before("md") {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
+  @include respond-before("pre-md") {
+    padding: 30px;
   }
 
   &__group {
     padding: 0;
-
-    @include respond-before("md") {
-      margin-right: 30px;
-    }
-    @include respond-before("lg") {
-      margin-right: 50px;
-    }
+    display: flex;
+    //flex-wrap: wrap;
+    align-items: center;
   }
 
   &__label {
-    color: var(--color-dark);
-    margin-bottom: 12px;
-
-    @include respond-before("md") {
-      margin-bottom: 8px;
-    }
+    @include h3;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 20px;
   }
 
   &__input {
     font-size: 16px;
-    color: var(--color-dark);
     word-break: break-all;
+    color: var(--col-accent);
 
     @include respond-before("md") {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      //margin: auto 30px;
     }
-
-    //@include respond-before("xl") {
-    //  margin: auto 50px;
-    //}
   }
 
   &__btn {
     margin-left: auto;
     cursor: pointer;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
 
     @include respond-before("md") {
-      order: 3;
+      padding: 0;
     }
   }
 }

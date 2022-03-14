@@ -11,13 +11,7 @@ export default {
   target: "static", // target: "static",
   router: {
     base: "/",
-    extendRoutes (routes, resolve) {
-      routes.push({
-        name: "custom",
-        path: "/:lang/*",
-        component: resolve(__dirname, "pages/404.vue")
-      });
-    }
+    trailingSlash: true
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head

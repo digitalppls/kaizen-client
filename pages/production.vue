@@ -1,10 +1,17 @@
 <template>
   <main class="main">
     <div class="industry-hero-section hero-section section-1">
-      <div class="bg" />
+      <!-- <div class="bg" /> -->
       <div class="container">
-        <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
-        <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />
+        <h1
+          class="title animate__animated wow animate__fadeIn"
+          v-text="coverTitle"
+        />
+        <p
+          class="text animate__animated wow animate__fadeIn"
+          data-wow-delay=".2s"
+          v-text="coverDesc"
+        />
         <nuxt-link
           :to="localePath(hasToken ? 'my' : 'auth')"
           class="btn btn-yellow animate__animated wow animate__fadeIn"
@@ -167,20 +174,20 @@
         <div id="story" :class="['story', {'hidden': storyHidden}]">
           <div class="story__text">
             <p class="animate__animated wow animate__fadeIn">
-              {{ $t("PRODUCTION_TEXT_2")}}
+              {{ $t("PRODUCTION_TEXT_2") }}
             </p>
             <p class="animate__animated wow animate__fadeIn">
-              {{ $t("PRODUCTION_TEXT_3")}}
+              {{ $t("PRODUCTION_TEXT_3") }}
             </p>
             <p class="animate__animated wow animate__fadeIn">
-              {{ $t("PRODUCTION_TEXT_4")}}
+              {{ $t("PRODUCTION_TEXT_4") }}
             </p>
             <div class="story__hidden" :class="{ 'show_story': !storyHidden}">
               <p class="animate__animated wow animate__fadeIn">
-                {{ $t("PRODUCTION_TEXT_5")}}
+                {{ $t("PRODUCTION_TEXT_5") }}
               </p>
               <p class="animate__animated wow animate__fadeIn">
-                {{ $t("PRODUCTION_TEXT_6")}}
+                {{ $t("PRODUCTION_TEXT_6") }}
               </p>
             </div>
             <div class="story__new">
@@ -215,7 +222,7 @@
           </button>
         </div>
         <div class="text animate__animated wow animate__fadeIn">
-          {{ $t("PRODUCTION_TEXT_7")}}
+          {{ $t("PRODUCTION_TEXT_7") }}
         </div>
       </div>
     </div>
@@ -224,7 +231,9 @@
     <div class="industry-tokenomic-section tokenomic-section">
       <div class="container">
         <div class="diagram-box">
-          <div class="diagram-box__diagram animate__animated wow animate__slideInLeft">
+          <div
+            class="diagram-box__diagram animate__animated wow animate__slideInLeft"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               version="1.1"
@@ -291,23 +300,38 @@
           </div>
           <div class="diagram-box__legend">
             <ul>
-              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".1s">
+              <li
+                class="animate__animated wow animate__slideInUp"
+                data-wow-delay=".1s"
+              >
                 Pre-sale
                 <span class="number" v-text="'1%'" />
               </li>
-              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".2s">
+              <li
+                class="animate__animated wow animate__slideInUp"
+                data-wow-delay=".2s"
+              >
                 IDO
                 <span class="number" v-text="'0.3%'" />
               </li>
-              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".3s">
+              <li
+                class="animate__animated wow animate__slideInUp"
+                data-wow-delay=".3s"
+              >
                 Company Wallet
                 <span class="number" v-text="'15%'" />
               </li>
-              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".4s">
+              <li
+                class="animate__animated wow animate__slideInUp"
+                data-wow-delay=".4s"
+              >
                 Compensation fund
                 <span class="number" v-text="'5%'" />
               </li>
-              <li class="animate__animated wow animate__slideInUp" data-wow-delay=".5s">
+              <li
+                class="animate__animated wow animate__slideInUp"
+                data-wow-delay=".5s"
+              >
                 Public sale
                 <span class="number" v-text="'78.3%'" />
               </li>

@@ -111,7 +111,7 @@ export default {
     display: block;
     margin: 0 -20px;
     padding: 15px 20px;
-    color: var(--color-gray);
+    color: var(--col-gray);
     font-size: 16px;
     opacity: 1 !important;
 
@@ -121,15 +121,16 @@ export default {
 
     &:last-child {
       margin-bottom: -15px;
-      background-color: #373b40;
+      background: transparent;
     }
 
     &:not(#{$self}__item--email):hover {
       cursor: pointer;
-      background-color: #373b40;
+      background-color: #1F2124;
     }
 
-    &:not(#{$self}__item--logout,#{$self}__item--email):hover {
+    &:not(#{$self}__item--logout):hover,
+    &:not(#{$self}__item--email):hover {
       color: #FFFFFF;
     }
 
@@ -160,8 +161,8 @@ export default {
   z-index: 25;
 
   &::v-deep .dropdown__content {
-    background: #1F2124;
-    box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
+    background: #202125;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 16%);
     overflow: hidden;
     border-radius: 0;
 

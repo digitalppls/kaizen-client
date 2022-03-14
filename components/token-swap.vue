@@ -8,12 +8,12 @@
       {{ inputCurrency.toUpperCase() }}
     </h2>
     <div class="m-b-20">
-      <div v-if="sendCoin" class="text-right small m-b-5">
-        <span class="color-gray font-300">{{ $t("AVAILABLE") }}:</span>
-        <span class="font-medium">
+      <div v-if="sendCoin" class="text-right small m-b-10">
+        <span class="font-300">{{ $t("AVAILABLE") }}:</span>
+        <span class="font-medium color-white">
           {{ (sendCoin.amount > 0 ? sendCoin.amount : 0).toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
         </span>
-        <span class="color-gray">{{ sendCoin.symbol.toUpperCase() }}</span>
+        <span class="color-white">{{ sendCoin.symbol.toUpperCase() }}</span>
       </div>
       <ui-text-field
         v-model.number="sendInput"

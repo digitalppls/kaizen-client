@@ -101,7 +101,12 @@ export default {
 .main-section {
   max-height: none;
   min-height: auto;
+  display: block;
   flex: 1 0 auto;
+
+  .container {
+    margin: 0 auto;
+  }
 }
 
 .page-profile {
@@ -159,11 +164,13 @@ export default {
     padding: 15px;
     transition: margin .2s ease-in-out;
 
+    &:hover {
+      color: #fff;
+    }
+
     &--active {
       color: #fff;
-      //background-color: var(--color-primary);
-      background-color: #373b40;
-      //margin-left: 10px;
+      background-color: #1F2124;
     }
   }
 }
@@ -173,7 +180,7 @@ export default {
 
   &-wrap {
     overflow-x: scroll;
-    background-color:#1F2124;
+    background: #151618;
 
     @include respond-to("lg") {
       position: sticky;
@@ -182,6 +189,7 @@ export default {
       box-shadow: 0 0 18px var(--col-black);
     }
   }
+
   &__item {
     font-size: 16px;
     margin: 0;
@@ -201,13 +209,13 @@ export default {
 
     &--active {
       color: #fff;
-      background-color: #373b40;
+      background-color: #1F2124;
     }
   }
 }
 
 .sidebar {
-  background: #1F2124;
+  background: #151618;
   padding: 0;
   overflow: hidden;
 

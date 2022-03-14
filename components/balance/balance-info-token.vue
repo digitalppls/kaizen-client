@@ -3,8 +3,6 @@
     <div class="balance-info__top">
       <div>
         <h3 class="color-white m-b-5">
-          {{ $t("TOKENS") }}
-
           {{ tokenName }}
 
           {{ symbol.toUpperCase() }}
@@ -13,13 +11,14 @@
       <div class="m-l-a">
         <button
           :class="['btn', {'btn-blue': symbol === 'kzn'}, {'btn-yellow': symbol === 'vng'}, {'btn-red': symbol === 'srk'}]"
+          :disabled="symbol === 'kzn' || symbol === 'vng'"
           @click="openModal('buy')"
         >
           {{ $t("BUY") }}
         </button>
         <button
           disabled
-          class="btn btn-solid--secondary btn-small btn_set-opacity"
+          class="btn btn-dark btn-small btn_set-opacity"
           @click="openModal('sell')"
         >
           {{ $t("SELL") }}
@@ -35,28 +34,39 @@
           <span class="price">${{ priceUsd }}</span>
         </div>
         <div class="m-b-20">
-          <p class="m-b-5 accessed-value">
+          <p class="m-b-10 accessed-value">
             {{ $t("AVAILABLE") }}:
           </p>
           <span class="color-white font-bold font-size-24">
-            {{ available.toLocaleString() }} {{ symbol.toUpperCase() }}
+            {{ available.toLocaleString($i18n.locale) }} {{ symbol.toUpperCase() }}
           </span>
         </div>
-        <div class="m-b-10 accessed-value">
-          {{ $t("BALANCE") }}:
+        <div class="m-b-20">
+          <div class="m-b-10 accessed-value">
+            {{ $t("BALANCE") }}:
+          </div>
+          <span class="font-size-24 font-bold color-white m-r-5">
+            {{ balance.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
+            <span class="font-medium font-size-14">{{ symbol.toUpperCase() }}</span>
+          </span>
+          <small class="color-white font-size-14">
+            <span class="m-r-5">~</span>
+            ${{ $toUsd(symbol.toUpperCase(), balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
+          </small>
         </div>
-        <span class="font-size-24 font-bold color-white m-r-5">
-          {{ balance.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
-          <span class="font-medium">{{ symbol.toUpperCase() }}</span>
-        </span>
-        <small class="color-white font-size-14">
-          <span class="m-r-5">~</span>
-          ${{ $toUsd(symbol.toUpperCase(), balance).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
-        </small>
+
+        <div>
+          <div class="m-b-10 accessed-value">
+            {{ $t("YOUR_SHARE_OF_TOKEN") }} {{ symbol.toUpperCase() }}:
+          </div>
+          <span class="font-size-24 font-bold color-white m-r-5">
+            {{ mySharePercent.toLocaleString($i18n.locale, $LOCALESTRING_PERCENT(1, 2)) }}
+          </span>
+        </div>
       </div>
       <div class="user-wallets-box__right">
         <vc-donut
-          background="#1F2124"
+          background="#151618"
           foreground="#EAECEF"
           :size="225"
           :thickness="40"
@@ -76,7 +86,10 @@
                 <span class="cdc-legend-item-label m-r-5 color-white">
                   {{ item.label.toUpperCase() }}
                 </span>
-                <span class="cdc-legend-item-value" :style="{ color: item.style.backgroundColor}">
+                <span
+                  class="cdc-legend-item-value"
+                  :style="{ color: item.style.backgroundColor}"
+                >
                   {{ item.value }} %
                 </span>
               </div>
@@ -91,7 +104,11 @@
           <!--        {{ $t(modal.toUpperCase()) }} {{ symbol.toUpperCase() }}-->
           <!--      </h2>-->
 
-          <token-swap :input-currency="symbol.toUpperCase()" type="token" :mode="modal" />
+          <token-swap
+            :input-currency="symbol.toUpperCase()"
+            type="token"
+            :mode="modal"
+          />
         </ui-modal>
       </div>
     </div>
@@ -105,40 +122,137 @@ export default {
     symbol: {
       default: "",
       type: String
+    },
+    sale: {
+      default: null,
+      type: Object
     }
   },
   data () {
     return {
-      sale: null,
       showModal: false,
-      modal: "",
-      token: {
-        kzn: [
-          { label: "Pre-sale", value: 1, percent: 1, color: "#BFEA44", style: { backgroundColor: "#BFEA44" } },
-          { label: "IDO", value: 3, percent: 3, color: "#F0C149", style: { backgroundColor: "#F0C149" } },
-          { label: this.$t("COMPANY_WALLET"), value: 15, color: "#51ECA1", percent: 15, style: { backgroundColor: "#51ECA1" } },
-          { label: this.$t("REMUNERATION_FUND"), value: 5, color: "#629CF2", percent: 5, style: { backgroundColor: "#629CF2" } },
-          { label: "Public sale", value: 62, percent: 62, color: "#FFFFFF", style: { backgroundColor: "#FFFFFF" } }
-        ],
-        vng: [
-          { label: "Pre-sale", value: 15, percent: 15, color: "#BFEA44", style: { backgroundColor: "#BFEA44" } },
-          { label: "IDO", value: 3, percent: 3, color: "#F0C149", style: { backgroundColor: "#F0C149" } },
-          { label: this.$t("COMPANY_WALLET"), value: 15, color: "#51ECA1", percent: 15, style: { backgroundColor: "#51ECA1" } },
-          { label: this.$t("REMUNERATION_FUND"), value: 5, color: "#629CF2", percent: 6, style: { backgroundColor: "#629CF2" } },
-          { label: "Public sale", value: 62, percent: 62, color: "#FFFFFF", style: { backgroundColor: "#FFFFFF" } }
-        ],
-        srk: [
-          { label: "Pre-sale", value: 1, percent: 15, color: "#BFEA44", style: { backgroundColor: "#BFEA44" } },
-          { label: "IDO", value: 0.3, percent: 3, color: "#F0C149", style: { backgroundColor: "#F0C149" } },
-          { label: this.$t("COMPANY_WALLET"), value: 15, color: "#51ECA1", percent: 15, style: { backgroundColor: "#51ECA1" } },
-          { label: this.$t("REMUNERATION_FUND"), value: 5, color: "#629CF2", percent: 6, style: { backgroundColor: "#629CF2" } },
-          { label: "Public sale", value: 78.3, percent: 62, color: "#FFFFFF", style: { backgroundColor: "#FFFFFF" } }
-        ]
-      }
+      modal: ""
     };
   },
   computed: {
-
+    token () {
+      return {
+        kzn: [
+          {
+            label: "Pre-sale",
+            value: 1,
+            percent: 1,
+            color: "#bfea44",
+            style: { backgroundColor: "#bfea44" }
+          },
+          {
+            label: "IDO",
+            value: 3,
+            percent: 3,
+            color: "#f0c149",
+            style: { backgroundColor: "#f0c149" }
+          },
+          {
+            label: this.$t("COMPANY_WALLET"),
+            value: 15,
+            color: "#51eca1",
+            percent: 15,
+            style: { backgroundColor: "#51eca1" }
+          },
+          {
+            label: this.$t("REMUNERATION_FUND"),
+            value: 5,
+            color: "#629cf2",
+            percent: 5,
+            style: { backgroundColor: "#629cf2" }
+          },
+          {
+            label: "Public sale",
+            value: 62,
+            percent: 62,
+            color: "#fff",
+            style: { backgroundColor: "#fff" }
+          }
+        ],
+        vng: [
+          {
+            label: "Pre-sale",
+            value: 15,
+            percent: 15,
+            color: "#bfea44",
+            style: { backgroundColor: "#bfea44" }
+          },
+          {
+            label: "IDO",
+            value: 3,
+            percent: 3,
+            color: "#f0c149",
+            style: { backgroundColor: "#f0c149" }
+          },
+          {
+            label: this.$t("COMPANY_WALLET"),
+            value: 15,
+            color: "#51eca1",
+            percent: 15,
+            style: { backgroundColor: "#51eca1" }
+          },
+          {
+            label: this.$t("REMUNERATION_FUND"),
+            value: 5,
+            color: "#629cf2",
+            percent: 6,
+            style: { backgroundColor: "#629cf2" }
+          },
+          {
+            label: "Public sale",
+            value: 62,
+            percent: 62,
+            color: "#fff",
+            style: { backgroundColor: "#fff" }
+          }
+        ],
+        srk: [
+          {
+            label: "Pre-sale",
+            value: 1,
+            percent: 15,
+            color: "#bfea44",
+            style: { backgroundColor: "#bfea44" }
+          },
+          {
+            label: "IDO",
+            value: 0.3,
+            percent: 3,
+            color: "#f0c149",
+            style: { backgroundColor: "#f0c149" }
+          },
+          {
+            label: this.$t("COMPANY_WALLET"),
+            value: 15,
+            color: "#51eca1",
+            percent: 15,
+            style: { backgroundColor: "#51eca1" }
+          },
+          {
+            label: this.$t("REMUNERATION_FUND"),
+            value: 5,
+            color: "#629cf2",
+            percent: 6,
+            style: { backgroundColor: "#629cf2" }
+          },
+          {
+            label: "Public sale",
+            value: 78.3,
+            percent: 62,
+            color: "#fff",
+            style: { backgroundColor: "#fff" }
+          }
+        ]
+      };
+    },
+    mySharePercent () {
+      return (this.balance / this.value); // .toLocaleString();
+    },
     tokenName () {
       return this.sale?.name ?? "";
     },
@@ -150,12 +264,10 @@ export default {
     },
     balance () {
       return this.$store.getters.wallets.find(e => e.symbol === this.symbol)?.amount ?? 0;
+    },
+    value () {
+      return this.sale?.value ?? 0;
     }
-  },
-  mounted () {
-    this.$API.TokenSaleList(this.symbol, (sale) => {
-      this.sale = !sale?.list ? null : sale.list.find(x => x.isCurrent === true);
-    });
   },
   methods: {
     /** Открыть модальное окно */
@@ -174,7 +286,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/components/balance-info.scss";
+@import "/assets/scss/components/balance-info.scss";
 
 .user-wallets {
   &-box {
@@ -202,6 +314,7 @@ export default {
       }
       @include respond-before("xl") {
         width: 60%;
+        margin-left: 10%;
       }
 
       .cdc-container {
@@ -234,6 +347,13 @@ export default {
     font-size: 15px;
     letter-spacing: -0.02em;
     min-width: 250px;
+
+    @include respond-before("md") {
+      @include respond-to("xl") {
+        font-size: 12px;
+        min-width: 200px;
+      }
+    }
 
     &-color {
       height: .75em;
