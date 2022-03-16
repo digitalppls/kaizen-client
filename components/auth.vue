@@ -36,7 +36,7 @@
             autocomplete="off"
             autofocus="off"
             type="text"
-            required=""
+            :required="false"
             :disabled="loading"
             :label="$t('AUTH.FIELDS.REF')"
             @input="onKeydown"
