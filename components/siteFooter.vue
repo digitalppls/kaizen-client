@@ -31,7 +31,7 @@
                 :exact="!!localePath('index')"
                 no-prefetch
                 :to="item.url"
-                :class="['animate__animated', 'wow', 'animate__slideInDown', {'active' : $route.matched[0].path.replace('/', '') === item.url}]"
+                :class="['animate__animated', 'wow', 'animate__slideInDown', {'active' : ($route.matched.length && $route.matched[0].path.replace('/', '') === item.url)}]"
                 :data-wow-delay="`${key / menuItems.length}s`"
                 active-class="active"
                 v-text="item.title"
@@ -102,7 +102,7 @@ export default {
       return Object.filter(this.SOCIALS, item => !!item);
     },
     isHomePage () {
-      return this.$route.matched[0].path.replace("/", "") === "";
+      return this.$route.matched.length && this.$route.matched[0].path.replace("/", "") === "";
     }
   }
 };

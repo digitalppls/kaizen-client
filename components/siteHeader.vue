@@ -27,19 +27,11 @@
                 v-text="item.title"
               />
               <nuxt-link
-                v-else-if="item.url === 'indexes'"
-                :to="localePath('index')"
-                :class="['animate__animated', 'wow', 'animate__slideInDown']"
-                :data-wow-delay="`${key / menuItems.length}s`"
-                @click="goTo(item.url)"
-                v-text="item.title"
-              />
-              <nuxt-link
                 v-else
                 :exact="!!localePath('index')"
                 no-prefetch
                 :to="item.url"
-                :class="['animate__animated', 'wow', 'animate__slideInDown', {'active' : $route.matched[0].path.replace('/', '') === item.url}]"
+                :class="['animate__animated', 'wow', 'animate__slideInDown', {'active' : ($route.matched.length && $route.matched[0].path.replace('/', '') === item.url)}]"
                 :data-wow-delay="`${key / menuItems.length}s`"
                 active-class="active"
                 v-text="item.title"

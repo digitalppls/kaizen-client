@@ -46,7 +46,7 @@
             </template>
           </ui-text-field>
         </div>
-        <p v-if="referralUsername" class="m-t-5 m-b-30 small font-300">
+        <p v-if="referralUsername && !!ref" class="m-t-5 m-b-30 small font-300">
           {{ $t("INVITED_YOU") }}:
           <span class="color-white">{{ referralUsername }}</span>
         </p>
@@ -221,13 +221,12 @@ export default {
       },
       set (link) {
         // Example referral link
-        // https://192.168.0.54:80/r/614897460e97bfe53915c46b
+        // https://localhost:80/r/614897460e97bfe53915c46b
         this.errors = [];
         this.infos = [];
-
+        const value = link.split("/").reverse()[0].trim();
+        this.$store.dispatch("setRef", value);
         if (link) {
-          const value = link.split("/").reverse()[0].trim();
-          this.$store.dispatch("setRef", value);
           this.loadUserRefName(value);
         }
       }

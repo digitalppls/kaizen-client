@@ -7,7 +7,7 @@
         <nuxt-link :to="localePath('index')" class="btn btn-outline animate__animated wow animate__fadeIn" data-wow-delay=".5s">
           {{ $t("GO_HOME") }}
         </nuxt-link>
-        <nuxt-link :to="localePath('my')" class="btn btn-accent animate__animated wow animate__fadeIn" data-wow-delay=".5s">
+        <nuxt-link v-if="$store.getters.hasToken" :to="localePath('my')" class="btn btn-accent animate__animated wow animate__fadeIn" data-wow-delay=".5s">
           {{ $t("DASHBOARD") }}
         </nuxt-link>
       </div>
