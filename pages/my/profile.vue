@@ -1,7 +1,21 @@
 <template>
   <div class="userprofile">
+    <!-- Реферальная ссылка -->
     <referral-link-bar :label="$t('YOUR_INVITE_LINK')" class="m-b-20" />
 
+    <!-- Статистика по реферальной программе -->
+    <section class="balance-info m-b-20">
+      <div class="balance-info__top">
+        <div>
+          <h3 class="color-white m-b-5">
+            {{ $t("REFERRAL_PROGRAM") }}
+          </h3>
+        </div>
+      </div>
+      <referral-stats />
+    </section>
+
+    <!-- Данные пользователя -->
     <section class="balance-info m-b-20">
       <div class="balance-info__top">
         <div>
@@ -17,7 +31,7 @@
           <td>{{ user._id }}</td>
         </tr>
         <tr>
-          <td>Имя:</td>
+          <td>{{ $t("NAME") }}:</td>
           <td>{{ user.username }}</td>
         </tr>
         <tr>
@@ -41,6 +55,7 @@
       </table>
     </section>
 
+    <!-- Сброс пароля -->
     <section class="balance-info m-b-20">
       <div class="balance-info__top">
         <div>
@@ -79,10 +94,11 @@
 <script>
 import ReferralLinkBar from "~/components/referral-link-bar";
 import VerifyEmail from "~/components/verify-email";
+import ReferralStats from "~/components/referral-stats";
 
 export default {
   name: "PageProfile",
-  components: { ReferralLinkBar, VerifyEmail },
+  components: { ReferralStats, ReferralLinkBar, VerifyEmail },
   data () {
     return {
       interval: 0,
@@ -94,6 +110,16 @@ export default {
       errors: [],
       infos: []
     };
+  },
+  i18n: {
+    messages: {
+      ru: {
+        NAME: "Имя"
+      },
+      en: {
+        NAME: "Name"
+      }
+    }
   },
   computed: {
     user () {

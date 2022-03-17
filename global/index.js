@@ -2,7 +2,7 @@ const currentTime = new Date().getTime();
 const TERMS = "/terms.pdf";
 const WHITEPAPER = `#?${currentTime}`;
 const SOCIALS = {
-  youtube: "http://youtube.com/",
+  youtube: "https://youtube.com/",
   telegram: "https://t.me/",
   twitter: "https://twitter.com/",
   instagram: "",

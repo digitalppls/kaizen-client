@@ -15,10 +15,10 @@
       </div>
     </div>
     <div class="auth__content">
-      <ul v-if="errors.length" class="list m-b-20">
+      <ul v-if="errors.length" class="list list--none m-b-20">
         <li v-for="(error, idx) in errors" :key="idx" class="error-text" v-html="error" />
       </ul>
-      <ul v-if="infos.length" class="list m-b-20">
+      <ul v-if="infos.length" class="list list--none m-b-20">
         <li v-for="(info, idx) in infos" :key="idx" class="color-success" v-html="info" />
       </ul>
       <p v-if="seconds" class="m-b-20">
@@ -46,11 +46,9 @@
             </template>
           </ui-text-field>
         </div>
-        <p v-if="referralUsername" class="m-b-30 small">
-          <span class="color-gray">
-            {{ $t("INVITED_YOU") }}:
-          </span>
-          {{ referralUsername }}
+        <p v-if="referralUsername" class="m-t-5 m-b-30 small font-300">
+          {{ $t("INVITED_YOU") }}:
+          <span class="color-white">{{ referralUsername }}</span>
         </p>
         <div class="ui-form__fieldset">
           <ui-text-field
@@ -96,7 +94,7 @@
           </ui-text-field>
         </div>
         <div class="ui-form__fieldset m-t-40">
-          <button :disabled="disabled" type="submit" class="btn btn-solid btn-big btn-full">
+          <button :disabled="disabled" type="submit" class="btn btn-accent btn-full">
             {{ $t("CREATE_ACCOUNT") }}
           </button>
         </div>
@@ -136,14 +134,14 @@
           </ui-text-field>
         </div>
         <div class="ui-form__fieldset m-t-20">
-          <div role="button" @click="recoveryToggle">
+          <div role="button" class="font-300" @click="recoveryToggle">
             {{ $t("AUTH.FORGOT_PASSWORD") }}
           </div>
         </div>
         <div class="ui-form__fieldset m-t-40">
           <button
             type="submit"
-            class="btn btn-solid btn-big btn-full"
+            class="btn btn-accent btn-full"
             :disabled="loading || !email || !password"
             v-text="loading ? $t('LOADING') : $t('LOGIN')"
           />
@@ -165,12 +163,15 @@
           />
         </div>
         <div class="ui-form__fieldset m-t-20">
-          <div role="button" @click="recoveryToggle">
-            {{ $t("AUTH.ALREADY_REGISTERED") }} {{ $t("LOGIN") }}
+          <div role="button" class="font-300" @click="recoveryToggle">
+            {{ $t("AUTH.ALREADY_REGISTERED") }}
+            <span class="color-main">
+              {{ $t("LOGIN") }}
+            </span>
           </div>
         </div>
         <div class="ui-form__fieldset m-t-40">
-          <button :disabled="!email || seconds > 0" type="submit" class="btn btn-solid btn-big btn-full">
+          <button :disabled="!email || seconds > 0" type="submit" class="btn btn-accent btn-full">
             {{ $t("RECOVERY_PASSWORD") }}
           </button>
         </div>

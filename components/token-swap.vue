@@ -162,7 +162,8 @@ export default {
       if (this.type === "index") {
         this.getCoinList = this.currencies.filter(e => ["KAIZENUSDT", "CRYPTO100USDT", "COIN10USDT", "DEFIUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       } else {
-        this.getCoinList = this.currencies.filter(e => ["VNGUSDT", "KZNUSDT", "SRKUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
+        /* "VNGUSDT", "KZNUSDT", */
+        this.getCoinList = this.currencies.filter(e => ["SRKUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
       }
       this.sendCoinList = this.mode === "sell"
         ? []

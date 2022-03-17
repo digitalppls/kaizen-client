@@ -5,17 +5,11 @@
         {{ label }}:
       </div>
 
-      <div class="ref-link-bar__group">
+      <div class="ref-link-bar__group m-b-20">
         <div class="ref-link-bar__input">
-          <template v-if="hasPayedMembershipFee">
-            {{ ref }}
-          </template>
-          <template v-else>
-            {{ $t("REFERRAL_LINK_AVAILABLE") }}
-          </template>
+          {{ ref }}
         </div>
         <button
-          v-if="hasPayedMembershipFee"
           id="copy"
           class="ref-link-bar__btn"
           @click.prevent="copyText"
@@ -48,6 +42,15 @@
           </svg>
         </button>
       </div>
+
+      <div class="ref-link-bar__group">
+        <div class="font-300" style="margin-right: 10px;">
+          {{ $t("YOUR_INVITE_CODE") }}:
+        </div>
+        <div class="ref-link-bar__input">
+          {{ refCode }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -75,6 +78,11 @@ export default {
     };
   },
   computed: {
+    /* Реферальный код */
+    refCode () {
+      return this.$store.getters.user?.num_id ?? null;
+    },
+    /* Реферальная ссылка */
     ref () {
       return this.$store.getters.user && this.$store.getters.user._id
         ? `${this.domain}/r/${this.$store.getters.user._id}`

@@ -105,7 +105,7 @@ export default {
   "YOU_LINK": "Your link",
   "LINK": "Link",
   "CONTACTS": "Contacts",
-  "LOADING": "Uploading...",
+  "LOADING": "Loading...",
   "EMAIL_NOT_FOUND": "No user with this e-mail was found.",
   "USER_NOT_FOUND": "User not found.",
   "UNAUTHORIZED": "Invalid login or password.",
@@ -174,6 +174,7 @@ export default {
   "NAME": "Name",
   "WEIGHT": "Weight",
   "INCORRECT_TYPE": "Incorrect type",
+  "STATS": "Statistics",
 
   // History
   "OPERATIONS": "Operations history",
@@ -330,6 +331,7 @@ export default {
   "METHODOLOGY": "Methodology",
   "YOUR_SHARE_OF_TOKEN": "Your share of",
   "YOUR_INVITE_LINK": "Your invite link",
+  "YOUR_INVITE_CODE": "Your invite code",
 
   // KAIZEN PAGE INDEX
   "KAIZEN_DESC": "A secure way to get diversified exposure to bitcoin and leading cryptocurrencies. The Fund seeks to track an Index comprised of the 10 most highly valued cryptocurrencies, screened & monitored for certain risks, weighted by market capitalization, and rebalanced monthly. The fund provides the security and simplicity of a traditional investment vehicle, with shares tradable in brokerage accounts using ticker “BITW”.",

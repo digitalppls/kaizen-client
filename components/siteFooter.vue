@@ -63,6 +63,7 @@ export default {
   data () {
     return {
       TERMS,
+      SOCIALS,
       menuItems: [
         {
           title: this.$t("HOME"),
@@ -93,13 +94,12 @@ export default {
       return `2k${year}`;
     },
     socials () {
-      const list = [];
-      for (const prop in SOCIALS) {
-        if (Object.prototype.hasOwnProperty.call(SOCIALS, prop)) {
-          list[prop] = SOCIALS[prop];
-        }
-      }
-      return list;
+      Object.filter = (obj, predicate) =>
+        Object.assign(...Object.keys(obj)
+          .filter(key => predicate(obj[key]))
+          .map(key => ({ [key]: obj[key] })));
+
+      return Object.filter(this.SOCIALS, item => !!item);
     },
     isHomePage () {
       return this.$route.matched[0].path.replace("/", "") === "";

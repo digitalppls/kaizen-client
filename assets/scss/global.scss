@@ -25,6 +25,15 @@
 .color-gray {
   color: var(--col-gray);
 }
+.color-blue {
+  color: var(--col-blue);
+}
+.color-yellow {
+  color: var(--col-yellow);
+}
+.color-red {
+  color: var(--col-red);
+}
 
 html {
   overflow-x: hidden;
@@ -685,7 +694,7 @@ img {
 
   &[disabled] {
     //filter: grayscale(60%);
-    opacity: .8;
+    opacity: .4;
     cursor: not-allowed;
   }
 
