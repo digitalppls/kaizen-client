@@ -9,7 +9,7 @@
         <nuxt-link
           v-if="status === 'success'"
           :to="localePath('index')"
-          class="btn btn-solid"
+          class="btn btn-outline"
         >
           {{ $t("GO_HOME") }}
         </nuxt-link>

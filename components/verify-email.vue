@@ -2,7 +2,7 @@
   <div class="verify-email">
     <button
       v-if="!disabled"
-      class="btn btn-yellow"
+      class="btn btn-accent"
       @click="verify"
     >
       {{ $t(btnLabel) }}

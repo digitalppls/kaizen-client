@@ -40,7 +40,7 @@
             {{ user.email }}
             <span
               style="display: inline-block; margin-left: 5px;"
-              :title="verify ? 'Confirmed' : 'Not confirmed'"
+              :title="$t(verify ? 'CONFIRMED' : 'NOT_CONFIRMED')"
             >
               <ui-icon-done class="icon-check" :fill="colorIcon" />
             </span>
@@ -114,10 +114,14 @@ export default {
   i18n: {
     messages: {
       ru: {
-        NAME: "Имя"
+        NAME: "Имя",
+        CONFIRMED: "E-mail подтверждён",
+        NOT_CONFIRMED: "E-mail не подтверждён"
       },
       en: {
-        NAME: "Name"
+        NAME: "Name",
+        CONFIRMED: "E-mail confirmed",
+        NOT_CONFIRMED: "E-mail not confirmed"
       }
     }
   },
@@ -129,7 +133,7 @@ export default {
       return this.user?.emailVerified ?? false;
     },
     colorIcon () {
-      return this.verify ? "var(--col-accent)" : "#ccc";
+      return this.verify ? "var(--col-accent)" : "var(--col-gray)";
     },
     minutesLeft () {
       return Math.floor(this.seconds / 60);
@@ -145,7 +149,9 @@ export default {
 
       this.$API.UserPasswordRecovery({ email: this.user.email }, (data) => {
         if (data) {
-          this.infos.push(this.$t("PASSWORD_RECOVERY_SEND").replace("%{EMAIL}", `<strong class="color-success">${this.user.email}</strong>`));
+          this.infos.push(this.$t("PASSWORD_RECOVERY_SEND")
+            .replace("%{EMAIL}",
+              `<strong class="color-success">${this.user.email}</strong>`));
           this.startTimer();
         }
       }, (error) => {
@@ -209,6 +215,7 @@ table {
           width: 90px;
         }
       }
+
       &:last-child {
         color: var(--col-main);
       }
