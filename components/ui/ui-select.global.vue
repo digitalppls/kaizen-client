@@ -6,9 +6,10 @@
       'ui-select',
       { 'ui-select--disabled' : disabled },
       { 'ui-select--open' : open },
+      { 'ui-select--single' : options.length === 1 },
       { 'ui-select--inside' : isInsideElement }
     ]"
-    @click="open = !open"
+    @click="options.length === 1 ? null : open = !open"
     @close-select="open = false"
   >
     <div class="ui-select__container">
@@ -155,6 +156,10 @@ export default {
     padding: $input-padding-y $input-padding-x;
     padding-right: 40px;
     user-select: none;
+
+    #{$self}--single & {
+      background-image: none;
+    }
 
     img,
     svg {

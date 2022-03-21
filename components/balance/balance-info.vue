@@ -6,7 +6,7 @@
       style="background: #446ca9; padding: 20px;"
     >
       <div class="m-b-20">
-        Please Verify your email address for access to deposit!
+        {{ $t("VERIFY_EMAIL_MSG") }}
       </div>
 
       <nuxt-link :to="localePath('/my/profile')" class="btn btn-yellow btn-small" style="padding: 10px 20px; font-size: 14px;">

@@ -144,6 +144,7 @@ export default {
   "VERIFY_EMAIL_MSG": "To use all the features of the service you need to activate your account.",
   "INSUFFICIENT_BALANCE": "insufficient funds",
   "REFILL_BALANCE": "Replenish balance",
+  "REFILL_MSG": "Before you buy tokens, you need to top up your wallet balance.",
   "THANK_YOU": "Thank you",
   "FOR_REGISTRATION": "For registering.",
   "MY_DATA": "My details",

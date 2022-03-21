@@ -11,13 +11,13 @@
       <div class="m-l-a">
         <button
           :class="['btn', {'btn-blue': symbol === 'kzn'}, {'btn-yellow': symbol === 'vng'}, {'btn-red': symbol === 'srk'}]"
-          :disabled="symbol === 'kzn' || symbol === 'vng'"
+          :disabled="!isCurrent"
           @click="openModal('buy')"
         >
           {{ $t("BUY") }}
         </button>
         <button
-          disabled
+          :disabled="!isCurrent"
           class="btn btn-dark btn-small btn_set-opacity"
           @click="openModal('sell')"
         >
@@ -55,6 +55,7 @@
           </small>
         </div>
 
+        <!-- Доля токенов -->
         <div>
           <div class="m-b-10 accessed-value">
             {{ $t("YOUR_SHARE_OF_TOKEN") }} {{ symbol.toUpperCase() }}:
@@ -100,13 +101,10 @@
           v-if="showModal"
           @close="closeModal"
         >
-          <!--      <h2 class="modal-title m-b-40">-->
-          <!--        {{ $t(modal.toUpperCase()) }} {{ symbol.toUpperCase() }}-->
-          <!--      </h2>-->
-
           <token-swap
-            :input-currency="symbol.toUpperCase()"
+            :input-currency="symbol"
             type="token"
+            :sale="sale"
             :mode="modal"
           />
         </ui-modal>
@@ -120,12 +118,12 @@ export default {
   name: "BalanceInfoToken",
   props: {
     symbol: {
-      default: "",
-      type: String
+      type: String,
+      default: ""
     },
     sale: {
-      default: null,
-      type: Object
+      type: Object,
+      default: null
     }
   },
   data () {
@@ -250,14 +248,22 @@ export default {
         ]
       };
     },
+    /* Доля моих токенов */
     mySharePercent () {
-      return (this.balance / this.value); // .toLocaleString();
+      if (!this.balance || !this.value) {
+        return 0;
+      }
+      return this.balance / this.value;
     },
     tokenName () {
       return this.sale?.name ?? "";
     },
     priceUsd () {
       return this.sale?.priceUsd ?? 0;
+    },
+    /* Активны ли продажи? */
+    isCurrent () {
+      return this.sale?.isCurrent ?? false;
     },
     available () {
       return ((this.sale?.maxValue ?? 0) - (this.sale?.value ?? 0));

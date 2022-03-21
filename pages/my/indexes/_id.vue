@@ -168,7 +168,7 @@
       v-if="showModal"
       @close="showModal = false"
     >
-      <token-swap :input-currency="id" type="index" :mode="mode" />
+      <token-swap :input-currency="id.toLowerCase()" type="index" :mode="mode" />
     </ui-modal>
   </div>
 </template>
