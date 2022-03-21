@@ -1,8 +1,8 @@
 <template>
-  <!-- <div v-if="!sendCoinList.length" style="padding: 30px;">
+  <div v-if="!wallets.length" style="padding: 30px;">
     {{ $t("REFILL_MSG") }}
-  </div> -->
-  <div class="token-swap">
+  </div>
+  <div v-else class="token-swap">
     <h2 v-if="mode" class="modal-title m-b-40">
       {{ $t(mode.toUpperCase()) }}
       <span class="text-uppercase">
@@ -191,7 +191,9 @@ export default {
         this.sendCoinList = this.currencies.filter(item => [this.$symbolCurrencyAddUsdt(tokenSymbol)].includes(item.symbol));
         this.sendCoin = this.wallets.find(item => tokenSymbol === item.symbol);
         // this.sendCoin = this.sendCoinList[0];
-        disabledCoins.push(this.sendCoin.symbol);
+        if (this.sendCoin) {
+          disabledCoins.push(this.sendCoin.symbol);
+        }
         // список получаемых монет
         this.getCoinList = this.currencies.filter(item => !disabledCoins.includes(item.symbol));
         this.getCoin = this.wallets.filter(item => item.amount > 0 && ![tokenSymbol].includes(item.symbol))[0];
