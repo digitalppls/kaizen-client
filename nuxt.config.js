@@ -4,7 +4,7 @@ export default {
     isDev: process.env.NODE_ENV !== "production"
   },
   server: process.env.PROXY
-    ? { port: process.env.PORT }
+    ? { host: "0.0.0.0" }
     : {},
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
