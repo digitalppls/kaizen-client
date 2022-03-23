@@ -1,5 +1,5 @@
 <template>
-  <div class="page-verify">
+  <div class="page-verify main-section">
     <div class="container">
       <div class="page-verify__content">
         <h1
@@ -9,7 +9,7 @@
         <nuxt-link
           v-if="status === 'success'"
           :to="localePath('index')"
-          class="btn btn-solid"
+          class="btn btn-outline"
         >
           {{ $t("GO_HOME") }}
         </nuxt-link>
@@ -23,7 +23,7 @@
 import VerifyEmail from "~/components/verify-email";
 
 export default {
-  name: "Verify",
+  name: "PageVerify",
   components: { VerifyEmail },
   layout: "public",
   computed: {

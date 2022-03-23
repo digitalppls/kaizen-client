@@ -4,22 +4,14 @@ export default {
     isDev: process.env.NODE_ENV !== "production"
   },
   server: process.env.PROXY
-    ? {
-        port: process.env.PORT
-      }
+    ? { host: "0.0.0.0" }
     : {},
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
   target: "static", // target: "static",
   router: {
     base: "/",
-    extendRoutes (routes, resolve) {
-      routes.push({
-        name: "custom",
-        path: "*",
-        component: resolve(__dirname, "pages/404.vue")
-      });
-    }
+    trailingSlash: true
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -117,10 +109,19 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   styleResources: {
-    scss: ["@/assets/scss/variables.scss", "@/assets/scss/mixins/mixins.scss"]
+    scss: [
+      "@/assets/scss/variables.scss",
+      "@/assets/scss/mixins/mixins.scss",
+      "@/assets/scss/vars.scss",
+      "@/assets/scss/functions.scss"
+    ]
   },
 
   css: [
+    {
+      src: "@/assets/scss/style.scss",
+      lang: "scss"
+    },
     {
       src: "@/assets/scss/template.scss",
       lang: "scss"
@@ -182,19 +183,19 @@ export default {
 
   proxy: process.env.PROXY
     ? {
-        "/server": {
-          target: process.env.PROXY
+      "/server": {
+        target: process.env.PROXY
         // pathRewrite: { "^/server": "/" }
-        },
-        "/socket.io": {
-          target: process.env.PROXY
+      },
+      "/socket.io": {
+        target: process.env.PROXY
         // pathRewrite: { "^/socket.io": "/" }
-        },
-        "/api": {
-          target: process.env.PROXY
+      },
+      "/api": {
+        target: process.env.PROXY
         // pathRewrite: { "^/api": "/" }
-        }
       }
+    }
     : {},
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

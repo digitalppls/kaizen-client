@@ -7,11 +7,11 @@
         </h1>
       </div>
       <div class="index-page__header__r">
-        <button class="btn btn-solid btn-small" @click="openModal('buy')">
+        <button class="btn btn-blue btn-medium" @click="openModal('buy')">
           {{ $t("BUY") }}
         </button>
         <button
-          class="btn btn-solid btn-small"
+          class="btn btn-red btn-medium"
           :disabled="disableSell"
           @click="openModal('sell')"
         >
@@ -22,7 +22,7 @@
 
     <div class="index-page__data m-b-30">
       <div class="index-page__data-item m-b-10">
-        <div class="font-medium font-size-20">
+        <div class="font-medium font-size-20 color-main">
           {{ marketCap.toLocaleString("en-US", $LOCALESTRING_USD(0, 0)) }}
         </div>
         <div class="small">
@@ -30,7 +30,7 @@
         </div>
       </div>
       <div class="index-page__data-item m-b-10">
-        <div class="font-medium font-size-20">
+        <div class="font-medium font-size-20 color-main">
           <template v-if="indexData.inception_date">
             {{ indexData.inception_date.toLocaleDateString($i18n.locale, localeDateStringOptions) }}
           </template>
@@ -55,15 +55,15 @@
     <vue-good-table
       :rows="id === 'CRYPTO100' ? rows100 : rows"
       :columns="columns"
-      style-class="vgt-table"
+      style-class="vgt-table vgt-table--dark"
       :line-numbers="true"
     >
       <template slot="table-row" slot-scope="props">
         <div v-if="props.column.field == 'name'">
-          <div class="font-medium m-b-10">
+          <div class="font-500 m-b-10">
             {{ props.row.name }}
           </div>
-          <div :style="{width: props.row.weight + '%', backgroundColor: 'var(--color-primary)', height: '5px'}" />
+          <div :style="{width: props.row.weight + '%', backgroundColor: 'var(--col-yellow)', height: '5px'}" />
         </div>
         <div v-else-if="props.column.field == 'weight'">
           {{ props.row.weight.toLocaleString($i18n.locale) }}%
@@ -113,7 +113,7 @@
 
     <!-- Описание -->
     <div v-if="indexData.desc" class="index-page__desc m-t-40">
-      <h3 class="sub-title" style="margin-bottom: 20px;">
+      <h3 class="color-white m-b-20">
         {{ $t("DESCRIPTION") }}
       </h3>
       <div class="lh-135" v-html="$t(indexData.desc)" />
@@ -121,7 +121,7 @@
 
     <!-- Методология -->
     <div v-if="id !== 'DEFI'" class="index-page__methodology m-t-40">
-      <h3 class="sub-title" style="margin-bottom: 20px;">
+      <h3 class="color-white m-b-20">
         {{ $t("METHODOLOGY") }}
       </h3>
       <div v-if="id === 'KAIZEN'">
@@ -168,7 +168,7 @@
       v-if="showModal"
       @close="showModal = false"
     >
-      <token-swap :input-currency="id" type="index" :mode="mode" />
+      <token-swap :input-currency="id.toLowerCase()" type="index" :mode="mode" />
     </ui-modal>
   </div>
 </template>
@@ -232,7 +232,7 @@ export default {
         symbol: this.symbol,
         interval: "D",
         timezone: "Etc/UTC",
-        theme: "light",
+        theme: "dark",
         style: 3,
         locale: this.$i18n.locale,
         toolbar_bg: "#f1f3f6",
@@ -360,7 +360,7 @@ export default {
       }
 
       &__label {
-        @include fontTTNorms("medium");
+        font-weight: 300;
         //text-transform: uppercase;
       }
 
@@ -368,7 +368,8 @@ export default {
         text-align: center;
         font-size: 16px;
         padding: 8px 20px;
-        background: rgba(var(--color-primary-rgb), .5);
+        color: #fff;
+        background: #1F2124;
         border-radius: 3px;
       }
     }

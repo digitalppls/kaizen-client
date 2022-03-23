@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-section">
     <div class="container">
       <div class="page-profile">
         <div class="page-profile__inline-menu inline-menu-wrap">
@@ -98,6 +98,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main-section {
+  max-height: none;
+  min-height: auto;
+  display: block;
+  flex: 1 0 auto;
+
+  .container {
+    margin: 0 auto;
+  }
+}
+
 .page-profile {
   @include respond-before("lg") {
     display: flex;
@@ -153,12 +164,13 @@ export default {
     padding: 15px;
     transition: margin .2s ease-in-out;
 
+    &:hover {
+      color: #fff;
+    }
+
     &--active {
       color: #fff;
-      //background-color: var(--color-primary);
-      background-color: #A7A9B7;
-      //margin-left: 10px;
-      @include fontTTNorms("bold");
+      background-color: #1F2124;
     }
   }
 }
@@ -168,15 +180,16 @@ export default {
 
   &-wrap {
     overflow-x: scroll;
-    border-radius: 12px;
-    background-color: #f8f8fb;
+    background: #151618;
 
     @include respond-to("lg") {
       position: sticky;
-      top: 70px;
+      top: 90px;
       z-index: 10;
+      box-shadow: 0 0 18px var(--col-black);
     }
   }
+
   &__item {
     font-size: 16px;
     margin: 0;
@@ -192,24 +205,18 @@ export default {
     color: var(--color-gray);
     display: block;
     padding: 15px;
-    border-radius: 12px;
     transition: margin .2s ease-in-out;
 
     &--active {
       color: #fff;
-      //background-color: var(--color-primary);
-      background-color: #A7A9B7;
-      //margin-left: 10px;
-      @include fontTTNorms("bold");
+      background-color: #1F2124;
     }
   }
 }
 
 .sidebar {
-  background: #f9f9fa;
-  //height: 100%;
+  background: #151618;
   padding: 0;
-  border-radius: 12px;
   overflow: hidden;
 
   @include respond-before("lg") {

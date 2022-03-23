@@ -1,9 +1,7 @@
 <template>
   <div>
     <site-header />
-    <div class="site-content">
-      <Nuxt ref="nuxt" />
-    </div>
+    <Nuxt ref="nuxt" />
     <site-footer />
   </div>
 </template>
@@ -30,17 +28,11 @@ export default {
       return this.$store.getters.hasToken;
     }
   },
-  watch: {
-    $route () {
-      setTimeout(this.FooterToBottom, 100);
-    }
-  },
   beforeDestroy () {
     this.$socket.off("currency_update", this.updateCurrency);
     this.$socket.off("user_update", this.updateUser);
   },
   mounted () {
-    this.FooterToBottom();
     console.log("default");
 
     if (this.hastToken) {
@@ -84,17 +76,6 @@ export default {
     updateOperation (r) {
       // this.$store.dispatch("updateOperation", r);
       console.log("operation_update", r);
-    },
-
-    /** Прижимаем футер */
-    FooterToBottom () {
-      const bodyHeight = document.querySelector("body").offsetHeight;
-      const siteContentHeight = document.querySelector(".site-content").offsetHeight;
-      if (siteContentHeight <= bodyHeight) {
-        document.querySelector("body").classList.add("footer-to-bottom");
-      } else {
-        document.querySelector("body").classList.remove("footer-to-bottom");
-      }
     }
   }
 };

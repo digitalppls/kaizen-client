@@ -2,34 +2,35 @@
   <div class="user-wallets">
     <div class="user-wallets-box">
       <div :class="[{ 'user-wallets-box__left': !hideChart }]">
-        <div class="total m-b-20">
-          <div>
+        <div class="m-b-40">
+          <p class="accessed-value m-b-5">
             {{ $t("ASSESSED_VALUE") }}:
-          </div>
-          <div class="font-size-30 font-bold">
-            {{ totalUSD.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
-            <span class="font-medium font-size-14">USDT</span>
-          </div>
+          </p>
+          <p class="font-size-30 font-bold total__balance">
+            {{ totalUSD.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(2, 3)) }}
+            <span class="font-medium font-size-20">USDT</span>
+          </p>
         </div>
         <ul class="list list--none">
           <li
             v-for="(wallet, idx) in wallets"
             :key="idx"
           >
-            <img
-              v-if="false"
-              :src="require(`~/assets/img/tokens/icon-${wallet.symbol}.svg?inline`)"
-              :alt="wallet.symbol.toUpperCase()"
-              :title="wallet.symbol.toUpperCase()"
-              style="height: 21px; display: inline-block; vertical-align: middle; margin-right: 3px;"
-            >
+            <!--            <img-->
+            <!--              v-if="false"-->
+            <!--              :src="require(`~/assets/img/tokens/icon-${wallet.symbol}.svg?inline`)"-->
+            <!--              :alt="wallet.symbol.toUpperCase()"-->
+            <!--              :title="wallet.symbol.toUpperCase()"-->
+            <!--              style="height: 21px; display: inline-block; vertical-align: middle; margin-right: 3px;"-->
+            <!--            >-->
             <span style="display: inline-block; vertical-align: middle;">
-              <strong>{{ wallet.symbol.toUpperCase() }}:</strong>
-              <span class="font-medium">
+              <strong class="font-size-14 color-orange m-r-10">{{ wallet.symbol.toUpperCase() }}:</strong>
+              <span class="font-medium font-size-14 color-white m-r-5">
                 {{ wallet.amount.toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
               </span>
-              <small class="color-gray">
-                ≈ ${{ $toUsd(wallet.symbol, wallet.amount).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
+              <small class="font-size-14 color-white">
+                <span class="m-r-5">~</span>
+                ${{ $toUsd(wallet.symbol, wallet.amount).toLocaleString("en-US", { maximumFractionDigits: 3 }) }}
               </small>
             </span>
           </li>
@@ -37,9 +38,10 @@
       </div>
       <div v-if="!hideChart && total" class="user-wallets-box__right">
         <vc-donut
+          background="#151618"
           foreground="#EAECEF"
-          :size="175"
-          :thickness="25"
+          :size="225"
+          :thickness="40"
           has-legend
           legend-placement="right"
           :sections="sections"
@@ -53,10 +55,10 @@
                 class="cdc-legend-item"
               >
                 <span class="cdc-legend-item-color" :style="item.styles" />
-                <span class="cdc-legend-item-label">
+                <span class="cdc-legend-item-label color-white">
                   {{ item.label.toUpperCase() }}
                 </span>
-                <span class="cdc-legend-item-value">
+                <span class="cdc-legend-item-value" :style="{ color: item.styles.backgroundColor}">
                   {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
                 </span>
               </div>
@@ -83,8 +85,16 @@ export default {
   },
   data () {
     return {
+      tokenColors: {
+        kzn: "#44f3ff",
+        vng: "#ffdc82",
+        srk: "#ff434e",
+        usdt: "#099169",
+        usd: "#099169",
+        btc: "#f69014"
+      },
       defaultColors: [
-        "#ff6384", "#36a2eb", "#ffce56", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
+        // "#bfea44", "#f0c149", "#fff", "#f58231", "#46f0f0", "#d2f53c", "#911eb4", "#f032e6",
         "#3cb44b", "#ffe119", "#e6194b", "#fabebe", "#008080", "#e6beff", "#0082c8", "#aa6e28",
         "#fffac8", "#800000", "#aaffc3", "#808000", "#ffd8b1", "#000080", "#808080", "#000"
       ]
@@ -101,27 +111,34 @@ export default {
       return this.$store.getters.wallets.map(x => this.$toUsd(x.symbol, x.amount)).reduce((a, b) => a + b, 0);
     },
     sections () {
-      const tmp = [];
+      const sections = [];
+      const tokenColors = this.tokenColors;
       let currentDefaultColorIdx = 0;
+
       this.wallets.map((e) => {
-        tmp.push({
+        let color = this.defaultColors[currentDefaultColorIdx++];
+        for (const symbol in tokenColors) {
+          if (e.symbol === symbol) {
+            color = tokenColors[symbol];
+          }
+        }
+
+        sections.push({
           label: e.symbol,
           value: (e.amount / this.total) * 100, // в процентах
-          color: this.defaultColors[currentDefaultColorIdx++]
+          color
         });
         return e;
       });
-      return tmp;
+      return sections;
     },
     legend () {
-      let currentDefaultColorIdx = 0;
+      // let currentDefaultColorIdx = 0;
       return this.sections.map((section, idx) => ({
         label: section.label || `Section ${idx + 1}`,
         value: (section.value * this.total) / 100, // обратно преодразовываем из процентов в кол-во токенов
         percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING_CRYPTO())})`,
-        styles: {
-          backgroundColor: this.defaultColors[currentDefaultColorIdx++]
-        }
+        styles: { backgroundColor: section.color /* this.defaultColors[currentDefaultColorIdx++] */ }
       }));
     }
   }
@@ -134,6 +151,7 @@ export default {
     @include respond-before("md") {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     &__left {
@@ -144,7 +162,7 @@ export default {
         margin-bottom: 0;
       }
       @include respond-before("xl") {
-        width: 45%;
+        width: 30%;
       }
     }
 
@@ -153,7 +171,8 @@ export default {
         width: 65%;
       }
       @include respond-before("xl") {
-        width: 55%;
+        width: 60%;
+        margin-left: 10%;
       }
 
       .cdc-container {
@@ -176,7 +195,7 @@ export default {
   justify-content: center;
 
   @include respond-before("md") {
-    margin: 0 0 0 1em;
+    margin: 0 0 0 2em;
   }
 
   &-item {
@@ -185,7 +204,6 @@ export default {
     margin: 0.5em 0;
     font-size: 15px;
     letter-spacing: -0.02em;
-    @include fontTTNorms("medium");
 
     &-color {
       height: .75em;
@@ -199,9 +217,22 @@ export default {
     }
 
     &-value {
-      margin-left: auto;
+      //margin-left: auto;
     }
   }
 }
 
+.total {
+  &__balance {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    letter-spacing: -0.02em;
+    color: #f5cf48;
+  }
+}
+
+.color-orange {
+  color: #f5cf48;
+}
 </style>

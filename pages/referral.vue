@@ -33,7 +33,7 @@
 import ReferralLinkBar from "~/components/referral-link-bar";
 
 export default {
-  name: "Referral",
+  name: "PageReferral",
   components: { ReferralLinkBar },
   data () {
     return {

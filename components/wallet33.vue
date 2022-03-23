@@ -38,6 +38,7 @@
 <script>
 import VerifyEmail from "~/components/verify-email";
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: "Wallet33",
   components: { VerifyEmail },
   props: {
@@ -53,7 +54,7 @@ export default {
   data () {
     return {
       wallet: null,
-      theme: "light",
+      theme: "dark",
       showIframe: true
     };
   },

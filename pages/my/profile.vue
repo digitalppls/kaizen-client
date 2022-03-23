@@ -1,24 +1,47 @@
 <template>
   <div class="userprofile">
-    <section>
-      <h1 class="m-b-30">
-        {{ $t("MY_DATA") }}
-      </h1>
+    <!-- Реферальная ссылка -->
+    <referral-link-bar :label="$t('YOUR_INVITE_LINK')" class="m-b-20" />
+
+    <!-- Статистика по реферальной программе -->
+    <section class="balance-info m-b-20">
+      <div class="balance-info__top">
+        <div>
+          <h3 class="color-white m-b-5">
+            {{ $t("REFERRAL_PROGRAM") }}
+          </h3>
+        </div>
+      </div>
+      <referral-stats />
+    </section>
+
+    <!-- Данные пользователя -->
+    <section class="balance-info m-b-20">
+      <div class="balance-info__top">
+        <div>
+          <h3 class="color-white m-b-5">
+            {{ $t("MY_DATA") }}
+          </h3>
+        </div>
+      </div>
 
       <table>
-        <tr class="small">
+        <tr>
           <td>ID:</td>
           <td>{{ user._id }}</td>
         </tr>
         <tr>
-          <td>Имя:</td>
+          <td>{{ $t("NAME") }}:</td>
           <td>{{ user.username }}</td>
         </tr>
         <tr>
           <td>E-mail:</td>
           <td>
             {{ user.email }}
-            <span style="display: inline-block; margin-left: 5px;" :title="verify ? 'Подтвержден' : 'Не подтвержден'">
+            <span
+              style="display: inline-block; margin-left: 5px;"
+              :title="$t(verify ? 'CONFIRMED' : 'NOT_CONFIRMED')"
+            >
               <ui-icon-done class="icon-check" :fill="colorIcon" />
             </span>
 
@@ -32,12 +55,23 @@
       </table>
     </section>
 
-    <section class="m-t-60">
-      <h2 class="m-b-30">
-        {{ $t("AUTH.FIELDS.PASSWORD") }}
-      </h2>
-      <ul v-if="infos.length" class="list m-b-20">
-        <li v-for="(info, idx) in infos" :key="idx" class="color-primary" v-html="info" />
+    <!-- Сброс пароля -->
+    <section class="balance-info m-b-20">
+      <div class="balance-info__top">
+        <div>
+          <h3 class="color-white m-b-5">
+            {{ $t("AUTH.FIELDS.PASSWORD") }}
+          </h3>
+        </div>
+      </div>
+
+      <ul v-if="infos.length" class="list list--none m-b-20">
+        <li
+          v-for="(info, idx) in infos"
+          :key="idx"
+          class="color-white font-300"
+          v-html="info"
+        />
       </ul>
       <p v-if="seconds" class="m-b-20">
         <span class="color-gray">
@@ -47,7 +81,8 @@
       </p>
       <button
         :disabled="seconds > 0"
-        class="btn btn-solid"
+        class="btn btn-yellow"
+        style="padding: 15px 20px; font-size: 14px;"
         @click="recoveryPasswordHandle"
       >
         {{ $t("SET_NEW_PASSWORD") }}
@@ -57,11 +92,13 @@
 </template>
 
 <script>
+import ReferralLinkBar from "~/components/referral-link-bar";
 import VerifyEmail from "~/components/verify-email";
+import ReferralStats from "~/components/referral-stats";
 
 export default {
-  name: "Profile",
-  components: { VerifyEmail },
+  name: "PageProfile",
+  components: { ReferralStats, ReferralLinkBar, VerifyEmail },
   data () {
     return {
       interval: 0,
@@ -74,6 +111,20 @@ export default {
       infos: []
     };
   },
+  i18n: {
+    messages: {
+      ru: {
+        NAME: "Имя",
+        CONFIRMED: "E-mail подтверждён",
+        NOT_CONFIRMED: "E-mail не подтверждён"
+      },
+      en: {
+        NAME: "Name",
+        CONFIRMED: "E-mail confirmed",
+        NOT_CONFIRMED: "E-mail not confirmed"
+      }
+    }
+  },
   computed: {
     user () {
       return this.$store.getters.user;
@@ -82,7 +133,7 @@ export default {
       return this.user?.emailVerified ?? false;
     },
     colorIcon () {
-      return this.verify ? "#58C1B9" : "#ccc";
+      return this.verify ? "var(--col-accent)" : "var(--col-gray)";
     },
     minutesLeft () {
       return Math.floor(this.seconds / 60);
@@ -98,7 +149,9 @@ export default {
 
       this.$API.UserPasswordRecovery({ email: this.user.email }, (data) => {
         if (data) {
-          this.infos.push(this.$t("PASSWORD_RECOVERY_SEND").replace("%{EMAIL}", `<strong>${this.user.email}</strong>`));
+          this.infos.push(this.$t("PASSWORD_RECOVERY_SEND")
+            .replace("%{EMAIL}",
+              `<strong class="color-success">${this.user.email}</strong>`));
           this.startTimer();
         }
       }, (error) => {
@@ -126,7 +179,8 @@ export default {
 
     startTimer () {
       this.seconds = this.duration;
-      this.timer = `${this.timeDurationToString(this.minutesLeft)}:${this.timeDurationToString(this.secondsLeft)}`;
+      this.timer = `${this.timeDurationToString(
+        this.minutesLeft)}:${this.timeDurationToString(this.secondsLeft)}`;
 
       this.interval = setInterval(() => {
         this.seconds -= 1;
@@ -136,7 +190,8 @@ export default {
           this.infos = [];
           clearInterval(this.interval);
         }
-        this.timer = `${this.timeDurationToString(this.minutesLeft)}:${this.timeDurationToString(this.secondsLeft)}`;
+        this.timer = `${this.timeDurationToString(
+          this.minutesLeft)}:${this.timeDurationToString(this.secondsLeft)}`;
       }, 1000);
     }
   }
@@ -144,6 +199,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "/assets/scss/components/balance-info.scss";
+
 table {
   width: 100%;
 
@@ -153,11 +210,14 @@ table {
 
       &:first-child {
         width: 70px;
-        color: var(--color-gray);
 
         @include respond-before("md") {
           width: 90px;
         }
+      }
+
+      &:last-child {
+        color: var(--col-main);
       }
     }
   }

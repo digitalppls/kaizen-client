@@ -1,16 +1,16 @@
 {
   "name": "kaizenfund",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "PROXY='https://kaizenfund.io' PORT=3000 nuxt",
+    "dev": "PROXY='https://kaizenfund.io' nuxt",
+    "dev:prod": "HTTPS='true' nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
     "build:test": "nuxt build",
     "generate:test": "nuxt generate",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
-    "deploy:test": "sh deploy_test.sh",
+    "deploy:new": "sh deploy_new.sh",
     "deploy:prod": "sh deploy_prod.sh",
     "lint:js": "eslint --fix --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint": "npm run lint:js"
@@ -28,9 +28,11 @@
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.27.3",
     "secure-ls": "^1.2.6",
+    "swiper": "^5.4.5",
     "v-click-outside": "^3.1.2",
     "v-tooltip": "^2.1.3",
     "vue": "^2.6.14",
+    "vue-awesome-swiper": "^4.1.1",
     "vue-css-donut-chart": "^1.3.2",
     "vue-good-table": "^2.21.11",
     "vuex-persistedstate": "^4.1.0",
@@ -46,6 +48,7 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^8.4.1",
     "sass": "^1.35.2",
-    "sass-loader": "^10.2.0"
+    "sass-loader": "^10.2.0",
+    "wowjs": "^1.1.3"
   }
 }

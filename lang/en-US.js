@@ -14,6 +14,10 @@ export default {
   "COMPANY": "Company",
   "INDEX": "Index",
   "INDEXES": "Indexes",
+  "CRYPTO": "Cryptocurrency",
+  "INDUSTRIAL": "Industrial",
+  "REAL_SECTOR": "Real Sector",
+  "OF_PRODUCTION": "of production",
   "PROJECTS": "Projects",
   "SOON": "Soon",
   "COOKIES_BANNER": "🍪 We use cookies.",
@@ -77,6 +81,7 @@ export default {
   "DAY": "Day",
   "WEEK": "Week",
   "MONTH": "Month",
+  "DECEMBER": "December",
 
   "LOGIN": "Login",
   "LOGOUT": "Sign out",
@@ -100,7 +105,7 @@ export default {
   "YOU_LINK": "Your link",
   "LINK": "Link",
   "CONTACTS": "Contacts",
-  "LOADING": "Uploading...",
+  "LOADING": "Loading...",
   "EMAIL_NOT_FOUND": "No user with this e-mail was found.",
   "USER_NOT_FOUND": "User not found.",
   "UNAUTHORIZED": "Invalid login or password.",
@@ -125,6 +130,7 @@ export default {
   "SETTINGS": "Settings",
   "CHANGE_PASSWORD": "Change password",
   "BUY": "Buy",
+  "JOIN": "Join",
   "SELL": "Sell",
   "CONFIRM_BUY": "Confirm purchase",
   "CONFIRM_BUY_INDEX": "Confirm purchase %{TOKEN_1} for %{TOKEN_2}?",
@@ -138,6 +144,7 @@ export default {
   "VERIFY_EMAIL_MSG": "To use all the features of the service you need to activate your account.",
   "INSUFFICIENT_BALANCE": "insufficient funds",
   "REFILL_BALANCE": "Replenish balance",
+  "REFILL_MSG": "Before you buy tokens, you need to top up your wallet balance.",
   "THANK_YOU": "Thank you",
   "FOR_REGISTRATION": "For registering.",
   "MY_DATA": "My details",
@@ -168,18 +175,17 @@ export default {
   "NAME": "Name",
   "WEIGHT": "Weight",
   "INCORRECT_TYPE": "Incorrect type",
+  "STATS": "Statistics",
 
   // History
   "OPERATIONS": "Operations history",
   "OPERATION_ALL": "All operations",
   "OPERATION_BUY": "Purchase",
-  "OPERATION_PAYMENT": "Payment",
+  "OPERATION_PAYMENT": "Replenish wallet",
   "OPERATION_WITHDRAW": "Output",
   "OPERATION_PRODUCT_BUY": "Purchase a product",
   "OPERATION_TOKEN_SWAP": "Token Swap",
-  "OPERATION_PRODUCT_REF_BONUS": "Ref. Bonus for purchasing a product",
-  "OPERATION_PRODUCT_BUY_BONUS": "Bonus for purchasing a product",
-  "OPERATION_PACKAGE_REF_BONUS": "Ref. Bonus for buying a package",
+  "OPERATION_TOKEN_REF_BONUS": "Ref. bonus for buying a token",
   "OPERATION_LINEAR_BONUS": "Linear bonus",
   "OPERATION_STATUS_UP_BONUS": "Bonus for reaching status",
   "OPERATION_STATUS_UP_BONUS_PACKAGE": "Bonus for leveling up the status, accrued on the package",
@@ -216,22 +222,7 @@ export default {
   "START_INVESTING": "Start investing",
   "CABINET": "Cabinet",
 
-  // Home info
-  "DATE_OF_FOUNDATION": "Date of foundation",
-  "TOKEN": "Token",
-  "TOKENS": "Tokens",
-  "TOKEN_VALUE": "Token value",
-  "VALUE_OF_ALL_FUND_ASSETS": "The value of all fund assets",
-  "HOME_INFO_BLOCK_H_1": "Fund overview",
-  "HOME_INFO_BLOCK_T_1": "One page overview",
-  "HOME_INFO_BLOCK_H_2": "Quarterly reports",
-  "HOME_INFO_BLOCK_T_2": "Market analytics and financial results",
-  "HOME_INFO_BLOCK_H_3": "Detailed report",
-  "HOME_INFO_BLOCK_T_3": "How it works",
-
   // Home info chart
-  "INFOCHART_TITLE": "Four highly profitable and balanced indices of the planet",
-  "INFOCHART_DESC": "Choose a secure way to get diversified access to the world's leading cryptocurrencies. The fund monitors the leading segments of the cryptocurrency sector and ensures the safety and ease of access to financial instruments.",
   "CRYPTOCURRENCIES": "Cryptocurrencies",
   "EXCHANGES": "Exchanges",
   "TOP_COMPANIES": "Top companies",
@@ -247,7 +238,6 @@ export default {
 
   // Home tariffs
   "HOME_INDEXES_TITLE": "Choose the best index",
-  "JOIN": "Join",
   "HOME_ROADMAP_TITLE": "Roadmap",
   "HOME_ROADMAP_DESC": "Check out KZN token sale dates and additional projects from the Kaizen Fund team.",
   "TIMELINE_1_TITLE": "November 15th",
@@ -340,6 +330,9 @@ export default {
   "N/A": "N/A",
   "DESCRIPTION": "Description",
   "METHODOLOGY": "Methodology",
+  "YOUR_SHARE_OF_TOKEN": "Your share of",
+  "YOUR_INVITE_LINK": "Your invite link",
+  "YOUR_INVITE_CODE": "Your invite code",
 
   // KAIZEN PAGE INDEX
   "KAIZEN_DESC": "A secure way to get diversified exposure to bitcoin and leading cryptocurrencies. The Fund seeks to track an Index comprised of the 10 most highly valued cryptocurrencies, screened & monitored for certain risks, weighted by market capitalization, and rebalanced monthly. The fund provides the security and simplicity of a traditional investment vehicle, with shares tradable in brokerage accounts using ticker “BITW”.",
@@ -347,6 +340,70 @@ export default {
   "KAIZEN_METHODOLOGY_ITEM_1": "The most valuable assets, rebalanced monthly",
   "KAIZEN_METHODOLOGY_ITEM_2": "Robust diligence of eligibility criteria",
   "KAIZEN_METHODOLOGY_ITEM_3": "24/7 monitoring for sudden events",
+  "FEATURES": {
+    "TITLE": "Platform capabilities",
+    "DESC": "Today, Kaizen has a wide range of instruments and a well-developed infrastructure at its disposal.",
+    "TEXT": "Risk diversification is a priority, and includes three main areas:",
+    "ITEMS": [
+      {
+        "TITLE": "RISK MANAGEMENT",
+        "DESC": "Three projects in one platform are involved in order to minimize the risks of users. If deposits in one of the projects represented by the platform become unprofitable, the user is reimbursed for funds from the activities of the other two projects, through the redemption of his tokens by the operator company."
+      },
+      {
+        "TITLE": "ADVANTAGEOUS CONDITIONS",
+        "DESC": "Extremely low electricity rates - only $0.001 per kWh in the Vanguard project. Preferential terms of taxation and customs tariffs. The Company is a member of industrial economic zones in Kazakhstan."
+      },
+      {
+        "TITLE": "LIQUIDITY",
+        "DESC": "Buy and sell tokens from Kaizen on global crypto exchanges with high liquidity."
+      },
+    ]
+  },
+  "ROADMAP": {
+    "ITEMS": [
+      {
+        "DATE": "March 2022",
+        "TEXT": "Pre-sale KZN token index and VNG token mining"
+      },
+      {
+        "DATE": "May 2022",
+        "TEXT": "IDO KZN token index and VNG token mining"
+      },
+      {
+        "DATE": "June 2022",
+        "TEXT": "Public sale KZN token index and VNG token mining"
+      },
+      {
+        "DATE": "July 2022",
+        "TEXT": "Pre-sale of SRK production company token"
+      },
+      {
+        "DATE": "August 2022",
+        "TEXT": "IDO of SRK Production Enterprise token"
+      },
+      {
+        "DATE": "August 2022",
+        "TEXT": "Public sale of SRK Production Enterprise token."
+      },
+    ]
+  },
+  "MODERN_SOLUTIONS": "Modern blockchain solutions",
+  "INVEST_IN_TOKEN": "Invest in tokenized businesses, mining, and cryptocurrency indices with Kaizen",
+  "DIRECTIONS_FOR_DEV": {
+    "TITLE": "Directions for development",
+    "DESC": "Today, Kaizen has a wide range of instruments and a well-developed infrastructure at its disposal.",
+    "ITEMS": [
+      {
+        "TEXT": "Four of the highest-yielding cryptocurrency indices from different sectors."
+      },
+      {
+        "TEXT": "Participate in industrial Bitcoin mining."
+      },
+      {
+        "TEXT": "Profit from businesses from the real economy."
+      },
+    ]
+  },
 
   // COIN10 PAGE INDEX
   "COIN10_DESC": "The Coin10 Index is a market capitalization weighted index of the top 10 cryptocurrencies. Because it is composed of the top ten cryptocurrencies it is widely accepted as a benchmark for the strength or weakness of the broader cryptocurrency market. It was created by Crypto Finance AG and launched on December 31, 2016 with a value of 1,000. As of June 2020 it is managed and calculated by BITA GmbH and has a value around 2,650. Because cryptocurrencies often move up or down in tandem it isn’t unusual for this index to make very strong moves in either direction.",
@@ -370,4 +427,78 @@ export default {
   // DEFI PAGE INDEX
   "DEFI_DESC": "Index tracks and measures the performance of a basket of assets in a standardized way. There are two types of indices: single underlying price indices and composite price indices. The single underlying price indices mainly focus on tracking some specific underlying instrument price with the same underlying across different markets; while the composite price indices are combinations of different underlying instruments intended to measure the overall market (or subset) performance over time, the indices price usually calculated as weighted average price of the components.",
 
+  // Indexes page
+  "DATE_OF_FOUNDATION": "Date of foundation",
+  "TOKEN": "Token",
+  "TOKENS": "Tokens",
+  "TOKEN_VALUE": "Token value",
+  "VALUE_OF_ALL_FUND_ASSETS": "The value of all fund assets",
+  "HOME_INFO_BLOCK_H_1": "Fund overview",
+  "HOME_INFO_BLOCK_T_1": "One page overview",
+  "HOME_INFO_BLOCK_H_2": "Quarterly reports",
+  "HOME_INFO_BLOCK_T_2": "Market analytics and financial results",
+  "HOME_INFO_BLOCK_H_3": "Detailed report",
+  "HOME_INFO_BLOCK_T_3": "How it works",
+  "LOWEST_RISK": "Highest credibility and lowest risk",
+  "REPORT_NUMBER": "№",
+  "INDEXES_COVER_TITLE": "Invest in the world's best cryptocurrency indices",
+  "INDEXES_COVER_DESC": "Kaizen Fund is a Defi cryptocurrency index fund. We provide the opportunity to build capital with a new class of liquid and safe assets.",
+  "EMISSION": "Issuance for the benefit of users is limited and no additional issuance is envisaged. All tokens that will not be sold at the Pre-Sale and IDO stages will be sent to the Public Sale fund.",
+  "TOKENOMICS": "Tokenomics",
+  "INFOCHART_TITLE": "Four high-yield and balanced indices of the planet",
+  "INFOCHART_DESC": "Choose a secure way to gain diversified access to the world's leading cryptocurrencies. The fund monitors the leading segments of the cryptocurrency sector and provides safe and easy access to financial instruments.",
+
+  // MINING PAGE
+  "MINING_COVER_TITLE": "Participate in industrial mining with VNG token.",
+  "MINING_COVER_DESC": "Kaizen provides access to bitcoin mining with the most favorable conditions.",
+  "KAIZEN_REDEEMS_TOKENS": "Kaizen platform redeems VNG tokens",
+  "TO_MAINTAIN": "on the exchange to maintain price and liquidity.",
+  "EXCHANGE_WHERE": "The exchange where",
+  "VNG_IS_TRAIDED": "VNG token is traded",
+  "USER_SENDS_TOKENS_TO_EXCHANGE": "The user sends tokens to the exchange at his discretion.",
+  "BTC_MINING": "BTC mining",
+  "AND_OTHER_CRYPTOCURRENCIES": "and other cryptocurrencies",
+  "VANGUARD_DATA_CENTER": "In Vanguard's data centers",
+  "VNG": "VNG",
+  "CONVERSION": "Conversion",
+  "BTC_TO_USDC": "BTC to USDC on the exchange",
+  "PERSONAL_ACCOUNT": "Investor's",
+  "OF_THE_INVESTOR": "Personal account",
+  "PLATFORM": "Platform",
+  "LIQUIDITY_POOL": "Liquidity Pool",
+  "LIQUIDITY_POOL_FOR": "Liquidity pool for Dex exchanges and redemption of VNG tokens for combustion via Smart contract.",
+  "TRANSACTION_COSTS": "Operating expenses",
+  "COMPANY_COSTS": "Company operating expenses and the purchase of mining equipment to develop data centers.",
+  "TOKEN_AMOUNT": "Total amount of tokens:",
+  "ISSUANCE": "Issuance for the benefit of users is limited and no additional issuance is anticipated. All tokens that will not be sold at the Pre-Sale and IDO stages will be allocated to the Public Sale fund.",
+  "MINING_CONTENT": {
+    "TITLE": "Business process of data center installation and management",
+    "TEXT_1": "The company operator of the project \"Industrial Mining\" places the mining equipment on an oil field, with the company owner of the field has an agreement on the use of associated gas. Electricity is generated by the power plant gPG (gas piston generator) which uses associated gas of the deposit as fuel. The pilot 2 MW GPG generator is already in operation at the field and shows stable trouble-free operation. There is also a possibility of developing the capacity potential up to 8 MW. From the experience of operating a GPG power plant, the cost of 1 kWh has been identified and is $0.007, which is significantly lower than the cost of electricity from suppliers in the market. 70% of the mined bitcoins are sent to the liquidity pool on decentralized exchanges, 30% is sent for operating costs including electricity, company management and the purchase of new mining equipment.",
+    "TEXT_2": " Autonomous power supply operates outside the public grid and does not create a deficit in the power balance of the region. Autonomous power supply cannot be disconnected by any administrative orders due to possible power shortages in the region.",
+    "TEXT_3": "Low cost of electricity and autonomy is a factor in the high profitability of the project \"Industrial Mining\" platform Kaizenfund",
+  },
+
+  // PRODUCTION PAGE
+  "PARTICIPATE_IN": "Participate in tokenized manufacturing enterprise with SRK token",
+  "READ_ALL": "Read all",
+  "SRK_REDEMPTION": "Redeem SRK on the exchange to burn and hold the rate.",
+  "PRODUCTION_TEXT_1": "Alternative contribution from the participant in services, construction materials, machinery, labor hours, contract work and others. The participant receives SRK tokens for alternative contributions",
+  "PRODUCTION_TEXT_2": "KAIZENFUND is creating a Collective Investment Blockchain platform to apply it to the investment of Projects in Special Economic Zones (SEZs) with a number of benefits and preferences. Where the company Project Operator is simultaneously the Operator of the blockchain platform KAIZENFUND.",
+  "PRODUCTION_TEXT_3": `The platform has issued SRK tokens, in the amount of 100 million units, for distribution to Participants.These tokens will be the shares of the created production enterprise in the framework of the Project. Any person can become a participant in the Project by purchasing a token. At the first stage, token purchase will only be possible from the platform operator on the KAIZENFUND platform website; at the next stage, after the listing procedure and SRK token placement on the digital exchange, it is possible to perform both the purchase and sale of tokens on the exchange (on which the token is represented).`,
+  "PRODUCTION_TEXT_4": "The platform and token are created for the construction and maintenance of a production plant, so the funds from the sale of tokens go in the first phase for design and construction work. Construction work requires materials and structures as well as machines, mechanisms and skilled workers in various fields.",
+  "PRODUCTION_TEXT_5": "The project participant can make the purchase of tokens and alternative payments. Alternative payments for tokens we call services for construction, such as: machinery; contract work, which the participant must perform by receiving enterprise tokens before performing the work; also building materials; delivery of equipment and other directly used in the construction of the Production Plant.",
+  "PRODUCTION_TEXT_6": "Calculation of the cost of services for the participant to accrue to him the appropriate number of tokens produces the Company Project Operator using to calculate the state collections and standards, these collections and standards are updated annually by the authorized bodies and the cost of works and materials often even exceed the market.",
+  "PRODUCTION_TEXT_7": "Carrying out activities by selling the products on the market, the Production Enterprise makes a profit. Part of the profit is sent for conversion into the units of account of decentralized markets through the Operator of the KAIZENFUND Platform. In turn, the KAIZENFUND Platform Operator directs the received assets to the exchanges where the SRK token is traded to redeem the SRK token, thereby keeping the token quote from falling. Thus, the KAIZENFUND Platform Operator acts as the buyer of a significant portion of the tokens, through the exchange.",
+  "TO_FIAT_CURRENCY": "in fiat currency",
+  "IN_FIAT_CURRENCY": "in fiat currency",
+  "MANUFACTURING": "Production",
+  "ENTERPRISE": "enterprise",
+  "ACCUMULATION": "Accumulation",
+  "PART_OF_THE_FUNDS": "Part of the funds",
+  "FOR_CONVERSION": "allocated for conversion",
+
+  // INDICATORS PAGE
+  "INDICATORS_DESC": "The market has shown a parabolic rise since 9/20, which is due to the correlation of the first cryptocurrency with the S&P 500 stock index. See detailed report",
+  "COMPANY_WALLET": "Company Wallet",
+  "REMUNERATION_FUND": "REMUNERATION FUND"
 };

@@ -1,0 +1,29 @@
+.balance-info {
+  background-color: #151618;
+  padding: 15px;
+  overflow: visible;
+
+  @include respond-before("md") {
+    padding: 30px;
+  }
+
+  &__top {
+    margin-bottom: 30px;
+
+    @include respond-before("md") {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-size: 14px;
+      padding: 15px 30px;
+      margin-top: 15px;
+
+      @include respond-before("md") {
+        margin: 0 2px;
+      }
+    }
+  }
+}

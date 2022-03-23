@@ -72,8 +72,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$modal-overlay-bg: #383640;
-$modal-bg: #fff;
+$modal-overlay-bg: #1e1e1e;
+$modal-bg: #1e1e1e;
 $padding-top: 70px; // зависит от высоты header
 .modal-bg {
   top: 0;
@@ -84,7 +84,8 @@ $padding-top: 70px; // зависит от высоты header
   position: fixed;
   outline: none !important;
   -webkit-backface-visibility: hidden;
-  background-color: rgba($modal-overlay-bg, 0.25);
+  background-color: rgba($modal-overlay-bg, 0.6);
+  backdrop-filter: blur(5px);
   transition: opacity 0.3s ease;
 }
 
@@ -210,17 +211,13 @@ $padding-top: 70px; // зависит от высоты header
   width: 100%;
   position: relative;
   margin: auto;
-  padding: var(--modal-padding);
+  padding: 30px;
   background-color: $modal-bg;
   box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
-  border-radius: 15px;
   transition: all 0.3s ease;
 
   @include respond-to("md") {
     padding-top: 40px;
-  }
-  @include respond-before("md") {
-    border-radius: var(--border-radius);
   }
 }
 

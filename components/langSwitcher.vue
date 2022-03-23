@@ -1,5 +1,21 @@
 <template>
-  <div
+  <ul class="header_lang">
+    <li
+      v-for="(locale, index) in $i18n.locales"
+      :key="index"
+    >
+      <nuxt-link
+        :to="switchLocalePath(locale.code)"
+        :class="{'active': locale.code === $i18n.locale}"
+        @click="onChange(locale.code)"
+      >
+        {{ locale.code }}
+      </nuxt-link>
+    </li>
+  </ul>
+
+  <!-- <div
+    v-if="false"
     v-click-outside="close"
     class="lang"
   >
@@ -32,7 +48,7 @@
         >
       </nuxt-link>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -40,7 +56,8 @@ export default {
   name: "LangSwitcher",
   data () {
     return {
-      show: false
+      show: false,
+      selectedLanguage: ""
     };
   },
   computed: {
@@ -48,32 +65,54 @@ export default {
       return this.$i18n.locales.filter(l => l.code !== this.$i18n.locale);
     }
   },
+  created () {
+    this.selectedLanguage = this.$i18n.locale;
+  },
   methods: {
     close () {
       this.show = false;
+    },
+    onChange (event) {
+      console.log(this.$i18n.locale);
+      // this.switchLocalePath(event);
+      // this.$router.replace(this.switchLocalePath(event));
+      window.location.reload();
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.lang {
-  position: relative;
+.header_lang {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: auto;
+  text-transform: uppercase;
 
-  &__item {
-    cursor: pointer;
+  @include min($burger) {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    li:last-child {
+      a {
+        padding-right: 0;
+      }
+    }
   }
 
-  &__dropdown {
-    position: absolute;
-    top: 100%;
-  }
+  a {
+    padding: 5px 14px;
+    font-size: 16px;
+    line-height: 20px;
 
-  &__icon {
-    width: 32px;
-    height: 32px;
-    border: 4px solid #EAEAEA;
-    border-radius: 100%;
+    @include min($burger) {
+      font-size: 12px;
+      line-height: 14px;
+      padding: 5px 7px;
+    }
+    @include min(1200px) {
+      padding: 5px 14px;
+    }
   }
 }
 </style>

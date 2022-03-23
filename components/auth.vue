@@ -15,10 +15,10 @@
       </div>
     </div>
     <div class="auth__content">
-      <ul v-if="errors.length" class="list m-b-20">
+      <ul v-if="errors.length" class="list list--none m-b-20">
         <li v-for="(error, idx) in errors" :key="idx" class="error-text" v-html="error" />
       </ul>
-      <ul v-if="infos.length" class="list m-b-20">
+      <ul v-if="infos.length" class="list list--none m-b-20">
         <li v-for="(info, idx) in infos" :key="idx" class="color-success" v-html="info" />
       </ul>
       <p v-if="seconds" class="m-b-20">
@@ -32,13 +32,11 @@
       <form v-if="mode === 'sign_up'" @submit.prevent="registerHandle">
         <div class="ui-form__fieldset">
           <ui-text-field
-            v-if="false"
             v-model="ref"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="text"
-            required=""
+            :required="false"
             :disabled="loading"
             :label="$t('AUTH.FIELDS.REF')"
             @input="onKeydown"
@@ -48,16 +46,13 @@
             </template>
           </ui-text-field>
         </div>
-        <p v-if="referralUsername" class="m-b-30 small">
-          <span class="color-gray">
-            {{ $t("INVITED_YOU") }}:
-          </span>
-          {{ referralUsername }}
+        <p v-if="referralUsername && !!ref" class="m-t-5 m-b-30 small font-300">
+          {{ $t("INVITED_YOU") }}:
+          <span class="color-white">{{ referralUsername }}</span>
         </p>
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="username"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="text"
@@ -70,7 +65,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="email"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="email"
@@ -83,7 +77,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="password"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             :type="viewPassword ? 'text' : 'password'"
@@ -101,7 +94,7 @@
           </ui-text-field>
         </div>
         <div class="ui-form__fieldset m-t-40">
-          <button :disabled="disabled" type="submit" class="btn btn-solid btn-big btn-full">
+          <button :disabled="disabled" type="submit" class="btn btn-accent btn-full">
             {{ $t("CREATE_ACCOUNT") }}
           </button>
         </div>
@@ -112,7 +105,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="email"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="email"
@@ -125,7 +117,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="password"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             :type="viewPassword ? 'text' : 'password'"
@@ -143,14 +134,14 @@
           </ui-text-field>
         </div>
         <div class="ui-form__fieldset m-t-20">
-          <div role="button" @click="recoveryToggle">
+          <div role="button" class="font-300" @click="recoveryToggle">
             {{ $t("AUTH.FORGOT_PASSWORD") }}
           </div>
         </div>
         <div class="ui-form__fieldset m-t-40">
           <button
             type="submit"
-            class="btn btn-solid btn-big btn-full"
+            class="btn btn-accent btn-full"
             :disabled="loading || !email || !password"
             v-text="loading ? $t('LOADING') : $t('LOGIN')"
           />
@@ -162,7 +153,6 @@
         <div class="ui-form__fieldset">
           <ui-text-field
             v-model="email"
-            :floating="true"
             autocomplete="off"
             autofocus="off"
             type="email"
@@ -173,12 +163,15 @@
           />
         </div>
         <div class="ui-form__fieldset m-t-20">
-          <div role="button" @click="recoveryToggle">
-            {{ $t("AUTH.ALREADY_REGISTERED") }} {{ $t("LOGIN") }}
+          <div role="button" class="font-300" @click="recoveryToggle">
+            {{ $t("AUTH.ALREADY_REGISTERED") }}
+            <span class="color-main">
+              {{ $t("LOGIN") }}
+            </span>
           </div>
         </div>
         <div class="ui-form__fieldset m-t-40">
-          <button :disabled="!email || seconds > 0" type="submit" class="btn btn-solid btn-big btn-full">
+          <button :disabled="!email || seconds > 0" type="submit" class="btn btn-accent btn-full">
             {{ $t("RECOVERY_PASSWORD") }}
           </button>
         </div>
@@ -189,7 +182,7 @@
 
 <script>
 export default {
-  name: "Auth",
+  name: "LoginAuth",
   props: {
     mode: {
       type: String,
@@ -228,13 +221,12 @@ export default {
       },
       set (link) {
         // Example referral link
-        // https://192.168.0.54:80/r/614897460e97bfe53915c46b
+        // https://localhost:80/r/614897460e97bfe53915c46b
         this.errors = [];
         this.infos = [];
-
+        const value = link.split("/").reverse()[0].trim();
+        this.$store.dispatch("setRef", value);
         if (link) {
-          const value = link.split("/").reverse()[0].trim();
-          this.$store.dispatch("setRef", value);
           this.loadUserRefName(value);
         }
       }
@@ -500,16 +492,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ui-form__fieldset + .ui-form__fieldset {
+  margin-top: 20px;
+}
 .auth {
   &__box {
-    background: #fff;
+    background: #242527;
     margin: auto;
     width: 100%;
     max-width: 540px;
-    border-radius: 12px;
-    padding-bottom: 18px;
     overflow: hidden;
-    //box-shadow: 0 4px 16px rgb(162 162 175 / 16%);
   }
 
   &__header {

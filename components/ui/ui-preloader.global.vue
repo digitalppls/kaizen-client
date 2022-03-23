@@ -42,7 +42,7 @@ export default {
       default: "primary",
       validator (value) {
         // Значение должно соответствовать одной из этих строк
-        return ["primary", "gray", "black"].includes(value);
+        return ["primary", "secondary", "tertiary", "white", "gray", "black"].includes(value);
       }
     },
     size: {
@@ -82,31 +82,37 @@ export default {
   // Colors
   &--primary {
     circle {
-      stroke: var(--color-primary);
+      stroke: var(--col-accent);
     }
   }
 
   &--secondary {
     circle {
-      stroke: var(--color-secondary);
+      stroke: var(--col-yellow);
     }
   }
 
   &--tertiary {
     circle {
-      stroke: var(--color-tertiary);
+      stroke: var(--col-blue);
+    }
+  }
+
+  &--white {
+    circle {
+      stroke: var(--col-main);
     }
   }
 
   &--gray {
     circle {
-      stroke: var(--color-gray);
+      stroke: var(--col-gray);
     }
   }
 
   &--black {
     circle {
-      stroke: var(--color-black);
+      stroke: var(--col-black);
     }
   }
 

@@ -15,12 +15,13 @@
         v-bind="$attrs"
         :value="value"
         :readonly="disabled"
+        :placeholder="floating ? '' : label"
         @focus="onFocus"
         @blur="onBlur($event)"
         @input="$emit('input', $event.target.value)"
       >
     </div>
-    <label v-html="label" />
+    <label v-if="floating" v-html="label" />
     <div v-if="hasAppend" class="ui-input-text__append">
       <slot name="append" />
     </div>
@@ -98,59 +99,54 @@ export default {
   position: relative;
   align-items: stretch;
   width: 100%;
-  border-bottom: 1px solid #252525; // var(--color-gray);
+  border: 1px solid #55585f;
   outline: none;
-  background: transparent;
+  background: #242527;
   transition: border-color .5s ease;
   border-radius: 0;
   resize: none;
   box-shadow: none;
   appearance: none;
-  padding: 0 var(--input-padding-x-mob);
-
-  @include respond-before('md') {
-    padding: 0 var(--input-padding-x);
-  }
+  padding: 0 15px;
 
   &__input {
-    width: 100%;
-    flex: 1 1 auto;
-    padding: var(--input-padding-y-mob) 0;
+    flex: 1;
+    padding: 15px 0;
 
-    @include respond-before('md') {
-      padding: var(--input-padding-y) 0;
+    input {
+      padding: 0;
+      max-width: 100%;
+      min-width: 0;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 300;
+      width: 100%;
+      background-color: transparent;
+      border-style: none;
+
+      &[type="number"] {
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
     }
   }
 
   &__append {
+    flex: 0 0 auto;
     padding-left: 15px;
   }
 
   &--focused#{$self}--floating {
     #{$self}__input {
-      padding: calc(var(--input-padding-y-mob) + 3px) 0 calc(var(--input-padding-y-mob) - 3px);
+      padding: calc(10px + 3px) 0 calc(10px - 3px);
 
       @include respond-before('md') {
         padding: calc(var(--input-padding-y) + 3px) 0 calc(var(--input-padding-y) - 3px);
-      }
-    }
-  }
-
-  input {
-    padding: 0;
-    max-width: 100%;
-    min-width: 0;
-    width: 100%;
-    background-color: transparent;
-    border-style: none;
-
-    &[type="number"] {
-      -moz-appearance: textfield;
-
-      &::-webkit-outer-spin-button,
-      &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
       }
     }
   }
@@ -184,15 +180,11 @@ export default {
       overflow: hidden;
       text-overflow: ellipsis;
       height: 100%; // allow textareas
-      padding: var(--input-padding-y-mob) var(--input-padding-x-mob);
+      padding: 10px 10px;
       pointer-events: none;
       border: 1px solid transparent;
       transform-origin: 0 0;
       transition: opacity var(--transition), transform var(--transition);
-
-      @include respond-before('md') {
-        padding: var(--input-padding-y) var(--input-padding-x);
-      }
     }
 
     > input {

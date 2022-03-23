@@ -1,16 +1,16 @@
 <template>
-  <div class="portfolio-indexes balance-info">
+  <section class="portfolio-indexes balance-info">
     <div class="balance-info__top">
-      <p class="font-bold">
+      <h2 class="color-white m-b-5">
         {{ $t("PORTFOLIO_YOUR_INDEXES") }}
-      </p>
+      </h2>
     </div>
 
     <vue-good-table
       v-if="rows.length"
       :rows="rows"
       :columns="columns"
-      style-class="vgt-table"
+      style-class="vgt-table vgt-table--dark"
       compact-mode
     >
       <template slot="table-row" slot-scope="props">
@@ -26,7 +26,7 @@
         </div>
         <div v-if="props.column.field == 'withdraw'">
           <button
-            :disabled="false"
+            :disabled="true"
             class="btn btn-solid"
             style="font-size: 12px; padding: 8px 14px;"
           >
@@ -39,7 +39,7 @@
       </template>
     </vue-good-table>
     <p v-else class="text-center">
-      <nuxt-link :to="localePath('my-indexes')" class="btn btn-solid">
+      <nuxt-link :to="localePath('my-indexes')" class="btn btn-accent">
         {{ $t("BUY_INDEXES") }}
       </nuxt-link>
     </p>
@@ -55,7 +55,7 @@
         In developing...
       </p>
     </ui-modal>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -125,7 +125,7 @@ export default {
   },
   computed: {
     wallets () {
-      return this.$store.getters.wallets || [];
+      return this.$store.getters.wallets.filter(item => ["crypto10", "coin10", "defi", "kaizen", "bitw"].includes(item.symbol.toLowerCase())) || [];
     },
     rows () {
       return this.wallets;
@@ -163,7 +163,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/layouts/balance-info.scss";
+@import "~/assets/scss/components/balance-info.scss";
 
 .portfolio-indexes {
   border: 0;

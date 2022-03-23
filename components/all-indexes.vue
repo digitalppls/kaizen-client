@@ -6,7 +6,7 @@
       v-else
       :rows="rows"
       :columns="columns"
-      style-class="vgt-table"
+      style-class="vgt-table vgt-table--dark"
       compact-mode
     >
       <template slot="table-row" slot-scope="props">

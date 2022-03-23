@@ -1,36 +1,45 @@
 <template>
   <div class="balance-info">
-    <nuxt-link :to="localePath('/my/profile')">
-      <div v-if="!emailVerified" class="w-100 text-center btn btn-outline--primary btn-small m-b-20">
-        Please Verify your email address for access to deposit!
+    <div
+      v-if="!emailVerified"
+      class="color-white m-b-20"
+      style="background: #446ca9; padding: 20px;"
+    >
+      <div class="m-b-20">
+        {{ $t("VERIFY_EMAIL_MSG") }}
       </div>
-    </nuxt-link>
 
-    <div class="balance-info__top">
-      <p class="font-bold">
+      <nuxt-link :to="localePath('/my/profile')" class="btn btn-yellow btn-small" style="padding: 10px 20px; font-size: 14px;">
+        {{ $t("CONFIRM_EMAIL") }}
+      </nuxt-link>
+    </div>
+
+    <section class="balance-info__top">
+      <h3 class="color-white m-b-5">
         {{ $t("BALANCE_INFORMATION") }}
-      </p>
+      </h3>
 
       <div class="m-l-a">
         <button
           :disabled="!emailVerified"
-          class="btn btn-solid btn-small"
+          class="btn btn-deposit"
           @click="openModal('deposit')"
         >
           {{ $t("DEPOSIT") }}
         </button>
         <button
           :disabled="!emailVerified"
-          class="btn btn-solid--tertiary btn-small"
+          class="btn btn-dark btn_set-opacity"
           @click="openModal('withdraw')"
         >
           {{ $t("WITHDRAW") }}
         </button>
-        <nuxt-link v-if="false" :to="localePath('my-buy')" class="btn btn-solid btn-solid--tertiary btn-small">
+        <nuxt-link v-if="false" :to="localePath('my-buy')" class="btn btn-buy">
           {{ $t("BUY") }}
         </nuxt-link>
       </div>
-    </div>
+    </section>
+
     <user-wallets :sales="sales" />
 
     <ui-modal
@@ -90,5 +99,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~/assets/scss/layouts/balance-info.scss";
+@import "~/assets/scss/components/balance-info.scss";
 </style>

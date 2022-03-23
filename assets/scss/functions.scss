@@ -1,0 +1,43 @@
+@import "vars";
+
+@mixin font($font_name, $file_name, $weight, $style) {
+  @font-face {
+    font-family: $font_name;
+    font-display: swap;
+    src: url("~/assets/fonts/#{$file_name}.woff") format("woff"),
+    url("~/assets/fonts/#{$file_name}.woff2") format("woff2");
+    font-weight: #{$weight};
+    font-style: #{$style};
+  }
+}
+
+@mixin webfont($pcSize, $mobSize) {
+  $addSize: $pcSize - $mobSize;
+  $maxWidth: $maxWidth - 320;
+  font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth}));
+}
+
+@function vw($n) {
+  @return calc($n * 100 / $maxWidth * 1vw);
+}
+
+@function vh($n) {
+  @return calc($n * 100 / 1080 * 1vh);
+}
+
+@mixin min($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+// $breakpoints: (
+//   "xs": 360px,
+//   "sm": 414px,
+//   "pre-md": 540px,
+//   "md": 768px,
+//   "lg": 1024px,
+//   "xl": 1200px,
+//   "xxl": 1440px,
+//   "xxxl": 1600px,
+// );

@@ -6,9 +6,10 @@
       'ui-select',
       { 'ui-select--disabled' : disabled },
       { 'ui-select--open' : open },
+      { 'ui-select--single' : options.length === 1 },
       { 'ui-select--inside' : isInsideElement }
     ]"
-    @click="open = !open"
+    @click="options.length === 1 ? null : open = !open"
     @close-select="open = false"
   >
     <div class="ui-select__container">
@@ -114,10 +115,8 @@ export default {
 <style lang="scss" scoped>
 .ui-select {
   $self: &;
-  $input-padding-x: var(--input-padding-x);
-  $input-padding-y: var(--input-padding-y);
-  $input-padding-x-mob: var(--input-padding-x-mob);
-  $input-padding-y-mob: var(--input-padding-y-mob);
+  $input-padding-x: 10px;
+  $input-padding-y: 10px;
 
   &:focus,
   &:hover {
@@ -135,11 +134,10 @@ export default {
     flex-wrap: nowrap;
     align-items: center;
     width: 100%;
-    border: 1px solid var(--color-gray);
+    border: 1px solid #55585f;
     outline: none;
-    background: var(--body-bg);
+    background: #242527;
     transition: border-color 300ms ease;
-    border-radius: 6px;
 
     #{$self}--open & {
       //border-color: #fff;
@@ -153,16 +151,14 @@ export default {
     cursor: pointer;
     overflow: hidden;
     background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0)'%3E%3Cpath d='M12 3.70745L10.585 2.29248L6 6.87747L1.41502 2.29248L8.91824e-07 3.70745L6 9.70745L12 3.70745Z' fill='%23D3D3D3'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0'%3E%3Crect width='12' height='12' fill='white' transform='translate(12) rotate(90)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
-    background-position: right $input-padding-x-mob top 50%;
+    background-position: right $input-padding-x top 50%;
     background-repeat: no-repeat;
-    padding: $input-padding-y-mob $input-padding-x-mob;
+    padding: $input-padding-y $input-padding-x;
     padding-right: 40px;
     user-select: none;
 
-    @include respond-before("md") {
-      padding: $input-padding-y $input-padding-x;
-      padding-right: 50px;
-      background-position: right $input-padding-x top 50%;
+    #{$self}--single & {
+      background-image: none;
     }
 
     img,
@@ -177,15 +173,15 @@ export default {
 
   &__list {
     position: absolute;
-    top: calc(100% + 1px);
-    left: 0;
-    right: 0;
-    background: #e2e3e9; // var(--color-dark);
+    top: 100%;
+    left: -1px;
+    right: -1px;
+    background: #242527; // var(--color-dark);
     z-index: 3;
+    border: 1px solid #55585f;
     max-height: 300px;
     overflow-x: auto;
     padding-top: 10px;
-    border-radius: 0 0 6px 6px;
 
     @include respond-before("md") {
       max-height: 400px;
@@ -212,17 +208,14 @@ export default {
     }
 
     &:hover {
-      background: #d4d5de; // var(--body-bg);
+      background: #353638; // var(--body-bg);
     }
   }
 
   &--inside {
-    margin-left: -15px;
-    margin-right: calc(#{$input-padding-x-mob} * -1);
+    //margin-left: -15px;
+    margin-right: calc(#{$input-padding-x} * -1);
 
-    @include respond-before('md') {
-      margin-right: calc(#{$input-padding-x} * -1);
-    }
     #{$self}__container {
       border: 0;
     }

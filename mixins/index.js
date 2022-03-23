@@ -21,14 +21,15 @@ export default {
     Vue.prototype.$LOCALESTRING_PERCENT = this.localeStringPERCENT;
     Vue.prototype.$LOCALESTRING_USD = this.localeStringUSD;
     Vue.prototype.$LOCALESTRING_CRYPTO = this.localeStringCRYPTO;
-    Vue.prototype.$symbolCurrency = this.symbolCurrency;
-    Vue.prototype.$symbolCurrencySplitUsdt = this.symbolCurrencySplitUsdt;
+    Vue.prototype.$symbolCurrencyAddUsdt = this.symbolCurrencyAddUsdt;
+    Vue.prototype.$symbolCurrencyRemoveUsdt = this.symbolCurrencyRemoveUsdt;
     Vue.prototype.$toUsd = this.toUsd;
     Vue.prototype.$fromUsd = this.fromUsd;
     Vue.prototype.$DateText = this.DateText;
     Vue.prototype.$TimeText = this.TimeText;
     Vue.prototype.$declOfNum = this.declOfNum;
     Vue.prototype.$isDev = this.isDev;
+    Vue.prototype.$externalLink = this.externalLink;
   },
 
   computed: {
@@ -41,6 +42,10 @@ export default {
   },
 
   methods: {
+    externalLink (link) {
+      return link.includes("http");
+    },
+
     localeStringPERCENT (min = 2, max = 2) {
       return {
         style: "percent",
@@ -182,11 +187,12 @@ export default {
         .reduce((a, b) => a + b, 0);
     },
 
-    symbolCurrency (coin) {
+    symbolCurrencyAddUsdt (coin) {
       return `${coin.toUpperCase()}USDT`;
     },
 
-    symbolCurrencySplitUsdt (coin) {
+    symbolCurrencyRemoveUsdt (coin) {
+      if (!coin) return "";
       const UPCASE = coin.toUpperCase();
       if (UPCASE==="USDT") return "USDT";
       return UPCASE.split("USDT")[0];
@@ -194,7 +200,7 @@ export default {
 
     toUsd (symbol, amount) {
       const list = this.$store.getters.currency;
-      const coin = list.find(x => x.symbol === this.symbolCurrency(symbol));
+      const coin = list.find(x => x.symbol === this.symbolCurrencyAddUsdt(symbol));
       const usd = symbol.toUpperCase() === "USDT" ? amount : !coin
         ? 0
         : (coin.price * amount);
@@ -203,7 +209,7 @@ export default {
 
     fromUsd (symbol, amountUsd) {
       const list = this.$store.getters.currency;
-      const coin = list.find(x => x.symbol === this.symbolCurrency(symbol));
+      const coin = list.find(x => x.symbol === this.symbolCurrencyAddUsdt(symbol));
       const usd = symbol.toUpperCase() === "USDT" ? amountUsd : !coin
         ? 0
         : (amountUsd / coin.price);

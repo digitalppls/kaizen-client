@@ -17,6 +17,9 @@ module.exports = {
     "space-before-function-paren": ["error", "always"],
     "vue/no-v-html": 0,
     "no-console": "off",
-    "no-multiple-empty-lines": ["error", { max: 4 }]
+    "no-multiple-empty-lines": ["error", { max: 4 }],
+    "vue/multi-word-component-names": ["error", {
+      ignores: ["default", "public"]
+    }]
   }
 };

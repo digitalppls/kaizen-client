@@ -1,25 +1,26 @@
 <template>
-  <div v-if="!sendCoinList.length">
-    Please replenish your wallet before buy tokens...
+  <div v-if="!wallets.length" style="padding: 30px;">
+    {{ $t("REFILL_MSG") }}
   </div>
   <div v-else class="token-swap">
-    <h2 v-if="mode" class="sub-title text-center">
+    <h2 v-if="mode" class="modal-title m-b-40">
       {{ $t(mode.toUpperCase()) }}
-      <span class="color-primary">
-        {{ inputCurrency.toUpperCase() }}
+      <span class="text-uppercase">
+        {{ inputCurrency }}
       </span>
     </h2>
     <div class="m-b-20">
-      <div v-if="sendCoin" class="text-right small">
-        <span class="color-gray">{{ $t("AVAILABLE") }}:</span>
-        <span class="font-medium">
+      <div v-if="sendCoin" class="text-right small m-b-10">
+        <span class="font-300">{{ $t("AVAILABLE") }}:</span>
+        <span class="font-medium color-white">
           {{ (sendCoin.amount > 0 ? sendCoin.amount : 0).toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
         </span>
-        <span class="color-gray">{{ sendCoin.symbol.toUpperCase() }}</span>
+        <span class="color-white text-uppercase">
+          {{ sendCoin.symbol }}
+        </span>
       </div>
       <ui-text-field
         v-model.number="sendInput"
-        :floating="true"
         :label="$t('GIVE')"
         type="number"
         min="0"
@@ -30,7 +31,7 @@
           <div class="display-flex aic">
             <button
               class="btn btn-small"
-              style="color: var(--base-text);"
+              style="color: #fff;"
               @click="setMax"
             >
               {{ $t("ALL") }}
@@ -42,22 +43,18 @@
             >
               <template #default="{ option }">
                 <div style="text-transform: uppercase">
-                  {{ option ? option.symbol : "NO_SYMBOL" }}
+                  {{ option ? $symbolCurrencyRemoveUsdt(option.symbol) : "NO_SYMBOL" }}
                 </div>
               </template>
             </ui-select>
           </div>
         </template>
       </ui-text-field>
-      <p v-if="errorValidate" class="error-text" v-html="errorValidate" />
-    </div>
-    <div v-if="false">
-      <ui-icon name="swap" role="button" style="width: 30px; margin: 30px auto 0; display: block;" />
+      <p v-if="errorValidate" class="error-text m-t-5 font-300" v-html="errorValidate" />
     </div>
     <div class="m-b-20">
       <ui-text-field
         v-model.number="getInput"
-        :floating="true"
         :label="`≈ ${$t('GET')}`"
         type="number"
         min="0"
@@ -71,7 +68,7 @@
             @input="getSelect($event)"
           >
             <template #default="{ option }">
-              {{ option ? option.symbol.split("USDT")[0].toUpperCase() : "NONE" }}
+              {{ option ? $symbolCurrencyRemoveUsdt(option.symbol) : "NONE" }}
             </template>
           </ui-select>
         </template>
@@ -79,23 +76,31 @@
     </div>
     <div class="m-t-40">
       <button
-        class="btn btn-solid btn-full"
-        :disabled="loading || done || !wallets.length || sendInput > sendCoin.amount || !sendInput || !getInput || $symbolCurrencySplitUsdt(sendCoin.symbol).toLowerCase() === $symbolCurrencySplitUsdt(getCoin.symbol).toLowerCase()"
+        class="btn btn-full"
+        :class="['btn', 'text-uppercase', {'btn-blue': inputCurrency === 'kzn'}, {'btn-yellow': inputCurrency === 'vng'}, {'btn-red': inputCurrency === 'srk'}]"
+        :disabled="loading || !wallets.length || sendInput > sendCoin.amount || !sendInput || !getInput || $symbolCurrencyRemoveUsdt(sendCoin.symbol).toLowerCase() === $symbolCurrencyRemoveUsdt(getCoin.symbol).toLowerCase()"
         @click="onExchange"
       >
-        <template v-if="loading">
-          <ui-preloader size="small" color="black" />
-        </template>
-        <template v-else-if="done">
-          <ui-icon-done />
-        </template>
+        <ui-preloader v-if="loading" size="small" color="white" />
+        <ui-icon-done v-else-if="done" fill="#deff82" />
         <template v-else>
-          {{ $t(mode ? mode.toUpperCase() : "BUY") }}
+          {{ $t(mode.toUpperCase()) }}
+          <template v-if="mode === 'sell'">
+            {{ $symbolCurrencyRemoveUsdt(sendCoin.symbol) }}
+          </template>
+          <template v-else>
+            {{ $symbolCurrencyRemoveUsdt(getCoin.symbol) }}
+          </template>
         </template>
       </button>
     </div>
     <ul v-if="errors.length" class="list m-t-20">
-      <li v-for="(error, idx) in errors" :key="idx" class="error-text" v-html="error" />
+      <li
+        v-for="(error, idx) in errors"
+        :key="idx"
+        class="error-text"
+        v-html="error"
+      />
     </ul>
   </div>
 </template>
@@ -113,7 +118,7 @@ export default {
       type: String,
       default: ""
     },
-    type: {
+    type: { // Что меняем: токен/индекс
       type: String,
       default: "token",
       validator (value) {
@@ -123,6 +128,12 @@ export default {
     mode: { // Покупка или продажа
       type: String,
       default: ""
+    },
+    sale: { // Покупка или продажа
+      type: Object,
+      default () {
+        return {};
+      }
     }
   },
   data () {
@@ -162,35 +173,48 @@ export default {
   methods: {
     /** Устанавливаем значения списков по умолчанию */
     Update () {
-      if (this.type === "index") {
-        this.getCoinList = this.currencies.filter(e => ["KAIZENUSDT", "CRYPTO100USDT", "DEFIUSDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
-      } else {
-        this.getCoinList = this.currencies.filter(e => ["VNGUSDT", "KZNUSDT", "SRKUSDT", "COIN10USDT", (this.inputCurrency && this.mode === "sell") ? "USDUSDT" : ""].includes(e.symbol));
-      }
-      this.sendCoinList = this.mode === "sell" ? [] : this.wallets.filter(x => ["usdt", "usdc", "busd", "bnb", "eth", "btc", "trx"].includes(x.symbol));
+      const tokenSymbol = this.type === "index"
+        ? this.inputCurrency
+        : this.sale.symbol;
 
-      if (this.inputCurrency && this.mode === "sell") {
-        this.sendCoin = this.sendCoinList.find(e => e.symbol.toUpperCase() === this.inputCurrency.toUpperCase());
-      } else {
-        this.sendCoin = this.sendCoinList[0]; // .filter(e => e.symbol === "usd");
+      if (this.mode === "buy") { /* Покупка */
+        // Список отдаваемых монет: все что > 0 и если это не получаемая монета
+        this.sendCoinList = this.wallets.filter(item => item.amount > 0 && ![tokenSymbol].includes(item.symbol));
+        this.sendCoin = this.sendCoinList[0];
+        // список получаемых монет
+        this.getCoinList = this.currencies.filter(item => [this.$symbolCurrencyAddUsdt(tokenSymbol)].includes(item.symbol));
+        this.getCoin = this.getCoinList.find(item => this.$symbolCurrencyRemoveUsdt(item.symbol).toLowerCase() === tokenSymbol);
+      } else { /* Продажа */
+        // Список токенов, недоступных для получения при продаже
+        const disabledCoins = ["USDTUSDT", "TRXUSDT", "BUSDUSDT", "USDCUSDT", "BNBUSDT", "BTCUSDT"];
+        // Список отдаваемых монет: все что > 0 и если это не получаемая монета
+        this.sendCoinList = this.currencies.filter(item => [this.$symbolCurrencyAddUsdt(tokenSymbol)].includes(item.symbol));
+        this.sendCoin = this.wallets.find(item => tokenSymbol === item.symbol);
+        // this.sendCoin = this.sendCoinList[0];
+        if (this.sendCoin) {
+          disabledCoins.push(this.sendCoin.symbol);
+        }
+        // список получаемых монет
+        this.getCoinList = this.currencies.filter(item => !disabledCoins.includes(item.symbol));
+        this.getCoin = this.wallets.filter(item => item.amount > 0 && ![tokenSymbol].includes(item.symbol))[0];
       }
 
       // Если в URL есть get параметр "index", то устанавливаем его по умолчанию для покупки
-      if (this.indexFromUrl) {
-        this.getCoin = this.getCoinList.find(e => e.symbol.split("USDT")[0].toUpperCase() === this.indexFromUrl.toUpperCase());
-      } else if (this.inputCurrency && this.mode === "buy") {
-        this.getCoin = this.getCoinList.find(e => e.symbol.split("USDT")[0].toUpperCase() === this.inputCurrency.toUpperCase());
-      } else {
-        this.getCoin = this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
-      }
+      // if (this.indexFromUrl) {
+      //   this.getCoin = this.getCoinList.find(e => e.symbol.split("USDT")[0].toUpperCase() === this.indexFromUrl.toUpperCase());
+      // } else if (this.inputCurrency && this.mode === "buy") {
+      //   console.log("2");
+      //   this.getCoin = this.getCoinList.find(item => this.$symbolCurrencyRemoveUsdt(item.symbol).toUpperCase() === this.inputCurrency.toUpperCase());
+      // } else {
+      //   console.log("3");
+      //   this.getCoin = this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
+      // }
     },
 
     /** Слушатель события ввода получаемых монет */
     onSendInput () {
-      this.sendInputUsd = this.$toUsd(this.$symbolCurrencySplitUsdt(this.sendCoin.symbol), this.sendInput);
-      this.getInput = this.$fromUsd(this.$symbolCurrencySplitUsdt(this.getCoin.symbol), this.sendInputUsd);
-      console.log(this.sendCoin.symbol, this.sendInput);
-      console.log(this.sendInputUsd, this.getInput);
+      this.sendInputUsd = this.$toUsd(this.$symbolCurrencyRemoveUsdt(this.sendCoin.symbol), this.sendInput);
+      this.getInput = this.$fromUsd(this.$symbolCurrencyRemoveUsdt(this.getCoin.symbol), this.sendInputUsd);
 
       this.errorValidate = this.sendInput > this.sendCoin.amount
         ? `Max ${this.sendCoin.amount.toLocaleString("en-US", this.$LOCALESTRING_CRYPTO())}`
@@ -199,8 +223,8 @@ export default {
 
     /** Слушатель события ввода отправляемых монет */
     onGetInput () {
-      this.getInputUsd = this.$toUsd(this.$symbolCurrencySplitUsdt(this.getCoin.symbol), this.getInput);
-      this.sendInput = this.$fromUsd(this.$symbolCurrencySplitUsdt(this.sendCoin.symbol), this.getInputUsd);
+      this.getInputUsd = this.$toUsd(this.$symbolCurrencyRemoveUsdt(this.getCoin.symbol), this.getInput);
+      this.sendInput = this.$fromUsd(this.$symbolCurrencyRemoveUsdt(this.sendCoin.symbol), this.getInputUsd);
       this.errorValidate = this.sendInput > this.sendCoin.amount
         ? `Max ${this.sendCoin.amount.toLocaleString("en-US", this.$LOCALESTRING_CRYPTO())}`
         : "";
@@ -208,25 +232,29 @@ export default {
 
     /** Обмен токенов */
     onExchange () {
-      if (confirm(this.$t(`CONFIRM_${this.mode ? this.mode.toUpperCase() : "BUY"}_INDEX`)
+      const confirmMsg = this.$t(`CONFIRM_${this.mode ? this.mode.toUpperCase() : "BUY"}_INDEX`)
         .replace("%{TOKEN_2}", `${this.sendInput} ${this.sendCoin.symbol.toUpperCase()}`)
-        .replace("%{TOKEN_1}", `${this.getInput} ${this.$symbolCurrencySplitUsdt(this.getCoin.symbol)}`))) {
+        .replace("%{TOKEN_1}", `${this.getInput} ${this.$symbolCurrencyRemoveUsdt(this.getCoin.symbol)}`);
+
+      if (confirm(confirmMsg)) {
         this.loading = true;
         this.$API.TokenSwap(
           {
             fromSymbol: this.sendCoin.symbol,
-            toSymbol: this.$symbolCurrencySplitUsdt(this.getCoin.symbol).toLowerCase(),
+            toSymbol: this.$symbolCurrencyRemoveUsdt(this.getCoin.symbol).toLowerCase(),
             fromAmount: this.sendInput
           }, (r) => {
             this.exchangeSuccess(r);
           }, (e) => {
+            console.error("ERROR swap", e);
             this.loading = false;
             if (e.message === "incorrect_access_token") {
               this.$store.dispatch("logout");
               this.$router.push(this.localePath("auth"));
             }
-            console.error("ERROR swap", e);
-            this.errors = Array.isArray(e?.message) ? this.$t(e?.message.toUpperCase()) : [this.$t(e.message.toUpperCase())];
+            this.errors = Array.isArray(e?.message)
+              ? this.$t(e?.message.toUpperCase())
+              : [this.$t(e.message.toUpperCase())];
           });
       }
     },

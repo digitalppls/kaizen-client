@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: "Logo"
+  name: "LogoImg"
 };
 </script>
 

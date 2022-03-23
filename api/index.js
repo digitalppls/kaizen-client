@@ -111,6 +111,16 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+  TokenBonusList (promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      "token/bonus/list/",
+      false,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
   UserRefInfo (promiseFuncSuccess, promiseFuncFail) {
     return this.request(
       "post",

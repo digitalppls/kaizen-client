@@ -1,7 +1,14 @@
 const currentTime = new Date().getTime();
 const TERMS = "/terms.pdf";
 const WHITEPAPER = `#?${currentTime}`;
-
+const SOCIALS = {
+  youtube: "https://youtube.com/",
+  telegram: "https://t.me/",
+  twitter: "https://twitter.com/",
+  instagram: "",
+  facebook: "",
+  discord: ""
+};
 const INDEXES = [
   {
     id: 1,
@@ -22,12 +29,12 @@ const INDEXES = [
       },
       {
         name: "Ethereum",
-        img: "ethereum.png",
+        img: "ethereum.svg",
         weight: 27.88
       },
       {
         name: "Solana",
-        img: "solana.svg",
+        img: "solana.png",
         weight: 3.62
       },
       {
@@ -47,12 +54,12 @@ const INDEXES = [
       },
       {
         name: "Bitcoin Cash",
-        img: "bitcoincash.png",
+        img: "bitcoincash.svg",
         weight: 0.64
       },
       {
         name: "Algorand",
-        img: "algorand.svg",
+        img: "algorand.png",
         weight: 0.63
       },
       {
@@ -86,12 +93,12 @@ const INDEXES = [
       },
       {
         name: "Ethereum",
-        img: "ethereum.png",
+        img: "ethereum.svg",
         weight: 23.607
       },
       {
         name: "Polkadot",
-        img: "polkadot.png",
+        img: "polkadot.webp",
         weight: 15.130
       },
       {
@@ -111,7 +118,7 @@ const INDEXES = [
       },
       {
         name: "Bitcoin Cash",
-        img: "bitcoincash.png",
+        img: "bitcoincash.svg",
         weight: 6.141
       },
       {
@@ -145,7 +152,7 @@ const INDEXES = [
       },
       {
         name: "Ethereum",
-        img: "ethereum.png",
+        img: "ethereum.svg",
         weight: "24.25"
       },
       {
@@ -165,7 +172,7 @@ const INDEXES = [
       },
       {
         name: "Solana",
-        img: "solana.svg",
+        img: "solana.png",
         weight: "2.34"
       },
       {
@@ -190,12 +197,12 @@ const INDEXES = [
       },
       {
         name: "Bitcoin Cash",
-        img: "bitcoincash.png",
+        img: "bitcoincash.svg",
         weight: "0.67"
       },
       {
         name: "Algorand",
-        img: "algorand.svg",
+        img: "algorand.png",
         weight: "0.62"
       },
       {
@@ -225,7 +232,7 @@ const INDEXES = [
       },
       {
         name: "Compound",
-        img: "compound.svg",
+        img: "compound.png",
         weight: "0.37"
       },
       {
@@ -250,7 +257,7 @@ const INDEXES = [
       },
       {
         name: "Monero",
-        img: "monero.png",
+        img: "monero.svg",
         weight: "0.27"
       },
       {
@@ -260,7 +267,7 @@ const INDEXES = [
       },
       {
         name: "Decred",
-        img: "decred.png",
+        img: "decred.svg",
         weight: "0.23"
       },
       {
@@ -275,12 +282,12 @@ const INDEXES = [
       },
       {
         name: "yearn.finance",
-        img: "yearnfinance.png",
+        img: "yearnfinance.svg",
         weight: "0.17"
       },
       {
         name: "IOTA",
-        img: "iota.png",
+        img: "iota.svg",
         weight: "0.17"
       },
       {
@@ -290,12 +297,12 @@ const INDEXES = [
       },
       {
         name: "Waves",
-        img: "waves.png",
+        img: "waves.svg",
         weight: "0.16"
       },
       {
         name: "Maker",
-        img: "maker.png",
+        img: "maker.svg",
         weight: "0.15"
       },
       {
@@ -305,7 +312,7 @@ const INDEXES = [
       },
       {
         name: "Basic Attention Token",
-        img: "basicattentiontoken.png",
+        img: "bat.png",
         weight: "0.13"
       },
       {
@@ -315,7 +322,7 @@ const INDEXES = [
       },
       {
         name: "NEM",
-        img: "nem.png",
+        img: "nem.svg",
         weight: "0.12"
       },
       {
@@ -330,7 +337,7 @@ const INDEXES = [
       },
       {
         name: "Decentraland",
-        img: "decentraland.png",
+        img: "decentraland.svg",
         weight: "0.10"
       },
       {
@@ -340,12 +347,12 @@ const INDEXES = [
       },
       {
         name: "Harmony",
-        img: "harmony.png",
+        img: "harmony.svg",
         weight: "0.08"
       },
       {
         name: "Ontology",
-        img: "ontology.png",
+        img: "ontology.svg",
         weight: "0.07"
       },
       {
@@ -355,12 +362,12 @@ const INDEXES = [
       },
       {
         name: "Lisk",
-        img: "lisk.png",
+        img: "lisk.svg",
         weight: "0.07"
       },
       {
         name: "Huobi Token",
-        img: "huobitoken.png",
+        img: "huobitoken.svg",
         weight: "0.07"
       },
       {
@@ -370,7 +377,7 @@ const INDEXES = [
       },
       {
         name: "Zcash",
-        img: "zcash.png",
+        img: "zcash.svg",
         weight: "0.06"
       },
       {
@@ -380,12 +387,12 @@ const INDEXES = [
       },
       {
         name: "Nano",
-        img: "nano.png",
+        img: "nano.svg",
         weight: "0.04"
       },
       {
         name: "iExec RLC",
-        img: "iexec.png",
+        img: "iexec.svg",
         weight: "0.04"
       },
       {
@@ -400,7 +407,7 @@ const INDEXES = [
       },
       {
         name: "OMG Network",
-        img: "omgnetwork.png",
+        img: "omgnetwork.webp",
         weight: "0.02"
       },
       {
@@ -415,7 +422,7 @@ const INDEXES = [
       },
       {
         name: "Augur",
-        img: "augur.png",
+        img: "augur.svg",
         weight: "0.02"
       },
       {
@@ -425,7 +432,7 @@ const INDEXES = [
       },
       {
         name: "Bitcoin Gold",
-        img: "bitcoingold.png",
+        img: "bitcoingold.svg",
         weight: "0.02"
       },
       {
@@ -435,7 +442,7 @@ const INDEXES = [
       },
       {
         name: "Storj",
-        img: "storj.png",
+        img: "storj.svg",
         weight: "0.01"
       },
       {
@@ -450,7 +457,7 @@ const INDEXES = [
       },
       {
         name: "0x",
-        img: "0x.png",
+        img: "0x.svg",
         weight: "0.01"
       },
       {
@@ -465,7 +472,7 @@ const INDEXES = [
       },
       {
         name: "DigiByte",
-        img: "digibyte.png",
+        img: "digibyte.svg",
         weight: "0.01"
       },
       {
@@ -505,7 +512,7 @@ const INDEXES = [
       },
       {
         name: "Status",
-        img: "status.png",
+        img: "status.svg",
         weight: "0.004"
       },
       {
@@ -545,7 +552,7 @@ const INDEXES = [
       },
       {
         name: "Metal",
-        img: "metal.png",
+        img: "metal.svg",
         weight: "0.003"
       },
       {
@@ -565,7 +572,7 @@ const INDEXES = [
       },
       {
         name: "Neblio",
-        img: "neblio.png",
+        img: "neblio.svg",
         weight: "0.002"
       },
       {
@@ -575,7 +582,7 @@ const INDEXES = [
       },
       {
         name: "Aragon",
-        img: "aragon.png",
+        img: "aragon.svg",
         weight: "0.002"
       },
       {
@@ -595,17 +602,17 @@ const INDEXES = [
       },
       {
         name: "Bytom",
-        img: "bytom.png",
+        img: "bytom.jpg",
         weight: "0.001"
       },
       {
         name: "Streamr",
-        img: "steamr.png",
+        img: "streamr.svg",
         weight: "0.001"
       },
       {
         name: "Loom Network",
-        img: "loomnetwork.png",
+        img: "loomnetwork.svg",
         weight: "0.001"
       },
       {
@@ -654,12 +661,12 @@ const INDEXES = [
     items: [
       {
         name: "Band",
-        img: "band.png",
+        img: "bandprotocol.svg",
         weight: 7.55
       },
       {
         name: "Compound",
-        img: "compound.svg",
+        img: "compound.png",
         weight: 7.61
       },
       {
@@ -684,7 +691,7 @@ const INDEXES = [
       },
       {
         name: "Maker",
-        img: "maker.png",
+        img: "maker.svg",
         weight: 7.47
       },
       {
@@ -694,15 +701,15 @@ const INDEXES = [
       },
       {
         name: "Swipe",
-        img: "swipe.svg",
+        img: "swipe.png",
         weight: 9.12
       },
       {
         name: "0x",
-        img: "0x.png",
+        img: "0x.svg",
         weight: 9.49
       }
     ]
   }
 ];
-export { INDEXES, TERMS, WHITEPAPER };
+export { INDEXES, TERMS, WHITEPAPER, SOCIALS };

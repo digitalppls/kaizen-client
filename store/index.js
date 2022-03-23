@@ -26,7 +26,6 @@ export const state = () => ({
   expiresToken: null,
   user: null,
   config: null,
-  wallets: [],
   currency: []
 });
 
@@ -43,7 +42,6 @@ export const mutations = {
     state.token = null;
     state.expiresToken = null;
     state.user = null;
-    state.wallets = [];
   },
   updateUser (state, data) {
     state.user = data;
