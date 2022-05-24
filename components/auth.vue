@@ -1,5 +1,5 @@
 <template>
-  <div class="auth__box">
+  <div class="auth__box" :key="updateKey">
     <div class="auth__header">
       <div
         :class="['auth__header-item', { 'auth__header-item--active' : mode === 'sign_up' }]"
@@ -89,7 +89,9 @@
               <div
                 :class="['ui-form__password-view', {'ui-form__password-view--visible': viewPassword }]"
                 @click="passwordViewToggle"
-              />
+              >
+                <img :src="require(`../assets/img/password-${viewPassword ? 'hide' : 'show'}.svg`)" alt="">
+              </div>
             </template>
           </ui-text-field>
         </div>
@@ -129,7 +131,9 @@
               <div
                 :class="['ui-form__password-view', {'ui-form__password-view--visible': viewPassword }]"
                 @click="passwordViewToggle"
-              />
+              >
+                <img :src="require(`../assets/img/password-${viewPassword ? 'hide' : 'show'}.svg`)" alt="">
+              </div>
             </template>
           </ui-text-field>
         </div>
@@ -203,6 +207,7 @@ export default {
       infos: [],
       delayTimer: null,
       referralUsername: null,
+      updateKey: 0,
 
       interval: 0,
       duration: 30,
@@ -269,6 +274,7 @@ export default {
     changeTab (tab) {
       this.errors = [];
       this.infos = [];
+      this.updateKey++;
       this.$emit("change-tab", tab);
     },
 
@@ -492,6 +498,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.ui-form {
+  &__password-view {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    &:hover {
+      opacity: 1;
+    }
+    img {
+      width: 18px;
+    }
+  }
+}
 .ui-form__fieldset + .ui-form__fieldset {
   margin-top: 20px;
 }
