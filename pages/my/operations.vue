@@ -52,7 +52,7 @@
                 Hash:
               </span>
               <span style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: inline-block; vertical-align: middle;">
-                {{ props.row.hash }}
+                <a :href="`https://bscscan.com/tx/${props.row.hash}`" target="_blank">{{ props.row.hash }}</a>
               </span>
 
               <button
@@ -248,6 +248,9 @@ export default {
         flex: 1;
       }
     }
+  }
+  a:hover {
+    color: white;
   }
 }
 </style>
