@@ -362,27 +362,27 @@ export default {
   "ROADMAP": {
     "ITEMS": [
       {
-        "DATE": "March 2022",
+        "DATE": "May 2022",
         "TEXT": "Pre-sale KZN token index and VNG token mining"
       },
       {
-        "DATE": "May 2022",
+        "DATE": "July 2022",
         "TEXT": "IDO KZN token index and VNG token mining"
       },
       {
-        "DATE": "June 2022",
+        "DATE": "August 2022",
         "TEXT": "Public sale KZN token index and VNG token mining"
       },
       {
-        "DATE": "July 2022",
+        "DATE": "August 2022",
         "TEXT": "Pre-sale of SRK production company token"
       },
       {
-        "DATE": "August 2022",
+        "DATE": "September 2022",
         "TEXT": "IDO of SRK Production Enterprise token"
       },
       {
-        "DATE": "August 2022",
+        "DATE": "October 2022",
         "TEXT": "Public sale of SRK Production Enterprise token."
       },
     ]
