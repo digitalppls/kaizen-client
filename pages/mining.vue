@@ -177,14 +177,41 @@
       <div class="container">
         <div class="content">
           <h2 class="title animate__animated wow animate__fadeInUp" v-html="content.title" />
-          <div class="text">
-            <p class="animate__animated wow animate__fadeInLeft" v-html="content.text_1" />
-            <p class="animate__animated wow animate__fadeInLeft" v-html="content.text_2" />
+          <h3 v-text="content.terminology.TITLE" />
+          <dl class="content__definition-list">
+            <div v-for="(item, i) in content.terminology.TERMS" :key="i" class="content__definition-list-item">
+              <dt>{{ item.TERM }}</dt> – <dd>{{ item.DEFINITION }}</dd>
+            </div>
+          </dl>
+          <h3 v-text="content.project.TITLE" />
+          <div class="content__project">
+            <p
+              v-for="(text, i) in content.project.TEXTS"
+              :key="i"
+              class="content__project-item"
+              v-text="text"
+            />
           </div>
+          <h3 v-text="content.pricing.TITLE" />
+          <div class="content__pricing">
+            <div v-for="(item, i) in content.pricing.TIMELINE" :key="i" class="content__pricing-item">
+              <span class="content__pricing-item__date" v-text="item.DATE" />
+              <span class="content__pricing-item__text" v-text="item.TEXT" />
+            </div>
+          </div>
+          <!--          <div class="text">-->
+          <!--            <p class="animate__animated wow animate__fadeInLeft" v-html="content.text_1" />-->
+          <!--            <p class="animate__animated wow animate__fadeInLeft" v-html="content.text_2" />-->
+          <!--          </div>-->
           <div class="text-white animate__animated wow animate__fadeInLeft" v-html="content.text_3" />
         </div>
         <div class="img animate__animated wow animate__fadeInRight">
           <img src="~/assets/img/mining-data.jpg" alt="">
+        </div>
+      </div>
+      <div class="container">
+        <div class="mining__images">
+          <img v-for="i in 4" :key="i" :src="require(`../assets/img/mining-content-${i}.png`)" alt="">
         </div>
       </div>
     </div>
@@ -309,8 +336,11 @@ export default {
     return {
       content: {
         title: this.$t("MINING_CONTENT.TITLE"),
-        text_1: this.$t("MINING_CONTENT.TEXT_1"),
-        text_2: this.$t("MINING_CONTENT.TEXT_2"),
+        terminology: this.$t("MINING_CONTENT.TERMINOLOGY"),
+        project: this.$t("MINING_CONTENT.PROJECT"),
+        pricing: this.$t("MINING_CONTENT.PRICING"),
+        // text_1: this.$t("MINING_CONTENT.TEXT_1"),
+        // text_2: this.$t("MINING_CONTENT.TEXT_2"),
         text_3: this.$t("MINING_CONTENT.TEXT_3")
       }
     };
@@ -327,6 +357,7 @@ export default {
     }
   },
   mounted () {
+    console.log(this.content.terminology);
     // this.$nextTick(() => {
     //   if (process.browser) { // On the page mounted In the life cycle Instantiate according to the environment WOW
     //     // eslint-disable-next-line no-undef
@@ -343,5 +374,47 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.content {
+  h3 {
+    margin-bottom: 10px;
+    &:not(:first-of-type) {
+      margin-top: 35px;
+    }
+  }
+  &__definition-list {
+    &-item {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      dt {
+        display: inline;
+        font-weight: 600;
+      }
+      dd {
+        display: inline;
+      }
+    }
+  }
+  &__project {
+    &-item {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  &__pricing {
+    &-item {
+      &:not(:last-child) {
+        margin-bottom: 15px;
+      }
+      &__date {
+        font-weight: 600;
+      }
+      &__text {}
+    }
+  }
+  .text-white {
+    margin-top: 15px;
+  }
+}
 </style>

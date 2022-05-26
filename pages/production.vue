@@ -366,7 +366,7 @@ export default {
   },
   computed: {
     coverTitle () {
-      return "SARY-ARKA INDUSTRY";
+      return "PRO- INDASTRY";
     },
     coverDesc () {
       return this.$t("PARTICIPATE_IN");

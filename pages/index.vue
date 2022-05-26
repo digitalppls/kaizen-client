@@ -244,7 +244,7 @@ export default {
           },
           {
             id: 1,
-            title: `${this.$t("INDUSTRIAL")} <span> ⸺ ${this.$t("MINING")}</span>`,
+            title: `${this.$t("POWER_PLANT_FOR")} <span> ⸺ ${this.$t("FOR_INDUSTRIAL_MINING")}</span>`,
             text: this.$t("DIRECTIONS_FOR_DEV.ITEMS[1].TEXT"),
             buttons: [
               {

@@ -13,12 +13,16 @@ export default {
   "ABOUT_US": "About Us",
   "COMPANY": "Company",
   "INDEX": "Index",
+  "POWER_PLANT": "Power plant",
   "INDEXES": "Indexes",
   "CRYPTO": "Cryptocurrency",
   "INDUSTRIAL": "Industrial",
   "REAL_SECTOR": "Real Sector",
   "OF_PRODUCTION": "of production",
+  "POWER_PLANT_FOR": "Power plant for",
+  "FOR_INDUSTRIAL_MINING": "industrial mining",
   "PROJECTS": "Projects",
+  "PRODUCTION": "PRO- INDASTRY",
   "SOON": "Soon",
   "COOKIES_BANNER": "🍪 We use cookies.",
 
@@ -351,7 +355,7 @@ export default {
       },
       {
         "TITLE": "ADVANTAGEOUS CONDITIONS",
-        "DESC": "Extremely low electricity rates - only $0.001 per kWh in the Vanguard project. Preferential terms of taxation and customs tariffs. The Company is a member of industrial economic zones in Kazakhstan."
+        "DESC": "Extremely low electricity rates - only $0.01 per kWh in the Vanguard project. Tokens offered to Participants are secured by the Platform Operator Asset Fund and are collateralized Tokens. The value of the Token increases not by attracting more and more Participants, but by increasing the Platform Operator Asset Fund."
       },
       {
         "TITLE": "LIQUIDITY",
@@ -362,27 +366,27 @@ export default {
   "ROADMAP": {
     "ITEMS": [
       {
-        "DATE": "May 2022",
+        "DATE": "June 2022",
         "TEXT": "Pre-sale KZN token index and VNG token mining"
       },
       {
-        "DATE": "July 2022",
+        "DATE": "August 2022",
         "TEXT": "IDO KZN token index and VNG token mining"
       },
       {
-        "DATE": "August 2022",
+        "DATE": "September 2022",
         "TEXT": "Public sale KZN token index and VNG token mining"
       },
       {
-        "DATE": "August 2022",
+        "DATE": "September 2022",
         "TEXT": "Pre-sale of SRK production company token"
       },
       {
-        "DATE": "September 2022",
+        "DATE": "October 2022",
         "TEXT": "IDO of SRK Production Enterprise token"
       },
       {
-        "DATE": "October 2022",
+        "DATE": "November 2022",
         "TEXT": "Public sale of SRK Production Enterprise token."
       },
     ]
@@ -449,7 +453,7 @@ export default {
   "INFOCHART_DESC": "Choose a secure way to gain diversified access to the world's leading cryptocurrencies. The fund monitors the leading segments of the cryptocurrency sector and provides safe and easy access to financial instruments.",
 
   // MINING PAGE
-  "MINING_COVER_TITLE": "Participate in industrial mining with VNG token.",
+  "MINING_COVER_TITLE": "Participate in the construction of a power plant for industrial mining with VNG token",
   "MINING_COVER_DESC": "Kaizen provides access to bitcoin mining with the most favorable conditions.",
   "KAIZEN_REDEEMS_TOKENS": "Kaizen platform redeems VNG tokens",
   "TO_MAINTAIN": "on the exchange to maintain price and liquidity.",
@@ -472,7 +476,72 @@ export default {
   "TOKEN_AMOUNT": "Total amount of tokens:",
   "ISSUANCE": "Issuance for the benefit of users is limited and no additional issuance is anticipated. All tokens that will not be sold at the Pre-Sale and IDO stages will be allocated to the Public Sale fund.",
   "MINING_CONTENT": {
-    "TITLE": "Business process of data center installation and management",
+    "TITLE": "Project descriptions Power plant for industrial mining",
+    "TERMINOLOGY": {
+      "TITLE": "Terms and Definitions:",
+      "TERMS": [
+        {
+          "TERM": "Digital asset",
+          "DEFINITION": "a property created in electronic digital form with the use of cryptography and computer calculations, which is not a financial instrument, as well as an electronic digital form of certification of property rights;"
+        },
+        {
+          "TERM": "Digital token",
+          "DEFINITION": "a type of digital asset, which is a digital means of recording, exchange and certification of property rights, in other words, it is a unit of account performing the function of \"a security substitute\" in the digital world;"
+        },
+        {
+          "TERM": "Secured digital asset",
+          "DEFINITION": "a digital token and other digital assets that are a digital means of certifying property rights to goods and/or services issued (provided) by the person that issued the secured digital asset;"
+        },
+        {
+          "TERM": "Platform Asset Fund",
+          "DEFINITION": "in the Kaizen Project, an asset fund means an aggregate of production assets for the project's power generation activities to support the operation of mining equipment or other projects in the Kaizen Platform;"
+        },
+        {
+          "TERM": "IDO (Initial DEX Offering)",
+          "DEFINITION": "Initial Decentralized Offering is a token launch model that involves fundraising on a decentralized exchange;"
+        },
+        {
+          "TERM": "A participant",
+          "DEFINITION": "owner of a digitally secured Digital Token."
+        }
+      ],
+    },
+    "PROJECT": {
+      "TITLE": "Project:",
+      "TEXTS": [
+        "Construction of a 12 MW power plant operating on associated gas from the Beineu oil field in the Mangistau region. Associated gas will be used as fuel for power generation by gas-piston power plants. The power plant supplier is the Iranian service company Avat Energy. In this case, we intend to produce electric power from associated gas to be flared according to environmental production standards.  Today, a new industry of economy has been formed in Kazakhstan - mining of cryptocurrencies. Mining operators with thousands of units of computing equipment due to the lack of electricity suspend their activities in the Republic of Kazakhstan. Mining operators, in turn, operating in the Republic of Kazakhstan have digital assets with sales in the global market. These assets guarantee payment for electricity generated by the Kaizen power plant.",
+        "We plan to place mining operators with their computing equipment directly on the territory of the deposit at the proposed by-product gas-fired power plant. Thus, the miners using the energy of the Kaizen power plant will not create a deficit and imbalance in the public networks, as the autonomous power supply operates outside the public networks. Autonomous power supply cannot be disconnected by any regulations due to possible power shortages in the region.",
+        "By consuming our electricity, the mining operators replenish the balance of the Kaizen platform with digital assets, so the Kaizen platform has digital assets to redeem VNG Tokens from Participants and provide liquidity to the company Tokens on the digital exchange in order not to allow the Token price to decrease.",
+        "As a result of this collaboration, multiple Kaizen Platform Participants create tangible production assets in the real economy, namely the phased construction of a power plant, thereby increasing the Platform Asset Fund, which leads to an increase in the value of the secured VNG Token."
+      ]
+    },
+    "PRICING": {
+      "TITLE": "The pricing of a secured VNG token:",
+      "TIMELINE": [
+        {
+          "DATE" : "June 2022.",
+          "TEXT" : "- starts the process of Pre Sale of the Industrial Mining project, the sale of secured Digital Token VNG to Participants, which will continue until July 2022. 1,500,000 secured Digital Tokens VNG at a price of 0.555 USD are offered for sale to Participants.\n" +
+              " The pricing of the secured VNG Digital Token in the pre-listing stages is formed from the value of the Platform Asset Fund divided by the amount of Tokens allocated to the Pre Sale and IDO stages. \n" +
+              "  \n" +
+              " In the case of the VNG token, the price of 0.555 USD is formed as follows: \n" +
+              " The sum of 1,800,000 VNG Tokens, consisting of the Tokens allocated to the Pre-Sale 1,5000,000 units plus the Tokens allocated to the IDO 300,000 units secures 1,000,000 USD in the Platform Asset Fund. Thus 1,0000,0000 USD is divided by 1,800,000 tokens, resulting in the token becoming a secured digital token with a price of 0.555 USD."
+        },
+        {
+          "DATE": "July 2022.",
+          "TEXT": "it is planned to commission its own power plant with gas porsche generators at the oil field, which increases the value of the Kaizen Platform Asset Fund, and accordingly the price of the secured digital token VNG increases.\n" +
+              "In other words, Kaizen tokens will always be secured by the company's assets and as the company's assets grow, the value of the secured token and correspondingly the profits of their Participants will grow.\n" +
+              "The production area of our platform allows us to generate profit from our own electric gas power plant and mining center from the first months of operation. These profits in digital assets will be sent to the exchange, where the secured VNG token of the Kaizen platform will be traded, to redeem these tokens from the Participants and then burn them. These activities will not allow Kaizen's secured tokens to fall below USD 1.42, but instead will increase their value."
+        },
+        {
+          "DATE": "August 2022.",
+          "TEXT": "the product is scheduled to go on the IDO investment blockchain platform. At IDO, the price of VNG tokens will start at a value that will be formed by then based on the value of the platform's Asset Fund. According to the schedule of phased in power generation capacity by the time IDO starts, the value of secured Digital tokens will be 1.42 USD, based on the value of assets at that time."
+        },
+        {
+          "DATE": "September 2022.",
+          "TEXT": "- planned placement of tokens on a decentralized exchange. At this stage, in the case of full implementation of the allocated IDO and Pre Sale tokens, the price per VNG token based on the results of the introduction of capacity in the power plant and, accordingly, the value of the Fund assets when listed on the exchange will be more than 1.42 USD."
+        }
+      ]
+    },
     "TEXT_1": "The company operator of the project \"Industrial Mining\" places the mining equipment on an oil field, with the company owner of the field has an agreement on the use of associated gas. Electricity is generated by the power plant gPG (gas piston generator) which uses associated gas of the deposit as fuel. The pilot 2 MW GPG generator is already in operation at the field and shows stable trouble-free operation. There is also a possibility of developing the capacity potential up to 8 MW. From the experience of operating a GPG power plant, the cost of 1 kWh has been identified and is $0.007, which is significantly lower than the cost of electricity from suppliers in the market. 70% of the mined bitcoins are sent to the liquidity pool on decentralized exchanges, 30% is sent for operating costs including electricity, company management and the purchase of new mining equipment.",
     "TEXT_2": " Autonomous power supply operates outside the public grid and does not create a deficit in the power balance of the region. Autonomous power supply cannot be disconnected by any administrative orders due to possible power shortages in the region.",
     "TEXT_3": "Low cost of electricity and autonomy is a factor in the high profitability of the project \"Industrial Mining\" platform Kaizenfund",

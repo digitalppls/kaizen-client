@@ -449,7 +449,7 @@
       }
 
       span {
-        white-space: nowrap;
+        //white-space: nowrap;
         display: inline-block;
         width: 100%;
       }
@@ -1125,6 +1125,32 @@
     }
   }
 
+  .mining__images {
+    margin-top: 3vh;
+    @include min(540px) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-evenly;
+      margin-bottom: 20px;
+    }
+    @include min(1024px) {
+      flex-wrap: nowrap;
+    }
+    img {
+      width: 100%;
+      max-width: 100%;
+      @include min(540px) {
+        max-height: 25vh;
+        max-width: 40vw;
+        width: auto;
+        margin: 1vw;
+      }
+      @include min(1024px) {
+        max-width: 22%;
+      }
+    }
+  }
   .img {
     display: flex;
     align-items: center;

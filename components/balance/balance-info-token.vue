@@ -31,7 +31,11 @@
           <p class="m-b-10 accessed-value">
             {{ $t("PRICE") }}:
           </p>
-          <span class="price">${{ priceUsd }}</span>
+          <span class="price">
+            <span class="price__item">${{ priceUsd }}</span>
+            <span class="price__item">{{ priceBtc }} BTC</span>
+            <span class="price__item">{{ priceBnb }} BNB</span>
+          </span>
         </div>
         <div class="m-b-20">
           <p class="m-b-10 accessed-value">
@@ -129,11 +133,14 @@ export default {
   data () {
     return {
       showModal: false,
-      modal: ""
+      modal: "",
+      priceBtc: 0.000034,
+      priceBnb: 0.0032
     };
   },
   computed: {
     token () {
+      console.log(this.sale);
       return {
         kzn: [
           {
@@ -383,6 +390,14 @@ export default {
   font-size: 30px;
   letter-spacing: -0.02em;
   color: #f5cf48;
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 12px;
+    }
+  }
 }
 
 </style>

@@ -86,7 +86,7 @@ export default {
           url: this.localePath("indexes")
         },
         {
-          title: this.$t("MINING"),
+          title: this.$t("POWER_PLANT"),
           url: this.localePath("mining")
         },
         {

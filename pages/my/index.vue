@@ -35,6 +35,7 @@ export default {
   },
   mounted () {
     this.$API.TokenSaleList("all", (sales) => {
+      console.log(sales); // TODO аменить на «Power station Token VNG». пункт 4, 5, 10
       this.sales = sales.list;
     });
   }
