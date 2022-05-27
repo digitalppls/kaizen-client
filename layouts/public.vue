@@ -1,8 +1,8 @@
 <template>
   <div>
-    <site-header />
+    <site-header :key="lang" />
     <Nuxt ref="nuxt" />
-    <site-footer />
+    <site-footer :key="lang" />
     <cookies-banner v-if="false" />
   </div>
 </template>
@@ -23,6 +23,9 @@ export default {
   computed: {
     isDev () {
       return process.env.isDev;
+    },
+    lang () {
+      return this.$i18n.locale;
     }
   },
   mounted () {
