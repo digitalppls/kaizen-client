@@ -22,7 +22,7 @@ export default {
   "POWER_PLANT_FOR": "Power plant for",
   "FOR_INDUSTRIAL_MINING": "industrial mining",
   "PROJECTS": "Projects",
-  "PRODUCTION": "PRO- INDASTRY",
+  "PRODUCTION": "PRO-INDUSTRY",
   "SOON": "Soon",
   "COOKIES_BANNER": "🍪 We use cookies.",
 
@@ -476,7 +476,7 @@ export default {
   "TOKEN_AMOUNT": "Total amount of tokens:",
   "ISSUANCE": "Issuance for the benefit of users is limited and no additional issuance is anticipated. All tokens that will not be sold at the Pre-Sale and IDO stages will be allocated to the Public Sale fund.",
   "MINING_CONTENT": {
-    "TITLE": "Project descriptions Power plant for industrial mining",
+    "TITLE": "Power plant for industrial mining",
     "TERMINOLOGY": {
       "TITLE": "Terms and Definitions:",
       "TERMS": [

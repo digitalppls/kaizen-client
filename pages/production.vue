@@ -366,7 +366,7 @@ export default {
   },
   computed: {
     coverTitle () {
-      return "PRO- INDASTRY";
+      return "PRO-INDUSTRY";
     },
     coverDesc () {
       return this.$t("PARTICIPATE_IN");
