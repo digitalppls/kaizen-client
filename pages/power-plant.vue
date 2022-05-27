@@ -207,11 +207,9 @@
         </div>
         <div class="img animate__animated wow animate__fadeInRight">
           <img src="~/assets/img/mining-data.jpg" alt="">
-        </div>
-      </div>
-      <div class="container">
-        <div class="mining__images">
-          <img v-for="i in 4" :key="i" :src="require(`../assets/img/mining-content-${i}.png`)" alt="">
+          <div class="mining__images">
+            <img v-for="i in 4" :key="i" :src="require(`../assets/img/mining-content-${i}.png`)" alt="">
+          </div>
         </div>
       </div>
     </div>
@@ -330,7 +328,7 @@
 <script>
 
 export default {
-  name: "PageMining",
+  name: "PowerPlant",
   layout: "public",
   data () {
     return {

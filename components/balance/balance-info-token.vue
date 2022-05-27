@@ -33,8 +33,8 @@
           </p>
           <span class="price">
             <span class="price__item">${{ priceUsd }}</span>
-            <span class="price__item">{{ priceBtc }} BTC</span>
-            <span class="price__item">{{ priceBnb }} BNB</span>
+            <span class="price__item small">{{ (priceUsd * btcPerUsd).toFixed(7) }} BTC</span>
+            <span class="price__item small">{{ (priceUsd * bnbPerUsd).toFixed(7) }} BNB</span>
           </span>
         </div>
         <div class="m-b-20">
@@ -133,14 +133,11 @@ export default {
   data () {
     return {
       showModal: false,
-      modal: "",
-      priceBtc: 0.000034,
-      priceBnb: 0.0032
+      modal: ""
     };
   },
   computed: {
     token () {
-      console.log(this.sale);
       return {
         kzn: [
           {
@@ -280,6 +277,14 @@ export default {
     },
     value () {
       return this.sale?.value ?? 0;
+    },
+    btcPerUsd () {
+      const n = this.$store.getters.currency.filter(e => e.symbol === "BTCUSDT")[0]?.price || "...";
+      return n !== "..." ? (1 / n) : n;
+    },
+    bnbPerUsd () {
+      const n = this.$store.getters.currency.filter(e => e.symbol === "BNBUSDT")[0]?.price || "...";
+      return n !== "..." ? (1 / n) : n;
     }
   },
   methods: {
@@ -396,6 +401,9 @@ export default {
   &__item {
     &:not(:last-child) {
       margin-bottom: 12px;
+    }
+    &.small {
+      font-size: 0.7em;
     }
   }
 }
