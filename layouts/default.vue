@@ -1,8 +1,8 @@
 <template>
   <div>
-    <site-header />
+    <site-header :key="lang" />
     <Nuxt ref="nuxt" />
-    <site-footer />
+    <site-footer :key="lang" />
   </div>
 </template>
 
@@ -26,6 +26,9 @@ export default {
   computed: {
     hastToken () {
       return this.$store.getters.hasToken;
+    },
+    lang () {
+      return this.$i18n.locale;
     }
   },
   beforeDestroy () {
