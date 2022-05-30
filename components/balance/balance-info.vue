@@ -52,7 +52,7 @@
       </h2>
       <wallet33
         :method="modal === 'deposit' ? 0 : 1"
-        only-types="bep20usdt,trc20usdt,bep20btc,bep20bnb,bep20kzn,bep20vng,bep20srk"
+        only-types="bep20usdt,trc20usdt,bep20btc,bnb,bep20kzn,bep20vng,bep20srk"
       />
     </ui-modal>
   </div>
