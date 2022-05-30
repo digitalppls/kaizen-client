@@ -14,7 +14,7 @@
 import Wallet33 from "~/components/wallet33";
 
 export default {
-  name: "Deposit",
+  name: "Wallet33Deposit",
   components: { Wallet33 },
   middleware: ["verify"]
 };

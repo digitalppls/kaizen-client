@@ -5,7 +5,9 @@
         <h3 class="color-white m-b-5">
           {{ tokenName }}
 
-          {{ symbol.toUpperCase() }}
+          <template v-if="symbol !== 'vng'">
+            {{ symbol.toUpperCase() }}
+          </template>
         </h3>
       </div>
       <div class="m-l-a">
