@@ -1,7 +1,7 @@
 echo "build"
 npm run generate
 
-ip="165.232.120.92"
+ip="188.68.218.157"
 folder="/www/kaizen-client"
 
 echo "packing"
