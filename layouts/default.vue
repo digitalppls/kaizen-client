@@ -1,8 +1,8 @@
 <template>
   <div>
-    <site-header :key="lang" />
+    <site-header :key="`header-${lang}`" />
     <Nuxt ref="nuxt" />
-    <site-footer :key="lang" />
+    <site-footer :key="`footer-${lang}`" />
   </div>
 </template>
 

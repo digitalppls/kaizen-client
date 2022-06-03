@@ -190,27 +190,27 @@
                 {{ $t("PRODUCTION_TEXT_6") }}
               </p>
             </div>
-            <div class="story__new">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officia, atque soluta in minima qui
-                vero explicabo labore
-                adipisci est! Tempora quas, sit commodi in odit mollitia! Officiis sit obcaecati vel quos totam id
-                eveniet porro hic deserunt in
-                repudiandae vero aperiam voluptate doloremque dicta animi, earum, similique corporis? Optio.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis maxime iusto, sint iure perferendis
-                illum quod nihil deserunt
-                fugiat porro laborum voluptatibus alias, consectetur quae explicabo debitis numquam beatae earum ea
-                possimus! Quasi, ipsum
-                temporibus?
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero facere delectus dignissimos officia
-                quaerat repudiandae dolorum
-                eveniet dolores non quod?
-              </p>
-            </div>
+<!--            <div class="story__new">-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officia, atque soluta in minima qui-->
+<!--                vero explicabo labore-->
+<!--                adipisci est! Tempora quas, sit commodi in odit mollitia! Officiis sit obcaecati vel quos totam id-->
+<!--                eveniet porro hic deserunt in-->
+<!--                repudiandae vero aperiam voluptate doloremque dicta animi, earum, similique corporis? Optio.-->
+<!--              </p>-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis maxime iusto, sint iure perferendis-->
+<!--                illum quod nihil deserunt-->
+<!--                fugiat porro laborum voluptatibus alias, consectetur quae explicabo debitis numquam beatae earum ea-->
+<!--                possimus! Quasi, ipsum-->
+<!--                temporibus?-->
+<!--              </p>-->
+<!--              <p>-->
+<!--                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero facere delectus dignissimos officia-->
+<!--                quaerat repudiandae dolorum-->
+<!--                eveniet dolores non quod?-->
+<!--              </p>-->
+<!--            </div>-->
           </div>
           <button
             v-if="storyHidden"
