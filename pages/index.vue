@@ -254,7 +254,7 @@ export default {
               },
               {
                 label: this.$t("MORE_DETAILS"),
-                url: this.localePath("mining"),
+                url: this.localePath("power-plant"),
                 classes: ["btn-outline details"]
               }
             ]
