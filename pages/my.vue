@@ -16,8 +16,9 @@
                 :exact="!!localePath('my-profile')"
                 no-prefetch
                 :to="localePath(item.url)"
+                :disabled="item.url === 'my-indexes'"
                 active-class="inline-menu__link--active"
-                class="inline-menu__link"
+                :class="['inline-menu__link', {'inline-menu__link--disabled': item.url === 'my-indexes'}]"
                 @click.native="scrollTo($event)"
               >
                 {{ $t(item.name) }}
@@ -45,9 +46,14 @@
                   no-prefetch
                   :to="localePath(item.url)"
                   active-class="menu__link--active"
-                  class="menu__link"
+                  :class="['menu__link', {'menu__link--disabled': item.url === 'my-indexes'}]"
                 >
                   {{ $t(item.name) }}
+                  <span
+                    v-if="item.url === 'my-indexes'"
+                    style="font-size: .6em; color: var(--col-red); opacity: .7; display: block;"
+                    v-text="$t('TEMPORARILY_UNAVAILABLE')"
+                  />
                 </nuxt-link>
               </li>
             </ul>
@@ -71,11 +77,6 @@ export default {
           show: true
         },
         {
-          name: "BUY_INDEXES",
-          url: "my-indexes",
-          show: true
-        },
-        {
           name: "OPERATIONS",
           url: "my-operations",
           show: true
@@ -83,6 +84,11 @@ export default {
         {
           name: "PROFILE",
           url: "my-profile",
+          show: true
+        },
+        {
+          name: "BUY_INDEXES",
+          url: "my-indexes",
           show: true
         }
       ]
@@ -164,13 +170,19 @@ export default {
     padding: 15px;
     transition: margin .2s ease-in-out;
 
-    &:hover {
+    &:not(.menu__link--disabled):hover {
       color: #fff;
     }
 
     &--active {
       color: #fff;
       background-color: #1F2124;
+    }
+
+    &--disabled {
+      cursor: default;
+      pointer-events: none;
+      opacity: .4;
     }
   }
 }
@@ -210,6 +222,12 @@ export default {
     &--active {
       color: #fff;
       background-color: #1F2124;
+    }
+
+    &--disabled {
+      cursor: default;
+      pointer-events: none;
+      opacity: .4;
     }
   }
 }

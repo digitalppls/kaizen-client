@@ -1,4 +1,4 @@
-echo "build"
+echo "generate bundle"
 npm run generate
 
 ip="188.68.218.157"

@@ -39,9 +39,17 @@
       </template>
     </vue-good-table>
     <p v-else class="text-center">
-      <nuxt-link :to="localePath('my-indexes')" class="btn btn-accent">
+      <nuxt-link
+        :to="localePath('my')"
+        class="btn btn-accent"
+        style="opacity: .3; pointer-events: none;"
+      >
         {{ $t("BUY_INDEXES") }}
       </nuxt-link>
+      <span
+        style="color: var(--col-red); opacity: .7; display: block; margin-top: 5px;"
+        v-text="$t('TEMPORARILY_UNAVAILABLE')"
+      />
     </p>
 
     <ui-modal

@@ -7,7 +7,7 @@
         <nuxt-link
           disabled
           :event="''"
-          :to="localePath(hasToken ? 'my' : 'auth')"
+          :to="localePath(hasToken ? 'indexes' : 'auth')"
           class="btn btn-blue animate__animated wow animate__fadeIn"
           data-wow-delay=".5s"
           v-text="$t('START_INVESTING')"
@@ -100,9 +100,10 @@
                   <nuxt-link
                     disabled
                     :event="''"
-                    :to="localePath({ name: hasToken ? 'my-indexes-id' : 'auth', params: hasToken ? { id: getIndexName(index.title.toUpperCase()) } : {} })"
+                    :to="localePath('indexes')"
                     :class="['btn', 'btn-outline', 'btn-full']"
                   >
+                    <!-- :to="localePath({ name: hasToken ? 'my-indexes-id' : 'auth', params: hasToken ? { id: getIndexName(index.title.toUpperCase()) } : {} })" -->
                     <!--  {{ $t(hasToken ? "BUY" : "JOIN") }}  -->
                     {{ $t("TEMPORARILY_UNAVAILABLE") }}
                   </nuxt-link>
@@ -544,6 +545,8 @@ export default {
     border-color: #fff;
     color: #fff;
     background-color: transparent;
+    padding-left: 20px;
+    padding-right: 20px;
 
     @include respond-before("lg") {
       @include respond-to("xl") {
