@@ -5,11 +5,15 @@
         <h1 class="title animate__animated wow animate__fadeIn" v-text="coverTitle" />
         <p class="text animate__animated wow animate__fadeIn" data-wow-delay=".2s" v-text="coverDesc" />
         <nuxt-link
+          disabled
+          :event="''"
           :to="localePath(hasToken ? 'my' : 'auth')"
           class="btn btn-blue animate__animated wow animate__fadeIn"
           data-wow-delay=".5s"
           v-text="$t('START_INVESTING')"
         />
+        <br>
+        <span class="error" style="color:var(--col-red)">{{ $t("TEMPORARILY_UNAVAILABLE") }}</span>
       </div>
     </div>
 
@@ -94,10 +98,13 @@
                     </div>
                   </div>
                   <nuxt-link
+                    disabled
+                    :event="''"
                     :to="localePath({ name: hasToken ? 'my-indexes-id' : 'auth', params: hasToken ? { id: getIndexName(index.title.toUpperCase()) } : {} })"
                     :class="['btn', 'btn-outline', 'btn-full']"
                   >
-                    {{ $t(hasToken ? "BUY" : "JOIN") }}
+                    <!--  {{ $t(hasToken ? "BUY" : "JOIN") }}  -->
+                    {{ $t("TEMPORARILY_UNAVAILABLE") }}
                   </nuxt-link>
                 </div>
               </div>

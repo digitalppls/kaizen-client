@@ -6,18 +6,18 @@
           {{ id }}
         </h1>
       </div>
-      <div class="index-page__header__r">
-        <button class="btn btn-blue btn-medium" @click="openModal('buy')">
-          {{ $t("BUY") }}
-        </button>
-        <button
-          class="btn btn-red btn-medium"
-          :disabled="disableSell"
-          @click="openModal('sell')"
-        >
-          {{ $t("SELL") }}
-        </button>
-      </div>
+      <!--      <div class="index-page__header__r">-->
+      <!--        <button class="btn btn-blue btn-medium" @click="openModal('buy')">-->
+      <!--          {{ $t("BUY") }}-->
+      <!--        </button>-->
+      <!--        <button-->
+      <!--          class="btn btn-red btn-medium"-->
+      <!--          :disabled="disableSell"-->
+      <!--          @click="openModal('sell')"-->
+      <!--        >-->
+      <!--          {{ $t("SELL") }}-->
+      <!--        </button>-->
+      <!--      </div>-->
     </div>
 
     <div class="index-page__data m-b-30">

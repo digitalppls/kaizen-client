@@ -25,6 +25,7 @@ export default {
   "PRODUCTION": "PRO-INDUSTRY",
   "SOON": "Скоро",
   "COOKIES_BANNER": "🍪 Мы используем файлы cookie.",
+  "TEMPORARILY_UNAVAILABLE": "Временно недоступно",
 
   "AUTH": {
     "ALREADY_REGISTERED": "Уже зарегистрированы?",
