@@ -156,5 +156,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.header_logo {
+  @include respond-before("lg") {
+    min-width: 150px;
+  }
+}
 </style>

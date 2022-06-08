@@ -12,6 +12,11 @@
     padding-top: 20px;
     padding-bottom: 20px;
     transition: padding .2s linear;
+
+    @include respond-to("md") {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
   }
 
   &--fixed {
@@ -19,8 +24,8 @@
     background: var(--col-bg);
 
     .container {
-      padding-top: 10px;
-      padding-bottom: 10px;
+      //padding-top: 10px;
+      //padding-bottom: 10px;
     }
   }
 

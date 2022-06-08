@@ -163,9 +163,9 @@ body {
   align-items: center;
   flex: 1 0 auto;
 
-  @include min(768px) {
-    padding-top: 150px;
-  }
+  //@include min(768px) {
+  //  padding-top: 150px;
+  //}
 
   .container {
     width: 100%;
@@ -448,6 +448,11 @@ img {
     &:hover {
       opacity: 1;
     }
+  }
+
+  &_logo,
+  &_logo a {
+    display: inline-flex;
   }
 }
 

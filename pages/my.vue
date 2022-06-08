@@ -200,6 +200,9 @@ export default {
       z-index: 10;
       box-shadow: 0 0 18px var(--col-black);
     }
+    @include respond-to("md") {
+      top: 74px;
+    }
   }
 
   &__item {

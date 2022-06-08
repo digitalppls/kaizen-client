@@ -15,8 +15,9 @@
   }
 
   &_logo {
-    min-width: 90px;
-    width: 90px;
+    width: 100%;
+    min-width: 120px;
+    max-width: 180px;
     order: 1;
     margin-bottom: 60px;
 
