@@ -135,7 +135,6 @@ export default {
     { src: "~plugins/utils.js", ssr: false },
     { src: "~plugins/api.js", ssr: false },
     { src: "~plugins/click-outside.js", ssr: false },
-    { src: "~plugins/axios.js", ssr: false },
     { src: "~plugins/donut.js", ssr: false },
     { src: "~plugins/tooltip.js", ssr: false }
   ],
@@ -146,7 +145,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/eslint
-    "@nuxtjs/eslint-module",
+    // "@nuxtjs/eslint-module",
     "@nuxtjs/global-components"
   ],
 

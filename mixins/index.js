@@ -20,7 +20,7 @@ export default {
     Vue.prototype.$countdown = this.countdown;
     Vue.prototype.$LOCALESTRING_PERCENT = this.localeStringPERCENT;
     Vue.prototype.$LOCALESTRING_USD = this.localeStringUSD;
-    Vue.prototype.$LOCALESTRING_CRYPTO = this.localeStringCRYPTO;
+    Vue.prototype.$LOCALESTRING = this.localeStringCRYPTO;
     Vue.prototype.$symbolCurrencyAddUsdt = this.symbolCurrencyAddUsdt;
     Vue.prototype.$symbolCurrencyRemoveUsdt = this.symbolCurrencyRemoveUsdt;
     Vue.prototype.$toUsd = this.toUsd;
@@ -199,21 +199,21 @@ export default {
     },
 
     toUsd (symbol, amount) {
-      const list = this.$store.getters.currency;
-      const coin = list.find(x => x.symbol === this.symbolCurrencyAddUsdt(symbol));
+      const coin = this.$store.getters.currency.find(x => x.symbol === this.symbolCurrencyAddUsdt(symbol));
       const usd = symbol.toUpperCase() === "USDT" ? amount : !coin
         ? 0
         : (coin.price * amount);
-      return Math.round(usd * 1e8) / 1e8;
+      // return Math.round(usd * 1e8) / 1e8; // TODO: Зачем округлять?
+      return usd * 1e8 / 1e8;
     },
 
     fromUsd (symbol, amountUsd) {
-      const list = this.$store.getters.currency;
-      const coin = list.find(x => x.symbol === this.symbolCurrencyAddUsdt(symbol));
+      const coin = this.$store.getters.currency.find(x => x.symbol === this.symbolCurrencyAddUsdt(symbol));
       const usd = symbol.toUpperCase() === "USDT" ? amountUsd : !coin
         ? 0
         : (amountUsd / coin.price);
-      return Math.round(usd * 1e8) / 1e8;
+      // return Math.round(usd * 1e8) / 1e8; // TODO: Зачем округлять?
+      return usd * 1e8 / 1e8;
     },
 
     DateText (date) {

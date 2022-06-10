@@ -1,5 +1,8 @@
 <template>
-  <section :id="symbol" class="balance-info">
+  <section
+    :id="symbol"
+    class="balance-info"
+  >
     <div class="balance-info__top">
       <div>
         <h3 class="color-white m-b-5">
@@ -35,8 +38,8 @@
           </p>
           <span class="price">
             <span class="price__item">${{ priceUsd }}</span>
-            <span class="price__item small">{{ (priceUsd * btcPerUsd).toFixed(7) }} BTC</span>
-            <span class="price__item small">{{ (priceUsd * bnbPerUsd).toFixed(7) }} BNB</span>
+            <span class="price__item small" style="color: #898b8c;">{{ (priceUsd * btcPerUsd).toFixed(7) }} BTC</span>
+            <span class="price__item small" style="color: #898b8c;">{{ (priceUsd * bnbPerUsd).toFixed(7) }} BNB</span>
           </span>
         </div>
         <div class="m-b-20">
@@ -44,7 +47,7 @@
             {{ $t("AVAILABLE") }}:
           </p>
           <span class="color-white font-bold font-size-24">
-            {{ available.toLocaleString($i18n.locale) }} {{ symbol.toUpperCase() }}
+            {{ issuance.toLocaleString($i18n.locale) }} {{ symbol.toUpperCase() }}
           </span>
         </div>
         <div class="m-b-20">
@@ -52,7 +55,7 @@
             {{ $t("BALANCE") }}:
           </div>
           <span class="font-size-24 font-bold color-white m-r-5">
-            {{ balance.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
+            {{ balance.toLocaleString($i18n.locale, $LOCALESTRING()) }}
             <span class="font-medium font-size-14">{{ symbol.toUpperCase() }}</span>
           </span>
           <small class="color-white font-size-14">
@@ -67,7 +70,7 @@
             {{ $t("YOUR_SHARE_OF_TOKEN") }} {{ symbol.toUpperCase() }}:
           </div>
           <span class="font-size-24 font-bold color-white m-r-5">
-            {{ mySharePercent.toLocaleString($i18n.locale, $LOCALESTRING_PERCENT(1, 2)) }}
+            {{ mySharePercent.toLocaleString($i18n.locale, $LOCALESTRING_PERCENT(1, 8)) }}
           </span>
         </div>
       </div>
@@ -79,25 +82,31 @@
           :thickness="40"
           has-legend
           legend-placement="right"
-          :sections="token[symbol]"
+          :sections="rounds"
         >
           <template #legend>
             <div class="cdc-legend">
               <div
-                v-for="(item, idx) in token[symbol]"
+                v-for="(item, idx) in rounds"
                 :key="idx"
                 :title="item.percent"
                 class="cdc-legend-item"
               >
-                <span class="cdc-legend-item-color" :style="item.style" />
-                <span class="cdc-legend-item-label m-r-5 color-white">
-                  {{ item.label.toUpperCase() }}
+                <span
+                  class="cdc-legend-item-color"
+                  :style="item.style"
+                />
+                <span
+                  class="cdc-legend-item-label m-r-5 color-white"
+                  style="text-transform: uppercase;"
+                >
+                  {{ item.label }}
                 </span>
                 <span
                   class="cdc-legend-item-value"
                   :style="{ color: item.style.backgroundColor}"
                 >
-                  {{ item.value }} %
+                  {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_PERCENT(0, 1)) }}
                 </span>
               </div>
             </div>
@@ -108,9 +117,9 @@
           @close="closeModal"
         >
           <token-swap
-            :input-currency="symbol"
             type="token"
-            :sale="sale"
+            :input-currency="symbol"
+            :sale="currentSale"
             :mode="modal"
           />
         </ui-modal>
@@ -120,165 +129,80 @@
 </template>
 
 <script>
+import TokenSwap from "../token-swap";
+
 export default {
   name: "BalanceInfoToken",
+  components: { TokenSwap },
   props: {
     symbol: {
       type: String,
       default: ""
     },
     sale: {
-      type: Object,
-      default: null
+      type: Array,
+      default () {
+        return [];
+      }
     }
   },
   data () {
     return {
       showModal: false,
-      modal: ""
+      modal: "",
+      colors: {
+        pre_sale: "#bfea44",
+        IDO: "#f0c149",
+        owner_fund: "#51eca1",
+        reward_fund: "#629cf2",
+        public_sale: "#fff"
+      }
     };
   },
   computed: {
-    token () {
-      return {
-        kzn: [
-          {
-            label: "Pre-sale",
-            value: 1,
-            percent: 1,
-            color: "#bfea44",
-            style: { backgroundColor: "#bfea44" }
-          },
-          {
-            label: "IDO",
-            value: 3,
-            percent: 3,
-            color: "#f0c149",
-            style: { backgroundColor: "#f0c149" }
-          },
-          {
-            label: this.$t("COMPANY_WALLET"),
-            value: 15,
-            color: "#51eca1",
-            percent: 15,
-            style: { backgroundColor: "#51eca1" }
-          },
-          {
-            label: this.$t("REMUNERATION_FUND"),
-            value: 5,
-            color: "#629cf2",
-            percent: 5,
-            style: { backgroundColor: "#629cf2" }
-          },
-          {
-            label: "Public sale",
-            value: 62,
-            percent: 62,
-            color: "#fff",
-            style: { backgroundColor: "#fff" }
-          }
-        ],
-        vng: [
-          {
-            label: "Pre-sale",
-            value: 15,
-            percent: 15,
-            color: "#bfea44",
-            style: { backgroundColor: "#bfea44" }
-          },
-          {
-            label: "IDO",
-            value: 3,
-            percent: 3,
-            color: "#f0c149",
-            style: { backgroundColor: "#f0c149" }
-          },
-          {
-            label: this.$t("COMPANY_WALLET"),
-            value: 15,
-            color: "#51eca1",
-            percent: 15,
-            style: { backgroundColor: "#51eca1" }
-          },
-          {
-            label: this.$t("REMUNERATION_FUND"),
-            value: 5,
-            color: "#629cf2",
-            percent: 6,
-            style: { backgroundColor: "#629cf2" }
-          },
-          {
-            label: "Public sale",
-            value: 62,
-            percent: 62,
-            color: "#fff",
-            style: { backgroundColor: "#fff" }
-          }
-        ],
-        srk: [
-          {
-            label: "Pre-sale",
-            value: 1,
-            percent: 15,
-            color: "#bfea44",
-            style: { backgroundColor: "#bfea44" }
-          },
-          {
-            label: "IDO",
-            value: 0.3,
-            percent: 3,
-            color: "#f0c149",
-            style: { backgroundColor: "#f0c149" }
-          },
-          {
-            label: this.$t("COMPANY_WALLET"),
-            value: 15,
-            color: "#51eca1",
-            percent: 15,
-            style: { backgroundColor: "#51eca1" }
-          },
-          {
-            label: this.$t("REMUNERATION_FUND"),
-            value: 5,
-            color: "#629cf2",
-            percent: 6,
-            style: { backgroundColor: "#629cf2" }
-          },
-          {
-            label: "Public sale",
-            value: 78.3,
-            percent: 62,
-            color: "#fff",
-            style: { backgroundColor: "#fff" }
-          }
-        ]
-      };
+    rounds () {
+      return this.sale
+        .sort((a, b) => a.round > b.round ? 1 : -1)
+        .map((item) => {
+          item.label = this.nameRoundByType(item.type);
+          item.percent = item.maxValue / this.issuance;
+          item.color = this.colors[item.type];
+          item.style = { backgroundColor: this.colors[item.type] };
+          item.value = item.maxValue / this.issuance * 100;
+          return item;
+        });
     },
     /* Доля моих токенов */
     mySharePercent () {
-      if (!this.balance || !this.value) {
+      if (!this.balance || !this.issuance) {
         return 0;
       }
-      return this.balance / this.value;
+      return this.balance / this.issuance;
+    },
+    /* Активный этап продаж */
+    currentSale () {
+      return this.sale.find(x => x.isCurrent);
     },
     tokenName () {
-      return this.sale?.name ?? "";
+      return this.currentSale?.name ?? "";
     },
     priceUsd () {
-      return this.sale?.priceUsd ?? 0;
+      return this.currentSale?.priceUsd ?? 0;
     },
-    /* Активны ли продажи? */
+    /* Активны ли продажи?
+     * Если нет - блокируем кнопки покупки/продажи
+     */
     isCurrent () {
-      return this.sale?.isCurrent ?? false;
+      return this.currentSale?.isCurrent ?? false;
     },
-    available () {
-      return ((this.sale?.maxValue ?? 0) - (this.sale?.value ?? 0));
+    issuance () {
+      return this.sale.map(x => x.maxValue).reduce((a, b) => a + b, 0); // ((this.currentSale?.maxValue ?? 0) - (this.currentSale?.value ?? 0));
+    },
+    value () {
+      return this.currentSale?.value ?? 0;
     },
     balance () {
       return this.$store.getters.wallets.find(e => e.symbol === this.symbol)?.amount ?? 0;
-    },
-    value () {
-      return this.sale?.value ?? 0;
     },
     btcPerUsd () {
       const n = this.$store.getters.currency.filter(e => e.symbol === "BTCUSDT")[0]?.price || "...";
@@ -300,12 +224,35 @@ export default {
     closeModal () {
       this.showModal = false;
       this.modal = "";
+    },
+
+    /** Название раунда по типу
+     * @param type Sting - кодовое название типа
+     *
+     * @return String
+     */
+    nameRoundByType (type) {
+      switch (type) {
+        case "reward_fund":
+          return this.$t("REMUNERATION_FUND");
+        case "owner_fund":
+          return this.$t("COMPANY_WALLET");
+        case "pre_sale":
+          return "Pre-sale";
+        case "public_sale":
+          return "Public sale";
+        default :
+          return type;
+      }
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style
+  lang="scss"
+  scoped
+>
 @import "/assets/scss/components/balance-info.scss";
 
 .user-wallets {
@@ -404,7 +351,9 @@ export default {
     &:not(:last-child) {
       margin-bottom: 12px;
     }
+
     &.small {
+      font-weight: normal;
       font-size: 0.7em;
     }
   }

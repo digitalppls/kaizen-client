@@ -7,7 +7,7 @@
             {{ $t("ASSESSED_VALUE") }}:
           </p>
           <p class="font-size-30 font-bold total__balance">
-            {{ totalUSD.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(2, 3)) }}
+            {{ totalUSD.toLocaleString($i18n.locale, $LOCALESTRING(2, 3)) }}
             <span class="font-medium font-size-20">USDT</span>
           </p>
         </div>
@@ -59,7 +59,7 @@
                   {{ item.label.toUpperCase() }}
                 </span>
                 <span class="cdc-legend-item-value" :style="{ color: item.styles.backgroundColor}">
-                  {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO()) }}
+                  {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING()) }}
                 </span>
               </div>
             </div>
@@ -137,7 +137,7 @@ export default {
       return this.sections.map((section, idx) => ({
         label: section.label || `Section ${idx + 1}`,
         value: (section.value * this.total) / 100, // обратно преодразовываем из процентов в кол-во токенов
-        percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING_CRYPTO())})`,
+        percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING())})`,
         styles: { backgroundColor: section.color /* this.defaultColors[currentDefaultColorIdx++] */ }
       }));
     }

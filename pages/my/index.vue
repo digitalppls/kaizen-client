@@ -3,17 +3,17 @@
     <balance-info class="m-b-20" />
     <balance-info-token
       symbol="kzn"
-      :sale="sales.find(x => x.symbol==='kzn' && x.isCurrent === true)"
+      :sale="sales.filter(x => x.symbol === 'kzn')"
       class="m-b-20"
     />
     <balance-info-token
       symbol="vng"
-      :sale="sales.find(x => x.symbol==='vng' && x.isCurrent === true)"
+      :sale="sales.filter(x => x.symbol === 'vng')"
       class="m-b-20"
     />
     <balance-info-token
       symbol="srk"
-      :sale="sales.find(x => x.symbol==='srk' && x.isCurrent === true)"
+      :sale="sales.filter(x => x.symbol === 'srk')"
       class="m-b-20"
     />
     <portfolio-indexes />
@@ -30,13 +30,20 @@ export default {
   components: { PortfolioIndexes, BalanceInfoToken, BalanceInfo },
   data () {
     return {
-      sales: []
+      sales: [],
+      temp: []
     };
   },
   mounted () {
     this.$API.TokenSaleList("all", (sales) => {
-      this.sales = sales.list; // TODO аменить на «Power station Token VNG». пункт 4, 5, 10
+      this.sales = sales?.list ?? [];
+
+      this.temp = this.sales.filter(x => x.symbol === "kzn");
     });
+
+    this.$API.UserWalletWithdrawalList((r) => {
+      this.$store.commit("setWithdrawalList", r);
+    })
   }
 };
 </script>

@@ -91,7 +91,7 @@
           </div>
           <div v-else-if="props.column.field === 'amount'">
             <div style="font-weight: 500;">
-              {{ props.row.amount.toLocaleString(undefined, $LOCALESTRING_CRYPTO) }} {{
+              {{ props.row.amount.toLocaleString(undefined, $LOCALESTRING) }} {{
                 props.row.symbol.toUpperCase()
               }}
             </div>

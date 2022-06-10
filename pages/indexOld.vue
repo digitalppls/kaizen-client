@@ -371,11 +371,11 @@
                 >
                   <span class="cdc-legend-item-color" :style="item.styles" />
                   <span class="cdc-legend-item-label">
-                    {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} - {{ item.label }}
-                    <small>({{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }} KZN)</small>
+                    {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING(0, 0)) }} - {{ item.label }}
+                    <small>({{ item.value.toLocaleString($i18n.locale, $LOCALESTRING(0, 0)) }} KZN)</small>
                   </span>
                   <span v-if="false" class="cdc-legend-item-value">
-                    {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING_CRYPTO(0, 0)) }}
+                    {{ item.value.toLocaleString($i18n.locale, $LOCALESTRING(0, 0)) }}
                   </span>
                 </div>
               </div>
@@ -528,7 +528,7 @@ export default {
       return this.tokenomicsSections.map((section, idx) => ({
         label: section.label || `Section ${idx + 1}`,
         value: (section.value * this.tokenomicsTotal) / 100, // обратно преодразовываем из процентов в кол-во токенов
-        percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING_CRYPTO())})`,
+        percent: `${section.value.toLocaleString()}%`, // (${((section.value * this.total) / 100).toLocaleString(this.$i18n.locale, this.$LOCALESTRING())})`,
         styles: {
           backgroundColor: this.defaultColors[currentDefaultColorIdx++]
         }

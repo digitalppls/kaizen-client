@@ -80,6 +80,17 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+  /* Список токенов доступных для вывода через Wallet33 */
+  UserWalletWithdrawalList (promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      "user/wallet/withdraw/list/",
+      false,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
   /** Покупка токенов (обмен одной монеты на другую) */
   TokenSwap (data, promiseFuncSuccess, promiseFuncFail) {
     this.request(
@@ -88,6 +99,29 @@ export default $axios => (proxy, store) => ({
       data,
       promiseFuncSuccess,
       promiseFuncFail
+    );
+  },
+
+  /** В каких направлениях доступен swap монет. */
+  TokenSwapList (promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      "token/swap/list/",
+      false,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
+  /** В каких направлениях доступен swap монет. */
+  TokenSwapLimit (token, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      `token/swap/${token}/limit/`,
+      false,
+      promiseFuncSuccess,
+      promiseFuncFail,
+      true
     );
   },
 
@@ -192,15 +226,14 @@ export default $axios => (proxy, store) => ({
     );
   },
 
-  request (type, path, data, promiseFuncSuccess, promiseFuncFail) {
+  request (type, path, data, promiseFuncSuccess, promiseFuncFail, isAuth = false) {
     const config = {};
-    config.headers = {
-      Authorization: "Bearer " + store.getters.token
-    };
-
-    // console.log("API Request", type, path, data);
 
     if (type === "post") {
+      config.headers = {
+        Authorization: "Bearer " + store.getters.token
+      };
+
       $axios.$post(`/api/${path}`, data, config).then((response) => {
         if (promiseFuncSuccess) {
           promiseFuncSuccess(response);
@@ -218,6 +251,12 @@ export default $axios => (proxy, store) => ({
       if (data) {
         config.params = data;
       }
+      if (isAuth) {
+        config.headers = {
+          Authorization: "Bearer " + store.getters.token
+        };
+      }
+
       $axios.$get(`/api/${path}`, config).then((response) => {
         if (promiseFuncSuccess) {
           promiseFuncSuccess(response);

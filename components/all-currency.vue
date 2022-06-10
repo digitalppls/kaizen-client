@@ -13,7 +13,7 @@
                 {{ currency.symbol }}
               </template>
               <template #value1>
-                {{ currency.price.toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
+                {{ currency.price.toLocaleString("en-US", $LOCALESTRING()) }}
               </template>
             </currency-item>
           </div>

@@ -26,7 +26,9 @@ export const state = () => ({
   expiresToken: null,
   user: null,
   config: null,
-  currency: []
+  currency: [],
+  tokenSwapList: [],
+  withdrawalList: [],
 });
 
 export const mutations = {
@@ -51,6 +53,12 @@ export const mutations = {
   },
   setRef (state, ref) {
     state.ref = ref;
+  },
+  setTokenSwapList (state, payload) {
+    state.tokenSwapList = payload;
+  },
+  setWithdrawalList (state, payload) {
+    state.withdrawalList = payload;
   }
 };
 
@@ -86,5 +94,7 @@ export const getters = {
   user: s => s.user,
   config: s => s.config,
   wallets: s => s.user?.wallets,
-  currency: s => s.currency
+  currency: s => s.currency,
+  tokenSwapList: s => s.tokenSwapList,
+  withdrawalList: s => s.withdrawalList
 };

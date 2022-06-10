@@ -10,15 +10,28 @@
       </span>
     </h2>
     <div class="m-b-20">
+      <!-- Баланс выбранного токена -->
       <div v-if="sendCoin" class="text-right small m-b-10">
-        <span class="font-300">{{ $t("AVAILABLE") }}:</span>
+        <!-- Доступно для вывода -->
+        <span v-if="sendCoinAvailable > -1" class="m-r-10">
+          <span class="font-300">{{ $t("AVAILABLE") }}:</span>
+          <span class="font-medium color-white">
+            {{ sendCoinAvailable.toLocaleString("en-US", $LOCALESTRING(1, 5)) }}
+          </span>
+          <span class="color-white text-uppercase">
+            {{ sendCoin }}
+          </span>
+        </span>
+
+        <span class="font-300">{{ $t("BALANCE") }}:</span>
         <span class="font-medium color-white">
-          {{ (sendCoin.amount > 0 ? sendCoin.amount : 0).toLocaleString("en-US", $LOCALESTRING_CRYPTO()) }}
+          {{ sendCoinBalance.toLocaleString("en-US", $LOCALESTRING(1, 5)) }}
         </span>
         <span class="color-white text-uppercase">
-          {{ sendCoin.symbol }}
+          {{ sendCoin }}
         </span>
       </div>
+      <!-- Отдаешь токен -->
       <ui-text-field
         v-model.number="sendInput"
         :label="$t('GIVE')"
@@ -39,20 +52,20 @@
             <ui-select
               v-model="sendCoin"
               :options="sendCoinList"
+              style="text-transform: uppercase"
               @input="sendSelect($event)"
             >
               <template #default="{ option }">
-                <div style="text-transform: uppercase">
-                  {{ option ? $symbolCurrencyRemoveUsdt(option.symbol) : "NO_SYMBOL" }}
-                </div>
+                {{ option }}
               </template>
             </ui-select>
           </div>
         </template>
       </ui-text-field>
-      <p v-if="errorValidate" class="error-text m-t-5 font-300" v-html="errorValidate" />
+      <p v-if="errorSendValidate" class="error-text m-t-5 font-300" v-html="errorSendValidate" />
     </div>
     <div class="m-b-20">
+      <!-- Получаешь токен -->
       <ui-text-field
         v-model.number="getInput"
         :label="`≈ ${$t('GET')}`"
@@ -65,31 +78,34 @@
           <ui-select
             v-model="getCoin"
             :options="getCoinList"
+            style="text-transform: uppercase"
             @input="getSelect($event)"
           >
             <template #default="{ option }">
-              {{ option ? $symbolCurrencyRemoveUsdt(option.symbol) : "NONE" }}
+              {{ option }}
             </template>
           </ui-select>
         </template>
       </ui-text-field>
+      <p v-if="errorGetValidate" class="error-text m-t-5 font-300" v-html="errorGetValidate" />
     </div>
+    <!-- Кнопка "КУПИТЬ" -->
     <div class="m-t-40">
       <button
         class="btn btn-full"
         :class="['btn', 'text-uppercase', {'btn-blue': inputCurrency === 'kzn'}, {'btn-yellow': inputCurrency === 'vng'}, {'btn-red': inputCurrency === 'srk'}]"
-        :disabled="loading || !wallets.length || sendInput > sendCoin.amount || !sendInput || !getInput || $symbolCurrencyRemoveUsdt(sendCoin.symbol).toLowerCase() === $symbolCurrencyRemoveUsdt(getCoin.symbol).toLowerCase()"
+        :disabled="loading || !wallets.length || !!errorSendValidate || !!errorGetValidate  || !sendInput || !getInput || sendCoin === getCoin"
         @click="onExchange"
       >
         <ui-preloader v-if="loading" size="small" color="white" />
-        <ui-icon-done v-else-if="done" fill="#deff82" />
+        <ui-icon-done v-else-if="done" fill="#141517" />
         <template v-else>
           {{ $t(mode.toUpperCase()) }}
           <template v-if="mode === 'sell'">
-            {{ $symbolCurrencyRemoveUsdt(sendCoin.symbol) }}
+            {{ sendCoin }}
           </template>
           <template v-else>
-            {{ $symbolCurrencyRemoveUsdt(getCoin.symbol) }}
+            {{ getCoin }}
           </template>
         </template>
       </button>
@@ -143,17 +159,15 @@ export default {
       sendInput: "",
       sendInputUsd: 0,
       sendCoinList: [],
-      sendCoin: {
-        symbol: ""
-      },
+      sendCoinAvailable: -1,
+      sendCoin: "",
       getInput: "",
       getInputUsd: 0,
       getCoinList: [],
-      getCoin: {
-        symbol: ""
-      },
+      getCoin: "",
       errors: [],
-      errorValidate: null
+      errorSendValidate: "",
+      errorGetValidate: ""
     };
   },
   computed: {
@@ -165,6 +179,16 @@ export default {
     },
     indexFromUrl () {
       return this.$route.query?.index ?? null;
+    },
+    /* Из общего списка выбираем направления обмена для текущего токена
+     * Вид элемента массива ["sendToken", "getToken"]
+     */
+    tokenSwapList () {
+      return this.$store.getters.tokenSwapList.filter(x => x.includes(this.inputCurrency));
+    },
+    /* Баланс отдаваемого токена */
+    sendCoinBalance () {
+      return this.wallets.find(item => this.sendCoin === item.symbol)?.amount ?? 0;
     }
   },
   mounted () {
@@ -173,75 +197,53 @@ export default {
   methods: {
     /** Устанавливаем значения списков по умолчанию */
     Update () {
-      const tokenSymbol = this.type === "index"
-        ? this.inputCurrency
-        : this.sale.symbol;
-
       if (this.mode === "buy") { /* Покупка */
-        // Список отдаваемых монет: все что > 0 и если это не получаемая монета
-        this.sendCoinList = this.wallets.filter(item => item.amount > 0 && ![tokenSymbol].includes(item.symbol));
+        // Список отдаваемых монет
+        this.sendCoinList = this.tokenSwapList.map(e => e[0]).filter(x => !x.includes(this.inputCurrency));
         this.sendCoin = this.sendCoinList[0];
-        // список получаемых монет
-        this.getCoinList = this.currencies.filter(item => [this.$symbolCurrencyAddUsdt(tokenSymbol)].includes(item.symbol));
-        this.getCoin = this.getCoinList.find(item => this.$symbolCurrencyRemoveUsdt(item.symbol).toLowerCase() === tokenSymbol);
+        // Список получаемых монет
+        this.getCoinList = [this.inputCurrency];
+        this.getCoin = this.getCoinList[0];
       } else { /* Продажа */
-        // Список токенов, недоступных для получения при продаже
-        const disabledCoins = ["USDTUSDT", "TRXUSDT", "BUSDUSDT", "USDCUSDT", "BNBUSDT", "BTCUSDT"];
-        // Список отдаваемых монет: все что > 0 и если это не получаемая монета
-        this.sendCoinList = this.currencies.filter(item => [this.$symbolCurrencyAddUsdt(tokenSymbol)].includes(item.symbol));
-        this.sendCoin = this.wallets.find(item => tokenSymbol === item.symbol);
-        // this.sendCoin = this.sendCoinList[0];
-        if (this.sendCoin) {
-          disabledCoins.push(this.sendCoin.symbol);
-        }
-        // список получаемых монет
-        this.getCoinList = this.currencies.filter(item => !disabledCoins.includes(item.symbol));
-        this.getCoin = this.wallets.filter(item => item.amount > 0 && ![tokenSymbol].includes(item.symbol))[0];
-      }
+        this.$API.TokenSwapLimit(this.inputCurrency, (r) => {
+          this.sendCoinAvailable = Math.abs(r);
+        });
 
-      // Если в URL есть get параметр "index", то устанавливаем его по умолчанию для покупки
-      // if (this.indexFromUrl) {
-      //   this.getCoin = this.getCoinList.find(e => e.symbol.split("USDT")[0].toUpperCase() === this.indexFromUrl.toUpperCase());
-      // } else if (this.inputCurrency && this.mode === "buy") {
-      //   console.log("2");
-      //   this.getCoin = this.getCoinList.find(item => this.$symbolCurrencyRemoveUsdt(item.symbol).toUpperCase() === this.inputCurrency.toUpperCase());
-      // } else {
-      //   console.log("3");
-      //   this.getCoin = this.getCoinList.filter(e => e.symbol !== this.getCoinList[0].symbol)[0];
-      // }
+        // Список отдаваемых монет
+        this.sendCoinList = [this.inputCurrency];
+        this.sendCoin = this.sendCoinList[0];
+        // Список получаемых монет
+        this.getCoinList = this.tokenSwapList.map(e => e[1]).filter(x => !x.includes(this.inputCurrency));
+        this.getCoin = this.getCoinList[0];
+      }
+    },
+
+    /** Слушатель события ввода отдаваемых монет */
+    onSendInput () {
+      this.sendInputUsd = this.$toUsd(this.sendCoin, this.sendInput);
+      this.getInput = this.$fromUsd(this.getCoin, this.sendInputUsd);
+      this.inputValidate()
     },
 
     /** Слушатель события ввода получаемых монет */
-    onSendInput () {
-      this.sendInputUsd = this.$toUsd(this.$symbolCurrencyRemoveUsdt(this.sendCoin.symbol), this.sendInput);
-      this.getInput = this.$fromUsd(this.$symbolCurrencyRemoveUsdt(this.getCoin.symbol), this.sendInputUsd);
-
-      this.errorValidate = this.sendInput > this.sendCoin.amount
-        ? `Max ${this.sendCoin.amount.toLocaleString("en-US", this.$LOCALESTRING_CRYPTO())}`
-        : "";
-    },
-
-    /** Слушатель события ввода отправляемых монет */
     onGetInput () {
-      this.getInputUsd = this.$toUsd(this.$symbolCurrencyRemoveUsdt(this.getCoin.symbol), this.getInput);
-      this.sendInput = this.$fromUsd(this.$symbolCurrencyRemoveUsdt(this.sendCoin.symbol), this.getInputUsd);
-      this.errorValidate = this.sendInput > this.sendCoin.amount
-        ? `Max ${this.sendCoin.amount.toLocaleString("en-US", this.$LOCALESTRING_CRYPTO())}`
-        : "";
+      this.getInputUsd = this.$toUsd(this.getCoin, this.getInput);
+      this.sendInput = this.$fromUsd(this.sendCoin, this.getInputUsd);
+      this.inputValidate();
     },
 
     /** Обмен токенов */
     onExchange () {
       const confirmMsg = this.$t(`CONFIRM_${this.mode ? this.mode.toUpperCase() : "BUY"}_INDEX`)
-        .replace("%{TOKEN_2}", `${this.sendInput} ${this.sendCoin.symbol.toUpperCase()}`)
-        .replace("%{TOKEN_1}", `${this.getInput} ${this.$symbolCurrencyRemoveUsdt(this.getCoin.symbol)}`);
+        .replace("%{TOKEN_2}", `${this.sendInput} ${this.sendCoin.toUpperCase()}`)
+        .replace("%{TOKEN_1}", `${this.getInput} ${this.getCoin.toUpperCase()}`);
 
       if (confirm(confirmMsg)) {
         this.loading = true;
         this.$API.TokenSwap(
           {
-            fromSymbol: this.sendCoin.symbol,
-            toSymbol: this.$symbolCurrencyRemoveUsdt(this.getCoin.symbol).toLowerCase(),
+            fromSymbol: this.sendCoin,
+            toSymbol: this.getCoin,
             fromAmount: this.sendInput
           }, (r) => {
             this.exchangeSuccess(r);
@@ -274,8 +276,18 @@ export default {
     },
 
     /** Выбор типа отправляемой монеты */
-    sendSelect (event) {
-      this.sendCoin = event;
+    sendSelect (token) {
+      this.sendCoin = token;
+
+      /* Получаем инфо о доступном кол-ве токенов для продажи/вывода */
+      if (["kzn", "vng", "srk"].includes(token)) {
+        this.$API.TokenSwapLimit(token, (r) => {
+          this.sendCoinAvailable = Math.abs(r);
+        });
+      } else {
+        this.sendCoinAvailable = -1;
+      }
+
       this.clearFields();
     },
 
@@ -287,13 +299,35 @@ export default {
 
     /** Очистка полей формы и данных */
     clearFields () {
-      this.getInput = this.sendInput = this.errorValidate = null;
+      this.getInput = this.sendInput = this.errorSendValidate = this.errorGetValidate = null;
     },
 
     /** Установить max значение в поле */
     setMax () {
-      this.sendInput = this.sendCoin.amount;
+      this.sendInput = this.sendCoinAvailable > -1
+        ? this.sendCoinAvailable
+        : this.sendCoinBalance;
       this.onSendInput();
+    },
+
+    /** Валидация формы */
+    inputValidate () {
+      // Если это продажа токена, то продаём max согласно доступному лимиту (берем с сервера)
+      const available = ["kzn", "vng", "srk"].includes(this.sendCoin)
+        ? this.sendCoinAvailable
+        : this.sendCoinBalance;
+
+      if (this.sendInput > available) {
+        this.errorSendValidate = `Max ${available.toLocaleString("en-US", this.$LOCALESTRING(1, 16))}`;
+      } else {
+        this.errorSendValidate = "";
+      }
+
+      if (this.mode === "buy" && this.getInput > this.sale.maxValue) {
+        this.errorGetValidate = `Max ${this.sale.maxValue.toLocaleString("en-US", this.$LOCALESTRING(1, 16))}`;
+      } else {
+        this.errorGetValidate = "";
+      }
     }
   }
 };
