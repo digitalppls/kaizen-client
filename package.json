@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "PROXY='https://kaizenfund.io' nuxt",
+    "dev": "PROXY='https://kzn.digitalppl.com/' nuxt",
     "dev:prod": "HTTPS='true' nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
@@ -24,6 +24,7 @@
     "fingerprintjs2": "^2.1.4",
     "js-base64": "^3.6.1",
     "jssha": "^2.4.2",
+    "liquor-tree": "^0.2.70",
     "multicoin-address-validator": "^0.5.2",
     "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.27.3",

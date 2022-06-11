@@ -5,7 +5,10 @@
       <p class="m-b-20">
         {{ $t("REF_INFO") }}
       </p>
-      <ul v-if="tokenBonusList.length" class="list list--none font-300">
+      <ul
+        v-if="tokenBonusList.length"
+        class="list list--none font-300"
+      >
         <li
           v-for="item in tokenBonusList"
           :key="item._id"
@@ -23,55 +26,91 @@
               {{ invitedUsers }}
             </div>
           </div>
-          <div class="stats-info__label" v-text="$t('INVITED_USERS')" />
+          <div
+            class="stats-info__label"
+            v-text="$t('INVITED_USERS')"
+          />
         </div>
       </div>
 
       <div class="stats-info-row__col">
-        <div class="stats-info" data-token="kzn">
+        <div
+          class="stats-info"
+          data-token="kzn"
+        >
           <div class="stats-info__circle">
             <div class="stats-info__value">
-              <ui-preloader v-if="earnedKZN === -1" size="small" color="gray" />
+              <ui-preloader
+                v-if="earnedKZN === -1"
+                size="small"
+                color="gray"
+              />
               <template v-else>
                 {{ earnedKZN.toLocaleString($i18n.locale) }}
               </template>
             </div>
           </div>
-          <div class="stats-info__label" v-text="`${$t('EARNED')} KZN`" />
+          <div
+            class="stats-info__label"
+            v-text="`${$t('EARNED')} KZN`"
+          />
         </div>
       </div>
 
       <div class="stats-info-row__col">
-        <div class="stats-info" data-token="vng">
+        <div
+          class="stats-info"
+          data-token="vng"
+        >
           <div class="stats-info__circle">
             <div class="stats-info__value">
-              <ui-preloader v-if="earnedVNG === -1" size="small" color="gray" />
+              <ui-preloader
+                v-if="earnedVNG === -1"
+                size="small"
+                color="gray"
+              />
               <template v-else>
                 {{ earnedVNG.toLocaleString($i18n.locale) }}
               </template>
             </div>
           </div>
-          <div class="stats-info__label" v-text="`${$t('EARNED')} VNG`" />
+          <div
+            class="stats-info__label"
+            v-text="`${$t('EARNED')} VNG`"
+          />
         </div>
       </div>
 
       <div class="stats-info-row__col">
-        <div class="stats-info" data-token="srk">
+        <div
+          class="stats-info"
+          data-token="srk"
+        >
           <div class="stats-info__circle">
             <div class="stats-info__value">
-              <ui-preloader v-if="earnedSRK === -1" size="small" color="gray" />
+              <ui-preloader
+                v-if="earnedSRK === -1"
+                size="small"
+                color="gray"
+              />
               <template v-else>
                 {{ earnedSRK.toLocaleString($i18n.locale) }}
               </template>
             </div>
           </div>
-          <div class="stats-info__label" v-text="`${$t('EARNED')} SRK`" />
+          <div
+            class="stats-info__label"
+            v-text="`${$t('EARNED')} SRK`"
+          />
         </div>
       </div>
     </div>
 
     <!-- Кто пригласил -->
-    <div v-if="fatherId" class="m-t-30">
+    <div
+      v-if="fatherId"
+      class="m-t-30"
+    >
       <ui-preloader
         v-if="loading"
         size="button"
@@ -92,6 +131,7 @@
 
 <script>
 import UiPreloader from "./ui/ui-preloader.global";
+
 export default {
   name: "ReferralStats",
   components: { UiPreloader },
@@ -123,12 +163,14 @@ export default {
     },
     /* ID пригласившего пользователя */
     fatherId () {
-      return this.user.fathers[0];
+      return this.user.fathers[0] ?? false;
     }
   },
   mounted () {
-    this.loadUserRefName(this.fatherId);
-    this.getUserRefList();
+    if (this.fatherId) {
+      this.loadUserRefName(this.fatherId);
+    }
+    this.getRefList();
     this.getTransactions();
     // this.getTokenBonusList();
   },
@@ -158,8 +200,8 @@ export default {
     },
 
     /** Получаем список приглашенных пользователей и считаем их */
-    getUserRefList () {
-      this.$API.UserRefList({ _id: this.user.id, line: 1 }, (r) => {
+    getRefList () {
+      this.$API.RefList({ _id: this.user.id, line: 1 }, (r) => {
         this.loading = false;
         this.invitedUsers = r.users.length;
       });
@@ -182,7 +224,10 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style
+  scoped
+  lang="scss"
+>
 .stats-info-row {
   display: flex;
   flex-wrap: wrap;
@@ -224,9 +269,11 @@ export default {
   &[data-token="kzn"] #{$self}__circle {
     border-color: var(--col-blue);
   }
+
   &[data-token="vng"] #{$self}__circle {
     border-color: var(--col-yellow);
   }
+
   &[data-token="srk"] #{$self}__circle {
     border-color: var(--col-red);
   }

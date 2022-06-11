@@ -125,7 +125,7 @@ export default $axios => (proxy, store) => ({
     );
   },
 
-  UserRefList (data, promiseFuncSuccess, promiseFuncFail) {
+  RefList (data, promiseFuncSuccess, promiseFuncFail) {
     this.request(
       "post",
       "ref/list/",

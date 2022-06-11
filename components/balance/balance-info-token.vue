@@ -47,7 +47,7 @@
             {{ $t("AVAILABLE") }}:
           </p>
           <span class="color-white font-bold font-size-24">
-            {{ issuance.toLocaleString($i18n.locale) }} {{ symbol.toUpperCase() }}
+            {{ totalSupply.toLocaleString($i18n.locale) }} {{ symbol.toUpperCase() }}
           </span>
         </div>
         <div class="m-b-20">
@@ -106,7 +106,7 @@
                   class="cdc-legend-item-value"
                   :style="{ color: item.style.backgroundColor}"
                 >
-                  {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_PERCENT(0, 1)) }}
+                  {{ item.percent.toLocaleString($i18n.locale, $LOCALESTRING_PERCENT(0, 2)) }}
                 </span>
               </div>
             </div>
@@ -165,19 +165,19 @@ export default {
         .sort((a, b) => a.round > b.round ? 1 : -1)
         .map((item) => {
           item.label = this.nameRoundByType(item.type);
-          item.percent = item.maxValue / this.issuance;
+          item.percent = item.maxValue / this.totalSupply;
           item.color = this.colors[item.type];
           item.style = { backgroundColor: this.colors[item.type] };
-          item.value = item.maxValue / this.issuance * 100;
+          item.value = item.maxValue / this.totalSupply * 100;
           return item;
         });
     },
     /* Доля моих токенов */
     mySharePercent () {
-      if (!this.balance || !this.issuance) {
+      if (!this.balance || !this.totalSupply) {
         return 0;
       }
-      return this.balance / this.issuance;
+      return this.balance / this.totalSupply;
     },
     /* Активный этап продаж */
     currentSale () {
@@ -195,7 +195,7 @@ export default {
     isCurrent () {
       return this.currentSale?.isCurrent ?? false;
     },
-    issuance () {
+    totalSupply () {
       return this.sale.map(x => x.maxValue).reduce((a, b) => a + b, 0); // ((this.currentSale?.maxValue ?? 0) - (this.currentSale?.value ?? 0));
     },
     value () {

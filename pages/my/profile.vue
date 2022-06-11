@@ -12,7 +12,12 @@
           </h3>
         </div>
       </div>
-      <referral-stats />
+      <referral-stats class="m-b-40" />
+
+      <h3 class="color-white m-b-5">
+        {{ $t("REFERRAL_TREE") }}
+      </h3>
+      <referral-network />
     </section>
 
     <!-- Данные пользователя -->
@@ -95,10 +100,11 @@
 import ReferralLinkBar from "~/components/referral-link-bar";
 import VerifyEmail from "~/components/verify-email";
 import ReferralStats from "~/components/referral-stats";
+import ReferralNetwork from "../../components/referral-network";
 
 export default {
   name: "PageProfile",
-  components: { ReferralStats, ReferralLinkBar, VerifyEmail },
+  components: { ReferralNetwork, ReferralStats, ReferralLinkBar, VerifyEmail },
   data () {
     return {
       interval: 0,
