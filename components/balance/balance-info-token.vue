@@ -47,7 +47,7 @@
             {{ $t("AVAILABLE") }}:
           </p>
           <span class="color-white font-bold font-size-24">
-            {{ totalSupply.toLocaleString($i18n.locale) }} {{ symbol.toUpperCase() }}
+            {{ totalSupplyView.toLocaleString($i18n.locale) }} {{ symbol.toUpperCase() }}
           </span>
         </div>
         <div class="m-b-20">
@@ -196,7 +196,11 @@ export default {
       return this.currentSale?.isCurrent ?? false;
     },
     totalSupply () {
-      return this.sale.map(x => x.maxValue).reduce((a, b) => a + b, 0); // ((this.currentSale?.maxValue ?? 0) - (this.currentSale?.value ?? 0));
+      return this.sale.map(x => x.maxValue).reduce((a, b) => a + b, 0);
+    },
+    /* Чисто для вывода на фронте */
+    totalSupplyView () {
+      return this.sale.filter(e => e.type !== "owner_fund").map(x => x.maxValue).reduce((a, b) => a + b, 0);
     },
     value () {
       return this.currentSale?.value ?? 0;
