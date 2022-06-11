@@ -30,15 +30,12 @@ export default {
   components: { PortfolioIndexes, BalanceInfoToken, BalanceInfo },
   data () {
     return {
-      sales: [],
-      temp: []
+      sales: []
     };
   },
   mounted () {
     this.$API.TokenSaleList("all", (sales) => {
       this.sales = sales?.list ?? [];
-
-      this.temp = this.sales.filter(x => x.symbol === "kzn");
     });
 
     this.$API.UserWalletWithdrawalList((r) => {

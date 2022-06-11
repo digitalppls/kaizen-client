@@ -164,12 +164,14 @@ export default {
       return this.sale
         .sort((a, b) => a.round > b.round ? 1 : -1)
         .map((item) => {
-          item.label = this.nameRoundByType(item.type);
-          item.percent = item.maxValue / this.totalSupply;
-          item.color = this.colors[item.type];
-          item.style = { backgroundColor: this.colors[item.type] };
-          item.value = item.maxValue / this.totalSupply * 100;
-          return item;
+          const e = {...item};
+          e.label = this.nameRoundByType(item.type);
+          e.percent = item.maxValue / this.totalSupply;
+          e.color = this.colors[item.type];
+          e.style = { backgroundColor: this.colors[item.type] };
+          e.v = item.value;
+          e.value = item.maxValue / this.totalSupply * 100;
+          return e;
         });
     },
     /* Доля моих токенов */
@@ -200,7 +202,9 @@ export default {
     },
     /* Чисто для вывода на фронте */
     totalSupplyView () {
-      return this.sale.filter(e => e.type !== "owner_fund").map(x => x.maxValue).reduce((a, b) => a + b, 0);
+      const total = this.sale.filter(e => !["owner_fund", "reward_fund"].includes(e.type)).map(x => x.maxValue).reduce((a, b) => a + b, 0);
+      const value = this.rounds.filter(e => !["owner_fund", "reward_fund"].includes(e.type)).map(x => x.v).reduce((a, b) => a + b, 0)
+      return total - value;
     },
     value () {
       return this.currentSale?.value ?? 0;
