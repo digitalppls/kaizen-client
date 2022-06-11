@@ -2,6 +2,15 @@
   <div v-if="!wallets.length" style="padding: 30px;">
     {{ $t("REFILL_MSG") }}
   </div>
+  <div v-else-if="!emailVerified" style="padding: 30px;">
+    <div class="m-b-20">
+      {{ $t("VERIFY_EMAIL_MSG") }}
+    </div>
+
+    <nuxt-link :to="localePath('/my/profile') + '#verifyemail'" class="btn btn-yellow btn-small" style="padding: 10px 20px; font-size: 14px;">
+      {{ $t("CONFIRM_EMAIL") }}
+    </nuxt-link>
+  </div>
   <div v-else class="token-swap">
     <h2 v-if="mode" class="modal-title m-b-40">
       {{ $t(mode.toUpperCase()) }}
@@ -189,6 +198,9 @@ export default {
     /* Баланс отдаваемого токена */
     sendCoinBalance () {
       return this.wallets.find(item => this.sendCoin === item.symbol)?.amount ?? 0;
+    },
+    emailVerified () {
+      return this.$store.getters.user?.emailVerified ?? false;
     }
   },
   mounted () {

@@ -125,6 +125,7 @@ export default {
   "START_TELEGRAM_BOT": "Запустить бота",
   "EMAIL_VERIFIED_SUCCESS": "Почта подтверждена. <br>Спасибо.",
   "EMAIL_VERIFIED_FAIL": "Почта не подтверждена",
+  "EMAIL_VERIFIED_SEND": "На вашу почту отправлено письмо со ссылкой для активации аккаунта.",
   "ACTIVATE": "Активировать",
   "ACTIVATE_AGAIN": "Активировать повторно",
   "CONFIRM": "Подтвердить",

@@ -14,7 +14,7 @@
     </ul>
     <template v-if="seconds > 0">
       <p class="m-t-20 color-primary font-medium">
-        На вашу почту отправлено письмо со ссылкой для активации аккаунта.
+        {{ $t("EMAIL_VERIFIED_SEND") }}
       </p>
       <p class="m-t-20">
         <span class="color-gray">

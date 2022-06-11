@@ -124,6 +124,7 @@ export default {
   "START_TELEGRAM_BOT": "Start bot.",
   "EMAIL_VERIFIED_SUCCESS": "Email verified. <br>Thank you.",
   "EMAIL_VERIFIED_FAIL": "Email not confirmed",
+  "EMAIL_VERIFIED_SEND": "An email was sent to you with a link to activate your account.",
   "ACTIVATE": "Activate",
   "ACTIVATE_AGAIN": "Reactivate",
   "CONFIRM": "Confirm",

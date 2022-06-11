@@ -22,6 +22,7 @@
 
     <!-- Данные пользователя -->
     <section class="balance-info m-b-20">
+      <div id="verifyemail" />
       <div class="balance-info__top">
         <div>
           <h3 class="color-white m-b-5">

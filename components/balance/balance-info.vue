@@ -9,7 +9,7 @@
         {{ $t("VERIFY_EMAIL_MSG") }}
       </div>
 
-      <nuxt-link :to="localePath('/my/profile')" class="btn btn-yellow btn-small" style="padding: 10px 20px; font-size: 14px;">
+      <nuxt-link :to="localePath('/my/profile') + '#verifyemail'" class="btn btn-yellow btn-small" style="padding: 10px 20px; font-size: 14px;">
         {{ $t("CONFIRM_EMAIL") }}
       </nuxt-link>
     </div>
