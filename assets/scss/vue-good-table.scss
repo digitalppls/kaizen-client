@@ -13,7 +13,7 @@ table.vgt-table,
   color: #fff !important;
 }
 .vgt-table tbody td {
-  font-weight: 400;
+  font-weight: 300;
   font-size: 14px;
 }
 .vgt-wrap__footer .footer__navigation__info,
@@ -67,6 +67,24 @@ table.vgt-table tr.clickable:hover {
   background-color: $border-color !important;
 }
 
+.vgt-global-search {
+  border-color: $border-color !important;
+  background: #151618 !important;
+}
+
+.vgt-input, .vgt-select {
+  border-color: $border-color !important;
+  background-color: #151618 !important;
+  color: #fff !important;
+
+  &::placeholder {
+    color: #fff !important;
+    opacity: .5 !important;
+  }
+}
+
+
+/* Кружки отображающие верификацию почты */
 .disc-success,
 .disc-danger {
   display: inline-block;

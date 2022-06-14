@@ -2,6 +2,29 @@
   <div class="main-section">
     <div class="container">
       <div v-if="checkPermissions" class="page-profile">
+        <div class="page-profile__inline-menu inline-menu-wrap">
+          <ul
+            v-if="menu.length"
+            class="inline-menu list"
+          >
+            <li
+              v-for="(item, i) in menu"
+              :key="i"
+              class="inline-menu__item"
+            >
+              <nuxt-link
+                :exact="!!localePath('admin-users')"
+                no-prefetch
+                :to="localePath(item.url)"
+                active-class="inline-menu__link--active"
+                :class="['inline-menu__link', {'inline-menu__link--disabled': item.url === 'my-indexes', 'inline-menu__link--admin': item.url === 'admin'}]"
+                @click.native="scrollTo($event)"
+              >
+                {{ item.name }}
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
         <div class="page-profile__content">
           <nuxt-child />
         </div>
@@ -18,7 +41,7 @@
                 class="menu__item"
               >
                 <nuxt-link
-                  :exact="!!localePath('my-profile')"
+                  :exact="!!localePath('admin-users')"
                   no-prefetch
                   :to="localePath(item.url)"
                   active-class="menu__link--active"
@@ -63,6 +86,11 @@ export default {
         {
           name: "Дашборд",
           url: "admin",
+          show: true
+        },
+        {
+          name: "Фонды",
+          url: "admin-funds",
           show: true
         },
         {

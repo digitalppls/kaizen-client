@@ -238,6 +238,17 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+  // Список транзакций другого пользователя
+  adminOperationList (data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "post",
+      "operation/list/other/",
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
 
 
   request (type, path, data, promiseFuncSuccess, promiseFuncFail, isAuth = false) {

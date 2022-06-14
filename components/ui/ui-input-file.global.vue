@@ -24,7 +24,7 @@
     </label>
     <ul
       v-if="errors.length"
-      class="list m-t-10"
+      class="list list--none m-t-10"
     >
       <li
         v-for="(error, i) in errors"

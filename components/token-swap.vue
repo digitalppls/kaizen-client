@@ -119,7 +119,7 @@
         </template>
       </button>
     </div>
-    <ul v-if="errors.length" class="list m-t-20">
+    <ul v-if="errors.length" class="list list--none m-t-20">
       <li
         v-for="(error, idx) in errors"
         :key="idx"

@@ -5,7 +5,7 @@
     </h3>
 
     <div class="userlist">
-      <ul v-if="errors.length" class="list m-b-20">
+      <ul v-if="errors.length" class="list list--none m-b-20">
         <li v-for="(error, idx) in errors" :key="idx" class="error-text" v-html="error" />
       </ul>
       <vue-good-table
@@ -20,7 +20,8 @@
           perPageDropdown,
         }"
         :search-options="{
-          enabled: true
+          enabled: true,
+          placeholder: 'Поиск по имени или e-mail',
         }"
         @on-row-click="onRowClick"
         @on-page-change="onPageChange"
@@ -34,13 +35,13 @@
             <!--{{ hideEmail(props.row.email) }}-->
             {{ props.row.email }}
             <span
-              :class="[{'disc-success': props.row.emailVerified, 'disc-danger': !props.row.emailVerified, }]"
-              :title="props.row.emailVerified ? 'Email confirmed' : 'Email not confirmed'"
+              :class="props.row.emailVerified ? 'disc-success' : 'disc-danger'"
+              :title="props.row.emailVerified ? 'Почта подтверждена' : 'Почта не подтверждена'"
             >
               <i />
             </span>
           </div>
-          <div v-else-if="props.column.field === 'invited'">
+          <div v-else-if="props.column.field === 'balance'">
             <div
               v-for="(wallet, key) in props.row.wallets"
               :key="key"
@@ -48,9 +49,6 @@
               <span style="color:#f5cf48;">{{ wallet.symbol.toUpperCase() }}:</span>
                {{ wallet.amount.toLocaleString("en-US", $LOCALESTRING(0, 5)) }} <small>~ {{ wallet.amountUsd.toLocaleString("en-US", $LOCALESTRING_USD(0, 2)) }}</small>
             </div>
-          </div>
-          <div v-else-if="props.column.field === 'action'">
-
           </div>
           <div v-else>
             {{ props.formattedRow[props.column.field] }}
@@ -86,35 +84,28 @@ export default {
       showModal: false,
       errors: [],
       loading: true,
-      loadingRef: false,
-      referralUsername: {
-        userId: "",
-        refUsername: ""
-      },
       columns: [
         {
           label: "Регистрация",
           field: "date",
-          width: "16%",
-          sortable: false
+          width: "20%",
+          sortable: true
         },
         {
           label: "Имя",
           field: "username",
           width: "20%",
-          sortable: false
+          sortable: true
         },
         {
           label: "E-mail",
           field: "email",
-          width: "25%",
-          sortable: false
+          width: "29%",
+          sortable: true
         },
         {
           label: "Баланс кошелька",
-          field: "invited",
-          // width: "50%",
-          // thClass: "min-width-180",
+          field: "balance",
           sortable: false
         }
       ],
@@ -150,24 +141,6 @@ export default {
     /** Проверяем верифицирована ли почта юзера */
     checkEmailVerify (userObj) {
       return userObj?.emailVerified ?? false;
-    },
-
-    /** Получаем имя пригласившего пользователя */
-    loadUserRefName (ref) {
-      this.loadingRef = true;
-      this.referralUsername.userId = ref;
-      this.referralUsername.refUsername = "";
-      this.$API.GetUsername({ ref }, (r) => {
-        this.loadingRef = false;
-        this.referralUsername.refUsername = r;
-      }, (error) => {
-        this.loadingRef = false;
-        this.referralUsername.userId = "";
-        this.referralUsername.refUsername = "";
-        this.errors = Array.isArray(error?.message)
-          ? error.message.map(msg => this.$t(msg.replace(/ /g, "_").toUpperCase()))
-          : [this.$t(error.message.replace(/ /g, "_").toUpperCase())];
-      });
     },
 
     /** Обновление параметров таблицы */

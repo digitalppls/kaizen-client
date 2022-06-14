@@ -3,7 +3,7 @@
     <h2 class="title m-b-30">
       Registered Users
     </h2>
-    <ul v-if="errors.length" class="list m-b-20">
+    <ul v-if="errors.length" class="list list--none m-b-20">
       <li v-for="(error, idx) in errors" :key="idx" class="error-text" v-html="error" />
     </ul>
     <ui-preloader v-if="loading" center="true" />

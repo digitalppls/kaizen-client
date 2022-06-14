@@ -7,7 +7,7 @@
     >
       {{ $t(btnLabel) }}
     </button>
-    <ul v-if="errors.length" class="list m-t-20 m-b-20">
+    <ul v-if="errors.length" class="list list--none m-t-20 m-b-20">
       <li v-for="(error, idx) in errors" :key="idx" class="error-text">
         {{ error }}
       </li>
