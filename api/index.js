@@ -226,6 +226,20 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+  /** Админские методы */
+  // Список зарегистрированных пользователей
+  adminUserList (data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "post",
+      "user/list",
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
+
+
   request (type, path, data, promiseFuncSuccess, promiseFuncFail, isAuth = false) {
     const config = {};
 

@@ -38,7 +38,7 @@ export default {
     ],
     script: [
       {
-        src: "https://kaizenfund.io/socket.io/socket.io.min.js"
+        src: `${process.env.PROXY ?? "https://kaizenfund.io"}/socket.io/socket.io.min.js`
       }
     ],
     link: [
@@ -146,7 +146,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     // "@nuxtjs/eslint-module",
-    "@nuxtjs/global-components"
+    "@nuxtjs/global-components",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -207,7 +207,7 @@ export default {
     // extractCSS: true,
     // publicPath: "dist/"
     extend (config, { loaders }) {
-      loaders.scss.additionalData = "@use \"sass:math\";";
+      loaders.scss.additionalData = "@use \"sass:math\" as math;";
     }
   }
 };

@@ -1,3 +1,96 @@
+$border-color: rgba(#fff, .1);
+
+table.vgt-table,
+.vgt-table thead th,
+.vgt-wrap__footer,
+.vgt-table th.line-numbers,
+.vgt-table th.vgt-checkbox-col {
+  background: #151618 !important;
+  //color: inherit !important;
+}
+.vgt-table thead th,
+.vgt-table tbody td {
+  color: #fff !important;
+}
+.vgt-table tbody td {
+  font-weight: 400;
+  font-size: 14px;
+}
+.vgt-wrap__footer .footer__navigation__info,
+.vgt-wrap__footer .footer__navigation__page-btn,
+.vgt-wrap__footer .footer__navigation__page-info,
+.vgt-wrap__footer .footer__row-count__select {
+  color: inherit !important;
+}
+
+table.vgt-table td,
+.vgt-table thead th {
+  //color: currentColor !important;
+  border-bottom-color: $border-color !important;
+}
+
+.vgt-table th.line-numbers,
+.vgt-table th.vgt-checkbox-col {
+  border-right-color: $border-color !important;
+}
+.vgt-table.bordered td,
+.vgt-table.bordered th,
+table.vgt-table,
+.vgt-wrap__footer {
+  border-color: $border-color !important;
+}
+
+.vgt-table thead th.sorting-asc button:after {
+  border-bottom-color: #fff !important;
+}
+.vgt-table thead th.sorting-desc button:before,
+.vgt-wrap__footer .footer__row-count::after {
+  border-top-color: #fff !important;
+}
+.vgt-table th.sortable button {
+  &:before {
+    border-top-color: $border-color !important;
+  }
+  &:after {
+    border-bottom-color: $border-color !important;
+  }
+}
+
+.vgt-wrap__footer .footer__navigation__page-btn.disabled .chevron.right:after, .vgt-wrap__footer .footer__navigation__page-btn.disabled:hover .chevron.right:after {
+  border-left-color: #fff !important;
+}
+.vgt-wrap__footer .footer__navigation__page-btn.disabled .chevron.left:after, .vgt-wrap__footer .footer__navigation__page-btn.disabled:hover .chevron.left:after {
+  border-right-color: #fff !important;
+}
+
+table.vgt-table tr.clickable:hover {
+  background-color: $border-color !important;
+}
+
+.disc-success,
+.disc-danger {
+  display: inline-block;
+  padding: 0 5px;
+  cursor: help;
+
+  i {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+}
+
+.disc-success i {
+  background-color: var(--col-accent);
+}
+
+.disc-danger i {
+  background-color: var(--col-red);
+}
+
+
+/*
 .vgt-responsive {
   + .vgt-wrap__footer {
     margin-top: 20px;
@@ -184,3 +277,4 @@ table.vgt-table.vgt-table--dark {
 .min-width-200 {
   min-width: 200px !important;
 }
+*/

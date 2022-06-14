@@ -1,31 +1,7 @@
 <template>
   <div class="main-section">
     <div class="container">
-      <div class="page-profile">
-        <div class="page-profile__inline-menu inline-menu-wrap">
-          <ul
-            v-if="menu.length"
-            class="inline-menu list"
-          >
-            <li
-              v-for="(item, i) in menu"
-              :key="i"
-              class="inline-menu__item"
-            >
-              <nuxt-link
-                :exact="!!localePath('my-profile')"
-                no-prefetch
-                :to="localePath(item.url)"
-                :disabled="item.url === 'my-indexes'"
-                active-class="inline-menu__link--active"
-                :class="['inline-menu__link', {'inline-menu__link--disabled': item.url === 'my-indexes', 'inline-menu__link--admin': item.url === 'admin'}]"
-                @click.native="scrollTo($event)"
-              >
-                {{ $t(item.name) }}
-              </nuxt-link>
-            </li>
-          </ul>
-        </div>
+      <div v-if="checkPermissions" class="page-profile">
         <div class="page-profile__content">
           <nuxt-child />
         </div>
@@ -46,19 +22,27 @@
                   no-prefetch
                   :to="localePath(item.url)"
                   active-class="menu__link--active"
-                  :class="['menu__link', {'menu__link--disabled': item.url === 'my-indexes', 'menu__link--admin': item.url === 'admin'}]"
+                  :class="['menu__link']"
                 >
-                  {{ $t(item.name) }}
-                  <span
-                    v-if="item.url === 'my-indexes'"
-                    style="font-size: .6em; color: var(--col-red); opacity: .7; display: block;"
-                    v-text="$t('TEMPORARILY_UNAVAILABLE')"
-                  />
+                  {{ item.name }}
                 </nuxt-link>
               </li>
             </ul>
           </div>
         </div>
+      </div>
+      <div v-else class="text-center">
+        <h1
+          class="title color-red m-b-30"
+          style="color: var(--col-red)"
+          v-text="'Нет доступа'"
+        />
+        <nuxt-link
+          :to="localePath('my')"
+          class="btn btn-outline"
+        >
+          {{ $t("PROFILE") }}
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -67,37 +51,37 @@
 <script>
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "My",
+  name: "AdminRoot",
   data () {
     return {
       menu: [
         {
-          name: "ADMIN",
-          url: "admin",
-          show: this.$store.getters.user.permissions.length
-        },
-        {
-          name: "DASHBOARD",
+          name: "Вернуться в кабинет",
           url: "my",
           show: true
         },
         {
-          name: "OPERATIONS",
-          url: "my-operations",
+          name: "Дашборд",
+          url: "admin",
           show: true
         },
         {
-          name: "PROFILE",
-          url: "my-profile",
+          name: "Пользователи",
+          url: "admin-users",
           show: true
         },
         {
-          name: "BUY_INDEXES",
-          url: "my-indexes",
+          name: "Отложенный ордер",
+          url: "admin-orders",
           show: true
         }
       ]
     };
+  },
+  computed: {
+    checkPermissions () {
+      return this.$store.getters.user.permissions.length;
+    }
   },
   methods: {
     scrollTo (e) {
@@ -117,6 +101,7 @@ export default {
 
   .container {
     margin: 0 auto;
+    //max-width: 100%;
   }
 }
 
@@ -159,6 +144,8 @@ export default {
 }
 
 .menu {
+  padding-left: 0;
+
   &__item {
     font-size: 16px;
     margin: 0;
@@ -188,10 +175,6 @@ export default {
       cursor: default;
       pointer-events: none;
       opacity: .4;
-    }
-
-    &--admin {
-      color: #099169;
     }
   }
 }

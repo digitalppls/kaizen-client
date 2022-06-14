@@ -254,6 +254,7 @@ export default {
 
   // Cabinet
   "START_INVESTING": "Начать инвестировать",
+  "ADMIN": "Администрирование",
   "DASHBOARD": "Кошелёк",
   "SHOW_CURRENCY": "Курсы монет",
   "CURRENCY_QUOTES": "Котировки валют",
