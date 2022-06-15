@@ -8,10 +8,17 @@
       <ul v-if="errors.length" class="list list--none m-b-20">
         <li v-for="(error, idx) in errors" :key="idx" class="error-text" v-html="error" />
       </ul>
+      <ui-text-field
+        v-model="searchTerm"
+        type="text"
+        class="m-b-10"
+        label="Поиск по имени или email"
+      />
       <vue-good-table
-        v-if="rows"
+        v-if="rowsFiltered"
+        mode="remote"
         :columns="columns"
-        :rows="rows"
+        :rows="rowsFiltered"
         :total-rows="totalRecords"
         :line-numbers="true"
         :isLoading.sync="loading"
@@ -21,6 +28,8 @@
         }"
         :search-options="{
           enabled: true,
+          externalQuery: searchTerm,
+          skipDiacritics: true,
           placeholder: 'Поиск по имени или e-mail',
         }"
         @on-row-click="onRowClick"
@@ -76,11 +85,15 @@ import { VueGoodTable } from "vue-good-table";
 import UiPreloader from "../../components/ui/ui-preloader.global";
 import UiModal from "../../components/ui/ui-modal.global";
 import UserCard from "../../components/admin/UserCard";
+import UiTextField from "../../components/ui/ui-text-field.global";
 export default {
   name: "AdminUsers",
-  components: { UserCard, UiModal, UiPreloader, VueGoodTable },
+  components: { UiTextField, UserCard, UiModal, UiPreloader, VueGoodTable },
   data () {
+    const perPage = 10;
+
     return {
+      searchTerm: "",
       showModal: false,
       errors: [],
       loading: true,
@@ -89,44 +102,57 @@ export default {
           label: "Регистрация",
           field: "date",
           width: "20%",
-          sortable: true
+          sortable: false
         },
         {
           label: "Имя",
           field: "username",
-          width: "20%",
-          sortable: true
+          // width: "20%",
+          sortable: false
         },
         {
           label: "E-mail",
           field: "email",
-          width: "29%",
-          sortable: true
-        },
-        {
-          label: "Баланс кошелька",
-          field: "balance",
+          // width: "29%",
           sortable: false
-        }
+        },
+        // {
+        //   label: "Баланс кошелька",
+        //   field: "balance1",
+        //   sortable: false
+        // }
       ],
       rows: [],
       totalRecords: 0,
       page: 1,
       offset: 0,
-      perPageDropdown: [30, 50],
+      perPageDropdown: [perPage],
       serverParams: {
         columnFilters: {},
+        sort: [
+          {
+            field: '',
+            type: ''
+          }
+        ],
         page: 1,
-        perPage: 30
+        perPage
       },
       selectedUserData: null
     };
   },
+  computed: {
+    rowsFiltered () {
+      return this.searchTerm
+        ? this.rows.filter((row) => {
+          const email = row.email.toString().toLowerCase();
+          const username = row.username.toString().toLowerCase();
+          return email.includes(this.searchTerm) || username.includes(this.searchTerm);
+        })
+        : this.rows;
+    }
+  },
   mounted () {
-    // Если такого числа нет в массиве, то добавляем его
-    // if (!this.perPageDropdown.includes(this.serverParams.perPage)) {
-    //   this.perPageDropdown.unshift(this.serverParams.perPage);
-    // }
     this.loadItems();
   },
   methods: {
@@ -136,11 +162,6 @@ export default {
       const left = email[0].slice(0, 2);
       const right = email[1];
       return `${left}***@${right}`;
-    },
-
-    /** Проверяем верифицирована ли почта юзера */
-    checkEmailVerify (userObj) {
-      return userObj?.emailVerified ?? false;
     },
 
     /** Обновление параметров таблицы */
@@ -153,7 +174,7 @@ export default {
       console.log("onPageChange", params);
       this.updateParams({page: params.currentPage});
       this.offset = (params.currentPage - 1) * params.currentPerPage;
-      console.log(`Offset ${this.offset}`);
+      // console.log(`Offset ${this.offset}`);
       this.loadItems();
     },
 

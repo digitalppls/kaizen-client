@@ -1,43 +1,45 @@
 <template>
   <div class="cabinet-history">
-    <ui-select
-      v-model="type"
-      :options="types"
-      style="max-width: 400px"
-      @input="select"
-    >
-      <template #selected="{ option }">
-        {{ $t(option.label) }}
-      </template>
-      <template #default="{ option }">
-        {{ $t(option.label) }}
-      </template>
-    </ui-select>
+    <!--<div v-if="false" style="display: flex; flex-wrap: wrap; align-items: center;" class="m-b-10">
+      <div class="font-400">
+        Токен: <span class="color-white text-uppercase">{{ symbol }}</span>
+      </div>
+      <div style="margin-left: auto;">
+        <ui-select
+          v-model="type"
+          :options="types"
+          style="max-width: 400px; min-width: 200px;"
+          @input="select"
+        >
+          <template #selected="{ option }">
+            {{ $t(option.label) }}
+          </template>
+          <template #default="{ option }">
+            {{ $t(option.label) }}
+          </template>
+        </ui-select>
+      </div>
+    </div>-->
     <ui-preloader v-if="loading" center="true" />
-    <ul v-else-if="errors.length" class="list list--none m-b-20">
+    <ul v-else-if="errors.length" class="list list--none m-t-20 m-b-20">
       <li v-for="(error, idx) in errors" :key="idx" class="error-text m-b-5" v-html="error" />
     </ul>
-    <div v-else-if="transactions.length" class="cabinet-history__body">
+    <div v-else-if="rows.length" class="cabinet-history__body">
       <vue-good-table
-        v-if="transactions"
+        v-if="rows"
+        mode="remote"
         :columns="columns"
-        :rows="transactions"
-        style-class="vgt-table vgt-table--dark"
+        :rows="rows"
+        :isLoading.sync="loading"
+        :total-rows="totalRecords"
         :pagination-options="{
           enabled: true,
-          mode: 'records',
-          perPage: 10,
           position: 'top',
-          perPageDropdown: [5, 10, 15],
-          dropdownAllowAll: true,
-          setCurrentPage: 1,
-          nextLabel: '',
-          prevLabel: '',
-          rowsPerPageLabel: $t('ROWSPERPAGELABEL'),
-          ofLabel: $t('OF').toLowerCase(),
-          pageLabel: 'page', // for 'pages' mode
-          allLabel: $t('ALL'),
+          perPageDropdown,
         }"
+        style-class="vgt-table vgt-table--dark"
+        @on-page-change="onPageChange"
+        @on-per-page-change="onPerPageChange"
       >
         <template slot="table-row" slot-scope="props">
           <div v-if="props.column.field === 'date'">
@@ -137,18 +139,12 @@ export default {
     }
   },
   data () {
+    const perPage = 1;
+
     return {
-      errors: [],
-      transactions: [],
-      limit: 1000,
-      offset: 0,
-      page: 1,
-      copied: false,
-      type: {
-        label: "OPERATION_ALL",
-        value: "all"
-      },
       loading: true,
+      errors: [],
+      rows: [],
       columns: [
         {
           label: this.$t("DATE"),
@@ -171,7 +167,27 @@ export default {
           thClass: "min-width-180",
           sortable: false
         }
-      ]
+      ],
+      type: {
+        label: "OPERATION_ALL",
+        value: "all"
+      },
+      totalRecords: 0,
+      page: 1,
+      offset: 0,
+      copied: false,
+      perPageDropdown: [perPage],
+      serverParams: {
+        columnFilters: {},
+        sort: [
+          {
+            field: '',
+            type: ''
+          }
+        ],
+        page: 1,
+        perPage
+      },
     };
   },
 
@@ -207,14 +223,15 @@ export default {
       this.loading = true;
       const params = {
         offset: this.offset,
-        limit: this.limit,
+        limit: this.serverParams.perPage,
         type: this.type.value,
         symbol: this.symbol,
         userId: this.userId
       };
       this.$API.adminOperationList(params, (r) => {
         this.loading = false;
-        this.transactions = r.operations;
+        this.rows = r.operations;
+        this.totalRecords = r.length;
       }, (e) => {
         this.loading = false;
         console.log(e.message);
@@ -243,7 +260,31 @@ export default {
       setTimeout(() => {
         this.copied = false;
       }, 1000);
-    }
+    },
+
+    /** Обновление параметров таблицы */
+    updateParams(newProps) {
+      this.serverParams = Object.assign({}, this.serverParams, newProps);
+    },
+
+    /** Переключение страниц пагинации */
+    onPageChange(params) {
+      this.updateParams({page: params.currentPage});
+      this.offset = (params.currentPage - 1) * params.currentPerPage;
+      this.getTransactions();
+    },
+
+    /** Изменение лимита отображаемых данных на странице */
+    onPerPageChange(params) {
+      let perPage = params.currentPerPage;
+      if (params.currentPerPage === -1) {
+        perPage = this.totalRecords;
+        this.offset = 0;
+      }
+
+      this.updateParams({ perPage });
+      this.getTransactions();
+    },
   }
 };
 </script>

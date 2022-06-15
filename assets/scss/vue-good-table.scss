@@ -63,6 +63,14 @@ table.vgt-table,
   border-right-color: #fff !important;
 }
 
+.vgt-wrap__footer .footer__navigation__page-btn .chevron.right::after {
+  border-left-color: #fff !important;
+}
+
+.vgt-wrap__footer .footer__navigation__page-btn .chevron.left::after {
+  border-right-color: #fff !important;
+}
+
 table.vgt-table tr.clickable:hover {
   background-color: $border-color !important;
 }

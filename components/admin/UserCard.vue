@@ -68,7 +68,7 @@
     <!-- Балансы -->
     <div
       v-if="userData.wallets.length"
-      class="user-card-balance m-b-30"
+      class="user-card-balance"
     >
       <div
         v-for="(wallet, key) in userData.wallets"
@@ -88,7 +88,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <!-- Список операций по выбранному токену -->
@@ -100,7 +99,7 @@
     />
 
     <!-- Админские права пользователя -->
-    <details v-if="userData.permissions.length" class="m-b-30">
+    <details v-if="userData.permissions.length" class="m-t-30">
       <summary>Доступ к административным функциям</summary>
       <div>
         <ul>
@@ -116,7 +115,7 @@
     </details>
 
     <!-- Объект пользователя -->
-    <details v-if="$isDev">
+    <details v-if="$isDev" class="m-t-30">
       <summary>UserData</summary>
       <div>
         <pre class="color-white" v-html="userData" />
@@ -228,8 +227,11 @@ export default {
      */
     selectWallet (wallet) {
       this.key++;
-      this.selectedSymbol = null;
-      this.selectedSymbol = wallet.symbol;
+      if (this.selectedSymbol !== wallet.symbol) {
+        this.selectedSymbol = wallet.symbol;
+      } else {
+        this.selectedSymbol = null;
+      }
     }
   }
 };
@@ -258,10 +260,16 @@ export default {
       @include respond-before("lg") {
         width: 40%;
       }
+      @include respond-before("xl") {
+        width: 50%;
+      }
     }
     &__right {
       @include respond-before("lg") {
         width: 60%;
+      }
+      @include respond-before("xl") {
+        width: 50%;
       }
     }
   }

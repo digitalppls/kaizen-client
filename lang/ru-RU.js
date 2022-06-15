@@ -21,7 +21,7 @@ export default {
   "OF_PRODUCTION": "производства",
   "POWER_PLANT_FOR": "Электростанция для",
   "FOR_INDUSTRIAL_MINING": "индустриального майнинга",
-  "INDICATORS": "Информационный лист",
+  "INDICATORS": "Показатели",
   "PRODUCTION": "PRO-INDUSTRY",
   "SOON": "Скоро",
   "COOKIES_BANNER": "🍪 Мы используем файлы cookie.",
