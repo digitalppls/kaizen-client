@@ -572,6 +572,6 @@ export default {
 
   // INDICATORS PAGE
   "INDICATORS_DESC": "The market has shown a parabolic rise since 9/20, which is due to the correlation of the first cryptocurrency with the S&P 500 stock index. See detailed report",
-  "COMPANY_WALLET": "Company Wallet",
-  "REMUNERATION_FUND": "REMUNERATION FUND"
+  "COMPANY_WALLET": "Company wallet",
+  "REMUNERATION_FUND": "Remuneration fund"
 };

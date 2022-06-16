@@ -30,6 +30,7 @@ export default {
     Vue.prototype.$declOfNum = this.declOfNum;
     Vue.prototype.$isDev = this.isDev;
     Vue.prototype.$externalLink = this.externalLink;
+    Vue.prototype.$nameRoundByType = this.nameRoundByType;
   },
 
   computed: {
@@ -255,6 +256,26 @@ export default {
         ? 2
         : cases[(number % 10 < 5) ? number % 10 : 5]];
       return echo ? `${number} ${text}` : text;
+    },
+
+    /** Название раунда/фонла на основе типа
+     * @param type String - кодовое название типа
+     *
+     * @return String
+     */
+    nameRoundByType (type) {
+      switch (type) {
+        case "reward_fund":
+          return this.$t("REMUNERATION_FUND");
+        case "owner_fund":
+          return this.$t("COMPANY_WALLET");
+        case "pre_sale":
+          return "Pre-sale";
+        case "public_sale":
+          return "Public sale";
+        default :
+          return type;
+      }
     }
 
   }

@@ -165,7 +165,7 @@ export default {
         .sort((a, b) => a.round > b.round ? 1 : -1)
         .map((item) => {
           const e = {...item};
-          e.label = this.nameRoundByType(item.type);
+          e.label = this.$nameRoundByType(item.type);
           e.percent = item.maxValue / this.totalSupply;
           e.color = this.colors[item.type];
           e.style = { backgroundColor: this.colors[item.type] };
@@ -233,26 +233,6 @@ export default {
       this.showModal = false;
       this.modal = "";
     },
-
-    /** Название раунда по типу
-     * @param type Sting - кодовое название типа
-     *
-     * @return String
-     */
-    nameRoundByType (type) {
-      switch (type) {
-        case "reward_fund":
-          return this.$t("REMUNERATION_FUND");
-        case "owner_fund":
-          return this.$t("COMPANY_WALLET");
-        case "pre_sale":
-          return "Pre-sale";
-        case "public_sale":
-          return "Public sale";
-        default :
-          return type;
-      }
-    }
   }
 };
 </script>

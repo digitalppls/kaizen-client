@@ -218,7 +218,7 @@ export default {
     closeModal () {
       this.showModal = false;
       this.selectedUserData = null;
-    },
+    }
   }
 };
 
