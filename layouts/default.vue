@@ -59,11 +59,6 @@ export default {
       });
       this.$API.TokenSwapList((r) => {
         this.$store.commit("setTokenSwapList", r ?? []);
-      }, (e) => {
-        if (e.message === "incorrect_access_token") {
-          this.$store.dispatch("logout");
-          this.$router.push(this.localePath("auth"));
-        }
       });
       // последняя операция
       this.$socket.on("operation_update", this.updateOperation);

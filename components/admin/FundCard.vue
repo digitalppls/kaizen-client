@@ -8,19 +8,6 @@
       </span>
     </h2>
 
-    <!-- Ошибки -->
-    <ul
-      v-if="errors.length"
-      class="list list--none m-b-20"
-    >
-      <li
-        v-for="(error, idx) in errors"
-        :key="idx"
-        class="error-text m-b-5"
-        v-html="error"
-      />
-    </ul>
-
     <div
       v-for="(field, label, key) in paramsFieldsCurrentSale"
       :key="key"
@@ -39,7 +26,12 @@
         <ui-text-field
           v-model="paramsFieldsCurrentSale[label]"
           :value="field"
-        />
+          @input="errors = []"
+        >
+          <template #prepend v-if="label === 'priceUsd'">
+            $
+          </template>
+        </ui-text-field>
       </template>
     </div>
 
@@ -62,6 +54,19 @@
         Сохарнить
       </template>
     </button>
+
+    <!-- Ошибки -->
+    <ul
+      v-if="errors.length"
+      class="list list--none m-t-20"
+    >
+      <li
+        v-for="(error, idx) in errors"
+        :key="idx"
+        class="error-text m-b-5"
+        v-html="error"
+      />
+    </ul>
   </div>
   <div v-else class="text-center">
     Нет данных
@@ -82,7 +87,7 @@ export default {
   props: {
     selectedFund: {
       type: Object,
-      required: true,
+      required: false,
       default () {
         return {};
       }
@@ -106,27 +111,16 @@ export default {
   computed: {
     currentSale () {
       return this.funds.find(x => x.isCurrent);
-    },
-    /** Фильтруем только те параметры, которые можно редактировать */
-    editableFieldsCurrentSale: {
-      get () {
-        return this.currentSale ?
-          Object.keys(this.currentSale)
-            .filter(attr => ["holdDays", "label", "priceUsd"].includes(attr))
-            .reduce((obj, key) => {
-              obj[key] = this.currentSale[key];
-              return obj;
-            }, {}) : {};
-      },
-
-      set (value) {
-        console.log("set new value", value);
-      }
     }
   },
   mounted () {
     this.paramsFieldsCurrentSale = Object.keys(this.selectedFund)
-      .filter(attr => ["isCurrent", "holdDays", "label", "priceUsd"].includes(attr))
+      .filter((attr) => {
+        if (["reward_fund", "owner_fund"].includes(this.selectedFund.type)) {
+          return ["maxValue"].includes(attr);
+        }
+        return ["isCurrent", "name", "maxValue", "holdDays", "priceUsd"].includes(attr);
+      })
       .reduce((obj, key) => {
         obj[key] = this.selectedFund[key];
         return obj;
@@ -137,19 +131,25 @@ export default {
     saveSale () {
       const params = {
         _id: this.selectedFund._id,
+        // symbol: this.selectedFund.symbol,
         ...this.paramsFieldsCurrentSale
       };
+      params.priceUsd = +params.priceUsd;
+      params.maxValue = +params.maxValue;
+      console.log("save sale", params);
       this.loading = true;
       this.$API.TokenSaleSave(params, (r) => {
-        console.log("save sale", params, r);
         this.loading = false;
         this.done = true;
-        this.$nuxt.$emit("update-fund"); // Фоном обновляем данные
-        setTimeout(() => (this.done = false), 2000);
+        this.$nuxt.$emit("update-fund", r.list); // Фоном обновляем данные
+        setTimeout(() => {
+          this.done = false;
+          this.$emit("updated"); // закрываем окно
+        }, 1000);
       }, (e) => {
         this.loading = false;
         this.errors = Array.isArray(e?.message)
-          ? this.$t(e?.message.toUpperCase())
+          ? e?.message
           : [this.$t(e.message.toUpperCase())];
         console.log("[TokenSaleSave]", e);
       });
@@ -169,9 +169,11 @@ export default {
         case "holdDays":
           return "Сколько дней нельзя выводить";
         case "priceUsd":
-          return "Цена, в долларах";
+          return "Цена";
         case "isCurrent":
           return "Сделать активным";
+        case "maxValue":
+          return "Выделено";
         default :
           return key;
       }

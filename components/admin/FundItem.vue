@@ -1,15 +1,21 @@
 <template>
-  <section class="balance-info">
+  <section v-if="currentSale" class="balance-info">
+    <!-- Шапка -->
     <div class="balance-info__top">
       <div>
         <h3 class="color-white m-b-5">
-          {{ tokenName }}
+          {{ currentSale.name }}
+          &mdash;
+          <span :style="{color: $RoundColors[currentSale.type], cursor: 'help'}" title="Текущий этап продаж">
+            {{ $nameRoundByType(currentSale.type) }}
+          </span>
         </h3>
+        <div class="text-uppercase">
+          {{ currentSale.symbol }}
+        </div>
       </div>
-      <!--<div class="m-l-a">
-        buttons
-      </div>-->
     </div>
+    <!-- Таблица -->
     <vue-good-table
       v-if="funds"
       :columns="columns"
@@ -17,11 +23,21 @@
       class="table-funds"
       @on-row-click="onRowClick"
     >
-      <template slot="table-row" slot-scope="props">
+      <template
+        slot="table-row"
+        slot-scope="props"
+      >
         <template v-if="props.column.field === 'label'">
-          <span class="fund-item-color" :style="props.row.style" />
+          <span
+            class="fund-item-color"
+            :style="props.row.style"
+          />
           <b>{{ props.row.label }}</b>
-          <span v-if="props.row.isCurrent" class="color-gray m-l-5 font-size-12">&mdash; Активный</span>
+          <span
+            v-if="props.row.isCurrent"
+            class="color-gray m-l-5 font-size-12"
+          >&mdash; Активный
+          </span>
         </template>
         <template v-else-if="props.column.field === 'value'">
           {{ props.row.value.toLocaleString($i18n.locale, $LOCALESTRING(0, 2)) }}
@@ -33,25 +49,19 @@
           {{ props.row.maxValue.toLocaleString($i18n.locale, $LOCALESTRING(0, 2)) }}
         </template>
         <template v-else-if="props.column.field === 'priceUsd'">
-          ${{ props.row.priceUsd.toLocaleString($i18n.locale, $LOCALESTRING(0, 2)) }}
-        </template>
-        <template v-else-if="props.column.field === 'swap'">
-          <button
-            title="Пополнить с другого счета"
-            class="btn-swap"
-            @click.stop="openModal(props.row)"
-          >
-            <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.99979 4.00014V32.0006H35.9997L36 4.00014H3.99979ZM1.9999 0H38.0001C38.5305 0 39.0394 0.210601 39.4144 0.585938C39.7894 0.96094 40 1.46957 40 1.99989V34.0006C40 34.531 39.7894 35.0396 39.4144 35.4146C39.0394 35.7899 38.5305 36.0005 38.0001 36.0005H1.9999C1.46954 36.0005 0.960606 35.7899 0.585603 35.4146C0.210601 35.0396 0 34.531 0 34.0006V1.99989C0 1.46953 0.210601 0.96094 0.585603 0.585938C0.960606 0.210601 1.46949 0 1.9999 0V0ZM26 7.99993L33.0002 14L26 20V15.9999H18.0001V12.0001H26V7.99993ZM14 28.0006L6.99981 22.0006L14 16.0005V20.0007H21.9999V24.0008L14 24.0005V28.0006Z" fill="#56585F"/>
-            </svg>
-          </button>
+          <template v-if="props.row.priceUsd">
+            ${{ props.row.priceUsd.toLocaleString($i18n.locale, $LOCALESTRING(0, 3)) }}
+          </template>
+          <template v-else>
+            &mdash;
+          </template>
         </template>
         <div v-else>
           {{ props.formattedRow[props.column.field] }}
         </div>
       </template>
     </vue-good-table>
-    <p class="text-right m-t-5"><small class="font-300">Кликните на название фонда, чтобы изменить его настройки.</small></p>
+    <p class="text-right m-t-5"><small class="font-300">Нажмите на название фонда, чтобы изменить его настройки.</small></p>
 
     <!-- Окно с переводом средств между фондами -->
     <ui-modal
@@ -59,15 +69,10 @@
       max-width="600px"
       @close="closeModal"
     >
-      <fund-swap
-        v-if="modal === 'swap'"
-        :input-fund="selectedFund"
-        :funds="funds"
-      />
       <fund-card
-        v-else
         :selected-fund="selectedFund"
         :funds="funds"
+        @updated="closeModal"
       />
     </ui-modal>
   </section>
@@ -94,7 +99,7 @@ export default {
   data () {
     return {
       showModal: false,
-      modal: "", // ["settings", "swap"]
+      modal: "",
       errors: [],
       loading: false,
       selectedFund: null,
@@ -113,11 +118,11 @@ export default {
         {
           label: "Цена",
           field: "priceUsd",
-          width: "15%",
+          width: "10%",
           sortable: true
         },
         {
-          label: "Всего",
+          label: "Выделено",
           field: "maxValue",
           width: "15%",
           sortable: true
@@ -127,22 +132,16 @@ export default {
           field: "value",
           width: "15%",
           sortable: true
-        },
-        {
-          label: "",
-          field: "swap",
-          width: "5%",
-          sortable: false
         }
       ]
     };
   },
   computed: {
     funds () {
-      return this.sale
+      const funds = this.sale
         .sort((a, b) => a.round > b.round ? 1 : -1)
         .map((item) => {
-          const e = {...item};
+          const e = { ...item };
           e.label = this.$nameRoundByType(item.type);
           e.percent = item.maxValue / this.totalSupply;
           e.color = this.$RoundColors[item.type];
@@ -150,24 +149,29 @@ export default {
           e.percent = item.maxValue / this.totalSupply;
           return e;
         });
+      // Считаем ИТОГО
+      if (funds.length) {
+        funds.push({
+          label: "ИТОГО",
+          round: 0,
+          isCurrent: false,
+          type: "check",
+          priceUsd: 0,
+          color: "#444",
+          style: { backgroundColor: "#444" },
+          value: funds.map(x => x.value).reduce((a, b) => a + b, 0),
+          maxValue: funds.map(x => x.maxValue).reduce((a, b) => a + b, 0),
+          percent: funds.map(x => x.percent).reduce((a, b) => a + b, 0)
+        });
+      }
+      return funds;
     },
     symbol () {
       return this.sale?.symbol ?? "";
     },
     /* Активный этап продаж */
-    currentSale: {
-      get () {
-        return this.funds.find(x => x.isCurrent);
-      },
-      set (value) {
-        console.log("set current sale", value);
-      }
-    },
-    priceUsd () {
-      return this.currentSale?.priceUsd ?? 0;
-    },
-    tokenName () {
-      return this.currentSale?.name ?? "";
+    currentSale () {
+      return this.funds.find(x => x.isCurrent);
     },
     totalSupply () {
       return this.sale.map(x => x.maxValue).reduce((a, b) => a + b, 0);
@@ -175,22 +179,35 @@ export default {
     /* Чисто для вывода на фронте */
     totalSupplyView () {
       const total = this.sale.filter(e => !["owner_fund", "reward_fund"].includes(e.type)).map(x => x.maxValue).reduce((a, b) => a + b, 0);
-      const value = this.funds.filter(e => !["owner_fund", "reward_fund"].includes(e.type)).map(x => x.v).reduce((a, b) => a + b, 0)
+      const value = this.funds.filter(e => !["owner_fund", "reward_fund"].includes(e.type)).map(x => x.v).reduce((a, b) => a + b, 0);
       return total - value;
-    },
+    }
   },
   methods: {
-    /** Клик по строке таблицы
-     *  Открывается модального окна с карточкой пользователя
+    /**
+     * Клик по строке таблицы
+     * Открывается модального окна с карточкой фонда
+     *
+     * @param params Object объект строки
      */
     onRowClick (params) {
+      if (params.row.type === "check") {
+        return false;
+      }
       this.selectedFund = params.row;
       this.modal = "settings";
       this.showModal = true;
     },
-    openModal (row) {
+
+    /**
+     * Открыть модальное окно
+     *
+     * @param modal String ['swap', 'addFund']
+     * @param row Object Объект выбранного фонда
+     */
+    openModal (modal = "swap-fund", row = {}) {
       this.selectedFund = row;
-      this.modal = "swap";
+      this.modal = modal;
       this.showModal = true;
     },
 
@@ -202,7 +219,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style
+  lang="scss"
+  scoped
+>
 @import "/assets/scss/components/balance-info.scss";
 
 .fund-item {
@@ -251,6 +271,8 @@ export default {
   }
 }
 
+/*
+// Для последней колонки, где одна кнопку Swap
 .table-funds::v-deep {
   tr {
     td:last-child {
@@ -266,5 +288,5 @@ export default {
       }
     }
   }
-}
+}*/
 </style>

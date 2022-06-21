@@ -21,10 +21,10 @@ export default {
     };
   },
   beforeMount () {
-    this.$nuxt.$on("update-fund", this.loadData);
+    this.$nuxt.$on("update-fund", this.updateData);
   },
   beforeDestroy () {
-    this.$nuxt.$off("update-fund", this.loadData);
+    this.$nuxt.$off("update-fund", this.updateData);
   },
   mounted () {
     this.loadData();
@@ -35,6 +35,12 @@ export default {
       this.$API.TokenSaleList("all", (sales) => {
         this.sales = sales?.list ?? [];
       });
+    },
+    /** Обновляем данные */
+    updateData (list) {
+      if (list.length) {
+        this.sales = list;
+      }
     }
   }
 };

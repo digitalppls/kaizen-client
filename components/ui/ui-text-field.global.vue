@@ -191,6 +191,7 @@ export default {
     //border-color: #555860;
   }
 
+  &--prepend,
   &--append {
     align-items: center;
   }

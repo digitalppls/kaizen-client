@@ -6,10 +6,21 @@
     <div class="balance-info__top">
       <div>
         <h3 class="color-white m-b-5">
+          <!--{{ currentSale }}-->
+
           {{ tokenName }}
 
+          <!--
           <template v-if="symbol !== 'vng'">
             {{ symbol.toUpperCase() }}
+          </template>
+          -->
+
+          <template v-if="currentSale && currentSale.type">
+            &mdash;
+            <span :style="{color: $RoundColors[currentSale.type]}">
+              {{ $nameRoundByType(currentSale.type) }}
+            </span>
           </template>
         </h3>
       </div>
