@@ -1,7 +1,6 @@
 <template>
   <div
     ref="ui-select"
-    v-click-outside="close"
     :class="[
       'ui-select',
       { 'ui-select--disabled' : disabled },
@@ -9,6 +8,7 @@
       { 'ui-select--single' : options.length === 1 },
       { 'ui-select--inside' : isInsideElement }
     ]"
+    v-click-outside="close"
     @click="options.length === 1 ? null : open = !open"
     @close-select="open = false"
   >
@@ -53,6 +53,8 @@
 }
 </i18n>
 <script>
+import vClickOutside from "v-click-outside";
+
 export default {
   name: "UiSelect",
   props: {
@@ -65,13 +67,12 @@ export default {
       default: ""
     },
     value: {
-      type: [String, Object],
-      default () {
-        return {};
-      }
+      type: [String, Object, Boolean],
+      default: ""
     },
     options: {
       type: Array,
+      required: true,
       default () {
         return [];
       }
@@ -108,11 +109,17 @@ export default {
     close () {
       this.open = false;
     }
+  },
+  directives: {
+    clickOutside: vClickOutside.directive
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style
+  lang="scss"
+  scoped
+>
 .ui-select {
   $self: &;
   $input-padding-x: 10px;

@@ -1,10 +1,10 @@
 <template>
   <div class="token-swap">
-    <h2 class="modal-title m-b-10">
+    <h2 class="m-b-10 color-white">
       {{ inputFund.name }}
     </h2>
-    <div class="m-b-40 text-center">
-      Попополнить <span class="color-white">{{ inputFund.label }}</span>
+    <div class="m-b-40">
+      Попополнить <span :style="{color: $RoundColors[inputFund.type]}">{{ inputFund.label }}</span>
     </div>
     <div class="m-b-20">
       <!-- Доступно -->
@@ -64,10 +64,9 @@
     </div>
 
     <!-- Кнопка "ПЕРЕВЕСТИ" -->
-    <div class="m-t-40">
+    <div class="m-t-20">
       <button
-        class="btn btn-full"
-        :class="['btn', 'text-uppercase', {'btn-blue': inputFund.symbol === 'kzn'}, {'btn-yellow': inputFund.symbol === 'vng'}, {'btn-red': inputFund.symbol === 'srk'}]"
+        :class="['btn', 'btn-full', 'btn-medium', 'text-uppercase', {'btn-blue': inputFund.symbol === 'kzn'}, {'btn-yellow': inputFund.symbol === 'vng'}, {'btn-red': inputFund.symbol === 'srk'}]"
         :disabled="loading || !!errorSendValidate || !sendInput"
         @click="onExchange"
       >
@@ -101,8 +100,13 @@
 
 <script>
 
+import UiTextField from "../ui/ui-text-field.global";
+import UiSelect from "../ui/ui-select.global";
+import UiIconDone from "../ui/ui-icon-done.global";
+import UiPreloader from "../ui/ui-preloader.global";
 export default {
   name: "FundSwap",
+  components: { UiPreloader, UiIconDone, UiSelect, UiTextField },
   props: {
     inputFund: { // фонд, который нужно пополнить
       type: Object,

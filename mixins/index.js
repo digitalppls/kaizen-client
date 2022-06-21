@@ -31,6 +31,21 @@ export default {
     Vue.prototype.$isDev = this.isDev;
     Vue.prototype.$externalLink = this.externalLink;
     Vue.prototype.$nameRoundByType = this.nameRoundByType;
+    Vue.prototype.$TokenColors = {
+      kzn: "#44f3ff",
+      vng: "#fedb81",
+      srk: "#ff424e",
+      usdt: "#099169",
+      usd: "#099169",
+      btc: "#f69014"
+    };
+    Vue.prototype.$RoundColors = {
+      pre_sale: "#bfea44",
+      IDO: "#f0c149",
+      owner_fund: "#51eca1",
+      reward_fund: "#629cf2",
+      public_sale: "#fff"
+    };
   },
 
   computed: {

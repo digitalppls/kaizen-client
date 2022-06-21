@@ -31,7 +31,7 @@ export default {
   },
   props: {
     value: {
-      type: [String, Boolean, String],
+      type: [String, Boolean],
       default: ""
     },
     type: {
@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$checkbox-size: 16px;
+$checkbox-size: 20px;
 $checkbox-size-checked: 14px;
 
 .ui-form-check {
@@ -92,9 +92,9 @@ $checkbox-size-checked: 14px;
       display: inline-block;
       width: $checkbox-size;
       height: $checkbox-size;
-      border: 1px solid var(--btn-border);
-      border-radius: 4px;
-      background-color: transparent;
+      border: 1px solid #55585f;
+      border-radius: 0;
+      background-color: #242527;
       background-repeat: no-repeat;
       background-position: 50% 50%;
       background-size: $checkbox-size-checked $checkbox-size-checked;
@@ -160,7 +160,7 @@ $checkbox-size-checked: 14px;
     &:not(:disabled):active + #{$label} {
       &:before {
         //background-color: var(--btn-bg-hover);
-        border-color: var(--btn-border);
+        border-color: #ddd;
       }
     }
 
@@ -181,19 +181,19 @@ $checkbox-size-checked: 14px;
     // стили для радиокнопки, находящейся в состоянии checked
     &[type="checkbox"]:checked + #{$label} {
       &:after {
-        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 13.5L7.5 18L16.5 3.5' stroke='%23ffe600' stroke-width='4' stroke-linecap='square' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+        background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 13.5L7.5 18L16.5 3.5' stroke='%23ffffff' stroke-width='4' stroke-linecap='square' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
       }
     }
 
     &[type="radio"]:checked + #{$label} {
       &:after {
-        background-color: var(--color-primary);
+        background-color: var(--col-main);
       }
     }
 
     &:checked + #{$label} {
       &:before {
-        border-color: var(--btn-border);
+        border-color: #55585f;
       }
     }
 

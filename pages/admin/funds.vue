@@ -20,10 +20,22 @@ export default {
       sales: []
     };
   },
+  beforeMount () {
+    this.$nuxt.$on("update-fund", this.loadData);
+  },
+  beforeDestroy () {
+    this.$nuxt.$off("update-fund", this.loadData);
+  },
   mounted () {
-    this.$API.TokenSaleList("all", (sales) => {
-      this.sales = sales?.list ?? [];
-    });
+    this.loadData();
+  },
+  methods: {
+    /** Загружаем данные о сейлах/раундах/фондах */
+    loadData () {
+      this.$API.TokenSaleList("all", (sales) => {
+        this.sales = sales?.list ?? [];
+      });
+    }
   }
 };
 </script>

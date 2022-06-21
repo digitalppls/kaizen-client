@@ -76,8 +76,8 @@
       </div>
       <div class="user-wallets-box__right">
         <vc-donut
-          background="#151618"
-          foreground="#EAECEF"
+          :background="'#151618'"
+          :foreground="'#EAECEF'"
           :size="225"
           :thickness="40"
           has-legend
@@ -130,10 +130,11 @@
 
 <script>
 import TokenSwap from "../token-swap";
+import UiModal from "../ui/ui-modal.global";
 
 export default {
   name: "BalanceInfoToken",
-  components: { TokenSwap },
+  components: { UiModal, TokenSwap },
   props: {
     symbol: {
       type: String,
@@ -149,14 +150,7 @@ export default {
   data () {
     return {
       showModal: false,
-      modal: "",
-      colors: {
-        pre_sale: "#bfea44",
-        IDO: "#f0c149",
-        owner_fund: "#51eca1",
-        reward_fund: "#629cf2",
-        public_sale: "#fff"
-      }
+      modal: ""
     };
   },
   computed: {
@@ -167,8 +161,8 @@ export default {
           const e = {...item};
           e.label = this.$nameRoundByType(item.type);
           e.percent = item.maxValue / this.totalSupply;
-          e.color = this.colors[item.type];
-          e.style = { backgroundColor: this.colors[item.type] };
+          e.color = this.$RoundColors[item.type];
+          e.style = { backgroundColor: this.$RoundColors[item.type] };
           e.v = item.value;
           e.value = item.maxValue / this.totalSupply * 100;
           return e;

@@ -77,7 +77,7 @@
         @click="selectWallet(wallet)"
       >
         <div :class="['user-card-balance__box', {'user-card-balance__box--active': wallet.symbol === selectedSymbol}]" :title="wallet.amount">
-          <div class="user-card-balance__token" :style="{color: colors[wallet.symbol]}">
+          <div class="user-card-balance__token" :style="{color: $TokenColors[wallet.symbol]}">
             {{ wallet.symbol.toUpperCase() }}
           </div>
           <div class="user-card-balance__amount">
@@ -88,6 +88,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div v-else class="font-500 color-red">
+      Кошелек пользователя пуст.
     </div>
 
     <!-- Список операций по выбранному токену -->
@@ -147,12 +150,6 @@ export default {
       loadingRef: false,
       fatherName: "",
       errors: [],
-      colors: {
-        kzn: "#44f3ff",
-        vng: "#fedb81",
-        srk: "#ff424e",
-        usdt: "#099169"
-      },
       loading: true,
       columns: [
         {
@@ -338,28 +335,6 @@ export default {
   border-radius: 3px;
   font-size: 85%;
   padding: 0.2em 0.4em;
-}
-
-/* А-ля спойлер */
-details {
-  border: 1px solid #55585f;
-
-  summary {
-    background: #242527;
-    cursor: pointer;
-    font-weight: 400;
-    color: #fff;
-    padding: .5rem 1rem;
-
-    > * {
-      display: inline;
-    }
-  }
-
-  > div {
-    margin-top: 0;
-    padding: 1rem;
-  }
 }
 
 

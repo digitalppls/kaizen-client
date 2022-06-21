@@ -7,12 +7,20 @@
       { 'ui-input-text--is-focus': isFocus },
       { 'ui-input-text--focused': isFocused },
       { 'ui-input-text--append': hasAppend },
+      { 'ui-input-text--prepend': hasPrepend },
       { 'ui-input-text--disabled': disabled }
     ]"
   >
+    <div
+      v-if="hasPrepend"
+      class="ui-input-text__prepend"
+    >
+      <slot name="prepend" />
+    </div>
     <div class="ui-input-text__input">
       <input
         v-bind="$attrs"
+        :id="elemID"
         :value="value"
         :readonly="disabled"
         :placeholder="floating ? '' : label"
@@ -21,20 +29,29 @@
         @input="$emit('input', $event.target.value)"
       >
     </div>
-    <label v-if="floating" v-html="label" />
-    <div v-if="hasAppend" class="ui-input-text__append">
+    <label
+      v-if="floating"
+      :for="elemID"
+      v-html="label"
+    />
+    <div
+      v-if="hasAppend"
+      class="ui-input-text__append"
+    >
       <slot name="append" />
     </div>
   </div>
 </template>
 
 <script>
+import vClickOutside from "v-click-outside";
+
 export default {
   name: "UiTextField",
   inheritAttrs: false,
   props: {
     value: {
-      type: [String, Number],
+      type: [String, Number, Boolean],
       default: ""
     },
     label: {
@@ -66,8 +83,14 @@ export default {
         this.isFocused = value;
       }
     },
+    hasPrepend () {
+      return this.$slots.prepend;
+    },
     hasAppend () {
       return this.$slots.append;
+    },
+    elemID () {
+      return `${this.label}-${this.getRandomArbitrary(1, 10000)}`;
     }
   },
   watch: {
@@ -86,12 +109,21 @@ export default {
     },
     closeUiSelect () {
       this.$emit("close-select");
+    },
+    getRandomArbitrary (min, max) {
+      return Math.random() * (max - min) + min;
     }
+  },
+  directives: {
+    clickOutside: vClickOutside.directive
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style
+  lang="scss"
+  scoped
+>
 .ui-input-text {
   $self: &;
   color: inherit;
@@ -136,8 +168,12 @@ export default {
     }
   }
 
+  &__prepend {
+    padding-right: 15px;
+  }
+
   &__append {
-    flex: 0 0 auto;
+    //flex: 0 0 auto;
     padding-left: 15px;
   }
 

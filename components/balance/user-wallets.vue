@@ -38,8 +38,8 @@
       </div>
       <div v-if="!hideChart && total" class="user-wallets-box__right">
         <vc-donut
-          background="#151618"
-          foreground="#EAECEF"
+          :background="'#151618'"
+          :foreground="'#EAECEF'"
           :size="225"
           :thickness="40"
           has-legend
@@ -112,14 +112,15 @@ export default {
     },
     sections () {
       const sections = [];
-      const tokenColors = this.tokenColors;
       let currentDefaultColorIdx = 0;
 
       this.wallets.map((e) => {
         let color = this.defaultColors[currentDefaultColorIdx++];
-        for (const symbol in tokenColors) {
+        for (const symbol in this.$TokenColors) {
           if (e.symbol === symbol) {
-            color = tokenColors[symbol];
+            if (Object.hasOwnProperty.call(this.$TokenColors, symbol)) {
+              color = this.$TokenColors[symbol];
+            }
           }
         }
 

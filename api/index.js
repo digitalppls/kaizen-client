@@ -144,6 +144,16 @@ export default $axios => (proxy, store) => ({
       promiseFuncFail
     );
   },
+  // Сохранение/добавление/удаление настроек сейлов
+  TokenSaleSave (data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "post",
+      `token/sale/save/`,
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
 
   TokenBonusList (promiseFuncSuccess, promiseFuncFail) {
     this.request(
