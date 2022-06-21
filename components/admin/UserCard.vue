@@ -27,14 +27,28 @@
             <i />
           </span>
         </div>
-        <div v-if="fatherId" class="user-card-item m-b-5">
+        <div
+          v-if="fatherId"
+          class="user-card-item m-b-5"
+        >
           Пригласил:
-          <span v-if="fatherName" class="color-white font-400" :title="fatherId">{{ fatherName }}</span>
-          <small v-if="fatherName" class="color-gray">(ID: {{ fatherId }})</small>
-          <ui-preloader v-else size="button" />
+          <span
+            v-if="fatherName"
+            class="color-white font-400"
+            :title="fatherId"
+          >{{ fatherName }}
+          </span>
+          <small
+            v-if="fatherName"
+            class="color-gray"
+          >(ID: {{ fatherId }})</small>
+          <ui-preloader
+            v-else
+            size="button"
+          />
         </div>
       </div>
-       <!-- Правая колонка -->
+      <!-- Правая колонка -->
       <div class="user-card-row__right m-b-30">
         <!-- Кошельки Wallet33 -->
         <p class="m-b-10">
@@ -42,55 +56,80 @@
           <span class="inline-code">{{ userData.wallet33Id }}</span>
         </p>
         <ul v-if="userData.wallet33Assets.length">
-            <li
-              v-for="(wallet, key) in userData.wallet33Assets"
-              :key="key"
-              class="m-b-5"
-            >
-              <span
-                class="color-yellow text-uppercase font-400"
-                v-text="wallet.network + ': '"
-              />
-              <span
-                class="inline-code"
-                v-text="wallet.address"
-              />
-            </li>
-          </ul>
+          <li
+            v-for="(wallet, key) in userData.wallet33Assets"
+            :key="key"
+            class="m-b-5"
+          >
+            <span
+              class="color-yellow text-uppercase font-400"
+              v-text="wallet.network + ': '"
+            />
+            <span
+              class="inline-code"
+              v-text="wallet.address"
+            />
+          </li>
+        </ul>
       </div>
     </div>
 
     <!-- Ошибки -->
-    <ul v-if="errors.length" class="list list--none m-b-20">
-      <li v-for="(error, idx) in errors" :key="idx" class="error-text m-b-5" v-html="error" />
+    <ul
+      v-if="errors.length"
+      class="list list--none m-t-30 m-b-30"
+    >
+      <li
+        v-for="(error, idx) in errors"
+        :key="idx"
+        class="error-text m-b-5"
+        v-html="error"
+      />
     </ul>
 
     <!-- Балансы -->
-    <div
-      v-if="userData.wallets.length"
-      class="user-card-balance"
-    >
+    <div>
+      <h3 class="color-white">
+        Балансы
+      </h3>
       <div
-        v-for="(wallet, key) in userData.wallets"
-        :key="key"
-        class="user-card-balance__item"
-        @click="selectWallet(wallet)"
+        v-if="userData.wallets.length"
+        class="user-card-balance"
       >
-        <div :class="['user-card-balance__box', {'user-card-balance__box--active': wallet.symbol === selectedSymbol}]" :title="wallet.amount">
-          <div class="user-card-balance__token" :style="{color: $TokenColors[wallet.symbol]}">
-            {{ wallet.symbol.toUpperCase() }}
-          </div>
-          <div class="user-card-balance__amount">
-            {{ wallet.amount.toLocaleString("en-US", $LOCALESTRING(0, 3)) }}
-          </div>
-          <div class="user-card-balance__amount-usd" :title="`$${wallet.amountUsd}`">
-            ≈ {{ wallet.amountUsd.toLocaleString("en-US", $LOCALESTRING_USD(0, 2)) }}
+        <div
+          v-for="(wallet, key) in userData.wallets"
+          :key="key"
+          class="user-card-balance__item"
+          @click="selectWallet(wallet)"
+        >
+          <div
+            :class="['user-card-balance__box', {'user-card-balance__box--active': wallet.symbol === selectedSymbol}]"
+            :title="wallet.amount"
+          >
+            <div
+              class="user-card-balance__token"
+              :style="{color: $TokenColors[wallet.symbol]}"
+            >
+              {{ wallet.symbol.toUpperCase() }}
+            </div>
+            <div class="user-card-balance__amount">
+              {{ wallet.amount.toLocaleString("en-US", $LOCALESTRING(0, 3)) }}
+            </div>
+            <div
+              class="user-card-balance__amount-usd"
+              :title="`$${wallet.amountUsd}`"
+            >
+              ≈ {{ wallet.amountUsd.toLocaleString("en-US", $LOCALESTRING_USD(0, 2)) }}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div v-else class="font-500 color-red">
-      Кошелек пользователя пуст.
+      <div
+        v-else
+        class="font-500 color-red"
+      >
+        Кошелек пользователя пуст.
+      </div>
     </div>
 
     <!-- Список операций по выбранному токену -->
@@ -101,29 +140,41 @@
       :symbol="selectedSymbol"
     />
 
-    <!-- Админские права пользователя -->
-    <details v-if="userData.permissions.length" class="m-t-30">
-      <summary>Доступ к административным функциям</summary>
-      <div>
-        <ul>
-          <li
-            v-for="(url, key) in userData.permissions"
-            :key="key"
-            class="m-b-5 color-white"
-            v-text="url"
-          />
-        </ul>
-      </div>
+    <!-- Реферальная программа -->
+    <div class="m-t-30">
+      <h3 class="color-white">
+        Реферальная программа
+      </h3>
+      <user-ref-rewards :user-id="userData.id" />
+    </div>
 
-    </details>
+    <!-- Админские права пользователя -->
+    <ui-details
+      v-if="userData.permissions.length"
+      class="m-t-30"
+    >
+      <template #summary>Доступ к административным функциям</template>
+      <ul>
+        <li
+          v-for="(url, key) in userData.permissions"
+          :key="key"
+          class="m-b-5 color-white"
+          v-text="url"
+        />
+      </ul>
+    </ui-details>
 
     <!-- Объект пользователя -->
-    <details v-if="$isDev" class="m-t-30">
-      <summary>UserData</summary>
-      <div>
-        <pre class="color-white" v-html="userData" />
-      </div>
-    </details>
+    <ui-details
+      v-if="$isDev"
+      class="m-t-30"
+    >
+      <template #summary>UserData</template>
+      <pre
+        class="color-white"
+        v-html="userData"
+      />
+    </ui-details>
   </div>
   <div v-else>
     Нет данных
@@ -133,9 +184,12 @@
 <script>
 import UiPreloader from "../ui/ui-preloader.global";
 import UserTransactions from "./UserTransactions";
+import UiDetails from "../ui/ui-details";
+import UserRefRewards from "./UserRefRewards";
+
 export default {
   name: "UserCard",
-  components: { UserTransactions, UiPreloader },
+  components: { UserRefRewards, UiDetails, UserTransactions, UiPreloader },
   props: {
     userData: {
       type: Object,
@@ -229,7 +283,7 @@ export default {
       } else {
         this.selectedSymbol = null;
       }
-    }
+    },
   }
 };
 </script>
@@ -261,6 +315,7 @@ export default {
         width: 50%;
       }
     }
+
     &__right {
       @include respond-before("lg") {
         width: 60%;

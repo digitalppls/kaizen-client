@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3 class="color-white">
+    <h2 class="color-white">
       Фонды
-    </h3>
+    </h2>
 
     <fund-item :sale="sales.filter(x => x.symbol === 'kzn')" class="m-b-20" />
     <fund-item :sale="sales.filter(x => x.symbol === 'vng')" class="m-b-20" />

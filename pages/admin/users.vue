@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3 class="color-white">
+    <h2 class="color-white">
       Пользователи <small class="color-gray">({{ totalRecords }})</small>
-    </h3>
+    </h2>
 
     <div class="userlist">
       <ul v-if="errors.length" class="list list--none m-b-20">

@@ -19,90 +19,26 @@
 
     <!-- Статистика -->
     <div class="stats-info-row">
-      <div class="stats-info-row__col">
-        <div class="stats-info">
-          <div class="stats-info__circle">
-            <div class="stats-info__value">
-              {{ invitedUsers }}
-            </div>
-          </div>
-          <div
-            class="stats-info__label"
-            v-text="$t('INVITED_USERS')"
-          />
-        </div>
-      </div>
-
-      <div class="stats-info-row__col">
-        <div
-          class="stats-info"
-          data-token="kzn"
-        >
-          <div class="stats-info__circle">
-            <div class="stats-info__value">
-              <ui-preloader
-                v-if="earnedKZN === -1"
-                size="small"
-                color="gray"
-              />
-              <template v-else>
-                {{ earnedKZN.toLocaleString($i18n.locale) }}
-              </template>
-            </div>
-          </div>
-          <div
-            class="stats-info__label"
-            v-text="`${$t('EARNED')} KZN`"
-          />
-        </div>
-      </div>
-
-      <div class="stats-info-row__col">
-        <div
-          class="stats-info"
-          data-token="vng"
-        >
-          <div class="stats-info__circle">
-            <div class="stats-info__value">
-              <ui-preloader
-                v-if="earnedVNG === -1"
-                size="small"
-                color="gray"
-              />
-              <template v-else>
-                {{ earnedVNG.toLocaleString($i18n.locale) }}
-              </template>
-            </div>
-          </div>
-          <div
-            class="stats-info__label"
-            v-text="`${$t('EARNED')} VNG`"
-          />
-        </div>
-      </div>
-
-      <div class="stats-info-row__col">
-        <div
-          class="stats-info"
-          data-token="srk"
-        >
-          <div class="stats-info__circle">
-            <div class="stats-info__value">
-              <ui-preloader
-                v-if="earnedSRK === -1"
-                size="small"
-                color="gray"
-              />
-              <template v-else>
-                {{ earnedSRK.toLocaleString($i18n.locale) }}
-              </template>
-            </div>
-          </div>
-          <div
-            class="stats-info__label"
-            v-text="`${$t('EARNED')} SRK`"
-          />
-        </div>
+      <div
+        v-for="(item, key) in items"
+        :key="key"
+        class="stats-info-row__col"
+      >
+        <circle-data :symbol="item.symbol">
+          <template #value>
+            <ui-preloader
+              v-if="item.value === -1"
+              size="small"
+              color="gray"
+            />
+            <template v-else>
+              {{ item.value.toLocaleString($i18n.locale) }}
+            </template>
+          </template>
+          <template #label>
+            {{ item.label }}
+          </template>
+        </circle-data>
       </div>
     </div>
 
@@ -131,31 +67,19 @@
 
 <script>
 import UiPreloader from "./ui/ui-preloader.global";
+import CircleData from "../pages/circleData";
 
 export default {
   name: "ReferralStats",
-  components: { UiPreloader },
+  components: { CircleData, UiPreloader },
   data () {
     return {
       loading: true,
       invitedYou: null,
-      invitedUsers: null,
-      earnedKZN: -1,
-      earnedVNG: -1,
-      earnedSRK: -1,
       tokenBonusList: [],
+      items: [],
       errors: []
     };
-  },
-  i18n: {
-    messages: {
-      ru: {
-        REF_INFO: "Вы получаете 3% вознаграждения за покупку вашим рефералом токенов KZN, VNG, SRK."
-      },
-      en: {
-        REF_INFO: "You get 3% reward for purchasing KZN, VNG, SRK tokens by your referral."
-      }
-    }
   },
   computed: {
     user () {
@@ -175,11 +99,27 @@ export default {
     // this.getTokenBonusList();
   },
   methods: {
-    /** Получаем список приглашенных пользователей и считаем их */
+    /** Получаем список приглашенных пользователей */
     getTokenBonusList () {
       this.$API.TokenBonusList((r) => {
         this.loading = false;
         this.tokenBonusList = r?.list ?? [];
+      });
+    },
+
+    /** Получаем список приглашенных пользователей и считаем их */
+    getRefList () {
+      this.$API.RefList({ _id: this.user.id, line: 1 }, (r) => {
+        this.loading = false;
+        this.items.push({
+          label: this.$t("INVITED_USERS"),
+          symbol: "",
+          value: r.users.length
+        });
+      }, (error) => {
+        this.errors = Array.isArray(error?.message)
+          ? error.message
+          : [error.message];
       });
     },
 
@@ -190,20 +130,26 @@ export default {
         limit: 1000,
         type: "token_ref_bonus"
       };
+
+      ["kzn", "vng", "srk"].forEach((symbol) => {
+        this.items.push({
+          label: `${this.$t("EARNED")} ${symbol.toUpperCase()}`,
+          symbol,
+          value: -1
+        });
+      });
+      this.loading = true;
       this.$API.OperationList(params, (r) => {
         this.loading = false;
         const list = r.operations;
-        this.earnedKZN = list.filter(item => item.symbol === "kzn").map(item => item.amount).reduce((a, b) => a + b, 0);
-        this.earnedVNG = list.filter(item => item.symbol === "vng").map(item => item.amount).reduce((a, b) => a + b, 0);
-        this.earnedSRK = list.filter(item => item.symbol === "srk").map(item => item.amount).reduce((a, b) => a + b, 0);
-      });
-    },
-
-    /** Получаем список приглашенных пользователей и считаем их */
-    getRefList () {
-      this.$API.RefList({ _id: this.user.id, line: 1 }, (r) => {
-        this.loading = false;
-        this.invitedUsers = r.users.length;
+        this.items.map((x) => {
+          x.value = list.filter(item => item.symbol === x.symbol).map(item => item.amount).reduce((a, b) => a + b, 0);
+          return x;
+        });
+      }, (error) => {
+        this.errors = Array.isArray(error?.message)
+          ? error.message
+          : [error.message];
       });
     },
 

@@ -106,6 +106,7 @@ export default {
   "REFERRAL_LINK": "Referral Link",
   "REFERRAL_LINK_AVAILABLE": "Will be available after payment of membership fee.",
   "REFERRAL_LINK_DESC": "This link is for you to register anyone you like and let us know they have become our client through your recommendation. For that you receive a commission from every spend they make on our services. <br>The most important thing is that it does not matter at all what and when a person buys. The only thing that matters is your permanent membership which costs only $10. By the way, from that $10 paid by your invitee, you will also receive a reward.",
+  "REF_INFO": "You get 3% reward for purchasing KZN, VNG, SRK tokens by your referral.",
   "MY_STRUCTURE": "My structure",
   "STRUCTURE": "Structure",
   "YOU_LINK": "Your link",

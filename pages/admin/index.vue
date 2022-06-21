@@ -1,5 +1,9 @@
 <template>
-  <h1>Admin page index</h1>
+  <div>
+    <h2 class="color-white">
+      Дашборд
+    </h2>
+  </div>
 </template>
 
 <script>

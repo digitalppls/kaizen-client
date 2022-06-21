@@ -1,5 +1,7 @@
 <template>
-  <h1>Admin page orders</h1>
+  <div>
+    <h2 class="color-white">Ордера</h2>
+  </div>
 </template>
 
 <script>
