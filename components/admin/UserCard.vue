@@ -146,6 +146,13 @@
         Реферальная программа
       </h3>
       <user-ref-rewards :user-id="userData.id" />
+      <h4 class="color-white m-t-20">
+        Структура
+      </h4>
+      <referral-network
+        :user="userData"
+        admin-mode
+      />
     </div>
 
     <!-- Админские права пользователя -->
@@ -186,10 +193,11 @@ import UiPreloader from "../ui/ui-preloader.global";
 import UserTransactions from "./UserTransactions";
 import UiDetails from "../ui/ui-details";
 import UserRefRewards from "./UserRefRewards";
+import ReferralNetwork from "../referral-network";
 
 export default {
   name: "UserCard",
-  components: { UserRefRewards, UiDetails, UserTransactions, UiPreloader },
+  components: { ReferralNetwork, UserRefRewards, UiDetails, UserTransactions, UiPreloader },
   props: {
     userData: {
       type: Object,

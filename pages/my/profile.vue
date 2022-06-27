@@ -17,7 +17,7 @@
       <h3 class="color-white m-b-5">
         {{ $t("REFERRAL_TREE") }}
       </h3>
-      <referral-network />
+      <referral-network :user="$store.getters.user" />
     </section>
 
     <!-- Данные пользователя -->

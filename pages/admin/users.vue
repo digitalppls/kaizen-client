@@ -12,7 +12,7 @@
         v-model="searchTerm"
         type="text"
         class="m-b-10"
-        label="Поиск по имени или email"
+        label="Поиск по ID, имени или e-mail"
       />
       <vue-good-table
         v-if="rowsFiltered"
@@ -29,8 +29,7 @@
         :search-options="{
           enabled: true,
           externalQuery: searchTerm,
-          skipDiacritics: true,
-          placeholder: 'Поиск по имени или e-mail',
+          skipDiacritics: true
         }"
         @on-row-click="onRowClick"
         @on-page-change="onPageChange"
@@ -147,7 +146,8 @@ export default {
         ? this.rows.filter((row) => {
           const email = row.email.toString().toLowerCase();
           const username = row.username.toString().toLowerCase();
-          return email.includes(this.searchTerm) || username.includes(this.searchTerm);
+          const id = row.id.toString().toLowerCase();
+          return email.includes(this.searchTerm) || username.includes(this.searchTerm) || id.includes(this.searchTerm);
         })
         : this.rows;
     }

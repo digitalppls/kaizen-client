@@ -10,9 +10,12 @@
         class="node-item"
       >
         <span class="node-item__container">
-          <span class="node-item__name">
-            {{ node.data.name }}
+          <span v-if="node.data.user" class="node-item__name">
+            {{ node.data.user.username }}
           </span>
+          <small v-if="node.data.user && adminMode" class="node-item__email">
+            {{ node.data.user.id }}
+          </small>
         </span>
       </span>
     </liquor-tree>
@@ -25,6 +28,16 @@ import LiquorTree from "liquor-tree";
 export default {
   name: "ReferralNetwork",
   components: { LiquorTree },
+  props: {
+    user: {
+      type: Object,
+      required: true
+    },
+    adminMode: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       line: 1,
@@ -39,6 +52,7 @@ export default {
             vm.$API.RefList(data, (r) => {
               const array = r.users.map(user => ({
                 data: {
+                  user,
                   name: user.username,
                   products: user.products
                 },
@@ -59,10 +73,11 @@ export default {
       return [
         {
           data: {
-            name: this.$store.getters.user.username,
+            name: this.user?.username ?? "",
+            user: this.user,
             products: []
           },
-          id: this.$store.getters.user._id,
+          id: this.user?._id ?? "",
           isBatch: true
         }
       ];
@@ -123,12 +138,16 @@ export default {
   border-top: var(--border-size) solid rgba(#fff, .2) !important;
   border-right: var(--border-size) solid rgba(#fff, .2) !important;
   border-bottom: var(--border-size) solid rgba(#fff, .2) !important;
-  border-left: var(--border-size) solid var(--color-secondary) !important;
+  border-left: var(--border-size) solid var(--col-accent) !important;
 }
 
 .tree-node {
   .tree-content {
     border-radius: 6px;
+  }
+
+  .tree-anchor {
+    user-select: auto;
   }
 
   .node-item {
@@ -150,7 +169,7 @@ export default {
 
     &__email {
       font-size: 14px;
-      color: var(--color-gray-light);
+      color: var(--col-gray);
     }
 
     &__data {
