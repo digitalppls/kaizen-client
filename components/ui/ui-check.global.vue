@@ -2,6 +2,7 @@
   <label
     :class="[
       'ui-form-check',
+      { 'ui-form-check--inline': inline },
       { 'ui-form-check--checked': checked },
       { 'ui-form-check--disabled': disabled }
     ]"
@@ -13,7 +14,7 @@
       :disabled="disabled"
       :type="type"
       class="ui-form-check__input"
-      @change="$emit('change', $event.target.checked)"
+      @change="$emit('change', type === 'radio' ? $event.target.value : $event.target.checked)"
     >
     <span class="ui-form-check__label">
       <slot />
@@ -41,12 +42,16 @@ export default {
         return ["checkbox", "radio"].includes(value);
       }
     },
+    inline: {
+      type: Boolean,
+      default: false
+    },
     disabled: {
       type: Boolean,
       default: false
     },
     checked: {
-      type: Boolean,
+      type: [String, Boolean],
       default: false
     }
   }
@@ -59,6 +64,7 @@ $checkbox-size-checked: 14px;
 
 .ui-form-check {
   $self: &;
+  $offset-top: 0px;
   $input: #{$self}__input;
   $label: #{$self}__label;
   display: block;
@@ -70,7 +76,7 @@ $checkbox-size-checked: 14px;
   }
 
   &.small {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   // для элемента label связанного с label
@@ -84,7 +90,7 @@ $checkbox-size-checked: 14px;
     // создание в label псевдоэлемента  before со следующими стилями
     &:before {
       content: '';
-      top: 3px;
+      top: $offset-top;
       left: 0;
       flex-grow: 0;
       flex-shrink: 0;
@@ -132,7 +138,7 @@ $checkbox-size-checked: 14px;
       }
 
       &:after {
-        top: calc((#{$checkbox-size} - #{$checkbox-size-checked - 4}) / 2 + 3px);
+        top: calc((#{$checkbox-size} - #{$checkbox-size-checked - 4}) / 2 + #{$offset-top});
         left: calc((#{$checkbox-size} - #{$checkbox-size-checked - 4}) / 2);
         width: $checkbox-size-checked - 4;
         height: $checkbox-size-checked - 4;

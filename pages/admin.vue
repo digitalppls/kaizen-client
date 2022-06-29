@@ -17,7 +17,7 @@
                 no-prefetch
                 :to="localePath(item.url)"
                 active-class="inline-menu__link--active"
-                :class="['inline-menu__link', {'inline-menu__link--disabled': item.url === 'my-indexes', 'inline-menu__link--admin': item.url === 'admin'}]"
+                :class="['inline-menu__link', {'inline-menu__link--disabled': item.url === 'my-indexes', 'inline-menu__link--admin': item.url === 'my'}]"
                 @click.native="scrollTo($event)"
               >
                 {{ item.name }}
@@ -91,24 +91,24 @@ export default {
         {
           name: "Фонды",
           url: "admin-funds",
-          show: true
+          show: this.$accessFunds
         },
         {
           name: "Пользователи",
           url: "admin-users",
-          show: true
+          show: this.$accessUsers
         },
         {
-          name: "Отложенный ордер",
+          name: "Ордеры",
           url: "admin-orders",
-          show: true
+          show: this.$accessOrders
         }
       ]
     };
   },
   computed: {
     checkPermissions () {
-      return this.$store.getters.user.permissions.length;
+      return this.$userPermissions.length;
     }
   },
   methods: {

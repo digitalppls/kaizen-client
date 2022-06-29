@@ -1,60 +1,87 @@
 <template>
-  <div class="cabinet-history">
-    <h2 class="title">
-      {{ $t("OPERATIONS") }}
-    </h2>
-    <ui-select
-      v-model="type"
-      :options="types"
-      class="m-b-20"
-      style="max-width: 400px"
-      @input="select"
-    >
-      <template #selected="{ option }">
-        {{ $t(option.label) }}
-      </template>
-      <template #default="{ option }">
-        {{ $t(option.label) }}
-      </template>
-    </ui-select>
-    <ui-preloader v-if="loading" center="true" />
-    <div v-else-if="transactions.length" class="cabinet-history__body">
+  <div class="transactions">
+    <!-- Таблица с данными -->
+    <div class="transactions__body">
       <vue-good-table
-        v-if="transactions"
         :columns="columns"
-        :rows="transactions"
-        style-class="vgt-table vgt-table--dark"
+        :rows="rows"
+        :isLoading.sync="loading"
+        :total-rows="totalRecords"
         :pagination-options="{
-          enabled: true,
-          mode: 'records',
-          perPage: 10,
-          position: 'top',
-          perPageDropdown: [5, 10, 15],
-          dropdownAllowAll: true,
+          enabled: totalRecords > perPageDropdown[0],
+          perPageDropdown,
           setCurrentPage: 1,
           nextLabel: '',
           prevLabel: '',
           rowsPerPageLabel: $t('ROWSPERPAGELABEL'),
           ofLabel: $t('OF').toLowerCase(),
-          pageLabel: 'page', // for 'pages' mode
-          allLabel: $t('ALL'),
+          pageLabel: 'page',
+          allLabel: $t('ALL')
         }"
+        style-class="vgt-table vgt-table--dark"
+        @on-page-change="$emit('on-page-change')"
+        @on-per-page-change="$emit('on-per-page-change')"
       >
-        <template slot="table-row" slot-scope="props">
+        <!-- Фильтр -->
+        <template
+          v-if="!hideFilter"
+          slot="table-actions"
+        >
+          <ui-select
+            v-if="tokens.length"
+            v-model="filters.symbol"
+            :options="tokens"
+            class="display-i-flex"
+            @input="filter"
+          />
+          <ui-select
+            v-model="filters.type"
+            :options="operationsType"
+            class="display-i-flex"
+            style="max-width: 400px; min-width: 250px;"
+            @input="filter"
+          >
+            <template #default="{ option }">
+              {{ $t(option.label) }}
+            </template>
+          </ui-select>
+        </template>
+        <!-- Строки -->
+        <template
+          slot="table-row"
+          slot-scope="props"
+        >
           <div v-if="props.column.field === 'date'">
             {{ $DateText(props.row.date) }}, {{ $TimeText(props.row.date) }}
           </div>
           <div v-else-if="props.column.field === 'type'">
             {{ $t(`OPERATION_${props.row.type.toUpperCase()}`) }}
 
-            <div v-if="props.row.type === 'withdraw' || props.row.type === 'payment'" class="color-gray" style="display: flex; align-items: center;">
+            <div
+              v-if="['close_limit_order', 'edit_limit_order', 'buy_limit_order', 'sell_limit_order', 'open_limit_order', 'change_limit_order'].includes(props.row.type) && props.row.targetId"
+              class="color-gray"
+            >
+              <!--#{{ props.row._id }}-->
+              #{{ props.row.targetId }}
+            </div>
+
+            <div
+              v-if="props.row.type === 'withdraw' || props.row.type === 'payment'"
+              class="color-gray"
+              style="display: flex; align-items: center;"
+            >
               <span class="m-r-10">
                 Hash:
               </span>
               <span style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: inline-block; vertical-align: middle;">
-                <a :href="`https://bscscan.com/tx/${props.row.hash}`" target="_blank">{{ props.row.hash }}</a>
+                <a
+                  :href="`https://bscscan.com/tx/${props.row.hash}`"
+                  target="_blank"
+                  v-text="props.row.hash"
+                />
               </span>
 
+              <!-- Copy button -->
               <button
                 class="m-l-10"
                 style="padding: 0; background: none;"
@@ -90,10 +117,11 @@
             </div>
           </div>
           <div v-else-if="props.column.field === 'amount'">
-            <div style="font-weight: 500;">
-              {{ props.row.amount.toLocaleString(undefined, $LOCALESTRING) }} {{
-                props.row.symbol.toUpperCase()
-              }}
+            <div class="font-700 text-uppercase">
+              {{ props.row.amount.toLocaleString(undefined, $LOCALESTRING) }}
+              <span :style="{color: $TokenColors[props.row.symbol]}">
+                {{ props.row.symbol }}
+              </span>
             </div>
             <div class="color-gray-light small">
               ≈ {{ props.row.amountUsd.toLocaleString(undefined, $LOCALESTRING_USD()) }}
@@ -107,13 +135,7 @@
             {{ props.formattedRow[props.column.field] }}
           </div>
         </template>
-        <div slot="emptystate" class="text-center">
-          {{ $t("NO_DATA") }}
-        </div>
       </vue-good-table>
-    </div>
-    <div v-else class="text-center" style="padding: 30px;">
-      {{ $t("NO_DATA") }}
     </div>
   </div>
 </template>
@@ -121,22 +143,46 @@
 <script>
 import "vue-good-table/dist/vue-good-table.css";
 import { VueGoodTable } from "vue-good-table";
+import UiPreloader from "~/components/ui/ui-preloader.global";
+import UiSelect from "./ui/ui-select.global";
 
 export default {
-  name: "PageOperations",
-  components: { VueGoodTable },
+  name: "Transactions",
+  components: { UiSelect, UiPreloader, VueGoodTable },
+  props: {
+    rows: {
+      type: Array,
+      required: true,
+      default () {
+        return [];
+      }
+    },
+    hideFilter: {
+      type: Boolean,
+      default: false
+    },
+    totalRecords: {
+      type: Number,
+      required: true,
+      default: 0
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    // АДМИНСКИЕ АТРИБУТЫ
+    wallets: {
+      type: Array,
+      default () {
+        return [];
+      }
+    }
+  },
   data () {
+    const perPage = 20;
+
     return {
-      transactions: [],
-      limit: 1000,
-      offset: 0,
-      page: 1,
       copied: false,
-      type: {
-        label: "OPERATION_ALL",
-        value: "all"
-      },
-      loading: true,
       columns: [
         {
           label: this.$t("DATE"),
@@ -159,49 +205,59 @@ export default {
           thClass: "min-width-180",
           sortable: false
         }
-      ]
+      ],
+      perPageDropdown: [perPage],
+      type: {
+        label: "OPERATION_ALL",
+        value: "all"
+      },
+      symbol: "Токен",
+      filters: {
+        symbol: "",
+        type: {
+          label: "OPERATION_ALL",
+          value: "all"
+        }
+      }
     };
   },
 
   computed: {
-    types () {
+    operationsType () {
       return [
         "all",
         "payment",
         "withdraw",
         "token_swap",
-        "token_ref_bonus"
+        "token_ref_bonus",
+        "close_limit_order",
+        "edit_limit_order",
+        "buy_limit_order",
+        "sell_limit_order",
+        "open_limit_order",
+        "change_limit_order",
+        "balance_update"
       ].map((e) => {
         return {
           label: `OPERATION_${e.toUpperCase()}`,
           value: e
         };
       });
+    },
+    tokens () {
+      const tokens = this.wallets.map(x => x.symbol);
+      return [this.$t("TOKEN"), ...tokens];
     }
   },
 
   mounted () {
-    this.getTransactions();
+    this.filters.symbol = this.tokens[0];
   },
 
   methods: {
-    /** Загрузить транзакции по select'у */
-    select () {
-      this.getTransactions();
-    },
-
-    /** Получить транзакции */
-    getTransactions () {
-      this.loading = true;
-      const params = {
-        offset: this.offset,
-        limit: this.limit,
-        type: this.type.value
-      };
-      this.$API.OperationList(params, (response) => {
-        this.loading = false;
-        this.transactions = response.operations;
-      });
+    /** Фильтрация операций */
+    filter () {
+      this.$emit("transactions-filter", this.filters);
     },
 
     /** Скопировать хэш */
@@ -226,8 +282,11 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.cabinet-history {
+<style
+  lang="scss"
+  scoped
+>
+.transactions {
   &__top {
     margin-bottom: 40px;
 
@@ -249,6 +308,7 @@ export default {
       }
     }
   }
+
   a:hover {
     color: white;
   }

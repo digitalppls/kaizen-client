@@ -74,7 +74,7 @@ export default {
         {
           name: "ADMIN",
           url: "admin",
-          show: this.$store.getters.user.permissions.length
+          show: this.$userPermissions.length
         },
         {
           name: "DASHBOARD",
@@ -83,12 +83,17 @@ export default {
         },
         {
           name: "OPERATIONS",
-          url: "my-operations",
+          url: "my-history",
           show: true
         },
         {
           name: "PROFILE",
           url: "my-profile",
+          show: true
+        },
+        {
+          name: "LIMIT_ORDERS",
+          url: "my-orders",
           show: true
         },
         {

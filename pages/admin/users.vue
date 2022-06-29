@@ -8,36 +8,50 @@
       <ul v-if="errors.length" class="list list--none m-b-20">
         <li v-for="(error, idx) in errors" :key="idx" class="error-text" v-html="error" />
       </ul>
-      <ui-text-field
-        v-model="searchTerm"
-        type="text"
-        class="m-b-10"
-        label="Поиск по ID, имени или e-mail"
-      />
+
       <vue-good-table
         v-if="rowsFiltered"
-        mode="remote"
+        mode="remote1"
         :columns="columns"
         :rows="rowsFiltered"
         :total-rows="totalRecords"
         :line-numbers="true"
         :isLoading.sync="loading"
         :pagination-options="{
-          enabled: true,
+          enabled: totalRecords > perPageDropdown[0],
           perPageDropdown,
+          setCurrentPage: 1,
+          nextLabel: '',
+          prevLabel: '',
+          rowsPerPageLabel: $t('ROWSPERPAGELABEL'),
+          ofLabel: $t('OF').toLowerCase(),
+          pageLabel: 'page',
+          allLabel: $t('ALL')
         }"
         :search-options="{
           enabled: true,
-          externalQuery: searchTerm,
+          placeholder: 'Поиск по ID, имени или e-mail',
+          // externalQuery: searchTerm,
           skipDiacritics: true
         }"
         @on-row-click="onRowClick"
         @on-page-change="onPageChange"
         @on-per-page-change="onPerPageChange"
       >
+        <template v-if="false" slot="table-actions">
+          <ui-text-field
+            v-model="searchTerm"
+            type="text"
+            class="m-b-10"
+            label="Поиск по ID, имени или e-mail"
+          />
+        </template>
         <template slot="table-row" slot-scope="props">
           <div v-if="props.column.field === 'date'">
             {{ $DateText(props.row.date, false) }}, {{ $TimeText(props.row.date) }}
+          </div>
+          <div v-else-if="props.column.field === 'id'">
+            {{ $shortString(props.row.id, 5, 5) }}
           </div>
           <div v-else-if="props.column.field === 'email'" style="display: flex;">
             <!--{{ hideEmail(props.row.email) }}-->
@@ -89,7 +103,7 @@ export default {
   name: "AdminUsers",
   components: { UiTextField, UserCard, UiModal, UiPreloader, VueGoodTable },
   data () {
-    const perPage = 10;
+    const perPage = 20;
 
     return {
       searchTerm: "",
@@ -98,31 +112,33 @@ export default {
       loading: true,
       columns: [
         {
+          label: "ID",
+          field: "id",
+          // width: "15%",
+          sortable: false
+        },
+        {
           label: "Регистрация",
           field: "date",
-          width: "20%",
+          // width: "15%",
           sortable: false
         },
         {
           label: "Имя",
           field: "username",
-          // width: "20%",
+          // width: "35%",
           sortable: false
         },
         {
           label: "E-mail",
           field: "email",
-          // width: "29%",
+          // width: "35%",
           sortable: false
-        },
-        // {
-        //   label: "Баланс кошелька",
-        //   field: "balance1",
-        //   sortable: false
-        // }
+        }
       ],
       rows: [],
       totalRecords: 0,
+      limit: 1000,
       page: 1,
       offset: 0,
       perPageDropdown: [perPage],
@@ -182,7 +198,7 @@ export default {
     onPerPageChange(params) {
       console.log("onPerPageChange", params);
       let perPage = params.currentPerPage;
-      if (params.currentPerPage === -1) {
+      if (perPage === -1) {
         perPage = this.totalRecords;
         this.offset = 0;
       }
@@ -195,7 +211,7 @@ export default {
     loadItems() {
       this.$API.adminUserList({
         offset: this.offset,
-        limit: this.serverParams.perPage
+        limit: this.limit // this.serverParams.perPage
       }, (r) => {
         this.rows = r.users;
         this.totalRecords = r.length; // Всего пользователей

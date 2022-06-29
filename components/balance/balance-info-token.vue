@@ -18,7 +18,7 @@
       </div>
       <div class="m-l-a">
         <button
-          :class="['btn', {'btn-blue': symbol === 'kzn'}, {'btn-yellow': symbol === 'vng'}, {'btn-red': symbol === 'srk'}]"
+          :class="['btn', {'kzn': 'btn-blue', 'vng': 'btn-yellow', 'srk': 'btn-red'}[symbol]]"
           :disabled="!isCurrent"
           @click="openModal('buy')"
         >

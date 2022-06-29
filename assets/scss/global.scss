@@ -735,7 +735,28 @@ img {
 .display-flex {
   display: flex;
 }
+.display-i-flex {
+  display: inline-flex;
+}
 
-.aic {
+.ai--baseline {
+  align-items: baseline;
+}
+.ai--center {
   align-items: center;
+}
+.ai--flex-start {
+  align-items: flex-start;
+}
+.ai--flex-end {
+  align-items: flex-end;
+}
+.cursor--pointer {
+  cursor: pointer;
+}
+.cursor--help {
+  cursor: help;
+}
+.cursor--default {
+  cursor: default;
 }

@@ -58,10 +58,6 @@ import vClickOutside from "v-click-outside";
 export default {
   name: "UiSelect",
   props: {
-    placeholder: {
-      type: String,
-      default: ""
-    },
     suffix: {
       type: String,
       default: ""

@@ -126,15 +126,15 @@
       </h3>
       <div v-if="id === 'KAIZEN'">
         <div class="lh-135" v-html="$t('KAIZEN_METHODOLOGY')" />
-        <div class="display-flex aic m-t-20">
+        <div class="display-flex ai--center m-t-20">
           <img :src="require('~/assets/images/icon-coins.svg?inline')" alt="" class="m-r-10">
           {{ $t("KAIZEN_METHODOLOGY_ITEM_1") }}
         </div>
-        <div class="display-flex aic m-t-20">
+        <div class="display-flex ai--center m-t-20">
           <img :src="require('~/assets/images/icon-finance.svg?inline')" alt="" class="m-r-10">
           {{ $t("KAIZEN_METHODOLOGY_ITEM_2") }}
         </div>
-        <div class="display-flex aic m-t-20">
+        <div class="display-flex ai--center m-t-20">
           <img :src="require('~/assets/images/icon-time.svg?inline')" alt="" class="m-r-10">
           {{ $t("KAIZEN_METHODOLOGY_ITEM_3") }}
         </div>

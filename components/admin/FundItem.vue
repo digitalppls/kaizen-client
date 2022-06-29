@@ -40,7 +40,7 @@
           </span>
         </template>
         <template v-else-if="props.column.field === 'value'">
-          {{ props.row.value.toLocaleString($i18n.locale, $LOCALESTRING(0, 2)) }}
+          {{ Math.abs(props.row.value).toLocaleString($i18n.locale, $LOCALESTRING(0, 2)) }}
         </template>
         <template v-else-if="props.column.field === 'percent'">
           {{ props.row.percent.toLocaleString($i18n.locale, $LOCALESTRING_PERCENT(0, 2)) }}
@@ -107,30 +107,35 @@ export default {
         {
           label: "Название",
           field: "label",
+          tdClass: "v--center",
           sortable: false
         },
         {
           label: "Доля",
           field: "percent",
           width: "10%",
+          tdClass: "v--center",
           sortable: true
         },
         {
           label: "Цена",
           field: "priceUsd",
           width: "10%",
+          tdClass: "v--center",
           sortable: true
         },
         {
           label: "Выделено",
           field: "maxValue",
           width: "15%",
+          tdClass: "v--center",
           sortable: true
         },
         {
           label: "Продано",
           field: "value",
           width: "15%",
+          tdClass: "v--center",
           sortable: true
         }
       ]

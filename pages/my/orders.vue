@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="orders">
     <h2 class="color-white">
       {{ $t("LIMIT_ORDERS") }}
     </h2>
 
-    <list-orders is-admin />
+    <list-orders />
   </div>
 </template>
 
@@ -12,16 +12,17 @@
 import ListOrders from "../../components/ListOrders";
 
 export default {
-  name: "AdminOrders",
+  name: "MyOrders",
   components: { ListOrders },
   data () {
     return {};
   },
-  mounted () {},
-  methods: {}
+  mounted () {
+  },
+  methods: {
+  }
 };
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
 </style>

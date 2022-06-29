@@ -72,6 +72,11 @@ export default {
   "MORE_DETAILS": "Подробнее",
   "DOWNLOAD": "Скачать",
   "SHOW_ALL": "Показать все",
+  "REMOVE": "Удалить",
+  "DELETE": "Удалить",
+  "ACTION": "Действие",
+  "ADD": "Добавить",
+  "SAVE": "Сохранить",
   "404_TITLE": "Страница не найдена",
 
   "INVALID_CODE": "Неверный код",
@@ -160,8 +165,12 @@ export default {
   "WELCOME_TEXT": 'С нашей помощью <span class="color-secondary">Вы можете получить наилучший сервис</span>, находясь в Дубаи на отдыхе или по работе. Наши менеджеры с радостью помогут Вам, <span class="color-secondary">только дайте знать</span>, чего вы хотите!',
   "PRODUCT_NOT_FOUND": "Продукт не найден",
   "PRICE": "Цена",
+  "PRICEUSD": "Цена",
   "COST": "Стоимость",
   "ACTIVE_UNTIL": "Активен до",
+  "DIRECTION": "Направление",
+  "USERNAME": "Пользователь",
+  "USER": "Пользователь",
   "AMOUNT": "Количество",
   "AMOUNT_TOKENS": "Количество токенов",
   "BALANCE": "Баланс",
@@ -183,11 +192,11 @@ export default {
   "WITHDRAWAL_REQUEST": "Вывод",
   "NAME": "Название",
   "WEIGHT": "Значение",
-  "INCORRECT_TYPE": "Incorrect type",
+  "INCORRECT_TYPE": "Некорректный тип",
   "STATS": "Статистика",
 
   // History
-  "OPERATIONS": "Транзакции",
+  "OPERATIONS": "История транзакций",
   "OPERATION_ALL": "Все операции",
   "OPERATION_BUY": "Покупка",
   "OPERATION_PAYMENT": "Пополнение кошелька",
@@ -203,6 +212,13 @@ export default {
   "OPERATION_PACKAGE_FARMING": "Начисление процентов по пакету",
   "OPERATION_TOKEN_SWAP_FEE": "Комиссия за обмен токена",
   "AT_CURRENT_RATE": "По текущему курсу",
+  "OPERATION_CLOSE_LIMIT_ORDER": "Ордер закрыт",
+  "OPERATION_EDIT_LIMIT_ORDER": "Ордер изменён",
+  "OPERATION_BUY_LIMIT_ORDER": "Покупка через ордер",
+  "OPERATION_SELL_LIMIT_ORDER": "Продажа через ордер",
+  "OPERATION_OPEN_LIMIT_ORDER": "Открыт новый ордер",
+  "OPERATION_CHANGE_LIMIT_ORDER": "Получена сдача при покупке или продаже через ордер",
+  "OPERATION_BALANCE_UPDATE": "Обновление баланса",
 
   "YOUR_MLM_STATUS": "Ваш статус",
   "STATUS": "Статус",
@@ -522,5 +538,22 @@ export default {
   // INDICATORS PAGE
   "INDICATORS_DESC": "С 20.09 рынок показал параболлический рост, что обусловлено корелляцией первой криптовалюты с фондовым индексом S&P 500. Смотрите подробный отчёт",
   "COMPANY_WALLET": "Кошелек компании",
-  "REMUNERATION_FUND": "Фонд вознаграждения"
+  "REMUNERATION_FUND": "Фонд вознаграждения",
+
+  // LIMIT ORDERS
+  "LIMIT_ORDER": "Ордер",
+  "SAVE_LIMIT_ORDER": "Сохранить ордер",
+  "NEW_LIMIT_ORDER": "Новый ордер",
+  "OPEN_LIMIT_ORDER": "Открыть ордер",
+  "EDIT_LIMIT_ORDER": "Редактировать ордер",
+  "DELETE_LIMIT_ORDER": "Удалить ордер",
+  "DELETE_LIMIT_ORDER_CONFIRM": "Подтвердите удаление ордера",
+  "LIMIT_ORDERS": "Ордеры",
+  "MY_LIMIT_ORDERS": "Мои ордеры",
+  "FOR_SELL": "на продажу",
+  "FOR_BUY": "на покупку",
+  "RECOMMENDED_PRICE": "Рекомендуемая цена",
+  "RECOMMENDED_PRICE_WARN": "Из-за высокой цены ордер может висеть продолжительное время",
+  "I_WILL_GET": "Я получу",
+  "I_WILL_PAY": "Я отдам"
 };

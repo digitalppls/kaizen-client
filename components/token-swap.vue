@@ -50,7 +50,7 @@
         @input="onSendInput"
       >
         <template #append>
-          <div class="display-flex aic">
+          <div class="display-flex ai--center">
             <button
               class="btn btn-small"
               style="color: #fff;"
@@ -102,7 +102,7 @@
     <div class="m-t-40">
       <button
         class="btn btn-full"
-        :class="['btn', 'text-uppercase', {'btn-blue': inputCurrency === 'kzn'}, {'btn-yellow': inputCurrency === 'vng'}, {'btn-red': inputCurrency === 'srk'}]"
+        :class="['btn', 'text-uppercase', {'kzn': 'btn-blue', 'vng': 'btn-yellow', 'srk': 'btn-red'}[inputCurrency]]"
         :disabled="loading || !wallets.length || !!errorSendValidate || !!errorGetValidate  || !sendInput || !getInput || sendCoin === getCoin"
         @click="onExchange"
       >

@@ -9,6 +9,7 @@ export default {
   },
 
   created () {
+    Vue.prototype.$user = this.user;
     Vue.prototype.$balanceUsd = this.balanceUsd;
     Vue.prototype.$value_to_str = this.value_to_str;
     Vue.prototype.$value_to_usd = this.value_to_usd;
@@ -16,7 +17,6 @@ export default {
     Vue.prototype.$str_to_usd = this.str_to_usd;
     Vue.prototype.$usd_to_str = this.usd_to_str;
     Vue.prototype.$usd_to_value = this.usd_to_value;
-    Vue.prototype.$user = this.user;
     Vue.prototype.$countdown = this.countdown;
     Vue.prototype.$LOCALESTRING_PERCENT = this.localeStringPERCENT;
     Vue.prototype.$LOCALESTRING_USD = this.localeStringUSD;
@@ -28,9 +28,10 @@ export default {
     Vue.prototype.$DateText = this.DateText;
     Vue.prototype.$TimeText = this.TimeText;
     Vue.prototype.$declOfNum = this.declOfNum;
-    Vue.prototype.$isDev = this.isDev;
+    Vue.prototype.$isDev = process.env.NODE_ENV === "development";
     Vue.prototype.$externalLink = this.externalLink;
     Vue.prototype.$nameRoundByType = this.nameRoundByType;
+    Vue.prototype.$shortString = this.shortString;
     Vue.prototype.$TokenColors = {
       kzn: "#44f3ff",
       vng: "#fedb81",
@@ -46,18 +47,39 @@ export default {
       reward_fund: "#629cf2",
       public_sale: "#fff"
     };
+    Vue.prototype.$userPermissions = this.userPermissions;
+    Vue.prototype.$accessUsers = this.accessUsers;
+    Vue.prototype.$accessOperations = this.accessOperations;
+    Vue.prototype.$accessFunds = this.accessFunds;
+    Vue.prototype.$accessOrders = this.accessOrders;
   },
 
   computed: {
     user () {
       return this.$store.getters.user;
     },
-    isDev () {
-      return process.env.isDev;
+    userPermissions () {
+      return this.user?.permissions || [];
+    },
+    accessUsers () {
+      return this.userPermissions.includes("/api/user/list");
+    },
+    accessOperations () {
+      return this.userPermissions.includes("/api/operation/stat");
+    },
+    accessFunds () {
+      return this.userPermissions.includes("/api/fund/save") || this.userPermissions.includes("/api/token/sale/save");
+    },
+    accessOrders () {
+      return this.userPermissions.includes("/api/token/limit-order/buy/save");
     }
   },
 
   methods: {
+    shortString (string, front = 4, end = 4) {
+      return string.slice(0, front) + " … " + string.slice(-end);
+    },
+
     externalLink (link) {
       return link.includes("http");
     },

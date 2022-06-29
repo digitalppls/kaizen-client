@@ -90,7 +90,7 @@
     <!-- Балансы -->
     <div>
       <h3 class="color-white">
-        Балансы
+        Баланс
       </h3>
       <div
         v-if="userData.wallets.length"
@@ -100,10 +100,9 @@
           v-for="(wallet, key) in userData.wallets"
           :key="key"
           class="user-card-balance__item"
-          @click="selectWallet(wallet)"
         >
           <div
-            :class="['user-card-balance__box', {'user-card-balance__box--active': wallet.symbol === selectedSymbol}]"
+            class="user-card-balance__box"
             :title="wallet.amount"
           >
             <div
@@ -132,14 +131,6 @@
       </div>
     </div>
 
-    <!-- Список операций по выбранному токену -->
-    <user-transactions
-      v-if="selectedSymbol"
-      :key="key"
-      :user-id="userData.id"
-      :symbol="selectedSymbol"
-    />
-
     <!-- Реферальная программа -->
     <div class="m-t-30">
       <h3 class="color-white">
@@ -152,6 +143,20 @@
       <referral-network
         :user="userData"
         admin-mode
+      />
+    </div>
+
+    <!-- История операций-->
+    <div class="m-t-30">
+      <h3 class="color-white">
+        История операция
+      </h3>
+      <transactions
+        :rows="rows"
+        :loading="loading"
+        :total-records="rows.length"
+        :wallets="userData.wallets"
+        @transactions-filter="onFilter"
       />
     </div>
 
@@ -190,14 +195,14 @@
 
 <script>
 import UiPreloader from "../ui/ui-preloader.global";
-import UserTransactions from "./UserTransactions";
 import UiDetails from "../ui/ui-details";
 import UserRefRewards from "./UserRefRewards";
 import ReferralNetwork from "../referral-network";
+import Transactions from "../transactions";
 
 export default {
   name: "UserCard",
-  components: { ReferralNetwork, UserRefRewards, UiDetails, UserTransactions, UiPreloader },
+  components: { Transactions, ReferralNetwork, UserRefRewards, UiDetails, UiPreloader },
   props: {
     userData: {
       type: Object,
@@ -212,46 +217,12 @@ export default {
       loadingRef: false,
       fatherName: "",
       errors: [],
-      loading: true,
-      columns: [
-        {
-          label: "Регистрация",
-          field: "date",
-          width: "16%",
-          sortable: false
-        },
-        {
-          label: "Имя",
-          field: "username",
-          width: "20%",
-          sortable: false
-        },
-        {
-          label: "E-mail",
-          field: "email",
-          width: "25%",
-          sortable: false
-        },
-        {
-          label: "Баланс кошелька",
-          field: "invited",
-          // width: "50%",
-          // thClass: "min-width-180",
-          sortable: false
-        }
-      ],
+      loading: false,
+      key: 0,
+      // operations history
       rows: [],
       totalRecords: 0,
-      page: 1,
-      offset: 0,
-      perPageDropdown: [30, 50],
-      serverParams: {
-        columnFilters: {},
-        page: 1,
-        perPage: 30
-      },
-      key: 0,
-      selectedSymbol: ""
+      offset: 0
     };
   },
   computed: {
@@ -263,6 +234,7 @@ export default {
     if (this.fatherId) {
       this.loadUserRefName();
     }
+    this.loadOperations();
   },
   methods: {
     /** Получаем имя пригласившего пользователя */
@@ -280,18 +252,39 @@ export default {
       });
     },
 
-    /** Выбор кошелька, чтобы посмотреть движение по нему
-     * Информация доступна только по токенам:
-     * ["usdt","busd","usdc","btc","trx","eth","bnb","vng","srk","kzn"]
-     */
-    selectWallet (wallet) {
-      this.key++;
-      if (this.selectedSymbol !== wallet.symbol) {
-        this.selectedSymbol = wallet.symbol;
-      } else {
-        this.selectedSymbol = null;
-      }
+    /** Загрузить транзакции по фильтру */
+    onFilter (filters) {
+      console.log("on-filter", filters);
+      this.loadOperations(filters);
     },
+
+    /** Получить транзакции */
+    loadOperations () {
+      const filters = {...arguments}[0];
+      this.loading = true;
+      const params = {
+        offset: this.offset,
+        limit: 1000, // this.serverParams.perPage,
+        userId: this.userData._id,
+        type: filters?.type?.value ?? "all"
+      };
+      if (filters && Object.prototype.hasOwnProperty.call(filters, "symbol") && !!filters.symbol && !["токен", "token"].includes(filters.symbol.toLowerCase())) {
+        params.symbol = filters.symbol;
+      }
+      this.$API.adminOperationList(params, (response) => {
+        this.loading = false;
+        this.rows = response.operations;
+        this.totalRecords = response.length;
+      }, (e) => {
+        this.loading = false;
+        console.error("[adminOperationList]", e);
+        if (e.message[0] === "symbol must be a valid enum value") {
+          this.errors = ["История операций доступна только по следующим токенам: USDT, BUSD, USDC, BTC, TRX, ETH, BNB, VNG, SRK, KZN"]
+        } else {
+          this.errors = e?.message ?? [];
+        }
+      });
+    }
   }
 };
 </script>
@@ -363,11 +356,6 @@ export default {
       background: #242527;
       border: 1px solid #55585f;
       padding: 10px;
-      cursor: pointer;
-
-      &--active {
-        background: #151618;
-      }
     }
 
     &__token {

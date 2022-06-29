@@ -125,10 +125,60 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+
+  /** ОТЛОЖЕННЫЙ/ЛИМИТИРОВАННЫЙ ОРДЕР ================================= */
+
+  /** Добавление/удаление/изменение ордера на продажу/покупку */
+  TokenOrderSave (direction, data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "post",
+      `token/limit-order/${direction}/save/`,
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail,
+      true
+    );
+  },
+
+  /** Получить список всех ордеров всех пользователей */
+  TokenOrderListAll (promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      "token/limit-order/list/all/",
+      false,
+      promiseFuncSuccess,
+      promiseFuncFail,
+      true
+    );
+  },
+
+  /** Получить список всех ордеров текущего пользователя */
+  TokenOrderList (promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "get",
+      "token/limit-order/list/",
+      false,
+      promiseFuncSuccess,
+      promiseFuncFail,
+      true
+    );
+  },
+
   RefList (data, promiseFuncSuccess, promiseFuncFail) {
     this.request(
       "post",
       "ref/list/",
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail
+    );
+  },
+
+  /** Просмотр реферального дерева любого пользователя (ADMIN) */
+  RefListAll (data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "post",
+      "ref/list/all",
       data,
       promiseFuncSuccess,
       promiseFuncFail

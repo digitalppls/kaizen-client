@@ -37,7 +37,7 @@
 
     <button
       class="btn btn-full"
-      :class="['btn', 'btn-medium', 'text-uppercase', {'btn-blue': selectedFund.symbol === 'kzn'}, {'btn-yellow': selectedFund.symbol === 'vng'}, {'btn-red': selectedFund.symbol === 'srk'}]"
+      :class="['btn', 'btn-medium', 'text-uppercase', {'kzn': 'btn-blue', 'vng': 'btn-yellow', 'srk': 'btn-red'}[selectedFund.symbol]]"
       :disabled="loading"
       @click="saveSale"
     >

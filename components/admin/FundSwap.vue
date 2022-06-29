@@ -35,7 +35,7 @@
         @input="onSendInput"
       >
         <template #append>
-          <div class="display-flex aic">
+          <div class="display-flex ai--center">
             <button
               class="btn btn-small"
               style="color: #fff;"
@@ -66,7 +66,7 @@
     <!-- Кнопка "ПЕРЕВЕСТИ" -->
     <div class="m-t-20">
       <button
-        :class="['btn', 'btn-full', 'btn-medium', 'text-uppercase', {'btn-blue': inputFund.symbol === 'kzn'}, {'btn-yellow': inputFund.symbol === 'vng'}, {'btn-red': inputFund.symbol === 'srk'}]"
+        :class="['btn', 'btn-full', 'btn-medium', 'text-uppercase', {'kzn': 'btn-blue', 'vng': 'btn-yellow', 'srk': 'btn-red'}[inputFund.symbol]]"
         :disabled="loading || !!errorSendValidate || !sendInput"
         @click="onExchange"
       >
