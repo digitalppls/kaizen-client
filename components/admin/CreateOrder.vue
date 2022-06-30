@@ -250,7 +250,6 @@ export default {
       this.errors = {};
       this.symbol = symbol;
       this.fields.amount = amount;
-      console.log(symbol, amount);
       this.loadAllOrders();
     },
 

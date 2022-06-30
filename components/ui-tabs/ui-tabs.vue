@@ -2,7 +2,7 @@
   <div :class="['ui-tabs', {'ui-tabs--yellow': yellowStyle }, {'ui-tabs--menu-bordered': menuBordered }]" :style="cssVarCountTabs">
     <div class="ui-tabs-mobile">
       <div class="ui-tabs-mobile__current">
-        {{ $t(activeTab) }}
+        {{ activeTab }}
       </div>
       <div class="ui-tabs-mobile__dropdown">
         <div
@@ -12,15 +12,15 @@
           <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M4 2C4 3.10457 3.10457 4 2 4C0.895431 4 0 3.10457 0 2C0 0.895431 0.895431 0 2 0C3.10457 0 4 0.895431 4 2Z"
-              fill="var(--base-text)"
+              fill="var(--col-main)"
             />
             <path
               d="M12 2C12 3.10457 11.1046 4 10 4C8.89543 4 8 3.10457 8 2C8 0.895431 8.89543 0 10 0C11.1046 0 12 0.895431 12 2Z"
-              fill="var(--base-text)"
+              fill="var(--col-main)"
             />
             <path
               d="M20 2C20 3.10457 19.1046 4 18 4C16.8954 4 16 3.10457 16 2C16 0.895431 16.8954 0 18 0C19.1046 0 20 0.895431 20 2Z"
-              fill="var(--base-text)"
+              fill="var(--col-main)"
             />
           </svg>
         </div>
@@ -35,7 +35,7 @@
             :class="['ui-tabs-menu__item', { 'ui-tabs-menu____item--active': tab.isActive }]"
             @click="selectTab(tab)"
           >
-            {{ $t(tab.name) }}
+            {{ tab.name }}
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@
         :data-tabs-count="tabs.length"
         @click="selectTab(tab)"
       >
-        {{ $t(tab.name) }}
+        {{ tab.name }}
       </div>
     </div>
 
@@ -123,22 +123,22 @@ export default {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      background-color: var(--color-dark);
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      background-color: #242527;
+      border-radius: 0;
     }
 
     &__item {
       //font-size: 16px;
-      padding: 10px 20px;
+      padding: 10px 15px;
       text-align: right;
       cursor: pointer;
-      color: var(--color-gray-light);
+      color: var(--col-gray);
       transition: border-color .2s ease-in-out, color .2s ease-in-out;
 
       @include respond-before("md") {
         padding: 18px;
         text-align: center;
-        border-bottom: 1px solid transparent;
+        border-bottom: 2px solid transparent;
         width: calc(100% / var(--count-tabs));
 
         &:hover {
@@ -151,21 +151,21 @@ export default {
 
       &--active {
         cursor: default;
-        color: var(--color-primary);
-        border-color: var(--color-primary);
+        color: var(--col-main);
+        border-color: var(--col-main);
       }
     }
   }
 
   &-details {
     overflow: hidden;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-radius: 0;
   }
 
   &-mobile {
     display: flex;
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
-    background-color: var(--color-gray-light);
+    border-radius: 0;
+    background-color: #242527;
 
     @include respond-before("md") {
       display: none;
@@ -192,7 +192,7 @@ export default {
       cursor: pointer;
       text-align: center;
       color: var(--base-text);
-      border-bottom: 1px solid var(--color-primary);
+      border-bottom: 1px solid var(--col-accent);
       transition: border-color .2s ease-in-out;
     }
 
@@ -206,8 +206,8 @@ export default {
       top: 100%;
       right: 0;
       width: 220px;
-      background-color: var(--color-gray-light);
-      border-radius: 0 0 var(--border-radius) var(--border-radius);
+      background-color: #242527;
+      border-radius: 0;
       padding: 10px 0;
 
       .ui-tabs-menu__item {

@@ -87,7 +87,7 @@
       max-width="1000px"
       @close="closeModal"
     >
-      <user-card :user-data="selectedUserData" />
+      <user-card :user="selectedUserData" />
     </ui-modal>
   </div>
 </template>

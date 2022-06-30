@@ -125,6 +125,17 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+  /** Изменить баланс пользователя */
+  TokenUpdateBalance (data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "post",
+      "token/increment",
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail,
+      true
+    );
+  },
 
   /** ОТЛОЖЕННЫЙ/ЛИМИТИРОВАННЫЙ ОРДЕР ================================= */
 

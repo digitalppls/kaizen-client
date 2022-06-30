@@ -55,6 +55,12 @@
             {{ $DateText(props.row.date) }}, {{ $TimeText(props.row.date) }}
           </div>
           <div v-else-if="props.column.field === 'type'">
+            <!--<template v-if="props.row.type === 'balance_update'">
+              {{ props.row.amount > 0 ? ": Начисление " : ": Списание" }}
+            </template>-->
+          <!--  <span v-if="props.row.type === 'token_swap'" class="font-700">
+              {{ props.row.amount > 0 ? `Покупка токена` : "Продажа токена" }} {{ props.row.symbol }}
+            </span>-->
             {{ $t(`OPERATION_${props.row.type.toUpperCase()}`) }}
 
             <div
@@ -115,6 +121,8 @@
                 </svg>
               </button>
             </div>
+
+            <!--<pre v-html="props.row" />-->
           </div>
           <div v-else-if="props.column.field === 'amount'">
             <div class="font-700 text-uppercase">

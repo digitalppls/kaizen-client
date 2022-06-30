@@ -218,7 +218,7 @@ export default {
   "OPERATION_SELL_LIMIT_ORDER": "Продажа через ордер",
   "OPERATION_OPEN_LIMIT_ORDER": "Открыт новый ордер",
   "OPERATION_CHANGE_LIMIT_ORDER": "Получена сдача при покупке или продаже через ордер",
-  "OPERATION_BALANCE_UPDATE": "Обновление баланса",
+  "OPERATION_BALANCE_UPDATE": "Изменение баланса",
 
   "YOUR_MLM_STATUS": "Ваш статус",
   "STATUS": "Статус",
