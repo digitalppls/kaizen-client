@@ -49,20 +49,37 @@ export default {
           const vm = node.vm;
           const data = { _id: node.id, line: 1 };
           return new Promise((resolve) => {
-            vm.$API.RefList(data, (r) => {
-              const array = r.users.map(user => ({
-                data: {
-                  user,
-                  name: user.username,
-                  products: user.products
-                },
-                id: user._id,
-                isBatch: true
-              }));
-              resolve(array);
-            }, (error) => {
-              console.log("ERROR", error);
-            });
+            if (this.adminMode) {
+              vm.$API.RefListAll(data, (r) => {
+                const array = r.users.map(user => ({
+                  data: {
+                    user,
+                    name: user.username,
+                    products: user.products
+                  },
+                  id: user._id,
+                  isBatch: true
+                }));
+                resolve(array);
+              }, (error) => {
+                console.log("ERROR", error);
+              });
+            } else {
+              vm.$API.RefList(data, (r) => {
+                const array = r.users.map(user => ({
+                  data: {
+                    user,
+                    name: user.username,
+                    products: user.products
+                  },
+                  id: user._id,
+                  isBatch: true
+                }));
+                resolve(array);
+              }, (error) => {
+                console.log("ERROR", error);
+              });
+            }
           });
         }
       }

@@ -86,7 +86,7 @@ export default {
         {
           name: "Дашборд",
           url: "admin",
-          show: true
+          show: false
         },
         {
           name: "Фонды",

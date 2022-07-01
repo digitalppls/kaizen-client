@@ -1,5 +1,5 @@
 <template>
-  <div class="page-new-password">
+  <div class="page-new-password main-section">
     <div class="container">
       <h1 class="title">
         {{ $t("SET_NEW_PASSWORD") }}
@@ -10,11 +10,10 @@
           <div class="ui-form__fieldset">
             <ui-text-field
               v-model="password"
-              :floating="true"
               autocomplete="off"
               autofocus="on"
+              required
               :type="viewPassword ? 'text' : 'password'"
-              required=""
               :disabled="loading"
               :label="$t('AUTH.FIELDS.PASSWORD')"
               @input="onKeydown"
@@ -28,7 +27,7 @@
             </ui-text-field>
           </div>
           <div class="ui-form__fieldset m-t-40">
-            <button :disabled="!password || loading" type="submit" class="btn btn-solid btn-big btn-full">
+            <button :disabled="!password || loading" type="submit" class="btn btn-accent btn-full">
               {{ $t("SET_NEW_PASSWORD") }}
             </button>
           </div>

@@ -19,13 +19,13 @@
       <div class="m-l-a">
         <button
           :class="['btn', {'kzn': 'btn-blue', 'vng': 'btn-yellow', 'srk': 'btn-red'}[symbol]]"
-          :disabled="!isCurrent"
+          :disabled="!isCurrent || !currentSale.priceUsd"
           @click="openModal('buy')"
         >
           {{ $t("BUY") }}
         </button>
         <button
-          :disabled="!isCurrent"
+          :disabled="!isCurrent || !currentSale.priceUsd"
           class="btn btn-dark btn-small btn_set-opacity"
           @click="openModal('sell')"
         >

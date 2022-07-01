@@ -2,9 +2,7 @@
   <div class="referral-stats">
     <!-- Условия реферальной программы -->
     <div class="font-300 color-white m-b-30">
-      <p class="m-b-20">
-        {{ $t("REF_INFO") }}
-      </p>
+      <p class="m-b-20" v-html="$t('REF_INFO')" />
       <ul
         v-if="tokenBonusList.length"
         class="list list--none font-300"

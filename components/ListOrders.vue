@@ -342,7 +342,7 @@ export default {
         this.$API.TokenOrderSave(order.direction, params, (rows) => {
           this.loading = false;
           this.selectedOrder = null;
-          this.rows = rows;
+          this.loadOrders();
         }, (e) => {
           alert("Error when deleting an order. See the browser console.");
           console.error("[TokenOrderSellSave][REMOVE]", e);

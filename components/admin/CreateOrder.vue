@@ -200,7 +200,7 @@ export default {
         params = { ...fields };
       }
 
-      const confirmMsg = `Подтвердите действие: ${this.direction} ${this.fields.amount} ${this.symbol} по цене $${this.fields.priceUsd}?`;
+      const confirmMsg = `${this.$t("NEW_LIMIT_ORDER")} ${this.$t(`FOR_${this.direction.toUpperCase()}`)}: ${this.fields.amount} ${this.symbol.toUpperCase()}, ${this.$t("PRICE")} $${this.fields.priceUsd}?`;
 
       if (confirm(confirmMsg)) {
         this.loading = true;

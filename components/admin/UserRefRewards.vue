@@ -67,7 +67,7 @@ export default {
     /** Получаем список приглашенных пользователей и считаем их */
     getRefList () {
       this.loading = true;
-      this.$API.RefList({ _id: this.userId, line: 1 }, (r) => {
+      this.$API.RefListAll({ _id: this.userId, line: 1 }, (r) => {
         this.loading = false;
         this.items.push({
           label: "Пользователей приглашено",
