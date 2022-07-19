@@ -79,23 +79,23 @@ export default {
       menuItems: [
         {
           title: this.$t("HOME"),
-          url: this.localePath("index")
+          url: this.localePath({ name: "index" })
         },
         {
           title: this.$t("INDEXES"),
-          url: this.localePath("indexes")
+          url: this.localePath({ name: "indexes" })
         },
         {
           title: this.$t("POWER_PLANT"),
-          url: this.localePath("power-plant")
+          url: this.localePath({ name: "power-plant" })
         },
         {
           title: this.$t("PRODUCTION"),
-          url: this.localePath("production")
+          url: this.localePath({ name: "production" })
         },
         {
-          title: this.$t("INDICATORS"),
-          url: this.localePath("indicators")
+          title: this.$t("INFORMATION"),
+          url: this.localePath({ name: "information" })
         }
       ]
     };

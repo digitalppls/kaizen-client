@@ -16,7 +16,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "KAIZEN FUND",
+    title: "Pro-Industry",
     htmlAttrs: {
       lang: "ru"
     },

@@ -121,7 +121,7 @@
                     <h3 class="scheme__card-title">
                       {{ $t("PLATFORM") }}
                       <span class="accent">
-                        KAIZEN
+                        Pro-Industry
                       </span>
                     </h3>
                   </div>
@@ -299,11 +299,11 @@
               </li>
               <li class="animate__animated wow animate__slideInUp" data-wow-delay=".4s">
                 Compensation fund
-                <span class="number" v-text="'5%'" />
+                <span class="number" v-text="'14,75%'" />
               </li>
               <li class="animate__animated wow animate__slideInUp" data-wow-delay=".5s">
                 Public sale
-                <span class="number" v-text="'62%'" />
+                <span class="number" v-text="'52,25%'" />
               </li>
             </ul>
           </div>

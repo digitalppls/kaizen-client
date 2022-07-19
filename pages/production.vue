@@ -66,7 +66,10 @@
                       </span>
                     </h3>
                   </div>
-                  <img src="~/assets/img/logo.svg" alt="">
+                  <img
+                    src="~/assets/img/logo.svg"
+                    alt=""
+                  >
                 </div>
               </div>
               <div class="scheme__block scheme__block-4">
@@ -96,11 +99,14 @@
                     <h3 class="scheme__card-title">
                       {{ $t("PLATFORM") }}
                       <span class="accent">
-                        KAIZEN
+                        Pro-Industry
                       </span>
                     </h3>
                   </div>
-                  <img src="~/assets/img/logo.svg" alt="">
+                  <img
+                    src="~/assets/img/logo.svg"
+                    alt=""
+                  >
                 </div>
               </div>
               <div class="scheme__block scheme__block-6">
@@ -171,7 +177,10 @@
     <!-- Контент -->
     <div class="industry-data-section">
       <div class="container">
-        <div id="story" :class="['story', {'hidden': storyHidden}]">
+        <div
+          id="story"
+          :class="['story', {'hidden': storyHidden}]"
+        >
           <div class="story__text">
             <p class="animate__animated wow animate__fadeIn">
               {{ $t("PRODUCTION_TEXT_2") }}
@@ -182,7 +191,10 @@
             <p class="animate__animated wow animate__fadeIn">
               {{ $t("PRODUCTION_TEXT_4") }}
             </p>
-            <div class="story__hidden" :class="{ 'show_story': !storyHidden}">
+            <div
+              class="story__hidden"
+              :class="{ 'show_story': !storyHidden}"
+            >
               <p class="animate__animated wow animate__fadeIn">
                 {{ $t("PRODUCTION_TEXT_5") }}
               </p>
@@ -190,27 +202,117 @@
                 {{ $t("PRODUCTION_TEXT_6") }}
               </p>
             </div>
-<!--            <div class="story__new">-->
-<!--              <p>-->
-<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem officia, atque soluta in minima qui-->
-<!--                vero explicabo labore-->
-<!--                adipisci est! Tempora quas, sit commodi in odit mollitia! Officiis sit obcaecati vel quos totam id-->
-<!--                eveniet porro hic deserunt in-->
-<!--                repudiandae vero aperiam voluptate doloremque dicta animi, earum, similique corporis? Optio.-->
-<!--              </p>-->
-<!--              <p>-->
-<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis maxime iusto, sint iure perferendis-->
-<!--                illum quod nihil deserunt-->
-<!--                fugiat porro laborum voluptatibus alias, consectetur quae explicabo debitis numquam beatae earum ea-->
-<!--                possimus! Quasi, ipsum-->
-<!--                temporibus?-->
-<!--              </p>-->
-<!--              <p>-->
-<!--                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero facere delectus dignissimos officia-->
-<!--                quaerat repudiandae dolorum-->
-<!--                eveniet dolores non quod?-->
-<!--              </p>-->
-<!--            </div>-->
+            <div class="story__new">
+              <div>
+                <h3 class="animate__animated wow animate__fadeIn m-t-30">
+                  {{ $t("PRODUCTION_TEXT_8") }}
+                </h3>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_9") }}
+                  <br>{{ $t("PRODUCTION_TEXT_10") }}
+                  <br>{{ $t("PRODUCTION_TEXT_11") }}
+                </p>
+
+                <div class="table-overflow">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th>{{ $t("PRODUCTION_TABLE_TEXT_1") }}</th>
+                      <th>{{ $t("PRODUCTION_TABLE_TEXT_2") }}</th>
+                      <th>{{ $t("PRODUCTION_TABLE_TEXT_3") }}</th>
+                      <th>{{ $t("PRODUCTION_TABLE_TEXT_4") }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>{{ $t("PRODUCTION_TABLE_TEXT_5") }}</td>
+                      <td>{{ $t("PRODUCTION_TABLE_TEXT_6") }}</td>
+                      <td>40-50</td>
+                      <td>150-200</td>
+                    </tr>
+                    <tr>
+                      <td>{{ $t("PRODUCTION_TABLE_TEXT_7") }}</td>
+                      <td>{{ $t("PRODUCTION_TABLE_TEXT_8") }}</td>
+                      <td>12</td>
+                      <td>100</td>
+                    </tr>
+                    <tr>
+                      <td>{{ $t("PRODUCTION_TABLE_TEXT_9") }}</td>
+                      <td>{{ $t("PRODUCTION_TABLE_TEXT_10") }}</td>
+                      <td>22</td>
+                      <td>1200</td>
+                    </tr>
+                    <tr>
+                      <td>{{ $t("PRODUCTION_TABLE_TEXT_11") }}</td>
+                      <td>{{ $t("PRODUCTION_TABLE_TEXT_12") }}</td>
+                      <td>45-50</td>
+                      <td>40-50</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_12") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_13") }}
+                  <br>{{ $t("PRODUCTION_TEXT_14") }}
+                </p>
+                <ul class="list list--none" style="margin-top: -30px; margin-bottom: 30px; font-size: 16px;">
+                  <li>• {{ $t("PRODUCTION_TEXT_15") }}</li>
+                  <li>• {{ $t("PRODUCTION_TEXT_16") }}</li>
+                  <li>• {{ $t("PRODUCTION_TEXT_17") }}</li>
+                  <li>• {{ $t("PRODUCTION_TEXT_18") }}</li>
+                </ul>
+
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_19") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_20") }}
+                </p>
+
+                <h3 class="animate__animated wow animate__fadeIn m-t-30">
+                  {{ $t("PRODUCTION_TEXT_21") }}
+                </h3>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_22") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_23") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_24") }}
+                </p>
+                <ul class="list list--none" style="margin-top: -30px; margin-bottom: 30px; font-size: 16px;">
+                  <li>• {{ $t("PRODUCTION_TEXT_25") }}</li>
+                  <li>• {{ $t("PRODUCTION_TEXT_26") }}</li>
+                  <li>• {{ $t("PRODUCTION_TEXT_27") }}</li>
+                  <li>• {{ $t("PRODUCTION_TEXT_28") }}</li>
+                  <li>• {{ $t("PRODUCTION_TEXT_29") }}</li>
+                </ul>
+
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_30") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_31") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_32") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_33") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_34") }}
+                </p>
+                <p class="animate__animated wow animate__fadeIn">
+                  {{ $t("PRODUCTION_TEXT_35") }}
+                </p>
+              </div>
+            </div>
           </div>
           <button
             v-if="storyHidden"
@@ -296,7 +398,10 @@
                 stroke-dashoffset="24.2434"
               />
             </svg>
-            <div class="number" v-text="'100 000 000 SRK'" />
+            <div
+              class="number"
+              v-text="'100 000 000 SRK'"
+            />
           </div>
           <div class="diagram-box__legend">
             <ul>
@@ -305,35 +410,50 @@
                 data-wow-delay=".1s"
               >
                 Pre-sale
-                <span class="number" v-text="'1%'" />
+                <span
+                  class="number"
+                  v-text="'1%'"
+                />
               </li>
               <li
                 class="animate__animated wow animate__slideInUp"
                 data-wow-delay=".2s"
               >
                 IDO
-                <span class="number" v-text="'0.3%'" />
+                <span
+                  class="number"
+                  v-text="'0.3%'"
+                />
               </li>
               <li
                 class="animate__animated wow animate__slideInUp"
                 data-wow-delay=".3s"
               >
                 Company Wallet
-                <span class="number" v-text="'15%'" />
+                <span
+                  class="number"
+                  v-text="'15%'"
+                />
               </li>
               <li
                 class="animate__animated wow animate__slideInUp"
                 data-wow-delay=".4s"
               >
                 Compensation fund
-                <span class="number" v-text="'5%'" />
+                <span
+                  class="number"
+                  v-text="'14,75%'"
+                />
               </li>
               <li
                 class="animate__animated wow animate__slideInUp"
                 data-wow-delay=".5s"
               >
                 Public sale
-                <span class="number" v-text="'78.3%'" />
+                <span
+                  class="number"
+                  v-text="'68,95%'"
+                />
               </li>
             </ul>
           </div>
@@ -361,7 +481,7 @@ export default {
   layout: "public",
   data () {
     return {
-      storyHidden: true
+      storyHidden: false
     };
   },
   computed: {
@@ -391,11 +511,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style
+  lang="scss"
+  scoped
+>
 
 .story {
   &.hidden {
-    .story__new p {
+    .story__new * {
       font-size: 0 !important;
       margin: 0;
     }
@@ -413,12 +536,30 @@ export default {
     margin-bottom: 40px;
   }
 
-  &__new p {
+  &__new * {
     -webkit-transition: .5s;
     -o-transition: .5s;
     transition: .5s;
   }
 }
 
+.table-overflow {
+  overflow-y: auto;
+  margin-bottom: 20px;
+}
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 500px;
+
+  &,
+  th, td {
+    border: 1px solid #888;
+  }
+
+  td, th {
+    padding: 5px;
+  }
+}
 
 </style>

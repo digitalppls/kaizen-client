@@ -167,11 +167,11 @@
               </li>
               <li>
                 Compensation fund
-                <span class="number" v-text="'5%'" />
+                <span class="number" v-text="'14,75%'" />
               </li>
               <li>
                 Public sale
-                <span class="number" v-text="'62%'" />
+                <span class="number" v-text="'66,25%'" />
               </li>
             </ul>
           </div>

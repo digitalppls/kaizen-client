@@ -23,6 +23,7 @@ export default {
   "FOR_INDUSTRIAL_MINING": "industrial mining",
   "PROJECTS": "Projects",
   "INDICATORS": "Indicators",
+  "INFORMATION": "Information",
   "PRODUCTION": "PRO-INDUSTRY",
   "SOON": "Soon",
   "COOKIES_BANNER": "🍪 We use cookies.",
@@ -243,7 +244,7 @@ export default {
 
   // Home
   "COVER_TITLE": "Invest in the world's best cryptocurrency indices",
-  "COVER_DESC": "Kaizen Fund is a Defi Cryptocurrency Index Fund. We provide the ability to create capital with a new class of liquid and safe assets.",
+  "COVER_DESC": "Pro-Industry is a Defi Cryptocurrency Index Fund. We provide the ability to create capital with a new class of liquid and safe assets.",
   "START_INVESTING": "Start investing",
   "CABINET": "Cabinet",
 
@@ -264,7 +265,7 @@ export default {
   // Home tariffs
   "HOME_INDEXES_TITLE": "Choose the best index",
   "HOME_ROADMAP_TITLE": "Roadmap",
-  "HOME_ROADMAP_DESC": "Check out KZN token sale dates and additional projects from the Kaizen Fund team.",
+  "HOME_ROADMAP_DESC": "Check out KZN token sale dates and additional projects from the Pro-Industry team.",
   "TIMELINE_1_TITLE": "November 15th",
   "TIMELINE_1_DESC": "Starting the Private Sale system",
   "TIMELINE_2_TITLE": "November 20th",
@@ -281,12 +282,12 @@ export default {
   // Home tokenomics
   "HOME_TOKENOMICS_TITLE": "Tokenomics",
   "TOKENOMICS_COMPANY_WALLET": "Company wallet",
-  "TOKENOMICS_PUBLIC_SELLING": "Public Selling on Pancake Exchange and Kaizen Fund Platform",
+  "TOKENOMICS_PUBLIC_SELLING": "Public Selling on Pancake Exchange and Pro-Industry Platform",
   "TOKENOMICS_TOTAL_INITIAL": "Total balance of the initial token emission",
   "TOKENOMICS_TOTAL_STABLECOIN": "Total balance of USDK stablecoin: <br> %{TOTAL} units of account",
 
   // Home token about
-  "TOKEN_KZN_DESC": "KZN is a preferred DeFi token, which entitles you to receive a share of the profits from the Kaizen Fund, as well as a discount of up to 50% on trading commissions.",
+  "TOKEN_KZN_DESC": "KZN is a preferred DeFi token, which entitles you to receive a share of the profits from the Pro-Industry, as well as a discount of up to 50% on trading commissions.",
 
   // Home advantages fund
   "ADVANTAGES_FUND_TITLE": "Fund Benefits",
@@ -300,8 +301,8 @@ export default {
   // FAQ
   "FAQ": "FAQ",
   "FAQ_TITLE": "Frequently asked questions and answers",
-  "FAQ_Q_1": "What is KAIZEN FOUNDATION?",
-  "FAQ_A_1": "KAIZEN FUND is an index-based investment fund that specializes in cryptocurrencies and blockchain.",
+  "FAQ_Q_1": "What is Pro-Industry?",
+  "FAQ_A_1": "Pro-Industry is an index-based investment fund that specializes in cryptocurrencies and blockchain.",
   "FAQ_Q_2": "Is there a Lock-Up period?",
   "FAQ_A_2": "No funds are blocked, you can apply every week after asset rebalancing every Monday.",
   "FAQ_Q_3": "How can I see the performance of the index?",
@@ -312,7 +313,7 @@ export default {
   "FAQ_A_5": "You can get discounts when withdrawing profits from indices, as well as when selling a token in our liquidity pool on Dex exchanges, see the detailed instructions on the website.",
 
   // ABOUT PAGE
-  "ABOUT_KAIZENFUND": "About Kaizen Fund",
+  "ABOUT_KAIZENFUND": "About Pro-Industry",
   "ABOUT_VALUE": "Values",
   "ABOUT_VALUE_DESC": "We strive to create convenient and profitable products for clients from all over the world. The principles of absolute transparency and utmost openness are a priority.",
   "ABOUT_VISION": "Vision",
@@ -360,15 +361,15 @@ export default {
   "YOUR_INVITE_LINK": "Your invite link",
   "YOUR_INVITE_CODE": "Your invite code",
 
-  // KAIZEN PAGE INDEX
+  // Pro-Industry PAGE INDEX
   "KAIZEN_DESC": "A secure way to get diversified exposure to bitcoin and leading cryptocurrencies. The Fund seeks to track an Index comprised of the 10 most highly valued cryptocurrencies, screened & monitored for certain risks, weighted by market capitalization, and rebalanced monthly. The fund provides the security and simplicity of a traditional investment vehicle, with shares tradable in brokerage accounts using ticker “BITW”.",
-  "KAIZEN_METHODOLOGY": "The KAIZEN Crypto Indexes follow clear, rules-based processes to make them both investable and replicable. The methodologies take into account crypto-native factors surrounding liquidity, security, regulatory status, market representation, network distributions and more to ensure they fully capture the investable cryptoasset market opportunity.",
+  "KAIZEN_METHODOLOGY": "The Pro-Industry Crypto Indexes follow clear, rules-based processes to make them both investable and replicable. The methodologies take into account crypto-native factors surrounding liquidity, security, regulatory status, market representation, network distributions and more to ensure they fully capture the investable cryptoasset market opportunity.",
   "KAIZEN_METHODOLOGY_ITEM_1": "The most valuable assets, rebalanced monthly",
   "KAIZEN_METHODOLOGY_ITEM_2": "Robust diligence of eligibility criteria",
   "KAIZEN_METHODOLOGY_ITEM_3": "24/7 monitoring for sudden events",
   "FEATURES": {
     "TITLE": "Platform capabilities",
-    "DESC": "Today, Kaizen has a wide range of instruments and a well-developed infrastructure at its disposal.",
+    "DESC": "Today, Pro-Industry has a wide range of instruments and a well-developed infrastructure at its disposal.",
     "TEXT": "Risk diversification is a priority, and includes three main areas:",
     "ITEMS": [
       {
@@ -381,43 +382,43 @@ export default {
       },
       {
         "TITLE": "LIQUIDITY",
-        "DESC": "Buy and sell tokens from Kaizen on global crypto exchanges with high liquidity."
+        "DESC": "Buy and sell tokens from Pro-Industry on global crypto exchanges with high liquidity."
       },
     ]
   },
   "ROADMAP": {
     "ITEMS": [
       {
-        "DATE": "June 2022",
-        "TEXT": "Pre-sale KZN token index and VNG token mining"
-      },
-      {
         "DATE": "August 2022",
-        "TEXT": "IDO KZN token index and VNG token mining"
+        "TEXT": "Pre-sale SRK token"
       },
       {
         "DATE": "September 2022",
-        "TEXT": "Public sale KZN token index and VNG token mining"
-      },
-      {
-        "DATE": "September 2022",
-        "TEXT": "Pre-sale of SRK production company token"
+        "TEXT": "IDO SRK token"
       },
       {
         "DATE": "October 2022",
-        "TEXT": "IDO of SRK Production Enterprise token"
+        "TEXT": "Public sale SRK token"
+      },
+      {
+        "DATE": "October 2022",
+        "TEXT": "Pre-sale of VNG token"
       },
       {
         "DATE": "November 2022",
-        "TEXT": "Public sale of SRK Production Enterprise token."
+        "TEXT": "IDO of VNG token"
+      },
+      {
+        "DATE": "December 2022",
+        "TEXT": "Public sale of VNG token"
       },
     ]
   },
   "MODERN_SOLUTIONS": "Modern blockchain solutions",
-  "INVEST_IN_TOKEN": "Invest in tokenized businesses, mining, and cryptocurrency indices with Kaizen",
+  "INVEST_IN_TOKEN": "Invest in tokenized businesses, mining, and cryptocurrency indices with Pro-Industry",
   "DIRECTIONS_FOR_DEV": {
     "TITLE": "Directions for development",
-    "DESC": "Today, Kaizen has a wide range of instruments and a well-developed infrastructure at its disposal.",
+    "DESC": "Today, Pro-Industry has a wide range of instruments and a well-developed infrastructure at its disposal.",
     "ITEMS": [
       {
         "TEXT": "Four of the highest-yielding cryptocurrency indices from different sectors."
@@ -468,7 +469,7 @@ export default {
   "LOWEST_RISK": "Highest credibility and lowest risk",
   "REPORT_NUMBER": "№",
   "INDEXES_COVER_TITLE": "Invest in the world's best cryptocurrency indices",
-  "INDEXES_COVER_DESC": "Kaizen Fund is a Defi cryptocurrency index fund. We provide the opportunity to build capital with a new class of liquid and safe assets.",
+  "INDEXES_COVER_DESC": "Pro-Industry is a Defi cryptocurrency index fund. We provide the opportunity to build capital with a new class of liquid and safe assets.",
   "EMISSION": "Issuance for the benefit of users is limited and no additional issuance is envisaged. All tokens that will not be sold at the Pre-Sale and IDO stages will be sent to the Public Sale fund.",
   "TOKENOMICS": "Tokenomics",
   "INFOCHART_TITLE": "Four high-yield and balanced indices of the planet",
@@ -476,8 +477,8 @@ export default {
 
   // MINING PAGE
   "MINING_COVER_TITLE": "Participate in the construction of a power plant for industrial mining with VNG token",
-  "MINING_COVER_DESC": "Kaizen provides access to bitcoin mining with the most favorable conditions.",
-  "KAIZEN_REDEEMS_TOKENS": "Kaizen platform redeems VNG tokens",
+  "MINING_COVER_DESC": "Pro-Industry provides access to bitcoin mining with the most favorable conditions.",
+  "KAIZEN_REDEEMS_TOKENS": "Pro-Industry platform redeems VNG tokens",
   "TO_MAINTAIN": "on the exchange to maintain price and liquidity.",
   "EXCHANGE_WHERE": "The exchange where",
   "VNG_IS_TRAIDED": "VNG token is traded",
@@ -516,7 +517,7 @@ export default {
         },
         {
           "TERM": "Platform Asset Fund",
-          "DEFINITION": "in the Kaizen Project, an asset fund means an aggregate of production assets for the project's power generation activities to support the operation of mining equipment or other projects in the Kaizen Platform;"
+          "DEFINITION": "in the Pro-Industry Project, an asset fund means an aggregate of production assets for the project's power generation activities to support the operation of mining equipment or other projects in the Pro-Industry Platform;"
         },
         {
           "TERM": "IDO (Initial DEX Offering)",
@@ -531,10 +532,10 @@ export default {
     "PROJECT": {
       "TITLE": "Project:",
       "TEXTS": [
-        "Construction of a 12 MW power plant operating on associated gas from the Beineu oil field in the Mangistau region. Associated gas will be used as fuel for power generation by gas-piston power plants. The power plant supplier is the Iranian service company Avat Energy. In this case, we intend to produce electric power from associated gas to be flared according to environmental production standards.  Today, a new industry of economy has been formed in Kazakhstan - mining of cryptocurrencies. Mining operators with thousands of units of computing equipment due to the lack of electricity suspend their activities in the Republic of Kazakhstan. Mining operators, in turn, operating in the Republic of Kazakhstan have digital assets with sales in the global market. These assets guarantee payment for electricity generated by the Kaizen power plant.",
-        "We plan to place mining operators with their computing equipment directly on the territory of the deposit at the proposed by-product gas-fired power plant. Thus, the miners using the energy of the Kaizen power plant will not create a deficit and imbalance in the public networks, as the autonomous power supply operates outside the public networks. Autonomous power supply cannot be disconnected by any regulations due to possible power shortages in the region.",
-        "By consuming our electricity, the mining operators replenish the balance of the Kaizen platform with digital assets, so the Kaizen platform has digital assets to redeem VNG Tokens from Participants and provide liquidity to the company Tokens on the digital exchange in order not to allow the Token price to decrease.",
-        "As a result of this collaboration, multiple Kaizen Platform Participants create tangible production assets in the real economy, namely the phased construction of a power plant, thereby increasing the Platform Asset Fund, which leads to an increase in the value of the secured VNG Token."
+        "Construction of a 12 MW power plant operating on associated gas from the Beineu oil field in the Mangistau region. Associated gas will be used as fuel for power generation by gas-piston power plants. The power plant supplier is the Iranian service company Avat Energy. In this case, we intend to produce electric power from associated gas to be flared according to environmental production standards.  Today, a new industry of economy has been formed in Kazakhstan - mining of cryptocurrencies. Mining operators with thousands of units of computing equipment due to the lack of electricity suspend their activities in the Republic of Kazakhstan. Mining operators, in turn, operating in the Republic of Kazakhstan have digital assets with sales in the global market. These assets guarantee payment for electricity generated by the Pro-Industry power plant.",
+        "We plan to place mining operators with their computing equipment directly on the territory of the deposit at the proposed by-product gas-fired power plant. Thus, the miners using the energy of the Pro-Industry power plant will not create a deficit and imbalance in the public networks, as the autonomous power supply operates outside the public networks. Autonomous power supply cannot be disconnected by any regulations due to possible power shortages in the region.",
+        "By consuming our electricity, the mining operators replenish the balance of the Pro-Industry platform with digital assets, so the Pro-Industry platform has digital assets to redeem VNG Tokens from Participants and provide liquidity to the company Tokens on the digital exchange in order not to allow the Token price to decrease.",
+        "As a result of this collaboration, multiple Pro-Industry Platform Participants create tangible production assets in the real economy, namely the phased construction of a power plant, thereby increasing the Platform Asset Fund, which leads to an increase in the value of the secured VNG Token."
       ]
     },
     "PRICING": {
@@ -550,9 +551,9 @@ export default {
         },
         {
           "DATE": "July 2022.",
-          "TEXT": "it is planned to commission its own power plant with gas porsche generators at the oil field, which increases the value of the Kaizen Platform Asset Fund, and accordingly the price of the secured digital token VNG increases.\n" +
-              "In other words, Kaizen tokens will always be secured by the company's assets and as the company's assets grow, the value of the secured token and correspondingly the profits of their Participants will grow.\n" +
-              "The production area of our platform allows us to generate profit from our own electric gas power plant and mining center from the first months of operation. These profits in digital assets will be sent to the exchange, where the secured VNG token of the Kaizen platform will be traded, to redeem these tokens from the Participants and then burn them. These activities will not allow Kaizen's secured tokens to fall below USD 1.42, but instead will increase their value."
+          "TEXT": "it is planned to commission its own power plant with gas porsche generators at the oil field, which increases the value of the Pro-Industry Platform Asset Fund, and accordingly the price of the secured digital token VNG increases.\n" +
+              "In other words, Pro-Industry tokens will always be secured by the company's assets and as the company's assets grow, the value of the secured token and correspondingly the profits of their Participants will grow.\n" +
+              "The production area of our platform allows us to generate profit from our own electric gas power plant and mining center from the first months of operation. These profits in digital assets will be sent to the exchange, where the secured VNG token of the Pro-Industry platform will be traded, to redeem these tokens from the Participants and then burn them. These activities will not allow Pro-Industry's secured tokens to fall below USD 1.42, but instead will increase their value."
         },
         {
           "DATE": "August 2022.",
@@ -566,7 +567,7 @@ export default {
     },
     "TEXT_1": "The company operator of the project \"Industrial Mining\" places the mining equipment on an oil field, with the company owner of the field has an agreement on the use of associated gas. Electricity is generated by the power plant gPG (gas piston generator) which uses associated gas of the deposit as fuel. The pilot 2 MW GPG generator is already in operation at the field and shows stable trouble-free operation. There is also a possibility of developing the capacity potential up to 8 MW. From the experience of operating a GPG power plant, the cost of 1 kWh has been identified and is $0.007, which is significantly lower than the cost of electricity from suppliers in the market. 70% of the mined bitcoins are sent to the liquidity pool on decentralized exchanges, 30% is sent for operating costs including electricity, company management and the purchase of new mining equipment.",
     "TEXT_2": " Autonomous power supply operates outside the public grid and does not create a deficit in the power balance of the region. Autonomous power supply cannot be disconnected by any administrative orders due to possible power shortages in the region.",
-    "TEXT_3": "Low cost of electricity and autonomy is a factor in the high profitability of the project \"Industrial Mining\" platform Kaizenfund",
+    "TEXT_3": "Low cost of electricity and autonomy is a factor in the high profitability of the project \"Industrial Mining\" platform Pro-Industry",
   },
 
   // PRODUCTION PAGE
@@ -574,12 +575,12 @@ export default {
   "READ_ALL": "Read all",
   "SRK_REDEMPTION": "Redeem SRK on the exchange to burn and hold the rate.",
   "PRODUCTION_TEXT_1": "Alternative contribution from the participant in services, construction materials, machinery, labor hours, contract work and others. The participant receives SRK tokens for alternative contributions",
-  "PRODUCTION_TEXT_2": "KAIZENFUND is creating a Collective Investment Blockchain platform to apply it to the investment of Projects in Special Economic Zones (SEZs) with a number of benefits and preferences. Where the company Project Operator is simultaneously the Operator of the blockchain platform KAIZENFUND.",
-  "PRODUCTION_TEXT_3": `The platform has issued SRK tokens, in the amount of 100 million units, for distribution to Participants.These tokens will be the shares of the created production enterprise in the framework of the Project. Any person can become a participant in the Project by purchasing a token. At the first stage, token purchase will only be possible from the platform operator on the KAIZENFUND platform website; at the next stage, after the listing procedure and SRK token placement on the digital exchange, it is possible to perform both the purchase and sale of tokens on the exchange (on which the token is represented).`,
+  "PRODUCTION_TEXT_2": "Pro-Industry is creating a Collective Investment Blockchain platform to apply it to the investment of Projects in Special Economic Zones (SEZs) with a number of benefits and preferences. Where the company Project Operator is simultaneously the Operator of the blockchain platform Pro-Industry.",
+  "PRODUCTION_TEXT_3": `The platform has issued SRK tokens, in the amount of 100 million units, for distribution to Participants.These tokens will be the shares of the created production enterprise in the framework of the Project. Any person can become a participant in the Project by purchasing a token. At the first stage, token purchase will only be possible from the platform operator on the Pro-Industry platform website; at the next stage, after the listing procedure and SRK token placement on the digital exchange, it is possible to perform both the purchase and sale of tokens on the exchange (on which the token is represented).`,
   "PRODUCTION_TEXT_4": "The platform and token are created for the construction and maintenance of a production plant, so the funds from the sale of tokens go in the first phase for design and construction work. Construction work requires materials and structures as well as machines, mechanisms and skilled workers in various fields.",
   "PRODUCTION_TEXT_5": "The project participant can make the purchase of tokens and alternative payments. Alternative payments for tokens we call services for construction, such as: machinery; contract work, which the participant must perform by receiving enterprise tokens before performing the work; also building materials; delivery of equipment and other directly used in the construction of the Production Plant.",
   "PRODUCTION_TEXT_6": "Calculation of the cost of services for the participant to accrue to him the appropriate number of tokens produces the Company Project Operator using to calculate the state collections and standards, these collections and standards are updated annually by the authorized bodies and the cost of works and materials often even exceed the market.",
-  "PRODUCTION_TEXT_7": "Carrying out activities by selling the products on the market, the Production Enterprise makes a profit. Part of the profit is sent for conversion into the units of account of decentralized markets through the Operator of the KAIZENFUND Platform. In turn, the KAIZENFUND Platform Operator directs the received assets to the exchanges where the SRK token is traded to redeem the SRK token, thereby keeping the token quote from falling. Thus, the KAIZENFUND Platform Operator acts as the buyer of a significant portion of the tokens, through the exchange.",
+  "PRODUCTION_TEXT_7": "Carrying out activities by selling the products on the market, the Production Enterprise makes a profit. Part of the profit is sent for conversion into the units of account of decentralized markets through the Operator of the Pro-Industry Platform. In turn, the Pro-Industry Platform Operator directs the received assets to the exchanges where the SRK token is traded to redeem the SRK token, thereby keeping the token quote from falling. Thus, the Pro-Industry Platform Operator acts as the buyer of a significant portion of the tokens, through the exchange.",
   "TO_FIAT_CURRENCY": "in fiat currency",
   "IN_FIAT_CURRENCY": "in fiat currency",
   "MANUFACTURING": "Production",
@@ -587,6 +588,47 @@ export default {
   "ACCUMULATION": "Accumulation",
   "PART_OF_THE_FUNDS": "Part of the funds",
   "FOR_CONVERSION": "allocated for conversion",
+  "PRODUCTION_TEXT_8": "Potato starch production with the technological assistance of the industry-leading ISAtech ISATECH Co.Ltd. (South Korea).",
+  "PRODUCTION_TEXT_9": "Potato starch is used in 20 industries and more than 2,000 items are produced from it. Starch is one of the most important components of the plant cell and its industrial use in the food industry and many other sectors is so diverse that it now exceeds 50 million tons per year. This huge amount of starch has become the third most important renewable raw material after cellulose and vegetable oils. The demand for starch products around the world is growing year by year, and industrial success depends on a combination of increased productivity and premium quality.",
+  "PRODUCTION_TEXT_10": "Production will take place in the East Kazakhstan region in a region of favorable farming for this type of crop.",
+  "PRODUCTION_TEXT_11": "Potatoes are the main raw material for the technological process and potato yield and its cost is the most important condition for choosing a region. This region has a high yield at a low price Table 1.",
+  "PRODUCTION_TEXT_12": "Table 1 shows the advantage of placing starch production in the East Kazakhstan region.",
+  "PRODUCTION_TEXT_13": "In addition to the cost of potatoes, the production technology and quality of seed stock for seedlings are important conditions.",
+  "PRODUCTION_TEXT_14": "Technology partner ISAtech ISATECH Co.Ltd. provides:",
+  "PRODUCTION_TEXT_15": "high-yield seed stock grown with proprietary technology;",
+  "PRODUCTION_TEXT_16": "advanced technological equipment of own production is provided;",
+  "PRODUCTION_TEXT_17": "personnel, namely agricultural scientists (six specialists);",
+  "PRODUCTION_TEXT_18": "production tooling personnel (six specialists).",
+  "PRODUCTION_TEXT_19": "ISAtech ISATECH Co.Ltd. besides providing technology and seedstock, is the buyer of all the products produced, which the project operator company and ISAtech ISATECH Co.Ltd. have a corresponding agreement. I.e. planned production volume of starch in 14 000 t/year is purchased by ISAtech ISATECH Co Ltd for consumption in the market of South Korea. Thus, our production project is 100% export-oriented. The cost of 1 ton starch $ 621 (under our conditions), which is half the cost of production in the Azaat region, where the 100% sales. The sale price of 1 ton of starch 2 200 $. ",
+  "PRODUCTION_TEXT_20": "Note: the presentation of the project is available on the Information page.",
+  "PRODUCTION_TABLE_TEXT_1": "Region",
+  "PRODUCTION_TABLE_TEXT_2": "Growing Method",
+  "PRODUCTION_TABLE_TEXT_3": "Yield unit, t/ha",
+  "PRODUCTION_TABLE_TEXT_4": "Price, USD/t",
+  "PRODUCTION_TABLE_TEXT_5": "EU",
+  "PRODUCTION_TABLE_TEXT_6": "Cultivation of high-yielding seed potatoes",
+  "PRODUCTION_TABLE_TEXT_7": "China",
+  "PRODUCTION_TABLE_TEXT_8": "Transplanting seedlings (conventional)",
+  "PRODUCTION_TABLE_TEXT_9": "Korea",
+  "PRODUCTION_TABLE_TEXT_10": "Seed Potato Cultivation, Seedling Transplanting",
+  "PRODUCTION_TABLE_TEXT_11": "ISATECH",
+  "PRODUCTION_TABLE_TEXT_12": "Growing high-yield seed potatoes",
+
+  "PRODUCTION_TEXT_21": "Organization of enterprise for production of magnesia refractories with production capacity of 30 000 tons per year with the technological assistance of DAELIM Eng",
+  "PRODUCTION_TEXT_22": "The project is implemented in Saryarka Free Economic Zone (hereinafter FEZ), with a number of tax and customs preferences/benefits located in Karaganda. ",
+  "PRODUCTION_TEXT_23": "Consumers of products (magnesia refractories) are metallurgical enterprises of Kazakhstan and Russia. And the announced production capacity of 30,000 tons of products would cover only 10% of needs of Kazakhstani enterprises. For example, one of the main consumers of magnesia refractories, the Temirtau Metallurgical Plant, is 22 km away from the planned production of the products (in the Free Economic Zone) and consumes more than 33,000 tons per year, i.e. more than the planned production.",
+  "PRODUCTION_TEXT_24": "The annual demand of the Republic in refractory materials and products is estimated today by specialists of the Ministry of Industry and New Technologies of the Republic of Kazakhstan at 400,000 tons. Annual major consumers of refractories are:",
+  "PRODUCTION_TEXT_25": "Arcelor Mittal JSC (Temirtau) 80-85 thousand tons;",
+  "PRODUCTION_TEXT_26": "Kazakhmys Corporation LLP (Zhezkazgan, Balkhash) - 32-35 thousand tons;",
+  "PRODUCTION_TEXT_27": "Kazzinc JSC (Ust-Kamenogorsk, Leninogorsk) 30 thousand tons;",
+  "PRODUCTION_TEXT_28": "TNK Kazchrome JSC (Aktobe, Aksu) 25-27 thousand tons;",
+  "PRODUCTION_TEXT_29": "Cement plants of Karaganda, Semey, Ust-Kamenogorsk and Aktobe. Karagandy, Semey, Ust-Kamenogorsk 18 thousand tons",
+  "PRODUCTION_TEXT_30": "Of the total demand for refractory products, magnesia products (periclase-chromite and magnesite-chromite, i.e. products of planned production) account for approximately 42% - 168 thousand tons.",
+  "PRODUCTION_TEXT_31": "At present, the production of refractories in the Republic of Kazakhstan is almost non-existent. At the same time, Kazakhstan has sufficient raw materials for development of its own refractory industry. In particular, there are significant reserves of refractory clays in Kazakhstan, more than 300 million tons of magnesia rocks.",
+  "PRODUCTION_TEXT_32": "The organization of refractory production by the existing world technologies is very expensive, due to the use of firing furnaces of expensive high-grade refractory materials, which use high-temperature firing (up to 1800 ° C), while we offer the production of refractory products by new technology by co-mixed high-temperature synthesis (SHS), at temperatures from 800 to 900 ° C. The production requires a significant amount of electricity.",
+  "PRODUCTION_TEXT_33": "Saryarka Economic Zone, which provides electricity in the required volumes at a low preferential tariff, has been chosen as the place of implementation. Given the tax benefits and zero duties of the economic zone, the cost of production is 30% cheaper than that of alternative producers (outside the Republic of Kazakhstan, this product is not produced in the Republic of Kazakhstan).",
+  "PRODUCTION_TEXT_34": "Duration of this project is 12 months.",
+  "PRODUCTION_TEXT_35": "Note: the presentation of the project is available on the Information page.",
 
   // INDICATORS PAGE
   "INDICATORS_DESC": "The market has shown a parabolic rise since 9/20, which is due to the correlation of the first cryptocurrency with the S&P 500 stock index. See detailed report",
