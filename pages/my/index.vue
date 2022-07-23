@@ -2,18 +2,21 @@
   <div class="cabinet-index">
     <balance-info class="m-b-20" />
     <balance-info-token
-      symbol="kzn"
+      v-if="sales.find(x => x.symbol === 'kzn' && x.isCurrent)"
       :sale="sales.filter(x => x.symbol === 'kzn')"
+      symbol="kzn"
       class="m-b-20"
     />
     <balance-info-token
-      symbol="vng"
+      v-if="sales.find(x => x.symbol === 'vng' && x.isCurrent)"
       :sale="sales.filter(x => x.symbol === 'vng')"
+      symbol="vng"
       class="m-b-20"
     />
     <balance-info-token
-      symbol="srk"
+      v-if="sales.find(x => x.symbol === 'srk' && x.isCurrent)"
       :sale="sales.filter(x => x.symbol === 'srk')"
+      symbol="srk"
       class="m-b-20"
     />
     <portfolio-indexes />

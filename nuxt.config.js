@@ -38,7 +38,7 @@ export default {
     ],
     script: [
       {
-        src: `${process.env.PROXY ?? "https://kaizenfund.io"}/socket.io/socket.io.min.js`
+        src: `${process.env.PROXY ?? "https://pro-industry.in"}/socket.io/socket.io.min.js`
       }
     ],
     link: [

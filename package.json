@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "PROXY='https://kzn.digitalppl.com' nuxt",
-    "dev:prod": "HTTPS='true' nuxt",
+    "dev:prod": "PROXY='https://pro-industry.in' nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",

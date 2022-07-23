@@ -1,17 +1,20 @@
 <template>
-  <section v-if="currentSale" class="balance-info">
+  <section v-if="saleData" class="balance-info">
     <!-- Шапка -->
     <div class="balance-info__top">
       <div>
         <h3 class="color-white m-b-5">
-          {{ currentSale.name }}
+          {{ saleData.name }}
           &mdash;
-          <span :style="{color: $RoundColors[currentSale.type], cursor: 'help'}" title="Текущий этап продаж">
+          <span v-if="currentSale" :style="{color: $RoundColors[currentSale.type], cursor: 'help'}" title="Текущий этап продаж">
             {{ $nameRoundByType(currentSale.type) }}
+          </span>
+          <span v-else class="color-red">
+            Выключено
           </span>
         </h3>
         <div class="text-uppercase">
-          {{ currentSale.symbol }}
+          {{ saleData.symbol }}
         </div>
       </div>
     </div>
@@ -173,6 +176,9 @@ export default {
     },
     symbol () {
       return this.sale?.symbol ?? "";
+    },
+    saleData () {
+      return this.funds[0];
     },
     /* Активный этап продаж */
     currentSale () {

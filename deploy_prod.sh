@@ -1,7 +1,7 @@
 echo "generate bundle"
 npm run generate
 
-ip="188.68.218.157"
+ip="162.241.70.134"
 folder="/www/kaizen-client"
 
 echo "packing"
