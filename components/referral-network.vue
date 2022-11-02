@@ -39,6 +39,7 @@ export default {
     }
   },
   data () {
+    const adminMode = this.adminMode;
     return {
       line: 1,
       treeData: this.getData(),
@@ -49,7 +50,7 @@ export default {
           const vm = node.vm;
           const data = { _id: node.id, line: 1 };
           return new Promise((resolve) => {
-            if (this.adminMode) {
+            if (adminMode) {
               vm.$API.RefListAll(data, (r) => {
                 const array = r.users.map(user => ({
                   data: {
@@ -61,9 +62,7 @@ export default {
                   isBatch: true
                 }));
                 resolve(array);
-              }, (error) => {
-                console.log("ERROR", error);
-              });
+              }, (error) => (console.error("[ref-list-all]", error)));
             } else {
               vm.$API.RefList(data, (r) => {
                 const array = r.users.map(user => ({
@@ -76,9 +75,7 @@ export default {
                   isBatch: true
                 }));
                 resolve(array);
-              }, (error) => {
-                console.log("ERROR", error);
-              });
+              }, (error) => (console.error("[ref-list]", error)));
             }
           });
         }

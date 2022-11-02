@@ -80,11 +80,7 @@
                 Hash:
               </span>
               <span style="max-width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: inline-block; vertical-align: middle;">
-                <a
-                  :href="`https://bscscan.com/tx/${props.row.hash}`"
-                  target="_blank"
-                  v-text="props.row.hash"
-                />
+                {{ props.row.hash }}
               </span>
 
               <!-- Copy button -->
