@@ -159,7 +159,11 @@ export default {
   computed: {
     wallets () {
       const wallets = this.$store.getters.wallets;
-      return wallets.filter(w => ["kzn", "vng", "srk"].includes(w.symbol));
+      return this.direction === 'buy'
+        ? [{'symbol': 'kzn'}, {'symbol': 'vng'}, {'symbol': 'srk'}]
+        : this.direction === 'sell' && wallets.length
+          ? wallets.filter(w => ["kzn", "vng", "srk"].includes(w.symbol))
+          : wallets
     },
     tokenBalance () {
       const balance = this.wallets.find(x => x.symbol === this.symbol)?.amount || 0;
@@ -174,16 +178,22 @@ export default {
     }
   },
   mounted () {
-    const symbol = this.order ? this.order.symbol : this.wallets[0].symbol;
-    const amount = this.order ? this.order.amount : this.wallets[0].amount;
+    const symbol = this.order
+      ? this.order.symbol
+      : this.wallets.length
+        ? this.wallets[0].symbol
+        : '';
+    const amount = this.order
+      ? this.order.amount
+      : this.wallets.length
+        ? this.wallets[0].amount
+        : 0;
     this.onChangeSymbol(symbol, amount);
-    this.loadAllOrders();
   },
   methods: {
     /** Обновить/Добавить ордер */
     updateOrder () {
       const fields = {
-        userId: this.$store.getters.user._id,
         direction: this.direction,
         symbol: this.symbol,
         ...this.fields
@@ -192,6 +202,7 @@ export default {
 
       if (this.order) { // Если объект ордера есть, то редактируем его
         params = {
+          userId: this.$store.getters.user._id,
           _id: this.order._id,
           symbol: this.symbol,
           ...fields
@@ -223,9 +234,15 @@ export default {
 
     /** Загружаем все ордера, чтобы определить рекомендуемую цену */
     loadAllOrders () {
-      this.$API.TokenOrderListAll((rows) => {
-        const minPrice = Math.min(...rows.filter(x => x.direction === "sell" && x.symbol === this.symbol).map(x => x.priceUsd));
-        const maxPrice = Math.max(...rows.filter(x => x.direction === "buy" && x.symbol === this.symbol).map(x => x.priceUsd));
+      console.log('all orders');
+      const params = {
+        limit: 1000,
+        offset: 0,
+        symbol: this.symbol
+      };
+      this.$API.TokenOrderListAll(params, (rows) => {
+        const minPrice = Math.min(...rows.list.filter(x => x.direction === "sell" && x.symbol === this.symbol).map(x => x.priceUsd));
+        const maxPrice = Math.max(...rows.list.filter(x => x.direction === "buy" && x.symbol === this.symbol).map(x => x.priceUsd));
 
         this.recommendedPrice = this.direction === "sell"
           ? minPrice < this.currentRate ? minPrice : this.currentRate

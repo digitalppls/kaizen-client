@@ -152,11 +152,11 @@ export default $axios => (proxy, store) => ({
   },
 
   /** Получить список всех ордеров всех пользователей */
-  TokenOrderListAll (promiseFuncSuccess, promiseFuncFail) {
+  TokenOrderListAll (data, promiseFuncSuccess, promiseFuncFail) {
     this.request(
-      "get",
+      "post",
       "token/limit-order/list/all/",
-      false,
+      data,
       promiseFuncSuccess,
       promiseFuncFail,
       true

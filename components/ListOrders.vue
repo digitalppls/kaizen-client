@@ -280,6 +280,7 @@ export default {
       rows: [],
       page: 1,
       offset: 0,
+      limit: 1000,
       filters: {
         symbol: {
           value: { value: "", text: `${this.$t("ALL")} ${this.$t("TOKENS")}` },
@@ -313,10 +314,17 @@ export default {
   },
   methods: {
     /** Подгурзка данных таблицы */
-    loadOrders () {
-      this.$API.TokenOrderListAll((rows) => {
-        this.rows = rows;
-        this.totalRecords = rows.length;
+    loadOrders (event, direction = this.direction) {
+      const params = {
+        offset: this.offset,
+        limit: this.limit
+      }
+      if (direction) params.direction = direction
+
+      console.log(params);
+      this.$API.TokenOrderListAll(params,(items) => {
+        this.rows = items.list;
+        this.totalRecords = items.length;
         this.loading = false;
       }, (e) => {
         this.loading = false;
@@ -407,8 +415,8 @@ export default {
      * Также это обработка события, когда ордер добавлен или отредактирован
      */
     closeModal () {
-      this.loadOrders();
       this.showModal = this.selectedOrder = this.direction = null;
+      this.loadOrders();
     },
 
     /** Обновление параметров таблицы */

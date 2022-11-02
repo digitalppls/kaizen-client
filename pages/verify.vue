@@ -33,7 +33,7 @@ export default {
   },
   created () {
     if (!this.status) {
-      this.$router.push(this.localePath("index"));
+      // this.$router.push(this.localePath("index"));
     }
   }
 };
