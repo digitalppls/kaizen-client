@@ -72,7 +72,7 @@
             </div>
 
             <div
-              v-if="props.row.type === 'withdraw' || props.row.type === 'payment'"
+              v-if="(props.row.type === 'withdraw' || props.row.type === 'payment') && props.row.hash"
               class="color-gray"
               style="display: flex; align-items: center;"
             >
@@ -117,8 +117,6 @@
                 </svg>
               </button>
             </div>
-
-            <!--<pre v-html="props.row" />-->
           </div>
           <div v-else-if="props.column.field === 'amount'">
             <div class="font-700 text-uppercase">

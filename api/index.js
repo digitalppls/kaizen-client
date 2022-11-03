@@ -80,6 +80,17 @@ export default $axios => (proxy, store) => ({
     );
   },
 
+  UserWalletWithdraw (data, promiseFuncSuccess, promiseFuncFail) {
+    this.request(
+      "post",
+      "user/wallet/withdraw/",
+      data,
+      promiseFuncSuccess,
+      promiseFuncFail,
+      true
+    );
+  },
+
   /* Список токенов доступных для вывода через Wallet33 */
   UserWalletWithdrawalList (promiseFuncSuccess, promiseFuncFail) {
     this.request(

@@ -9,6 +9,12 @@ export default {
   },
 
   created () {
+    Vue.prototype.$cryptoSupported = {
+      trx: ['usdt', 'trx'],
+      eth: ['usdt', 'eth'],
+      bnb: ['usdt', 'usdc', 'busd', 'bnb', 'btc', 'pro-in']
+    };
+    Vue.prototype.$networkName = this.networkName;
     Vue.prototype.$user = this.user;
     Vue.prototype.$balanceUsd = this.balanceUsd;
     Vue.prototype.$value_to_str = this.value_to_str;
@@ -213,6 +219,32 @@ export default {
       // if (!price) { price = 0; }
       const price = (currency.find(e => e.symbol === coinType))?.price ?? 0;
       return Number(value) * Number(price);
+    },
+
+    networkName (network, fullname = false) {
+      if (fullname) {
+        switch (network) {
+          case "trx":
+            return "Tron";
+          case "eth":
+            return "Ethereum";
+          case "bnb":
+            return "Binance Smart Chain";
+          default:
+            return network;
+        }
+      } else {
+        switch (network) {
+          case "trx":
+            return "TRC20";
+          case "eth":
+            return "ERC20";
+          case "bnb":
+            return "BEP20";
+          default:
+            return network;
+        }
+      }
     },
 
     balanceUsd () {

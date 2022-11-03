@@ -44,27 +44,26 @@
 
     <ui-modal
       v-if="showModal"
-      :max-width="(modal === 'deposit' || modal === 'withdraw') ? '700px' : '580px'"
+      max-width="580px"
       @close="closeModal"
     >
       <h2 class="modal-title m-b-40">
         {{ $t(modal.toUpperCase()) }}
       </h2>
-      <wallet33
-        :method="modal === 'deposit' ? 0 : 1"
-        :only-types="wallet33Types"
-      />
+      <w33-deposit v-if="modal === 'deposit'" />
+      <w33-withdraw v-else />
     </ui-modal>
   </div>
 </template>
 
 <script>
 import UserWallets from "~/components/balance/user-wallets";
-import Wallet33 from "~/components/wallet33";
+import W33Deposit from '../W33Deposit';
+import W33Withdraw from '../W33Withdrawal';
 
 export default {
   name: "BalanceInfo",
-  components: { Wallet33, UserWallets },
+  components: { W33Withdraw, W33Deposit, UserWallets },
   props: {
     sales: {
       type: Array,
@@ -80,17 +79,6 @@ export default {
   computed: {
     withdrawalList () {
       return this.$store.getters.withdrawalList;
-    },
-    wallet33Types () {
-      const network = { bnb: "bep20", trx: "trc20" };
-      const types = [];
-      this.withdrawalList.forEach((item) => {
-        types.push(network["bnb"] + item);
-        types.push(network["trx"] + item);
-      });
-      return this.modal === "deposit"
-        ? "bep20usdt,trc20usdt,bep20btc,bnb,bep20kzn,bep20vng,bep20srk" // допустимый ввод токенов
-        : types.join(",") // допустимый вывод токенов
     },
     emailVerified () {
       return this.$store.getters.user?.emailVerified ?? false;

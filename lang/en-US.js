@@ -57,6 +57,7 @@ export default {
     }
   },
 
+  "ADDRESS": "Address",
   "NEXT": "Next",
   "PREV": "Back",
   "ROWSPERPAGELABEL": "Lines per page",
@@ -172,7 +173,7 @@ export default {
   "DIRECTION": "Direction",
   "USERNAME": "User name",
   "USER": "User",
-  "AMOUNT": "Quantity",
+  "AMOUNT": "Amount",
   "AMOUNT_TOKENS": "Number of tokens",
   "BALANCE": "Balance",
   "WALLETS": "wallets",
@@ -650,5 +651,13 @@ export default {
   "RECOMMENDED_PRICE": "Recommended price",
   "RECOMMENDED_PRICE_WARN": "The order may hang for a long time because of the high price",
   "I_WILL_GET": "I will get",
-  "I_WILL_PAY": "I will pay"
+  "I_WILL_PAY": "I will pay",
+
+  // Wallet 33
+  'W33_SELECT_NETWORK': 'Choose a cryptocurrency network',
+  'W33_SELECT_TOKEN': 'Select a token',
+  'W33_ACCEPT_TOKENS': 'Supported tokens on the',
+  'W33_DEPOSIT_WARNING': 'Make sure to send tokens over the network',
+  'W33_TRANSFER_TO': 'Transfer cryptocurrency to this wallet',
+  'W33_BLOCKCHAIN_FEE': 'The blockchain\'s commission fee is not included and depends on your cryptocurrency regulations.',
 };
