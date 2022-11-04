@@ -36,8 +36,6 @@ export default {
     this.$socket.off("user_update", this.updateUser);
   },
   mounted () {
-    console.log("default");
-
     if (this.hastToken) {
       this.Update(); // запускаем сразу
     }

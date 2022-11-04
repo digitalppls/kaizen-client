@@ -4,21 +4,21 @@
       <div class="page-profile">
         <div class="page-profile__inline-menu inline-menu-wrap">
           <ul
-            v-if="menu.length"
+            v-if="menuFiltered.length"
             class="inline-menu list"
           >
             <li
-              v-for="(item, i) in menu"
+              v-for="(item, i) in menuFiltered"
               :key="i"
               class="inline-menu__item"
             >
               <nuxt-link
                 :exact="!!localePath('my-profile')"
-                no-prefetch
                 :to="localePath(item.url)"
                 :disabled="item.url === 'my-indexes'"
-                active-class="inline-menu__link--active"
                 :class="['inline-menu__link', {'inline-menu__link--disabled': item.url === 'my-indexes', 'inline-menu__link--admin': item.url === 'admin'}]"
+                active-class="inline-menu__link--active"
+                no-prefetch
                 @click.native="scrollTo($event)"
               >
                 {{ $t(item.name) }}
@@ -32,21 +32,21 @@
         <div class="page-profile__sidebar">
           <div class="sidebar">
             <ul
-              v-if="menu.length"
+              v-if="menuFiltered.length"
               class="menu list"
             >
               <li
-                v-for="(item, i) in menu"
-                v-show="item.show"
+                v-for="(item, i) in menuFiltered"
                 :key="i"
                 class="menu__item"
               >
                 <nuxt-link
                   :exact="!!localePath('my-profile')"
-                  no-prefetch
+                  :disabled="item.url === 'my-indexes'"
                   :to="localePath(item.url)"
-                  active-class="menu__link--active"
                   :class="['menu__link', {'menu__link--disabled': item.url === 'my-indexes', 'menu__link--admin': item.url === 'admin'}]"
+                  no-prefetch
+                  active-class="menu__link--active"
                 >
                   {{ $t(item.name) }}
                   <span
@@ -74,7 +74,7 @@ export default {
         {
           name: "ADMIN",
           url: "admin",
-          show: this.$userPermissions.length
+          show: !!this.$userPermissions.length
         },
         {
           name: "DASHBOARD",
@@ -104,9 +104,13 @@ export default {
       ]
     };
   },
+  computed: {
+    menuFiltered () {
+      return this.menu.filter(item => item.show);
+    }
+  },
   methods: {
     scrollTo (e) {
-      // console.log(e.target.parentNode, e);
       e.target.parentNode.scrollLeft = e.target.offsetLeft;
     }
   }

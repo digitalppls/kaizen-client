@@ -187,7 +187,6 @@ export default {
 
     /** Переключение страниц пагинации */
     onPageChange(params) {
-      console.log("onPageChange", params);
       this.updateParams({page: params.currentPage});
       this.offset = (params.currentPage - 1) * params.currentPerPage;
       // console.log(`Offset ${this.offset}`);
@@ -196,7 +195,6 @@ export default {
 
     /** Изменение лимита отображаемых данных на странице */
     onPerPageChange(params) {
-      console.log("onPerPageChange", params);
       let perPage = params.currentPerPage;
       if (perPage === -1) {
         perPage = this.totalRecords;

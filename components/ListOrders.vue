@@ -31,7 +31,7 @@
         }"
       @on-page-change="onPageChange"
       @on-per-page-change="onPerPageChange"
-      styleClass="vgt-table"
+      style-class="vgt-table vgt-table--dark"
     >
       <!-- Фильтр -->
       <div
@@ -207,6 +207,7 @@
 </template>
 
 <script>
+import "vue-good-table/dist/vue-good-table.css";
 import { VueGoodTable } from "vue-good-table";
 import UiPreloader from "./ui/ui-preloader.global";
 import UiSelect from "./ui/ui-select.global";
@@ -321,7 +322,6 @@ export default {
       }
       if (direction) params.direction = direction
 
-      console.log(params);
       this.$API.TokenOrderListAll(params,(items) => {
         this.rows = items.list;
         this.totalRecords = items.length;
@@ -372,7 +372,6 @@ export default {
     /** Покупка ордера */
     buyOrder (order) {
       this.selectedOrder = order;
-      console.log(order);
       if (confirm(`Подтверждаете покупку ${order.amount}${order.symbol.toUpperCase()} по цене $${order.priceUsd} за $${order.priceUsd * order.amount}?`)) {
         const params = {
           userId: order.userId,
@@ -432,7 +431,6 @@ export default {
     },
     /** Изменение лимита отображаемых данных на странице */
     onPerPageChange (params) {
-      console.log("onPerPageChange", params);
       let perPage = params.currentPerPage;
       if (params.currentPerPage === -1) {
         perPage = this.totalRecords;

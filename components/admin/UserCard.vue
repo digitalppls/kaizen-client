@@ -269,7 +269,6 @@ export default {
 
     /** Загрузить транзакции по фильтру */
     onFilter (filters) {
-      console.log("on-filter", filters);
       this.loadOperations(filters);
     },
 

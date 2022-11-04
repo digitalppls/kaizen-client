@@ -13,42 +13,6 @@
       </nuxt-link>
     </li>
   </ul>
-
-  <!-- <div
-    v-if="false"
-    v-click-outside="close"
-    class="lang"
-  >
-    <div
-      class="lang__item"
-      @click="show = !show"
-    >
-      <img
-        class="lang__icon"
-        :src="require(`~/assets/img/langs/${$i18n.locale}.svg`)"
-        :alt="$i18n.locale"
-      >
-    </div>
-    <div
-      v-if="show"
-      class="lang__dropdown"
-    >
-      <nuxt-link
-        v-for="locale in listLocales"
-        :key="locale.code"
-        :to="switchLocalePath(locale.code)"
-        class="lang__item"
-        @click.native="close"
-      >
-        <img
-          class="lang__icon"
-          :src="require(`~/assets/img/langs/${locale.code}.svg`)"
-          :alt="locale.name"
-          :title="locale.name"
-        >
-      </nuxt-link>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -73,7 +37,6 @@ export default {
       this.show = false;
     },
     onChange (event) {
-      console.log(this.$i18n.locale);
       // this.switchLocalePath(event);
       // this.$router.replace(this.switchLocalePath(event));
       window.location.reload();

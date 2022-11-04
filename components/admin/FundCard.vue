@@ -136,7 +136,7 @@ export default {
       };
       params.priceUsd = +params.priceUsd;
       params.maxValue = +params.maxValue;
-      console.log("save sale", params);
+      params.holdDays = +params.holdDays;
       this.loading = true;
       this.$API.TokenSaleSave(params, (r) => {
         this.loading = false;
@@ -151,7 +151,7 @@ export default {
         this.errors = Array.isArray(e?.message)
           ? e?.message
           : [this.$t(e.message.toUpperCase())];
-        console.log("[TokenSaleSave]", e);
+        console.error("[TokenSaleSave]", e);
       });
     },
 

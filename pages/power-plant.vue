@@ -355,7 +355,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.content.terminology);
     // this.$nextTick(() => {
     //   if (process.browser) { // On the page mounted In the life cycle Instantiate according to the environment WOW
     //     // eslint-disable-next-line no-undef

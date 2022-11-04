@@ -291,9 +291,9 @@ export default {
     /** Проверка занятости логина */
     loginDetect () {
       this.$API.UserLoginDetect(this.username, (response) => {
-        console.log(response);
+
       }, (error) => {
-        console.log(error);
+        console.error('[login detect]', error);
         this.errors = error.message;
       });
     },

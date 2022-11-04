@@ -65,7 +65,7 @@
 
 <script>
 import UiPreloader from "./ui/ui-preloader.global";
-import CircleData from "../pages/circleData";
+import CircleData from "../components/circleData";
 
 export default {
   name: "ReferralStats",

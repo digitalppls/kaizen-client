@@ -40,7 +40,6 @@ export default {
   methods: {
     /** Загрузить транзакции по фильтру */
     onFilter (filters) {
-      console.log("on-filter", filters);
       this.loadOperations(filters);
     },
 
@@ -48,7 +47,6 @@ export default {
     loadOperations () {
       this.loading = true;
       const filters = { ...arguments }[0];
-      console.log(filters);
       const params = {
         offset: this.offset,
         limit: this.limit,

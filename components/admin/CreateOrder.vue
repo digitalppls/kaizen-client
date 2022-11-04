@@ -234,7 +234,6 @@ export default {
 
     /** Загружаем все ордера, чтобы определить рекомендуемую цену */
     loadAllOrders () {
-      console.log('all orders');
       const params = {
         limit: 1000,
         offset: 0,
@@ -256,7 +255,6 @@ export default {
           ? this.order.priceUsd
           : this.recommendedPrice;
       }, (e) => {
-        console.log("[TokenOrderListAll]", e);
         this.loading = false;
         this.errors = Array.isArray(e?.message) ? this.$t(e?.message.toUpperCase()) : [this.$t(e.message.toUpperCase())];
       });
@@ -298,7 +296,6 @@ export default {
     exchangeSuccess (r) {
       this.loading = false;
       this.done = true;
-      console.log(r);
       // this.$store.dispatch("updateUser", r.user);
       setTimeout(() => {
         this.done = false;

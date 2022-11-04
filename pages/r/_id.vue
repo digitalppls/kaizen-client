@@ -9,9 +9,6 @@ export default {
     userId () {
       return this.$route.params;
     }
-  },
-  mounted () {
-    console.log("_id");
   }
 };
 </script>

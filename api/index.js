@@ -350,7 +350,7 @@ export default $axios => (proxy, store) => ({
           if (promiseFuncFail) {
             promiseFuncFail(exceptData.response.data);
           } else {
-            console.log(exceptData.response.data);
+            console.error('[api-post]', exceptData.response.data);
           }
         }
       });
@@ -373,7 +373,7 @@ export default $axios => (proxy, store) => ({
           if (promiseFuncFail) {
             promiseFuncFail(exceptData.response.data);
           } else {
-            console.log(exceptData);
+            console.error('[api-get]', exceptData);
           }
         }
       });

@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import CircleData from "../../pages/circleData";
+import CircleData from "../../components/circleData";
 import UiPreloader from "../ui/ui-preloader.global";
 
 export default {
